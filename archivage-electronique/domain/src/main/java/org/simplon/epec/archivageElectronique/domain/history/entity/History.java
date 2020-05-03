@@ -2,12 +2,14 @@ package org.simplon.epec.archivageElectronique.domain.history.entity;
 
 import org.simplon.epec.archivageElectronique.domain.user.entity.User;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.UUID;
 
 /**
  * Class History
  */
-public class History {
+public class History implements Serializable {
 
   //
   // Fields
@@ -23,7 +25,14 @@ public class History {
   // Constructors
   //
   public History () { };
-  
+
+  public History(String event_type, User calling_user, String calling_application) {
+    this.history_date = LocalDate.now();
+    this.event_type = event_type;
+    this.calling_user = calling_user;
+    this.calling_application = calling_application;
+    this.history_id = UUID.randomUUID().toString();
+  }
   //
   // Methods
   //

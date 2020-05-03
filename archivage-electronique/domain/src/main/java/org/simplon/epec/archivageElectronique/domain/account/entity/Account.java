@@ -1,14 +1,18 @@
 package org.simplon.epec.archivageElectronique.domain.account.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.simplon.epec.archivageElectronique.domain.client.entity.Client;
 import org.simplon.epec.archivageElectronique.domain.event.entity.Event;
+import org.simplon.epec.archivageElectronique.domain.user.entity.User;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.UUID;
 
 /**
  * Class Account
  */
-public class Account {
+public class Account implements Serializable {
 
   //
   // Fields
@@ -21,22 +25,23 @@ public class Account {
   private String account_number;
   private Client client;
   private Event event;
+  @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
   private LocalDate creating_date;
+  private User user;
   
   //
   // Constructors
   //
   public Account () { };
 
-  public Account(String account_id, String account_id_type_code, String account_id_label, String status, String account_number, Client client, Event event, LocalDate creating_date) {
-    this.account_id = account_id;
+  public Account(String account_id_type_code, String account_id_label, String account_number, Client client) {
     this.account_id_type_code = account_id_type_code;
     this.account_id_label = account_id_label;
-    this.status = status;
     this.account_number = account_number;
     this.client = client;
-    this.event = event;
-    this.creating_date = creating_date;
+    this.account_id = UUID.randomUUID().toString();
+    this.creating_date = LocalDate.now();
+    this.status = "CREATED";
   }
   //
   // Methods
@@ -175,6 +180,13 @@ public class Account {
     return creating_date;
   }
 
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
   //
   // Other methods
   //

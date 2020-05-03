@@ -1,9 +1,12 @@
 package org.simplon.epec.archivageElectronique.domain.document.entity;
 
+import java.io.Serializable;
+import java.util.UUID;
+
 /**
  * Class DigitalDocument
  */
-public class DigitalDocument {
+public class DigitalDocument implements Serializable {
 
   //
   // Fields
@@ -19,7 +22,14 @@ public class DigitalDocument {
   // Constructors
   //
   public DigitalDocument () { };
-  
+
+  public DigitalDocument(String file_name, String archive_format, String encoding_doc, Context context) {
+    this.document_id = UUID.randomUUID().toString();
+    this.file_name = file_name;
+    this.archive_format = archive_format;
+    this.encoding_doc = encoding_doc;
+    this.context = context;
+  }
   //
   // Methods
   //

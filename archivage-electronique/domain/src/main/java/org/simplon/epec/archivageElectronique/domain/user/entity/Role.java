@@ -1,9 +1,12 @@
 package org.simplon.epec.archivageElectronique.domain.user.entity;
 
+import java.io.Serializable;
+import java.util.UUID;
+
 /**
  * Class Role
  */
-public class Role {
+public class Role implements Serializable {
 
   //
   // Fields
@@ -16,7 +19,11 @@ public class Role {
   // Constructors
   //
   public Role () { };
-  
+
+  public Role(String name) {
+    this.role_id = UUID.randomUUID().toString();
+    this.name = name;
+  }
   //
   // Methods
   //

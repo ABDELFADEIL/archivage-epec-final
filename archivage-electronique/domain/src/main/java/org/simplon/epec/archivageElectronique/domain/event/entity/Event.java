@@ -1,11 +1,13 @@
 package org.simplon.epec.archivageElectronique.domain.event.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.UUID;
 
 /**
  * Class Event
  */
-public class Event {
+public class Event implements Serializable {
 
   //
   // Fields
@@ -14,12 +16,20 @@ public class Event {
   private String id_event;
   private String event_type;
   private LocalDate event_date;
-  
+  public Event(String event_type) {
+    this.event_type = event_type;
+  }
+
   //
   // Constructors
   //
   public Event () { };
-  
+
+  public Event(String event_type, LocalDate event_date) {
+    this.id_event = UUID.randomUUID().toString();
+    this.event_type = event_type;
+    this.event_date = LocalDate.now();
+  }
   //
   // Methods
   //

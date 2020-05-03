@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.0"
+                 xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
+
+    <description>Archivage domain module</description>
+
+    <entity
+            class="org.simplon.epec.archivageElectronique.domain.account.entity.Account"
+            name="Account" access="FIELD">
+        <table name="account" />
+
+        <attributes>
+            <id name="account_id">
+                <column name="account_id" length="55" />
+            </id>
+            <basic name="account_id_type_code">
+                <column name="account_id_type_code" />
+            </basic>
+            <basic name="account_id_label">
+                <column name="account_id_label" />
+            </basic>
+            <basic name="status">
+                <column name="status" />
+            </basic>
+            <basic name="creating_date">
+                <column name="creating_date" />
+            </basic>
+            <many-to-one name="client" fetch="LAZY"
+                        target-entity="org.simplon.epec.archivageElectronique.domain.client.entity.Client">
+                <join-column name="client" nullable="false" updatable="false"/>
+                <cascade>
+                    <cascade-all />
+                </cascade>
+            </many-to-one>
+            <many-to-one name="user" fetch="LAZY"
+                         target-entity="org.simplon.epec.archivageElectronique.domain.user.entity.User">
+                <join-column name="user" nullable="false" updatable="false"/>
+                <cascade>
+                    <cascade-all />
+                </cascade>
+            </many-to-one>
+            <one-to-one name="event" fetch="LAZY"
+                        target-entity="org.simplon.epec.archivageElectronique.domain.event.entity.Event">
+                <join-column name="event" />
+                <cascade>
+                    <cascade-all />
+                </cascade>
+            </one-to-one>
+        </attributes>
+    </entity>
+</entity-mappings>
+

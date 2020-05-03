@@ -1,9 +1,12 @@
 package org.simplon.epec.archivageElectronique.domain.classificationNature.entity;
 
+import java.io.Serializable;
+import java.util.UUID;
+
 /**
  * Class ClassificationNature
  */
-public class ClassificationNature {
+public class ClassificationNature implements Serializable {
 
   //
   // Fields
@@ -17,7 +20,12 @@ public class ClassificationNature {
   // Constructors
   //
   public ClassificationNature () { };
-  
+
+  public ClassificationNature(String classification_nature_code, int duration) {
+    classification_nature_id = UUID.randomUUID().toString();
+    this.classification_nature_code = classification_nature_code;
+    this.duration = duration;
+  }
   //
   // Methods
   //

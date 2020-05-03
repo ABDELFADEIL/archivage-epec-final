@@ -1,15 +1,18 @@
 package org.simplon.epec.archivageElectronique.domain.document.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.simplon.epec.archivageElectronique.domain.account.entity.Account;
 import org.simplon.epec.archivageElectronique.domain.client.entity.Client;
 import org.simplon.epec.archivageElectronique.domain.contract.entity.Contract;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.UUID;
 
 /**
  * Class Context
  */
-public class Context {
+public class Context implements Serializable {
 
   //
   // Fields
@@ -29,14 +32,34 @@ public class Context {
   private String frozen_label;
   private boolean hold_status;
   private boolean frozen;
+  @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
   private LocalDate final_hold_date;
+  @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
   private LocalDate deletion_date;
   
   //
   // Constructors
   //
   public Context () { };
-  
+
+  public Context(String conserv_unit_id, String media_type, String mine_type, String original_value_id, LocalDate archiving_reference_date, Contract contract, Account account, String classification_nature_id, LocalDate final_business_processing_date, Client client, String frozen_label, boolean hold_status, boolean frozen, LocalDate final_hold_date, LocalDate deletion_date) {
+    this.conserv_unit_id = conserv_unit_id;
+    this.media_type = media_type;
+    this.mine_type = mine_type;
+    this.original_value_id = original_value_id;
+    this.archiving_reference_date = archiving_reference_date;
+    this.contract = contract;
+    this.account = account;
+    this.classification_nature_id = classification_nature_id;
+    this.final_business_processing_date = final_business_processing_date;
+    this.client = client;
+    this.frozen_label = frozen_label;
+    this.hold_status = hold_status;
+    this.frozen = frozen;
+    this.final_hold_date = final_hold_date;
+    this.deletion_date = deletion_date;
+    this.context_id = UUID.randomUUID().toString();
+  }
   //
   // Methods
   //

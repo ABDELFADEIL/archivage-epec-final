@@ -1,14 +1,18 @@
 package org.simplon.epec.archivageElectronique.domain.contract.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.simplon.epec.archivageElectronique.domain.client.entity.Client;
 import org.simplon.epec.archivageElectronique.domain.event.entity.Event;
+import org.simplon.epec.archivageElectronique.domain.user.entity.User;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.UUID;
 
 /**
  * Class Contract
  */
-public class Contract {
+public class Contract implements Serializable {
 
   //
   // Fields
@@ -21,7 +25,9 @@ public class Contract {
   private String status;
   private String contract_number;
   private Event event;
+  @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
   private LocalDate creating_date;
+  private User user;
   
   //
   // Constructors
@@ -31,6 +37,16 @@ public class Contract {
   //
   // Methods
   //
+
+  public Contract(String contract_id_type_code, String contract_id_type_label, Client client, String status, String contract_number) {
+    this.contact_id = UUID.randomUUID().toString();
+    this.contract_id_type_code = contract_id_type_code;
+    this.contract_id_type_label = contract_id_type_label;
+    this.client = client;
+    this.status = "CREATED";
+    this.contract_number = contract_number;
+    this.creating_date = LocalDate.now();
+  }
 
 
   //
@@ -163,6 +179,14 @@ public class Contract {
    */
   public LocalDate getCreating_date () {
     return creating_date;
+  }
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
   }
 
   //

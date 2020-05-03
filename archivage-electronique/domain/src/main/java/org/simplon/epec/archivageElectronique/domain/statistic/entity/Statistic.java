@@ -1,11 +1,13 @@
 package org.simplon.epec.archivageElectronique.domain.statistic.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.UUID;
 
 /**
  * Class Statistic
  */
-public class Statistic {
+public class Statistic implements Serializable {
 
   //
   // Fields
@@ -21,7 +23,14 @@ public class Statistic {
   // Constructors
   //
   public Statistic () { };
-  
+
+  public Statistic(String event_type, String document_id, String user_id) {
+    this.event_type = event_type;
+    this.document_id = document_id;
+    this.user_id = user_id;
+    this.statistic_id = UUID.randomUUID().toString();
+    this.event_date = LocalDate.now();
+  }
   //
   // Methods
   //

@@ -1,24 +1,29 @@
 package org.simplon.epec.archivageElectronique.domain.destructionList.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.simplon.epec.archivageElectronique.domain.document.entity.DigitalDocument;
+
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Class DestructionList
  */
-public class DestructionList {
+public class DestructionList implements Serializable {
 
   //
   // Fields
   //
 
-  private String document_id;
-  private String client_id;
-  private String contract_id;
-  private boolean validation;
+  private String destruction_id;
+  private DigitalDocument document;
+  private boolean validation = false;
   private String description;
+  @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
   private LocalDate validation_date;
   private String user_validate_id;
-  private String account_id;
+
   
   //
   // Constructors
@@ -26,6 +31,15 @@ public class DestructionList {
   public DestructionList () { };
   
   //
+
+  public DestructionList(String destruction_id, DigitalDocument document, boolean validation, String description, LocalDateTime validation_date, String user_validate_id) {
+    this.destruction_id = destruction_id;
+    this.document = document;
+    this.validation = validation;
+    this.description = description;
+    this.validation_date = LocalDate.now();
+    this.user_validate_id = user_validate_id;
+  }
   // Methods
   //
 
@@ -36,50 +50,18 @@ public class DestructionList {
 
   /**
    * Set the value of document_id
-   * @param newVar the new value of document_id
+   * @param
    */
-  public void setDocument_id (String newVar) {
-    document_id = newVar;
+  public DigitalDocument getDocument() {
+    return document;
   }
 
   /**
    * Get the value of document_id
-   * @return the value of document_id
+   * @return the value of document
    */
-  public String getDocument_id () {
-    return document_id;
-  }
-
-  /**
-   * Set the value of client_id
-   * @param newVar the new value of client_id
-   */
-  public void setClient_id (String newVar) {
-    client_id = newVar;
-  }
-
-  /**
-   * Get the value of client_id
-   * @return the value of client_id
-   */
-  public String getClient_id () {
-    return client_id;
-  }
-
-  /**
-   * Set the value of contract_id
-   * @param newVar the new value of contract_id
-   */
-  public void setContract_id (String newVar) {
-    contract_id = newVar;
-  }
-
-  /**
-   * Get the value of contract_id
-   * @return the value of contract_id
-   */
-  public String getContract_id () {
-    return contract_id;
+  public void setDocument(DigitalDocument document) {
+    this.document = document;
   }
 
   /**
@@ -94,7 +76,7 @@ public class DestructionList {
    * Get the value of validation
    * @return the value of validation
    */
-  public boolean getValidation () {
+  public boolean isValidation() {
     return validation;
   }
 
@@ -146,20 +128,14 @@ public class DestructionList {
     return user_validate_id;
   }
 
-  /**
-   * Set the value of account_id
-   * @param newVar the new value of account_id
-   */
-  public void setAccount_id (String newVar) {
-    account_id = newVar;
+  public String getDestruction_id() {
+    return destruction_id;
   }
 
-  /**
-   * Get the value of account_id
-   * @return the value of account_id
-   */
-  public String getAccount_id () {
-    return account_id;
+
+
+  public void setDestruction_id(String destruction_id) {
+    this.destruction_id = destruction_id;
   }
 
   //

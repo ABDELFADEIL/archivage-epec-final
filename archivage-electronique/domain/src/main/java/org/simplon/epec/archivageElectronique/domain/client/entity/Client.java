@@ -1,11 +1,13 @@
 package org.simplon.epec.archivageElectronique.domain.client.entity;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Class Client
  */
-public class Client {
+public class Client implements Serializable {
 
   //
   // Fields
@@ -20,7 +22,8 @@ public class Client {
   private String birth_dept;
   private String siren_number;
   private String siret_number;
-  
+
+
   //
   // Constructors
   //
@@ -29,6 +32,18 @@ public class Client {
   //
   // Methods
   //
+
+  public Client(String client_nature_id, String client_name, String client_first_name, String civility_id, Date birth_date, String birth_dept, String siren_number, String siret_number) {
+    this.client_id = UUID.randomUUID().toString();
+    this.client_nature_id = client_nature_id;
+    this.client_name = client_name;
+    this.client_first_name = client_first_name;
+    this.civility_id = civility_id;
+    this.birth_date = birth_date;
+    this.birth_dept = birth_dept;
+    this.siren_number = siren_number;
+    this.siret_number = siret_number;
+  }
 
 
   //

@@ -15,6 +15,6 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public Account createAccount(String clientID) {
-        return null;
+        return accountJpaRepository.save(new Account( "null",  "account_id_type_code",  "account_id_label",  null));
     }
 }
