@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.0"
+                 xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
+
+    <description>Archivage domain module</description>
+
+    <entity
+            class="org.simplon.epec.archivage.domain.history.entity.History"
+            name="History" access="FIELD">
+        <table name="history" />
+
+        <attributes>
+            <id name="history_id">
+                <column name="history_id" length="55" />
+            </id>
+            <basic name="history_date">
+                <column name="history_date" />
+            </basic>
+            <basic name="event_type">
+                <column name="event_type" />
+            </basic>
+            <basic name="calling_application">
+                <column name="calling_application" />
+            </basic>
+            <many-to-one name="calling_user" fetch="LAZY"
+                         target-entity="org.simplon.epec.archivage.domain.user.entity.User">
+                <join-column name="calling_user" nullable="false" updatable="false"/>
+                <cascade>
+                    <cascade-all />
+                </cascade>
+            </many-to-one>
+        </attributes>
+    </entity>
+
+    <entity
+            class="org.simplon.epec.archivage.domain.statistic.entity.Statistic"
+            name="Statistic" access="FIELD">
+        <table name="statistic" />
+
+        <attributes>
+            <id name="statistic_id">
+                <column name="statistic_id" length="55" />
+            </id>
+            <basic name="event_type">
+                <column name="event_type" />
+            </basic>
+            <basic name="event_date">
+                <column name="event_date" />
+            </basic>
+            <basic name="document_id">
+                <column name="document_id" />
+            </basic>
+            <basic name="user_id">
+                <column name="user_id" />
+            </basic>
+        </attributes>
+    </entity>
+
+</entity-mappings>
+
