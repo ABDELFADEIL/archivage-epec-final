@@ -63,22 +63,22 @@ public class ExpositionApplication  extends SpringBootServletInitializer impleme
      */
     @Override
     public void run(String... args) throws Exception {
-       //Role role = roleJpaRepository.save(new Role("USER"));
-       Role  role = roleJpaRepository.findByName("ADMIN");
-      System.out.print(role.getRole_id() +" "+role.getName());
-      String password = bCryptPasswordEncoder.encode("abcd");
-       User user = new User("fadeil", "fadeil@gmail.com", password, role);
-       // User user = userJpaRepository.findByEmail("abcd@gmail.com");
-       // user.setRole(role);
-     // System.out.print(user.getEmail()+ ""+ user.getUser_id()+ ""+ user.getPassword() +"\n role name: " +user.getRole().getName()+" id role: "+user.getRole().getRole_id());
-       // user = userJpaRepository.save(user);
+        //Role role = roleJpaRepository.save(new Role("USER"));
+        Role  role = roleJpaRepository.findByName("ADMIN");
+        System.out.print(role.getRole_id() +" "+role.getName());
+        String password = bCryptPasswordEncoder.encode("abcd");
+        User user = new User("fadeil", "fadeil@gmail.com", password, role);
+        // User user = userJpaRepository.findByEmail("abcd@gmail.com");
+        // user.setRole(role);
+        // System.out.print(user.getEmail()+ ""+ user.getUser_id()+ ""+ user.getPassword() +"\n role name: " +user.getRole().getName()+" id role: "+user.getRole().getRole_id());
+        // user = userJpaRepository.save(user);
 
         user = userRepository.findByEmail("aaa@gmail.com");
-       System.out.print(user.getEmail()+ ""+ user.getUser_id()+ ""+ user.getPassword() +"\n role name: " +user.getRole().getName()+" id role: "+user.getRole().getRole_id());
-      //userService.CreateUser(user, "ADMIN");
+        System.out.print(user.getEmail()+ ""+ user.getUser_id()+ ""+ user.getPassword() +"\n role name: " +user.getRole().getName()+" id role: "+user.getRole().getRole_id());
+        //userService.CreateUser(user, "ADMIN");
         user.setRole(role);
         userRepository.saveUser(user);
-      //  System.out.print("it role "+roleService.saveRole(new Role("noor")).getName());
+        //  System.out.print("it role "+roleService.saveRole(new Role("noor")).getName());
     }
 
       /*

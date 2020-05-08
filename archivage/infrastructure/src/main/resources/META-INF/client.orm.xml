@@ -14,6 +14,9 @@
             <id name="client_id">
                 <column  name="client_id" length="55" />
             </id>
+            <basic name="client_number">
+                <column name="client_number" unique="true" updatable="false"  />
+            </basic>
             <basic name="client_name">
                 <column name="client_name" />
             </basic>

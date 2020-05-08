@@ -5,9 +5,7 @@ package org.simplon.epec.archivage.infrastructure.security;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.simplon.epec.archivage.domain.user.repository.UserRepository;
 import org.simplon.epec.archivage.infrastructure.security.config.SecurityConstants;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -25,10 +23,9 @@ import java.util.Date;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-	@Autowired
-    private UserRepository userRepository;
+
 	private AuthenticationManager authenticationManager;
-	@Autowired
+
 	public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
 		super();
 		this.authenticationManager = authenticationManager;
@@ -48,22 +45,21 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		System.out.println("Email " + user.getEmail());
 		System.out.println("UID " + user.getUID());
 		System.out.println("password " + user.getPassword());
-/*
-		if(!user.getEmail().equals("") && user.getEmail() != null){
+
+		if (user.getEmail() == null || user.getEmail().equals("")){
+			return authenticationManager
+					.authenticate(new UsernamePasswordAuthenticationToken(user.getUID(), user.getPassword()));
+		}  else
+		if(user.getUID() == null || user.getUID().equals("")){
 			return authenticationManager
 					.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
-		} else if(!user.getUID().equals("") && user.getUID() != null) {
+		}
+			else {
 			return authenticationManager
-					.authenticate(new UsernamePasswordAuthenticationToken(user.getUID(), user.getPassword()));
-		} else {
-			return authenticationManager
-					.authenticate(new UsernamePasswordAuthenticationToken(user.getUID(), user.getPassword()));
+					.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
 		}
 
- */
-
-		return authenticationManager
-				.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
+		//return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
 	}
 
 	@Override

@@ -1,9 +1,11 @@
 package org.simplon.epec.archivage.infrastructure.user.repository;
 
-import org.simplon.epec.archivage.infrastructure.mailing.SendingMail;
 import org.simplon.epec.archivage.domain.user.entity.User;
 import org.simplon.epec.archivage.domain.user.repository.UserRepository;
+import org.simplon.epec.archivage.infrastructure.mailing.SendingMail;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
@@ -11,11 +13,12 @@ import java.util.UUID;
 @Repository
 public class UserRepositoryImpl implements UserRepository {
 
-    private final transient UserJpaRepository userJpaRepository;
-    private final transient SendingMail sendingMail;
+    private final  UserJpaRepository userJpaRepository;
+    private final  SendingMail sendingMail;
+    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserRepositoryImpl(UserJpaRepository userJpaRepository, SendingMail sendingMail) {
+    public UserRepositoryImpl(final UserJpaRepository userJpaRepository, final SendingMail sendingMail) {
         this.userJpaRepository = userJpaRepository;
         this.sendingMail = sendingMail;
     }
@@ -39,7 +42,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User findByEmail(String email) {
-        return userJpaRepository.findByEmail(email);
+        return userJpaRepository.searchByEmailOrUID(email);
     }
 
     @Override

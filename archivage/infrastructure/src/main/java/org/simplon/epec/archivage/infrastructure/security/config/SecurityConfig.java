@@ -1,5 +1,7 @@
 package org.simplon.epec.archivage.infrastructure.security.config;
 
+import org.simplon.epec.archivage.infrastructure.security.JWTAuthenticationFilter;
+import org.simplon.epec.archivage.infrastructure.security.JWTAuthorizationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -43,13 +45,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
        http.csrf().disable();
        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
        http.authorizeRequests().antMatchers( "/api/users/create-user", "/login", "/actuator/**").permitAll();
-       http.authorizeRequests().antMatchers("/contract", "/contract/**", "/category/**").hasAuthority("USER");
-       http.authorizeRequests().antMatchers("/account", "/contract/**", "/category/**").hasAnyAuthority("USER", "ADMIN");
+       http.authorizeRequests().antMatchers("/contract", "/contract/**").hasAuthority("USER");
+       http.authorizeRequests().antMatchers("/account", "/contract/**", "/client/**").hasAnyAuthority("USER", "ADMIN");
        http.authorizeRequests().antMatchers( "/**", "/account").hasAuthority("ADMIN");
        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/**").hasAuthority("ADMIN");
        http.authorizeRequests().anyRequest().authenticated();
+       http.addFilter(new JWTAuthenticationFilter(authenticationManager()));
+       http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 
-    }
+
+   }
         /*
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

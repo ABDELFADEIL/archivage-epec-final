@@ -2,8 +2,10 @@ package org.simplon.epec.archivage.application.user;
 
 import org.simplon.epec.archivage.domain.user.entity.Role;
 import org.simplon.epec.archivage.domain.user.entity.User;
+import org.simplon.epec.archivage.domain.user.repository.RoleRepository;
 import org.simplon.epec.archivage.domain.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,15 +16,14 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+        private final transient UserRepository userRepository;
 
 
-    private UserRepository userRepository;
+    private final transient RoleRepository roleRepository;
 
-    private RoleService roleService;
-
-    public UserServiceImpl( UserRepository userRepository,  RoleService roleService) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
-        this.roleService = roleService;
+        this.roleRepository = roleRepository;
     }
 
 
@@ -31,9 +32,9 @@ public class UserServiceImpl implements UserService {
 
        if((findUserByEmail(user.getEmail()) != null)) throw new RuntimeException(user.getEmail()+ " existe déjà !");
        if((findUserByUID(user.getUID()) != null)) throw new RuntimeException(user.getUID()+ " existe déjà !");
-        Role r =roleService.findByName(rolename);
+        Role r =roleRepository.findByName(rolename);
         if (r==null){
-            r=roleService.saveRole(new Role(rolename));
+            r=roleRepository.saveRole(new Role(rolename));
         }
         String newPasswprd = bCryptPasswordEncoder.encode(user.getPassword());
         User u = new User(user.getUID(), user.getEmail(), newPasswprd, r);

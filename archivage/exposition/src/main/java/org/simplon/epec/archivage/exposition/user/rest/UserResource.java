@@ -2,16 +2,18 @@ package org.simplon.epec.archivage.exposition.user.rest;
 
 import org.simplon.epec.archivage.application.user.UserService;
 import org.simplon.epec.archivage.domain.user.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserResource {
 
-    @Autowired
+
     private UserService userService;
 
+    public UserResource(UserService userService) {
+        this.userService = userService;
+    }
 
 
     @PostMapping("/create-user")
