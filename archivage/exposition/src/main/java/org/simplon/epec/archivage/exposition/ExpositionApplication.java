@@ -1,17 +1,17 @@
 package org.simplon.epec.archivage.exposition;
 
-import com.sun.xml.bind.v2.model.runtime.RuntimeLeafInfo;
 import org.simplon.epec.archivage.application.user.RoleService;
 import org.simplon.epec.archivage.application.user.UserService;
+import org.simplon.epec.archivage.domain.client.entity.Client;
 import org.simplon.epec.archivage.domain.user.entity.Role;
 import org.simplon.epec.archivage.domain.user.entity.User;
 import org.simplon.epec.archivage.domain.user.repository.UserRepository;
+import org.simplon.epec.archivage.infrastructure.client.repository.ClientJpaRepository;
 import org.simplon.epec.archivage.infrastructure.user.repository.RoleJpaRepository;
 import org.simplon.epec.archivage.infrastructure.user.repository.UserJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.BackgroundPreinitializer;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -20,6 +20,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @SpringBootApplication
 @EntityScan(basePackages = {"org.simplon.epec.archivage.*"})
@@ -40,7 +43,8 @@ public class ExpositionApplication  extends SpringBootServletInitializer impleme
 
     @Autowired
     private RoleService roleService;
-
+    @Autowired
+    private ClientJpaRepository clientJpaRepository;
     public static void main(String[] args) {
         SpringApplication.run(ExpositionApplication.class, args);
     }
@@ -78,7 +82,26 @@ public class ExpositionApplication  extends SpringBootServletInitializer impleme
         //userService.CreateUser(user, "ADMIN");
         user.setRole(role);
         userRepository.saveUser(user);
-        //  System.out.print("it role "+roleService.saveRole(new Role("noor")).getName());
+
+        String number_st = "0000000000";
+        long number_account = Long.parseLong(number_st);
+        long new_number_account = number_account + 1;
+        number_st = "00000000000".substring(String.valueOf(new_number_account).length()+1)+new_number_account;
+
+        // String st2 = st.substring(0, st.length());
+        System.out.println("number st : "+number_st);
+
+
+        System.out.println("number number_account  : "+number_account);
+        System.out.println("number number_account 2: "+new_number_account);
+        number_st = "00000000000".substring(String.valueOf(new_number_account).length()+1)+new_number_account;
+          System.out.print("number_st : "+number_st);
+   AtomicInteger i = new AtomicInteger();
+        String client_number = clientJpaRepository.findMaxClientNumber();
+        //System.out.println(client.getClient_number());
+        
+            System.out.println("Client n° "+ client_number);
+
     }
 
       /*

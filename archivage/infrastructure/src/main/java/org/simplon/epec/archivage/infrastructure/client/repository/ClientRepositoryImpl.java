@@ -4,6 +4,9 @@ import org.simplon.epec.archivage.domain.client.entity.Client;
 import org.simplon.epec.archivage.domain.client.repository.ClientRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Set;
+
 @Repository
 public class ClientRepositoryImpl implements ClientRepository {
 
@@ -14,12 +17,41 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public Client createClient() {
-        return null;
+    public Client createClient(Client client) {
+        return clientJpaRepository.save(client);
     }
 
     @Override
-    public Client findOne(String clientID) {
-        return null;
+    public Client findOneByCientId(String clientID) {
+        return clientJpaRepository.findById(clientID).get();
     }
-}
+
+    @Override
+    public Client findOnByClientNumber(String clientNumber) {
+        return clientJpaRepository.findByClientNumber(clientNumber);
+    }
+
+    @Override
+    public Client UpdateCient(Client client) {
+        return clientJpaRepository.save(client);
+    }
+
+    @Override
+    public Set<Client> getClientsByNameContains(String name) {
+        return clientJpaRepository.findByClientNameContains(name);
+    }
+
+    @Override
+    public Set<Client> getClientByClientNumberContains(String clientNumber) {
+        return clientJpaRepository.findByClientNumberContains(clientNumber);
+    }
+
+    @Override
+    public void removeClient(Client client) {
+        clientJpaRepository.delete(client);
+    }
+
+    public String getMaxClientNumber(){
+      return clientJpaRepository.findMaxClientNumber();
+    }
+    }
