@@ -1,4 +1,9 @@
 spring:
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+  profiles:
+    active: local
   datasource:
     url: jdbc:mysql://localhost:3306/archivage?serverTimezone=UTC&useSSL=false
     username: root
@@ -34,6 +39,8 @@ management:
     application:
   version: '@project.version@'
   timezone: ${user.timezone}
+
+
 server:
   port: 8080
 

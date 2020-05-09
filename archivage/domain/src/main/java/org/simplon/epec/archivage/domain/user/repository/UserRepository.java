@@ -8,6 +8,7 @@ public interface UserRepository {
      User findByEmail(String emai);
      User findByUID(String UID);
      void resendPassword(String email);
+     User getAuthentificatedUser();
 
 
 }

@@ -23,6 +23,7 @@ public class Client implements Serializable {
   private String birth_dept;
   private String siren_number;
   private String siret_number;
+  private String user_id;
 
 
   //
@@ -34,7 +35,9 @@ public class Client implements Serializable {
   // Methods
   //
 
-  public Client(String client_nature_id, String client_number, String client_name, String client_first_name, String civility_id, Date birth_date, String birth_dept, String siren_number, String siret_number) {
+  public Client(String client_nature_id, String client_number, String client_name,
+                String client_first_name, String civility_id, Date birth_date,
+                String birth_dept, String siren_number, String siret_number, String user_id) {
     this.client_id = UUID.randomUUID().toString();
     this.client_nature_id = client_nature_id;
     this.client_number = client_number;
@@ -45,6 +48,7 @@ public class Client implements Serializable {
     this.birth_dept = birth_dept;
     this.siren_number = siren_number;
     this.siret_number = siret_number;
+    this.user_id = user_id;
   }
 
 
@@ -81,6 +85,21 @@ public class Client implements Serializable {
    */
   public String getClient_number() {
     return client_number;
+  }
+
+  /**
+   * Set the value of client_id
+   * @param user_id the new value of user_id
+   */
+  public void setUser_id(String user_id) {
+    this.user_id = user_id;
+  }
+  /**
+   * Get the value of client_id
+   * @return the value of user_id
+   */
+  public String getUser_id() {
+    return user_id;
   }
 
   /**

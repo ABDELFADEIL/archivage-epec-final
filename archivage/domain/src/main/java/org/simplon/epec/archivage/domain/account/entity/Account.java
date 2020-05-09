@@ -28,7 +28,7 @@ public class Account implements Serializable {
   @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
   private LocalDate creating_date;
   private User user;
-  
+
   //
   // Constructors
   //

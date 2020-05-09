@@ -31,6 +31,10 @@ public class UserResource {
         userService.resendPassword(email);
 
     }
+    @GetMapping("user-info")
+    public User getAuthentificatedUser(){
+        return userService.getAuthentificatedUser();
+    }
 
 
 }

@@ -11,5 +11,6 @@ public interface UserService {
     User findUserByUID(String UID);
     User findByUserEmailOrUID(String emailOrUID);
     void resendPassword(String email);
+    User getAuthentificatedUser();
 
 }

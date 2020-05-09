@@ -46,6 +46,7 @@ public class ClientRepositoryImpl implements ClientRepository {
         return clientJpaRepository.findByClientNumberContains(clientNumber);
     }
 
+
     @Override
     public void removeClient(Client client) {
         clientJpaRepository.delete(client);

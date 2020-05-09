@@ -99,7 +99,7 @@ public class ExpositionApplication  extends SpringBootServletInitializer impleme
    AtomicInteger i = new AtomicInteger();
         String client_number = clientJpaRepository.findMaxClientNumber();
         //System.out.println(client.getClient_number());
-        
+
             System.out.println("Client n° "+ client_number);
 
     }

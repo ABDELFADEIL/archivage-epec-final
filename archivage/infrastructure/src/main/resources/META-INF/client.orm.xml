@@ -38,6 +38,9 @@
             <basic name="siret_number">
                 <column name="siret_number" />
             </basic>
+            <basic name="user_id">
+                <column name="user_id" updatable="false" nullable="false"/>
+            </basic>
         </attributes>
     </entity>
 </entity-mappings>

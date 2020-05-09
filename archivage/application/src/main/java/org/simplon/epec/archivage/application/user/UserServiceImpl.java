@@ -77,4 +77,9 @@ public class UserServiceImpl implements UserService {
         userRepository.resendPassword(email);
 
     }
+
+    @Override
+    public User getAuthentificatedUser() {
+        return userRepository.getAuthentificatedUser();
+    }
 }

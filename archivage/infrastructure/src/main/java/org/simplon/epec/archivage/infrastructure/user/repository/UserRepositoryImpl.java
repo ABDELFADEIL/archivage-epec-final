@@ -4,6 +4,8 @@ import org.simplon.epec.archivage.domain.user.entity.User;
 import org.simplon.epec.archivage.domain.user.repository.UserRepository;
 import org.simplon.epec.archivage.infrastructure.mailing.SendingMail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -58,5 +60,18 @@ public class UserRepositoryImpl implements UserRepository {
         userJpaRepository.save(u);
         String msg = "Votre mot de passe : "+ uuid;
        sendingMail.sendingMail(u.getEmail(), msg);
+    }
+
+    @Override
+    public User getAuthentificatedUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            String email = ((UserDetails)principal).getUsername();
+            return userJpaRepository.findByEmail(email);
+        } else {
+            String email = principal.toString();
+            return userJpaRepository.findByEmail(email);
+
+        }
     }
 }

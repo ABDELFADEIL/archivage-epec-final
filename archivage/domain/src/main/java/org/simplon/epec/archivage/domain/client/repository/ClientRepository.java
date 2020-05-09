@@ -14,4 +14,5 @@ public interface ClientRepository {
      void removeClient(Client client);
      Set<Client> getClientsByNameContains(String name);
      Set<Client> getClientByClientNumberContains(String clientNumber);
+     String getMaxClientNumber();
 }
