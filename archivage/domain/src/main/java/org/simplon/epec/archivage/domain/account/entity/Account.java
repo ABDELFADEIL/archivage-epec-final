@@ -25,7 +25,6 @@ public class Account implements Serializable {
   private String account_number;
   private Client client;
   private Event event;
-  @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
   private LocalDate creating_date;
   private User user;
 

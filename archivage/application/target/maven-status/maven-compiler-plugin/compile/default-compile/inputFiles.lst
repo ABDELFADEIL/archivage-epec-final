@@ -6,10 +6,10 @@
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/application/src/main/java/org/simplon/epec/archivage/application/user/RoleService.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/application/src/main/java/org/simplon/epec/archivage/application/document/DigitalDocumentService.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/application/src/main/java/org/simplon/epec/archivage/application/contract/ContractServiceImpl.java
-/media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/application/src/main/java/org/simplon/epec/archivage/application/account/IAccountService.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/application/src/main/java/org/simplon/epec/archivage/application/destructionList/DestructionListService.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/application/src/main/java/org/simplon/epec/archivage/application/history/HistoryService.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/application/src/main/java/org/simplon/epec/archivage/application/event/EventService.java
+/media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/application/src/main/java/org/simplon/epec/archivage/application/account/AccountService.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/application/src/main/java/org/simplon/epec/archivage/application/client/ClientService.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/application/src/main/java/org/simplon/epec/archivage/application/user/UserServiceImpl.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/application/src/main/java/org/simplon/epec/archivage/application/document/DigitalDocumentServiceImpl.java
