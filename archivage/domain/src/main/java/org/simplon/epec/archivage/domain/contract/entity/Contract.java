@@ -2,11 +2,14 @@ package org.simplon.epec.archivage.domain.contract.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.simplon.epec.archivage.domain.client.entity.Client;
+import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.domain.event.entity.Event;
 import org.simplon.epec.archivage.domain.user.entity.User;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -22,14 +25,15 @@ public class Contract implements Serializable {
   private String contract_id_type_code;
   private String contract_id_type_label;
   private Client client;
-  private String status;
   private String contract_number;
   private Event event;
-  @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
   private LocalDate creating_date;
   private User user;
-  
-  //
+  private Set<DigitalDocument> digitalDocuments;
+
+
+
+    //
   // Constructors
   //
   public Contract () { };
@@ -38,12 +42,11 @@ public class Contract implements Serializable {
   // Methods
   //
 
-  public Contract(String contract_id_type_code, String contract_id_type_label, Client client, String status, String contract_number) {
+  public Contract(String contract_id_type_code, String contract_id_type_label, Client client, String contract_number) {
     this.contact_id = UUID.randomUUID().toString();
     this.contract_id_type_code = contract_id_type_code;
     this.contract_id_type_label = contract_id_type_label;
     this.client = client;
-    this.status = "CREATED";
     this.contract_number = contract_number;
     this.creating_date = LocalDate.now();
   }
@@ -86,6 +89,23 @@ public class Contract implements Serializable {
   }
 
   /**
+   * Set the value of contract_id_type_code
+   * @param digitalDocuments the new value of digitalDocuments
+   */
+  public void setDigitalDocuments(Set<DigitalDocument> digitalDocuments) {
+    this.digitalDocuments = digitalDocuments;
+  }
+
+  /**
+   * Get the value of contract_id_type_code
+   * @return the value of digitalDocuments
+   */
+  public Set<DigitalDocument> getDigitalDocuments() {
+    return digitalDocuments;
+  }
+
+
+  /**
    * Set the value of contract_id_type_label
    * @param newVar the new value of contract_id_type_label
    */
@@ -115,22 +135,6 @@ public class Contract implements Serializable {
    */
   public Client getClient () {
     return client;
-  }
-
-  /**
-   * Set the value of status
-   * @param newVar the new value of status
-   */
-  public void setStatus (String newVar) {
-    status = newVar;
-  }
-
-  /**
-   * Get the value of status
-   * @return the value of status
-   */
-  public String getStatus () {
-    return status;
   }
 
   /**

@@ -3,3 +3,4 @@ org/simplon/epec/archivage/exposition/account/rest/AccountResource.class
 org/simplon/epec/archivage/exposition/user/rest/RoleResource.class
 org/simplon/epec/archivage/exposition/client/rest/ClientResource.class
 org/simplon/epec/archivage/exposition/user/rest/UserResource.class
+org/simplon/epec/archivage/exposition/classificationNature/rest/ClassificationNatureResource.class

@@ -1,7 +1,10 @@
 package org.simplon.epec.archivage.domain.event.entity;
 
+import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
+
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
@@ -16,6 +19,8 @@ public class Event implements Serializable {
   private String id_event;
   private String event_type;
   private LocalDate event_date;
+  private ClassificationNature classificationNature;
+
   public Event(String event_type) {
     this.event_type = event_type;
   }
@@ -25,10 +30,11 @@ public class Event implements Serializable {
   //
   public Event () { };
 
-  public Event(String event_type, LocalDate event_date) {
+  public Event(String event_type, ClassificationNature classificationNature, LocalDate event_date) {
     this.id_event = UUID.randomUUID().toString();
     this.event_type = event_type;
-    this.event_date = LocalDate.now();
+    this.classificationNature = classificationNature;
+    this.event_date = event_date;
   }
   //
   // Methods

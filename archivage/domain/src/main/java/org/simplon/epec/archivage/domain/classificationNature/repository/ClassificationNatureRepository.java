@@ -6,4 +6,6 @@ public interface ClassificationNatureRepository {
 
     public ClassificationNature addClassificationNature(ClassificationNature classificationNature);
     public ClassificationNature findByClassificationNatureCode(String classificationNatureCode);
+
+    public ClassificationNature findById(String id);
 }

@@ -2,11 +2,13 @@ package org.simplon.epec.archivage.domain.account.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.simplon.epec.archivage.domain.client.entity.Client;
+import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.domain.event.entity.Event;
 import org.simplon.epec.archivage.domain.user.entity.User;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -21,26 +23,26 @@ public class Account implements Serializable {
   private String account_id;
   private String account_id_type_code;
   private String account_id_label;
-  private String status;
   private String account_number;
   private Client client;
   private Event event;
   private LocalDate creating_date;
   private User user;
+  private Set<DigitalDocument> digitalDocuments;
 
   //
   // Constructors
   //
   public Account () { };
 
-  public Account(String account_id_type_code, String account_id_label, String account_number, Client client) {
+  public Account(String account_id_type_code, String account_id_label, String account_number, Client client, User user) {
     this.account_id_type_code = account_id_type_code;
     this.account_id_label = account_id_label;
     this.account_number = account_number;
     this.client = client;
+    this.user = user;
     this.account_id = UUID.randomUUID().toString();
     this.creating_date = LocalDate.now();
-    this.status = "CREATED";
   }
   //
   // Methods
@@ -101,20 +103,19 @@ public class Account implements Serializable {
 
   /**
    * Set the value of status
-   * @param newVar the new value of status
+   * @param digitalDocuments the new value of status
    */
-  public void setStatus (String newVar) {
-    status = newVar;
+  public void setDigitalDocuments(Set<DigitalDocument> digitalDocuments) {
+    this.digitalDocuments = digitalDocuments;
   }
 
   /**
    * Get the value of status
-   * @return the value of status
+   * @return the value of digitalDocuments
    */
-  public String getStatus () {
-    return status;
+  public Set<DigitalDocument> getDigitalDocuments() {
+    return digitalDocuments;
   }
-
   /**
    * Set the value of account_number
    * @param newVar the new value of account_number

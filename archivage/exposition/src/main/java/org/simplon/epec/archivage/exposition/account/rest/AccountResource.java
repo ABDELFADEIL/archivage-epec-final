@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.LinkedHashSet;
@@ -73,12 +74,16 @@ public class AccountResource {
     @GetMapping("/get-accounts-status")
     public Set<Account> getClientsByNameContains(
                                                  @RequestParam(name = "status", required = true) String status,
-                                                 @RequestParam("dateAfter") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dateAfter,
-                                                 @RequestParam("dateBefor") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dateBefor
+                                                 @RequestParam("dateAfter") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateAfter,
+                                                 @RequestParam("dateBefor") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateBefor
                                                 )
     {
-        return accountService.findAccountByStatusAndEventDateAfterAndEvenDateBefor(status, dateAfter, dateBefor);
+        return accountService.findAccountByEventStatusEventDateBeforAndDateAfter(status, dateAfter, dateBefor);
     }
 
+    @PostMapping("/create-new-account")
+    public Account createAccount(@RequestBody Account account) {
+        return null;
+    }
 
 }

@@ -75,7 +75,7 @@ public class ClientServiceImpl implements ClientService {
     public String createNewClientNumber(){
 
         String client_number_pre = clientRepository.getMaxClientNumber();
-        long number_account = Long.parseLong(client_number_pre);
+        long number_account =  Long.parseLong(client_number_pre);
         long new_number_account = number_account + 1;
         String client_number_nex = "00000000000".substring(String.valueOf(new_number_account).length()+1)+new_number_account;
         return client_number_nex;

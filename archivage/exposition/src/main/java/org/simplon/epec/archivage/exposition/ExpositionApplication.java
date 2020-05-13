@@ -67,21 +67,23 @@ public class ExpositionApplication  extends SpringBootServletInitializer impleme
      */
     @Override
     public void run(String... args) throws Exception {
-        //Role role = roleJpaRepository.save(new Role("USER"));
-        Role  role = roleJpaRepository.findByName("ADMIN");
-        System.out.print(role.getRole_id() +" "+role.getName());
-        String password = bCryptPasswordEncoder.encode("abcd");
-        User user = new User("fadeil", "fadeil@gmail.com", password, role);
-        // User user = userJpaRepository.findByEmail("abcd@gmail.com");
+       // Role role = roleJpaRepository.save(new Role("ADMIN"));
+       // Role  role = roleJpaRepository.findByName("ADMIN");
+      //  System.out.print(role.getRole_id() +" "+role.getName());
+      //  String password = bCryptPasswordEncoder.encode("abcd");
+       // User user = new User("bbb", "bbb@gmail.com", password, role);
+      // user = userRepository.saveUser(user);
+        // user = userRepository.findByEmail("abcd@gmail.com");
         // user.setRole(role);
-        // System.out.print(user.getEmail()+ ""+ user.getUser_id()+ ""+ user.getPassword() +"\n role name: " +user.getRole().getName()+" id role: "+user.getRole().getRole_id());
+       // System.out.println(user.getEmail()+ ""+ user.getUser_id()+ ""+ user.getPassword() +"\n role name: " +user.getRole().getName()+" id role: "+user.getRole().getRole_id());
         // user = userJpaRepository.save(user);
 
-        user = userRepository.findByEmail("aaa@gmail.com");
-        System.out.print(user.getEmail()+ ""+ user.getUser_id()+ ""+ user.getPassword() +"\n role name: " +user.getRole().getName()+" id role: "+user.getRole().getRole_id());
+        //user = userRepository.findByEmail("aaa@gmail.com");
+       // System.out.print(user.getEmail()+ ""+ user.getUser_id()+ ""+ user.getPassword() +"\n role name: " +user.getRole().getName()+" id role: "+user.getRole().getRole_id());
+      //   user = new User("ddd", "ddd@gmail.com", password, null);
         //userService.CreateUser(user, "ADMIN");
-        user.setRole(role);
-        userRepository.saveUser(user);
+       // user.setRole(role);
+       // userRepository.saveUser(user);
 
         String number_st = "0000000000";
         long number_account = Long.parseLong(number_st);
@@ -95,12 +97,12 @@ public class ExpositionApplication  extends SpringBootServletInitializer impleme
         System.out.println("number number_account  : "+number_account);
         System.out.println("number number_account 2: "+new_number_account);
         number_st = "00000000000".substring(String.valueOf(new_number_account).length()+1)+new_number_account;
-          System.out.print("number_st : "+number_st);
-   AtomicInteger i = new AtomicInteger();
+        System.out.print("number_st : "+number_st);
+        AtomicInteger i = new AtomicInteger();
         String client_number = clientJpaRepository.findMaxClientNumber();
-        //System.out.println(client.getClient_number());
+      //  System.out.println(client_number);
 
-            System.out.println("Client n° "+ client_number);
+         //   System.out.println("Client n° "+ client_number);
 
     }
 

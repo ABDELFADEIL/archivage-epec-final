@@ -15,11 +15,17 @@ public class ClassificationNatureRepositoryImpl implements ClassificationNatureR
 
     @Override
     public ClassificationNature addClassificationNature(ClassificationNature classificationNature) {
-        return null;
+        ClassificationNature cn = new ClassificationNature(classificationNature.getClassification_nature_code(), classificationNature.getDuration());
+        return classificationJpaNatureRepository.save(classificationNature);
     }
 
     @Override
     public ClassificationNature findByClassificationNatureCode(String classificationNatureCode) {
-        return null;
+        return classificationJpaNatureRepository.findByClassification_nature_code(classificationNatureCode);
+    }
+
+    @Override
+    public ClassificationNature findById(String id) {
+        return classificationJpaNatureRepository.findById(id).get();
     }
 }

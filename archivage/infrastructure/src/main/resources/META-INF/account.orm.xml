@@ -20,11 +20,11 @@
             <basic name="account_id_label">
                 <column name="account_id_label" />
             </basic>
-            <basic name="status">
-                <column name="status" />
-            </basic>
             <basic name="creating_date">
                 <column name="creating_date" />
+            </basic>
+            <basic name="account_number">
+                <column name="account_number" nullable="false" updatable="false" />
             </basic>
             <many-to-one name="client" fetch="LAZY"
                         target-entity="org.simplon.epec.archivage.domain.client.entity.Client">
@@ -40,6 +40,13 @@
                     <cascade-all />
                 </cascade>
             </many-to-one>
+            <one-to-many name="digitalDocuments" fetch="LAZY"
+                         target-entity="org.simplon.epec.archivage.domain.document.entity.DigitalDocument">
+                <join-column name="digitalDocuments" nullable="true" updatable="true"/>
+                <cascade>
+                    <cascade-all />
+                </cascade>
+            </one-to-many>
             <one-to-one name="event" fetch="LAZY"
                         target-entity="org.simplon.epec.archivage.domain.event.entity.Event">
                 <join-column name="event" />
