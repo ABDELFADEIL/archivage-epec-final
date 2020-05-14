@@ -78,14 +78,9 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public Account createEvent(Account account, Event event) {
-        List<DigitalDocument> documentList = (List<DigitalDocument>) account.getDigitalDocuments();
-        String classification_nature_id = documentList.get(0).getContext().getClassification_nature_id();
-        ClassificationNature classificationNature = classificationNatureRepository.findById(classification_nature_id);
-        Event event1 = new Event(event.getEvent_type(), classificationNature,   event.getEvent_date());
-         event1 = eventRepository.createEvent(event1);
-        Account account1 = accountJpaRepository.findByAccount_number(account.getAccount_number());
-        account1.setEvent(event1);
-        return accountJpaRepository.save(account1);
+          eventRepository.createEventAccount(account, event);
+          return accountJpaRepository.findByAccount_number(account.getAccount_number());
+
     }
 
 

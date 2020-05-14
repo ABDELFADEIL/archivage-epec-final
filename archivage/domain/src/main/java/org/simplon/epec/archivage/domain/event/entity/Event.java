@@ -93,7 +93,22 @@ public class Event implements Serializable {
     return event_date;
   }
 
-  //
+  /**
+   * Set the value of event_date
+   * @param classificationNature the new value of event_date
+   */
+  public void setClassificationNature(ClassificationNature classificationNature) {
+    this.classificationNature = classificationNature;
+  }
+
+  /**
+   * Get the value of event_date
+   * @return the value of event_date
+   */
+  public ClassificationNature getClassificationNature() {
+    return classificationNature;
+  }
+//
   // Other methods
   //
 

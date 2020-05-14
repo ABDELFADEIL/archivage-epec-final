@@ -25,7 +25,7 @@ public class ContractServiceImpl implements ContractService {
 
 
     @Override
-    public Contract createAccount(Contract contract) {
+    public Contract createContract(Contract contract) {
         String contract_number = createNewContractNumber();
         User user = userRepository.getAuthentificatedUser();
         Contract c = new Contract( contract.getContract_id_type_code(),  contract.getContract_id_type_label(),

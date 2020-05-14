@@ -7,7 +7,7 @@ import java.util.Set;
 
 public interface ContractService {
 
-    public Contract createAccount(Contract contract);
+    public Contract createContract(Contract contract);
     public Contract getContractByCientId(String clientID);
     public Contract getContractByNumber(String contract_number);
     public Contract UpdateAccount(Contract contract);

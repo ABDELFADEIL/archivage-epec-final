@@ -1,6 +1,5 @@
 package org.simplon.epec.archivage.infrastructure.contract.repository;
 
-import org.simplon.epec.archivage.domain.account.entity.Account;
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
 import org.simplon.epec.archivage.domain.classificationNature.repository.ClassificationNatureRepository;
 import org.simplon.epec.archivage.domain.contract.entity.Contract;
@@ -75,13 +74,7 @@ public class ContractRepositoryImpl implements ContractRepository {
 
     @Override
     public Contract createEvent(Contract contract, Event event) {
-        Contract contract1 = contractJpaRepository.findByContract_number(contract.getContract_number());
-        List<DigitalDocument> documentList = (List<DigitalDocument>) contract1.getDigitalDocuments();
-        String classification_nature_id = documentList.get(0).getContext().getClassification_nature_id();
-        ClassificationNature classificationNature = classificationNatureRepository.findById(classification_nature_id);
-        Event event1 = new Event(event.getEvent_type(), classificationNature,   event.getEvent_date());
-        event1 = eventRepository.createEvent(event1);
-        contract1.setEvent(event1);
-        return contractJpaRepository.save(contract1);
+         eventRepository.createEventContract(contract, event);
+         return contractJpaRepository.findByContract_number(contract.getContract_number());
     }
 }
