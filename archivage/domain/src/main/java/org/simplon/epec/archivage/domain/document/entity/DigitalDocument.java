@@ -15,7 +15,7 @@ public class DigitalDocument implements Serializable {
   private String document_id;
   private String file_name;
   private String archive_format;
-  private String encoding_doc;
+  private byte [] encoding_doc;
   private Context context;
   
   //
@@ -23,7 +23,7 @@ public class DigitalDocument implements Serializable {
   //
   public DigitalDocument () { };
 
-  public DigitalDocument(String file_name, String archive_format, String encoding_doc, Context context) {
+  public DigitalDocument(String file_name, String archive_format, byte [] encoding_doc, Context context) {
     this.document_id = UUID.randomUUID().toString();
     this.file_name = file_name;
     this.archive_format = archive_format;
@@ -91,7 +91,7 @@ public class DigitalDocument implements Serializable {
    * Set the value of encoding_doc
    * @param newVar the new value of encoding_doc
    */
-  public void setEncoding_doc (String newVar) {
+  public void setEncoding_doc (byte [] newVar) {
     encoding_doc = newVar;
   }
 
@@ -99,7 +99,7 @@ public class DigitalDocument implements Serializable {
    * Get the value of encoding_doc
    * @return the value of encoding_doc
    */
-  public String getEncoding_doc () {
+  public byte [] getEncoding_doc () {
     return encoding_doc;
   }
 

@@ -5,6 +5,8 @@ import org.simplon.epec.archivage.domain.classificationNature.repository.Classif
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class ClassificationNatureServiceImpl implements ClassificationNatureService {
@@ -23,5 +25,25 @@ public class ClassificationNatureServiceImpl implements ClassificationNatureServ
     @Override
     public ClassificationNature findByClassificationNatureCode(String classificationNatureCode) {
         return classificationNatureRepository.findByClassificationNatureCode(classificationNatureCode);
+    }
+
+    @Override
+    public ClassificationNature updateClassificationNature(ClassificationNature classificationNature) {
+        return classificationNatureRepository.updateClassificationNature(classificationNature);
+    }
+
+    @Override
+    public void removeClassificationNature(String classificationNatureID) {
+        classificationNatureRepository.removeClassificationNature(classificationNatureID);
+    }
+
+    @Override
+    public ClassificationNature findByClassificationNatureId(String classificationNatureId) {
+        return classificationNatureRepository.findByClassificationNatureId(classificationNatureId);
+    }
+
+    @Override
+    public List<ClassificationNature> getAllClassificationNature() {
+        return classificationNatureRepository.getAllClassificationNature();
     }
 }

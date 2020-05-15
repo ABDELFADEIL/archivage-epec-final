@@ -5,6 +5,7 @@ org/simplon/epec/archivage/infrastructure/user/repository/RoleJpaRepository.clas
 org/simplon/epec/archivage/infrastructure/mailing/SendingMail.class
 org/simplon/epec/archivage/infrastructure/user/repository/UserRepositoryImpl.class
 org/simplon/epec/archivage/infrastructure/history/repository/HistoryRepositoryImpl.class
+org/simplon/epec/archivage/infrastructure/document/CrypterDocument.class
 org/simplon/epec/archivage/infrastructure/security/UserDetailsServiceImpl.class
 org/simplon/epec/archivage/infrastructure/event/repository/EventRepositoryImpl.class
 org/simplon/epec/archivage/infrastructure/contract/repository/ContractJpaRepository.class
@@ -13,7 +14,6 @@ org/simplon/epec/archivage/infrastructure/history/repository/HistoryJpaRepositor
 org/simplon/epec/archivage/infrastructure/context/repository/ContextRepositoryImpl.class
 org/simplon/epec/archivage/infrastructure/security/JWTAuthorizationFilter.class
 org/simplon/epec/archivage/infrastructure/account/repository/AccountJpaRepository.class
-org/simplon/epec/archivage/infrastructure/document/repository/DigitalDocumentRepositoryImpl.class
 org/simplon/epec/archivage/infrastructure/statistic/repository/StatisticJpaRepository.class
 org/simplon/epec/archivage/infrastructure/contract/repository/ContractRepositoryImpl.class
 org/simplon/epec/archivage/infrastructure/user/repository/UserJpaRepository.class

@@ -2,26 +2,22 @@ package org.simplon.epec.archivage.exposition.account.rest;
 
 import org.simplon.epec.archivage.application.account.AccountService;
 import org.simplon.epec.archivage.domain.account.entity.Account;
-import org.simplon.epec.archivage.domain.client.entity.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 @RestController
 @RequestMapping("/api/accounts")
 public class AccountResource {
 
-    @Autowired
-    private AccountService accountService;
+    private final AccountService accountService;
 
-
+    public AccountResource(AccountService accountService) {
+        this.accountService = accountService;
+    }
 
 
     @GetMapping("/get-accounts-status")

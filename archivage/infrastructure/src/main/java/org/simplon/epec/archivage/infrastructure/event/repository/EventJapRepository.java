@@ -12,6 +12,6 @@ public interface EventJapRepository extends JpaRepository<Event, String> {
 
     @Query("select event from Event event where event.event_type=:eventType")
     Set<Event> findByEvent_type(@Param("eventType") String eventType);
-    @Query("select event from Event event where event.classificationNature in (select cn from ClassificationNature cn where cn.classification_nature_code=:classificationNatureCode)")
-    Set<Event> getEventByClassificationNatureCode(@Param("classificationNatureCode") String classificationNatureCode);
+    //@Query("select event from Event event where event.classificationNature in (select cn from ClassificationNature cn where cn.classification_nature_code=:classificationNatureCode)")
+   // Set<Event> getEventByClassificationNatureCode(@Param("classificationNatureCode") String classificationNatureCode);
 }

@@ -4,12 +4,14 @@ import org.simplon.epec.archivage.application.classificationNature.Classificatio
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/classificationNatures")
 public class ClassificationNatureResource {
 
 
-    private final ClassificationNatureService classificationNatureService;
+    private final transient ClassificationNatureService classificationNatureService;
 
     public ClassificationNatureResource(ClassificationNatureService classificationNatureService) {
         this.classificationNatureService = classificationNatureService;
@@ -26,4 +28,26 @@ public class ClassificationNatureResource {
     public ClassificationNature findByClassificationNatureCode(@RequestParam(value = "classificationNature", required = true) String classificationNatureCode) {
         return classificationNatureService.findByClassificationNatureCode(classificationNatureCode);
     }
+
+    @GetMapping("/get-all-classificationNature")
+    public List<ClassificationNature> getAll() {
+        return classificationNatureService.getAllClassificationNature();
+    }
+
+    @GetMapping("/get-by-id")
+    public ClassificationNature getById(@RequestParam("classificationNatureId") String classificationNatureId){
+        return classificationNatureService.findByClassificationNatureId(classificationNatureId);
+    }
+
+    @PutMapping("/update-one")
+    public ClassificationNature updateClassificationNature(@RequestBody ClassificationNature classificationNature) {
+        return classificationNatureService.updateClassificationNature(classificationNature);
+    }
+
+    @DeleteMapping("/delete-one")
+    public void removeClassificationNature(@RequestParam("classificationNatureId") String classificationNatureId) {
+         classificationNatureService.removeClassificationNature(classificationNatureId);
+    }
+
+
 }

@@ -4,6 +4,9 @@ import org.simplon.epec.archivage.domain.classificationNature.entity.Classificat
 import org.simplon.epec.archivage.domain.classificationNature.repository.ClassificationNatureRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Set;
+
 @Repository
 public class ClassificationNatureRepositoryImpl implements ClassificationNatureRepository {
 
@@ -27,5 +30,25 @@ public class ClassificationNatureRepositoryImpl implements ClassificationNatureR
     @Override
     public ClassificationNature findById(String id) {
         return classificationJpaNatureRepository.findById(id).get();
+    }
+
+    @Override
+    public ClassificationNature updateClassificationNature(ClassificationNature classificationNature) {
+        return classificationJpaNatureRepository.save(classificationNature);
+    }
+
+    @Override
+    public void removeClassificationNature(String classificationNatureID) {
+          classificationJpaNatureRepository.deleteById(classificationNatureID);
+    }
+
+    @Override
+    public ClassificationNature findByClassificationNatureId(String classificationNatureId) {
+        return classificationJpaNatureRepository.findById(classificationNatureId).get();
+    }
+
+    @Override
+    public List<ClassificationNature> getAllClassificationNature() {
+        return  classificationJpaNatureRepository.findAll();
     }
 }

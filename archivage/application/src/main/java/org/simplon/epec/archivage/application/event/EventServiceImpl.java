@@ -35,8 +35,6 @@ public class EventServiceImpl implements EventService {
         return eventRepository.getEventByType(eventType);
     }
 
-    @Override
-    public Set<Event> getEventByClassificationNatureCode(String classificationNatureCode) {
-        return eventRepository.getEventByClassificationNatureCode(classificationNatureCode);
-    }
+
+
 }

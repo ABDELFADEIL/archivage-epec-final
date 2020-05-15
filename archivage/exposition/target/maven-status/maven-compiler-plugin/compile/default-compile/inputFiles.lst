@@ -5,4 +5,5 @@
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/exposition/src/main/java/org/simplon/epec/archivage/exposition/ExpositionApplication.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/exposition/src/main/java/org/simplon/epec/archivage/exposition/classificationNature/rest/ClassificationNatureResource.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/exposition/src/main/java/org/simplon/epec/archivage/exposition/user/rest/UserResource.java
+/media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/exposition/src/main/java/org/simplon/epec/archivage/exposition/document/rest/DocumentResource.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/exposition/src/main/java/org/simplon/epec/archivage/exposition/client/rest/ClientResource.java

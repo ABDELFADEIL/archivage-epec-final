@@ -2,7 +2,6 @@ package org.simplon.epec.archivage.exposition.client.rest;
 
 import org.simplon.epec.archivage.application.client.ClientService;
 import org.simplon.epec.archivage.domain.client.entity.Client;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +11,11 @@ import java.util.Set;
 @RequestMapping("/api/clients")
 public class ClientResource {
 
-    @Autowired
-    private ClientService clientService;
+    private final ClientService clientService;
+
+    public ClientResource(ClientService clientService) {
+        this.clientService = clientService;
+    }
 
     @PostMapping("create-new-client")
     public Client createClient(@RequestBody(required = true) Client client) {

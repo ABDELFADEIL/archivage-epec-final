@@ -1,8 +1,6 @@
 package org.simplon.epec.archivage.exposition.contract.rest;
 
-import org.simplon.epec.archivage.application.account.AccountService;
 import org.simplon.epec.archivage.application.contract.ContractService;
-import org.simplon.epec.archivage.domain.account.entity.Account;
 import org.simplon.epec.archivage.domain.contract.entity.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -15,10 +13,11 @@ import java.util.Set;
 @RequestMapping("/api/contracts")
 public class ContractResource {
 
-    @Autowired
-    private ContractService contractService;
+    private final ContractService contractService;
 
-
+    public ContractResource(ContractService contractService) {
+        this.contractService = contractService;
+    }
 
 
     @GetMapping("/get-contractts-status")

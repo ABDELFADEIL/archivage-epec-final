@@ -19,7 +19,6 @@ public class Event implements Serializable {
   private String id_event;
   private String event_type;
   private LocalDate event_date;
-  private ClassificationNature classificationNature;
 
   public Event(String event_type) {
     this.event_type = event_type;
@@ -30,10 +29,9 @@ public class Event implements Serializable {
   //
   public Event () { };
 
-  public Event(String event_type, ClassificationNature classificationNature, LocalDate event_date) {
+  public Event(String event_type, LocalDate event_date) {
     this.id_event = UUID.randomUUID().toString();
     this.event_type = event_type;
-    this.classificationNature = classificationNature;
     this.event_date = event_date;
   }
   //
@@ -93,21 +91,6 @@ public class Event implements Serializable {
     return event_date;
   }
 
-  /**
-   * Set the value of event_date
-   * @param classificationNature the new value of event_date
-   */
-  public void setClassificationNature(ClassificationNature classificationNature) {
-    this.classificationNature = classificationNature;
-  }
-
-  /**
-   * Get the value of event_date
-   * @return the value of event_date
-   */
-  public ClassificationNature getClassificationNature() {
-    return classificationNature;
-  }
 //
   // Other methods
   //
