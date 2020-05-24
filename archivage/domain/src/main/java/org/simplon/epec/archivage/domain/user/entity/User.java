@@ -1,7 +1,8 @@
 package org.simplon.epec.archivage.domain.user.entity;
 
+import org.apache.commons.lang3.RandomUtils;
+
 import java.io.Serializable;
-import java.util.UUID;
 
 /**
  * Class User
@@ -12,7 +13,7 @@ public class User implements Serializable {
   // Fields
   //
 
-  private String user_id;
+  private Long user_id;
   private String lastName;
   private String firstName;
   private String UID;
@@ -26,7 +27,7 @@ public class User implements Serializable {
   public User () { };
 
   public User(String UID, String email, String password, Role role) {
-    this.user_id = UUID.randomUUID().toString();
+    this.user_id = RandomUtils.nextLong();
     this.UID = UID;
     this.email = email;
     this.password = password;
@@ -45,7 +46,7 @@ public class User implements Serializable {
    * Set the value of user_id
    * @param newVar the new value of user_id
    */
-  public void setUser_id (String newVar) {
+  public void setUser_id (Long newVar) {
     user_id = newVar;
   }
 
@@ -53,7 +54,7 @@ public class User implements Serializable {
    * Get the value of user_id
    * @return the value of user_id
    */
-  public String getUser_id () {
+  public Long getUser_id () {
     return user_id;
   }
 

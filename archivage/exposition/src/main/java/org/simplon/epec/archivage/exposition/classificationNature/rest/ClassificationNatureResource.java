@@ -35,7 +35,7 @@ public class ClassificationNatureResource {
     }
 
     @GetMapping("/get-by-id")
-    public ClassificationNature getById(@RequestParam("classificationNatureId") String classificationNatureId){
+    public ClassificationNature getById(@RequestParam("classificationNatureId") Long classificationNatureId){
         return classificationNatureService.findByClassificationNatureId(classificationNatureId);
     }
 
@@ -45,7 +45,7 @@ public class ClassificationNatureResource {
     }
 
     @DeleteMapping("/delete-one")
-    public void removeClassificationNature(@RequestParam("classificationNatureId") String classificationNatureId) {
+    public void removeClassificationNature(@RequestParam("classificationNatureId") Long classificationNatureId) {
          classificationNatureService.removeClassificationNature(classificationNatureId);
     }
 

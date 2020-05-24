@@ -1,6 +1,5 @@
 package org.simplon.epec.archivage.application.contract;
 
-import org.simplon.epec.archivage.domain.account.entity.Account;
 import org.simplon.epec.archivage.domain.contract.entity.Contract;
 import org.simplon.epec.archivage.domain.contract.repository.ContractRepository;
 import org.simplon.epec.archivage.domain.user.entity.User;
@@ -26,15 +25,23 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public Contract createContract(Contract contract) {
-        String contract_number = createNewContractNumber();
-        User user = userRepository.getAuthentificatedUser();
-        Contract c = new Contract( contract.getContract_id_type_code(),  contract.getContract_id_type_label(),
-                contract.getClient(), contract_number);
-        return contractRepository.createContract(c);
+        try {
+            String contract_number = createNewContractNumber();
+            User user = userRepository.getAuthentificatedUser();
+            if (user==null){
+                user= userRepository.findByUID("aaa");
+            }
+            Contract c = new Contract( contract.getContract_id_type_code(),  contract.getContract_id_type_label(),
+                    contract.getClient());
+            return contractRepository.createContract(c);
+        }catch (Exception e){
+
+        }
+       return null;
     }
 
     @Override
-    public Contract getContractByCientId(String clientID) {
+    public Contract getContractByCientId(Long clientID) {
         return contractRepository.getContractByCientId(clientID);
     }
 
@@ -75,10 +82,15 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public String createNewContractNumber() {
-        String contract_number_pre = contractRepository.getMaxContractNumber();
+
+        String contract_number_pre = getMaxContractNumber();
+        if (contract_number_pre==null){
+            contract_number_pre= "00000000000";
+        }
         long contract_number =  Long.parseLong(contract_number_pre);
         long new_contract_number = contract_number + 1;
-        String contact_number_nex = "00000000000".substring(String.valueOf(new_contract_number).length()+1)+new_contract_number;
-        return contact_number_nex;
+        String contract_number_nex = "00000000000".substring(String.valueOf(new_contract_number).length()+1)+new_contract_number;
+        return contract_number_nex;
+
     }
 }

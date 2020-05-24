@@ -5,10 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.util.List;
 import java.util.Set;
 
-public interface ClientJpaRepository extends JpaRepository<Client, String> {
+public interface ClientJpaRepository extends JpaRepository<Client, Long> {
 
 
     @Query("select client from Client client where client.client_number=:client_number")

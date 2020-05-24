@@ -4,8 +4,6 @@ import org.simplon.epec.archivage.infrastructure.security.JWTAuthenticationFilte
 import org.simplon.epec.archivage.infrastructure.security.JWTAuthorizationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -40,7 +38,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
    public void configure(HttpSecurity http) throws Exception {
        http.csrf().disable();
        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-       http.authorizeRequests().antMatchers( "/api/users/create-user", "/login", "/actuator/**").permitAll();
+       http.authorizeRequests().antMatchers( "/api/users/create-user", "/login", "/actuator/**", "/api/documents/get-all-docs",
+               "/api/documents/all-docs-list",
+               "/api/documents/get-all-docs",                                                                                                                                                       
+                "/v2/api-docs",
+               "/swagger-resources/**",
+               "/swagger-ui.html",
+               "/webjars/**" ,
+              "/swagger.json").permitAll();
        http.authorizeRequests().antMatchers("/contract", "/contract/**").hasAuthority("USER");
        http.authorizeRequests().antMatchers("/account", "/contract/**", "/client/**").hasAnyAuthority("USER", "ADMIN");
        http.authorizeRequests().antMatchers( "/**", "/account").hasAuthority("ADMIN");

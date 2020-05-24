@@ -1,8 +1,9 @@
 package org.simplon.epec.archivage.domain.statistic.entity;
 
+import org.apache.commons.lang3.RandomUtils;
+
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.UUID;
 
 /**
  * Class Statistic
@@ -13,7 +14,7 @@ public class Statistic implements Serializable {
   // Fields
   //
 
-  private String statistic_id;
+  private Long statistic_id;
   private String event_type;
   private String document_id;
   private String user_id;
@@ -28,7 +29,7 @@ public class Statistic implements Serializable {
     this.event_type = event_type;
     this.document_id = document_id;
     this.user_id = user_id;
-    this.statistic_id = UUID.randomUUID().toString();
+    this.statistic_id = RandomUtils.nextLong();
     this.event_date = LocalDate.now();
   }
   //
@@ -44,7 +45,7 @@ public class Statistic implements Serializable {
    * Set the value of statistic_id
    * @param newVar the new value of statistic_id
    */
-  public void setStatistic_id (String newVar) {
+  public void setStatistic_id (Long newVar) {
     statistic_id = newVar;
   }
 
@@ -52,7 +53,7 @@ public class Statistic implements Serializable {
    * Get the value of statistic_id
    * @return the value of statistic_id
    */
-  public String getStatistic_id () {
+  public Long getStatistic_id () {
     return statistic_id;
   }
 

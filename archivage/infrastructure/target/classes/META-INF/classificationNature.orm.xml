@@ -14,8 +14,8 @@
             <id name="classification_nature_id">
                 <column name="classification_nature_id" length="55" />
             </id>
-            <basic name="classification_nature_code">
-                <column name="classification_nature_code" />
+            <basic name="classification_nature_code" >
+                <column name="classification_nature_code" unique="true"/>
             </basic>
             <basic name="duration">
                 <column name="duration" />

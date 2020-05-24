@@ -29,6 +29,9 @@ public class ClientServiceImpl implements ClientService {
         ////////////// code logic
         String client_number = createNewClientNumber();
         User user = userRepository.getAuthentificatedUser();
+        if (user==null){
+            user = userRepository.findByUID("aaa");
+        }
         Client c = new Client( client.getClient_nature_id(),  client_number,  client.getClient_name(),
                 client.getClient_first_name(), client.getCivility_id(), client.getBirth_date(),
                 client.getBirth_dept(), client.getSiren_number(), client.getSiret_number(), user.getUser_id());
@@ -41,7 +44,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client findOneByCientId(String clientID) {
+    public Client findOneByCientId(Long clientID) {
         return clientRepository.findOneByCientId(clientID);
     }
 
@@ -75,6 +78,9 @@ public class ClientServiceImpl implements ClientService {
     public String createNewClientNumber(){
 
         String client_number_pre = clientRepository.getMaxClientNumber();
+        if (client_number_pre==null){
+            return "000000000001";
+        }
         long number_account =  Long.parseLong(client_number_pre);
         long new_number_account = number_account + 1;
         String client_number_nex = "00000000000".substring(String.valueOf(new_number_account).length()+1)+new_number_account;

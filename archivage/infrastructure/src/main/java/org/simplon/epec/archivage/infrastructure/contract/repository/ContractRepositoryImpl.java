@@ -1,16 +1,13 @@
 package org.simplon.epec.archivage.infrastructure.contract.repository;
 
-import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
 import org.simplon.epec.archivage.domain.classificationNature.repository.ClassificationNatureRepository;
 import org.simplon.epec.archivage.domain.contract.entity.Contract;
 import org.simplon.epec.archivage.domain.contract.repository.ContractRepository;
-import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.domain.event.entity.Event;
 import org.simplon.epec.archivage.domain.event.repository.EventRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
 @Repository
@@ -32,7 +29,7 @@ public class ContractRepositoryImpl implements ContractRepository {
     }
 
     @Override
-    public Contract getContractByCientId(String clientID) {
+    public Contract getContractByCientId(Long clientID) {
         return contractJpaRepository.findByClient(clientID);
     }
 
@@ -64,7 +61,7 @@ public class ContractRepositoryImpl implements ContractRepository {
 
     @Override
     public String getMaxContractNumber() {
-        return contractJpaRepository.findMaxAccountNumber();
+        return contractJpaRepository.findMaxContractNumber();
     }
 
     @Override

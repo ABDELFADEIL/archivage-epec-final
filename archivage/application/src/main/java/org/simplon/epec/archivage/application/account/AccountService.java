@@ -3,14 +3,12 @@ package org.simplon.epec.archivage.application.account;
 import org.simplon.epec.archivage.domain.account.entity.Account;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Set;
 
 public interface AccountService {
 
     public Account createAccount(Account account);
-    public Account getAccountByCientId(String clientID);
+    public Account getAccountByCientId(Long clientID);
     public Account getAccountByNumber(String account_number);
     public Account UpdateAccount(Account account);
     public void removeAccount(Account account);

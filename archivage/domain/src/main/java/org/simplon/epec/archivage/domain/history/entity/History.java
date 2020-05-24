@@ -1,10 +1,10 @@
 package org.simplon.epec.archivage.domain.history.entity;
 
+import org.apache.commons.lang3.RandomUtils;
 import org.simplon.epec.archivage.domain.user.entity.User;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.UUID;
 
 /**
  * Class History
@@ -15,7 +15,7 @@ public class History implements Serializable {
   // Fields
   //
 
-  private String history_id;
+  private Long history_id;
   private LocalDate history_date;
   private String event_type;
   private User calling_user;
@@ -31,7 +31,7 @@ public class History implements Serializable {
     this.event_type = event_type;
     this.calling_user = calling_user;
     this.calling_application = calling_application;
-    this.history_id = UUID.randomUUID().toString();
+    this.history_id = RandomUtils.nextLong();
   }
   //
   // Methods
@@ -46,7 +46,7 @@ public class History implements Serializable {
    * Set the value of history_id
    * @param newVar the new value of history_id
    */
-  public void setHistory_id (String newVar) {
+  public void setHistory_id (Long newVar) {
     history_id = newVar;
   }
 
@@ -54,7 +54,7 @@ public class History implements Serializable {
    * Get the value of history_id
    * @return the value of history_id
    */
-  public String getHistory_id () {
+  public Long getHistory_id () {
     return history_id;
   }
 

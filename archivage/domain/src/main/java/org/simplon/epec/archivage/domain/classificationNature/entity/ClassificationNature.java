@@ -1,7 +1,8 @@
 package org.simplon.epec.archivage.domain.classificationNature.entity;
 
+import org.apache.commons.lang3.RandomUtils;
+
 import java.io.Serializable;
-import java.util.UUID;
 
 /**
  * Class ClassificationNature
@@ -12,7 +13,7 @@ public class ClassificationNature implements Serializable {
   // Fields
   //
 
-  private String classification_nature_id;
+  private Long classification_nature_id;
   private String classification_nature_code;
   private int duration;
   
@@ -22,7 +23,7 @@ public class ClassificationNature implements Serializable {
   public ClassificationNature () { };
 
   public ClassificationNature(String classification_nature_code, int duration) {
-    classification_nature_id = UUID.randomUUID().toString();
+    classification_nature_id = RandomUtils.nextLong();
     this.classification_nature_code = classification_nature_code;
     this.duration = duration;
   }
@@ -39,7 +40,7 @@ public class ClassificationNature implements Serializable {
    * Set the value of classification_nature_id
    * @param newVar the new value of classification_nature_id
    */
-  public void setClassification_nature_id (String newVar) {
+  public void setClassification_nature_id (Long newVar) {
     classification_nature_id = newVar;
   }
 
@@ -47,7 +48,7 @@ public class ClassificationNature implements Serializable {
    * Get the value of classification_nature_id
    * @return the value of classification_nature_id
    */
-  public String getClassification_nature_id () {
+  public Long getClassification_nature_id () {
     return classification_nature_id;
   }
 

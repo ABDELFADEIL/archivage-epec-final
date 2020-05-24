@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Set;
 
-public interface EventJapRepository extends JpaRepository<Event, String> {
+public interface EventJapRepository extends JpaRepository<Event, Long> {
 
 
     @Query("select event from Event event where event.event_type=:eventType")

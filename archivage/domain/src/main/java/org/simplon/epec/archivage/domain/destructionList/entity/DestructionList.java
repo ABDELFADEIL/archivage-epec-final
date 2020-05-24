@@ -1,6 +1,5 @@
 package org.simplon.epec.archivage.domain.destructionList.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 
 import java.io.Serializable;
@@ -16,11 +15,11 @@ public class DestructionList implements Serializable {
   // Fields
   //
 
-  private String destruction_id;
+  private Long destruction_id;
   private DigitalDocument document;
   private boolean validation = false;
   private String description;
-  @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+ // @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
   private LocalDate validation_date;
   private String user_validate_id;
 
@@ -32,7 +31,7 @@ public class DestructionList implements Serializable {
   
   //
 
-  public DestructionList(String destruction_id, DigitalDocument document, boolean validation, String description, LocalDateTime validation_date, String user_validate_id) {
+  public DestructionList(Long destruction_id, DigitalDocument document, boolean validation, String description, LocalDateTime validation_date, String user_validate_id) {
     this.destruction_id = destruction_id;
     this.document = document;
     this.validation = validation;
@@ -128,13 +127,13 @@ public class DestructionList implements Serializable {
     return user_validate_id;
   }
 
-  public String getDestruction_id() {
+  public Long getDestruction_id() {
     return destruction_id;
   }
 
 
 
-  public void setDestruction_id(String destruction_id) {
+  public void setDestruction_id(Long destruction_id) {
     this.destruction_id = destruction_id;
   }
 

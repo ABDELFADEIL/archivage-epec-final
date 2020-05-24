@@ -1,17 +1,14 @@
 package org.simplon.epec.archivage.infrastructure.account.repository;
 
 import org.simplon.epec.archivage.domain.account.entity.Account;
-import org.simplon.epec.archivage.domain.client.entity.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Set;
 
-public interface AccountJpaRepository extends JpaRepository<Account, String> {
+public interface AccountJpaRepository extends JpaRepository<Account, Long> {
 
     @Query(value="select MAX(a.account_number) from account a group by a.account_number order by a.account_number desc limit 1", nativeQuery=true)
     public String findMaxAccountNumber();

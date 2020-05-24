@@ -9,7 +9,7 @@ public interface ClassificationNatureService {
      ClassificationNature addClassificationNature(ClassificationNature classificationNature);
      ClassificationNature findByClassificationNatureCode(String classificationNatureCode);
      ClassificationNature updateClassificationNature(ClassificationNature classificationNature);
-     void removeClassificationNature(String classificationNatureID);
-     ClassificationNature findByClassificationNatureId(String classificationNatureId);
+     void removeClassificationNature(Long classificationNatureID);
+     ClassificationNature findByClassificationNatureId(Long classificationNatureId);
      List<ClassificationNature> getAllClassificationNature();
 }

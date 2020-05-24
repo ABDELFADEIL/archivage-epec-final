@@ -5,12 +5,13 @@ spring:
   profiles:
     active: local
   datasource:
-    url: jdbc:mysql://localhost:3306/archivage?serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://localhost:3306/archivage?serverTimezone=UTC&useSSL=false&autoreconnect=true
     username: root
     password: adminbeel
     driver-class-name: com.mysql.cj.jdbc.Driver
   application:
     name: 'exposition'
+    log-file-name: ${spring.application.name}
   jpa:
     mapping-resources:
       - META-INF/account.orm.xml
@@ -24,12 +25,19 @@ spring:
       - META-INF/destructionList.orm.xml
     open-in-view: false
     database: mysql
+    cache:
+      jcache:
+        config: classpath:cache/ehcache.xml
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        format-sql: false
+        use-sql-coments: false
+        generate-statistics: false
     show-sql: true
+
 
 management:
   endpoints:
@@ -40,8 +48,18 @@ management:
   version: '1.0-SNAPSHOT'
   timezone: 
 
-
 server:
   port: 8080
+  ssl:
+    enabled: false
 
 
+logging:
+  logging:
+    level:
+      ROOT: INFO
+      org.springframework: INFO
+      org.simplon.epec.archivage: INFO
+      org.hibernate.stat: DEBUG
+  pattern:
+    rolling-file-name: logback-spring.xml

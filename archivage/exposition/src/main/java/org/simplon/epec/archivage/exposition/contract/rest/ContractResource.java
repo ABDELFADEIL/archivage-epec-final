@@ -2,7 +2,6 @@ package org.simplon.epec.archivage.exposition.contract.rest;
 
 import org.simplon.epec.archivage.application.contract.ContractService;
 import org.simplon.epec.archivage.domain.contract.entity.Contract;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,7 +41,7 @@ public class ContractResource {
 
 
     @GetMapping("/get-contract-by-client-id")
-    public Contract getAccountByCientId(@RequestParam("clientID") String clientID) {
+    public Contract getAccountByCientId(@RequestParam("clientID") Long clientID) {
         return contractService.getContractByCientId(clientID);
     }
 

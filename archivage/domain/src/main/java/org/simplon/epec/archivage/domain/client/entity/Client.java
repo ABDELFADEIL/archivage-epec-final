@@ -1,8 +1,9 @@
 package org.simplon.epec.archivage.domain.client.entity;
 
+import org.apache.commons.lang3.RandomUtils;
+
 import java.io.Serializable;
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * Class Client
@@ -13,7 +14,7 @@ public class Client implements Serializable {
   // Fields
   //
 
-  private String client_id;
+  private Long client_id;
   private String client_number;
   private String client_nature_id;
   private String client_name;
@@ -23,7 +24,7 @@ public class Client implements Serializable {
   private String birth_dept;
   private String siren_number;
   private String siret_number;
-  private String user_id;
+  private Long user_id;
 
 
   //
@@ -37,8 +38,8 @@ public class Client implements Serializable {
 
   public Client(String client_nature_id, String client_number, String client_name,
                 String client_first_name, String civility_id, Date birth_date,
-                String birth_dept, String siren_number, String siret_number, String user_id) {
-    this.client_id = UUID.randomUUID().toString();
+                String birth_dept, String siren_number, String siret_number, Long user_id) {
+    this.client_id = RandomUtils.nextLong();
     this.client_nature_id = client_nature_id;
     this.client_number = client_number;
     this.client_name = client_name;
@@ -60,7 +61,7 @@ public class Client implements Serializable {
    * Set the value of client_id
    * @param newVar the new value of client_id
    */
-  public void setClient_id (String newVar) {
+  public void setClient_id (Long newVar) {
     client_id = newVar;
   }
 
@@ -68,7 +69,7 @@ public class Client implements Serializable {
    * Get the value of client_id
    * @return the value of client_id
    */
-  public String getClient_id () {
+  public Long getClient_id () {
     return client_id;
   }
 
@@ -91,14 +92,14 @@ public class Client implements Serializable {
    * Set the value of client_id
    * @param user_id the new value of user_id
    */
-  public void setUser_id(String user_id) {
+  public void setUser_id(Long user_id) {
     this.user_id = user_id;
   }
   /**
    * Get the value of client_id
    * @return the value of user_id
    */
-  public String getUser_id() {
+  public Long getUser_id() {
     return user_id;
   }
 

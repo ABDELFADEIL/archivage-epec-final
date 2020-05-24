@@ -1,15 +1,11 @@
 package org.simplon.epec.archivage.domain.document.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import org.apache.commons.lang3.RandomUtils;
 import org.simplon.epec.archivage.domain.account.entity.Account;
-import org.simplon.epec.archivage.domain.client.entity.Client;
 import org.simplon.epec.archivage.domain.contract.entity.Contract;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.UUID;
-
-import static java.time.LocalDate.*;
 
 /**
  * Class Context
@@ -20,7 +16,7 @@ public class Context implements Serializable {
   // Fields
   //
 
-  private String context_id;
+  private Long context_id;
   private String conserv_unit_id;
   private String media_type;
   private String mine_type;
@@ -30,13 +26,12 @@ public class Context implements Serializable {
   private Account account;
   private String classification_nature_id;
   private LocalDate final_business_processing_date;
-  private Client client;
   private String frozen_label;
   private boolean hold_status;
   private boolean frozen;
-  @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+  //@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
   private LocalDate final_hold_date;
-  @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+  // @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
   private LocalDate deletion_date;
   
   //
@@ -45,7 +40,7 @@ public class Context implements Serializable {
   public Context () { };
 
   public Context(String conserv_unit_id, String media_type, String mine_type, String original_value_id,
-                 String classification_nature_id, LocalDate final_business_processing_date, Client client, String frozen_label, boolean hold_status, boolean frozen, LocalDate final_hold_date, LocalDate deletion_date) {
+                 String classification_nature_id, LocalDate final_business_processing_date, String frozen_label, boolean hold_status, boolean frozen, LocalDate final_hold_date, LocalDate deletion_date) {
     this.conserv_unit_id = conserv_unit_id;
     this.media_type = media_type;
     this.mine_type = mine_type;
@@ -53,13 +48,12 @@ public class Context implements Serializable {
     this.archiving_reference_date = LocalDate.now();
     this.classification_nature_id = classification_nature_id;
     this.final_business_processing_date = final_business_processing_date;
-    this.client = client;
     this.frozen_label = frozen_label;
     this.hold_status = hold_status;
     this.frozen = frozen;
     this.final_hold_date = final_hold_date;
     this.deletion_date = deletion_date;
-    this.context_id = UUID.randomUUID().toString();
+    this.context_id = RandomUtils.nextLong();;
   }
   //
   // Methods
@@ -74,7 +68,7 @@ public class Context implements Serializable {
    * Set the value of context_id
    * @param newVar the new value of context_id
    */
-  public void setContext_id (String newVar) {
+  public void setContext_id (Long newVar) {
     context_id = newVar;
   }
 
@@ -82,7 +76,7 @@ public class Context implements Serializable {
    * Get the value of context_id
    * @return the value of context_id
    */
-  public String getContext_id () {
+  public Long getContext_id () {
     return context_id;
   }
 
@@ -228,22 +222,6 @@ public class Context implements Serializable {
    */
   public LocalDate getFinal_business_processing_date () {
     return final_business_processing_date;
-  }
-
-  /**
-   * Set the value of client
-   * @param newVar the new value of client
-   */
-  public void setClient (Client newVar) {
-    client = newVar;
-  }
-
-  /**
-   * Get the value of client
-   * @return the value of client
-   */
-  public Client getClient () {
-    return client;
   }
 
   /**

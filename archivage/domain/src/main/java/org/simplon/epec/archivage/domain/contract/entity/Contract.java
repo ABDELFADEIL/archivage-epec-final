@@ -1,16 +1,12 @@
 package org.simplon.epec.archivage.domain.contract.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import org.apache.commons.lang3.RandomUtils;
 import org.simplon.epec.archivage.domain.client.entity.Client;
-import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.domain.event.entity.Event;
 import org.simplon.epec.archivage.domain.user.entity.User;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.Set;
-import java.util.UUID;
 
 /**
  * Class Contract
@@ -21,7 +17,7 @@ public class Contract implements Serializable {
   // Fields
   //
 
-  private String contact_id;
+  private Long contact_id;
   private String contract_id_type_code;
   private String contract_id_type_label;
   private Client client;
@@ -29,7 +25,7 @@ public class Contract implements Serializable {
   private Event event;
   private LocalDate creating_date;
   private User user;
-  private Set<DigitalDocument> digitalDocuments;
+ // private Set<DigitalDocument> digitalDocuments;
 
 
 
@@ -42,12 +38,11 @@ public class Contract implements Serializable {
   // Methods
   //
 
-  public Contract(String contract_id_type_code, String contract_id_type_label, Client client, String contract_number) {
-    this.contact_id = UUID.randomUUID().toString();
+  public Contract(String contract_id_type_code, String contract_id_type_label, Client client) {
+    this.contact_id = RandomUtils.nextLong();
     this.contract_id_type_code = contract_id_type_code;
     this.contract_id_type_label = contract_id_type_label;
     this.client = client;
-    this.contract_number = contract_number;
     this.creating_date = LocalDate.now();
   }
 
@@ -60,7 +55,7 @@ public class Contract implements Serializable {
    * Set the value of contact_id
    * @param newVar the new value of contact_id
    */
-  public void setContact_id (String newVar) {
+  public void setContact_id (Long newVar) {
     contact_id = newVar;
   }
 
@@ -68,7 +63,7 @@ public class Contract implements Serializable {
    * Get the value of contact_id
    * @return the value of contact_id
    */
-  public String getContact_id () {
+  public Long getContact_id () {
     return contact_id;
   }
 
@@ -87,23 +82,6 @@ public class Contract implements Serializable {
   public String getContract_id_type_code () {
     return contract_id_type_code;
   }
-
-  /**
-   * Set the value of contract_id_type_code
-   * @param digitalDocuments the new value of digitalDocuments
-   */
-  public void setDigitalDocuments(Set<DigitalDocument> digitalDocuments) {
-    this.digitalDocuments = digitalDocuments;
-  }
-
-  /**
-   * Get the value of contract_id_type_code
-   * @return the value of digitalDocuments
-   */
-  public Set<DigitalDocument> getDigitalDocuments() {
-    return digitalDocuments;
-  }
-
 
   /**
    * Set the value of contract_id_type_label

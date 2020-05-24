@@ -1,0 +1,25 @@
+{
+  "config" : {
+    "speedmentVersion" : "Speedment:3.2.9",
+    "appId" : "7584a882-0154-4bbe-b35f-be79dfc135d0",
+    "name" : "domain",
+    "packageName" : "org.simplon.epec.archivage.domain.db",
+    "id" : "domain",
+    "enabled" : true,
+    "dbmses" : [
+      {
+        "schemas" : [
+          {
+            "name" : "domain",
+            "id" : "domain",
+            "enabled" : true
+          }
+        ],
+        "name" : "domain",
+        "typeName" : "MySQL",
+        "id" : "domain",
+        "enabled" : true
+      }
+    ]
+  }
+}

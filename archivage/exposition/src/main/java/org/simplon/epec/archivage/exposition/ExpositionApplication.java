@@ -1,24 +1,26 @@
 package org.simplon.epec.archivage.exposition;
 
+import org.apache.commons.lang3.RandomUtils;
+import org.simplon.epec.archivage.application.account.AccountService;
 import org.simplon.epec.archivage.application.client.ClientService;
-import org.simplon.epec.archivage.application.document.DigitalDocumentService;
-import org.simplon.epec.archivage.application.user.RoleService;
-import org.simplon.epec.archivage.application.user.UserService;
+import org.simplon.epec.archivage.application.contract.ContractService;
+import org.simplon.epec.archivage.domain.account.entity.Account;
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
 import org.simplon.epec.archivage.domain.classificationNature.repository.ClassificationNatureRepository;
 import org.simplon.epec.archivage.domain.client.entity.Client;
+import org.simplon.epec.archivage.domain.contract.entity.Contract;
 import org.simplon.epec.archivage.domain.document.entity.Context;
 import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
-import org.simplon.epec.archivage.domain.document.repository.DigitalDocumentRepository;
 import org.simplon.epec.archivage.domain.user.entity.Role;
 import org.simplon.epec.archivage.domain.user.entity.User;
+import org.simplon.epec.archivage.domain.user.repository.RoleRepository;
 import org.simplon.epec.archivage.domain.user.repository.UserRepository;
+import org.simplon.epec.archivage.infrastructure.account.repository.AccountJpaRepository;
 import org.simplon.epec.archivage.infrastructure.client.repository.ClientJpaRepository;
 import org.simplon.epec.archivage.infrastructure.context.repository.ContextJpaRepository;
+import org.simplon.epec.archivage.infrastructure.contract.repository.ContractJpaRepository;
 import org.simplon.epec.archivage.infrastructure.document.CrypterDocument;
 import org.simplon.epec.archivage.infrastructure.document.repository.DigitalDocumentJpaRepository;
-import org.simplon.epec.archivage.infrastructure.user.repository.RoleJpaRepository;
-import org.simplon.epec.archivage.infrastructure.user.repository.UserJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -30,15 +32,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.Instant;
-import java.util.List;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
+
+
 
 @SpringBootApplication
 @EntityScan(basePackages = {"org.simplon.epec.archivage.*"})
@@ -47,31 +47,31 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ExpositionApplication  extends SpringBootServletInitializer implements CommandLineRunner {
 
     @Autowired
-    private UserJpaRepository userJpaRepository;
-    @Autowired
-    private RoleJpaRepository roleJpaRepository;
-    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    private UserService userService;
-    @Autowired
-    private  DigitalDocumentService digitalDocumentService;
-    @Autowired
     private ContextJpaRepository contextJpaRepository;
     @Autowired
     private ClientService clientService;
-    @Autowired
-    private ClassificationNatureRepository classificationNatureRepository;
-    @Autowired
-    private DigitalDocumentRepository digitalDocumentRepository;
-    @Autowired
+     @Autowired
     private DigitalDocumentJpaRepository digitalDocumentJpaRepository;
     @Autowired
-    private RoleService roleService;
+    public ClientJpaRepository clientJpaRepository;
     @Autowired
-    private ClientJpaRepository clientJpaRepository;
+    ClassificationNatureRepository classificationNatureRepository;
+    @Autowired
+    RoleRepository roleRepository;
+    @Autowired
+    private ContractService contractService;
+    @Autowired
+    private AccountService accountService;
+    @Autowired
+    private AccountJpaRepository accountJpaRepository;
+    @Autowired
+    private ContractJpaRepository contactJpaRepository;
+
+
     public static void main(String[] args) {
         SpringApplication.run(ExpositionApplication.class, args);
     }
@@ -94,45 +94,131 @@ public class ExpositionApplication  extends SpringBootServletInitializer impleme
      */
     @Override
     public void run(String... args) throws Exception {
+
        // Role role = roleJpaRepository.save(new Role("ADMIN"));
        // Role  role = roleJpaRepository.findByName("ADMIN");
       //  System.out.print(role.getRole_id() +" "+role.getName());
       //  String password = bCryptPasswordEncoder.encode("abcd");
        // User user = new User("bbb", "bbb@gmail.com", password, role);
+      //  BufferedReader br = new BufferedReader(new FileReader("/media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/fadeil/Documents/docs_perso/tire_sejour.pdf"));
+        // Reading each line of file using BufferedReader class
+       // String str;
+      //  while ( (str = br.readLine()) != null) {
+       //     System.out.println("str reder : "+str);
+       // }
 
-        long timeStrat=0;
-        long timeEnd=0;
-        for (int i = 10000; i > 0; i --){
-             timeStrat = Instant.now().getEpochSecond() /1000000000;
 
-            System.out.println(" time : "+timeStrat);
+        for (int i = 0; i > 0; i --){
+            Role role = new Role("ADMIN");
+            role= roleRepository.findByName(role.getName());
+            //User u = new User(RandomUtils.nextBytes(10).toString(), RandomUtils.nextBytes(6).toString()+"@gmail.com", "abcd", role);
+            User u = userRepository.findByUID("[B@1a9d2022");
+            //User user = userRepository.findByEmail(u.getEmail());
+            Client c = new Client(RandomUtils.nextBytes(10).toString(), null, RandomUtils.nextBytes(8).toString(), RandomUtils.nextBytes(8).toString(),"M", null, null, "SIREN"+RandomUtils.nextInt(), "SIRET"+RandomUtils.nextInt(), u.getUser_id());
+           c = clientService.createClient(c);
+           //Client c = clientService.findOneByCientId(2304336606350193664L);
+           // Client client = clientService.findOnByClientNumber(c.getClient_number());
+          //  ClassificationNature nature = new ClassificationNature(RandomUtils.nextInt()+"", 2);
+           ClassificationNature  nature = classificationNatureRepository.addClassificationNature(new ClassificationNature(""+RandomUtils.nextInt(), RandomUtils.nextInt(0, 9)));
 
-            User user = userRepository.findByEmail("bbb@gmail.com");
-            Client client = clientService.findOnByClientNumber("0000000002");
-            ClassificationNature nature = new ClassificationNature("23333", 2);
-            nature = classificationNatureRepository.addClassificationNature(nature);
-            Context context = new Context(null, null, null, null, nature.getClassification_nature_id(),
-                    null, client,
-                    "forzen label", false, false, null, null);
-            context = contextJpaRepository.save(context);
-            // MultipartFile multipartFile = null;
-            byte[] file = Files.readAllBytes(Paths.get("/media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/fadeil/Documents/docs_perso/tire_sejour.pdf"));
-            System.out.println("file length "+file);
-            CrypterDocument crypterDocument = new CrypterDocument();
-            byte[] fileEnc = crypterDocument.encrypt(file);
-            // File file1 = new File("");
-            // Path myNew = Files.write(Paths.get("Diagramme.png"), fileEnc);
+            int nb = new Random().nextInt(1 + 1);
+            Account account = new Account("CC", "Compte corant", c, u);
+            Contract contract= new Contract(RandomUtils.nextBytes(9).toString(), RandomUtils.nextBytes(9).toString(), c);
+            if(nb==1){
+                  String con= accountService.createNewAccountNumber();
+                  account.setAccount_number(con);
+                  account = accountJpaRepository.save(account);
+                  System.out.println(" account 1 nb = "+nb);
+            } else {
+                contract.setUser(u);
+                contract.setClient(c);
+                String connb= contractService.createNewContractNumber();
+                contract.setContract_number(connb);
+                contactJpaRepository.save(contract);
+                System.out.println("contract 2 nb = "+nb);
+            }
+
+              for (int x = 0; x < 1; x++){
+                  Context context = new Context("conseve id", "null", "pdf", null, nature.getClassification_nature_code(),
+                          null, null,
+                          false, false, null, null);
+
+
+                  if(nb==1){
+                      context.setAccount(account);
+                      Context context1 = contextJpaRepository.save(context);
+                      //accountJpaRepository.save(account);
+                     // contextJpaRepository.save(context1);
+                      System.out.println(" contextJpaRepository.save(context1); account 1 nb = "+nb);
+
+                  } else {
+                      context.setContract(contract);
+                      Context context1 = contextJpaRepository.save(context);
+                     // contactJpaRepository.save(contract);
+                     // contextJpaRepository.save(context1);
+                      System.out.println(" contextJpaRepository.save(context1); contract 2 nb = "+nb);
+
+                  }
+
+                  byte[] file = Files.readAllBytes(Paths.get("/media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/fadeil/Documents/docs_perso/tire_sejour.pdf"));
+                  System.out.println("file length "+file);
+                  CrypterDocument crypterDocument = new CrypterDocument();
+                  byte[] fileEnc = crypterDocument.encrypt(file);
+                  DigitalDocument document = new DigitalDocument("tire_sejour", "pdf", fileEnc, context);
+                  digitalDocumentJpaRepository.save(document);
+              }
+
+            // Files.write(Paths.get("Diagramme.pdf"), fileEnc);
+
+            // byte[] file2 = Files.readAllBytes(Paths.get("Diagramme.pdf"));
 
             // System.out.println("myNew.getFileSystem() : "+ myNew.getFileSystem());
-            DigitalDocument document = new DigitalDocument("tire_sejour.pdf", null, fileEnc, context);
-            document =  digitalDocumentJpaRepository.save(document);
-            timeEnd = Instant.now().getEpochSecond() /1000000000;
-            System.out.println(" time : "+(timeEnd - timeStrat));
+          //  document =  digitalDocumentJpaRepository.save(document);
 
-            byte [] docEn = document.getEncoding_doc();
-            byte [] docDec = crypterDocument.decrypt(docEn);
-            Files.write(Paths.get("tire_sejour.pdf"), docDec);
+           // byte [] docEn = document.getEncoding_doc();
+          //  byte [] docDec = crypterDocument.decrypt(file2);
+           // Files.write(Paths.get("Diagramme1.pdf"), docDec);
+
+
         }
+
+      //  ArrayList<DigitalDocument> arrayList = digitalDocumentJpaRepository.getAllDocs().stream().collect(Collectors.toCollection(ArrayList<DigitalDocument>::new));
+
+      //  List<DigitalDocument> arrayList =  digitalDocumentJpaRepository.getAllDocs();
+         AtomicInteger i= new AtomicInteger();
+        digitalDocumentJpaRepository.getAllDocs().forEach(document -> {
+           i.getAndIncrement();
+        //    document.setDocument_id(RandomUtils.nextLong());
+           //// digitalDocumentJpaRepository.save(document);
+       // System.out.println("Random ///////// : "+" : "+i+RandomUtils.nextLong());
+
+            System.out.println("id doc n° "+i+" : "+document.getDocument_id());
+            /*
+            byte[] file = new byte[0];
+            try {
+                file = Files.readAllBytes(Paths.get("/media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/fadeil/Documents/docs_perso/tire_sejour.pdf"));
+                //System.out.println("file length "+file);
+                CrypterDocument crypterDocument = new CrypterDocument();
+                byte[] fileEnc = crypterDocument.encrypt(file);
+                document.setEncoding_doc(fileEnc);
+                digitalDocumentJpaRepository.save(document);
+            } catch (InvalidKeyException e) {
+                e.printStackTrace();
+            } catch (NoSuchPaddingException e) {
+                e.printStackTrace();
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (BadPaddingException e) {
+                e.printStackTrace();
+            } catch (IllegalBlockSizeException e) {
+                e.printStackTrace();
+            }catch (IOException e) {
+                e.printStackTrace();
+            }
+
+             */
+       });
+
 
 
 
@@ -148,7 +234,7 @@ public class ExpositionApplication  extends SpringBootServletInitializer impleme
         //userService.CreateUser(user, "ADMIN");
        // user.setRole(role);
        // userRepository.saveUser(user);
-
+/*
         String number_st = "0000000000";
         long number_account = Long.parseLong(number_st);
         long new_number_account = number_account + 1;
@@ -162,7 +248,6 @@ public class ExpositionApplication  extends SpringBootServletInitializer impleme
         System.out.println("number number_account 2: "+new_number_account);
         number_st = "00000000000".substring(String.valueOf(new_number_account).length()+1)+new_number_account;
         System.out.print("number_st : "+number_st);
-        AtomicInteger i = new AtomicInteger();
         String client_number = clientJpaRepository.findMaxClientNumber();
       //  System.out.println(client_number);
 
@@ -170,7 +255,6 @@ public class ExpositionApplication  extends SpringBootServletInitializer impleme
 
 
 
-    }
 
       /*
         @Bean
@@ -199,8 +283,20 @@ public class ExpositionApplication  extends SpringBootServletInitializer impleme
             connector.setSecure(false);
             connector.setRedirectPort(8443);
             return connector;
-        }
-    */
+
+AtomicInteger i= new AtomicInteger();
+        digitalDocumentJpaRepository.getAllDocs().forEach(document -> {
+            i.set(i.get() + 1);
+            System.out.println("Document n° "+i+" : "+document);
+        });
+
+
+         */
+
+
+
+    }
+
 
 
 

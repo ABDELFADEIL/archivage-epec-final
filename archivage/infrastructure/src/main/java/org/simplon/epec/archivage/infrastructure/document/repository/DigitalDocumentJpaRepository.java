@@ -1,7 +1,31 @@
 package org.simplon.epec.archivage.infrastructure.document.repository;
 
 import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.QueryHints;
 
-public interface DigitalDocumentJpaRepository extends JpaRepository<DigitalDocument, String> {
+import javax.persistence.QueryHint;
+import java.util.List;
+import java.util.stream.Stream;
+
+import static org.hibernate.jpa.QueryHints.HINT_FETCH_SIZE;
+
+public interface DigitalDocumentJpaRepository extends JpaRepository<DigitalDocument, Long> {
+
+
+    @Query(value="select doc from DigitalDocument doc")
+    @QueryHints(value= @QueryHint(name= HINT_FETCH_SIZE, value=""+Integer.MIN_VALUE))
+    public Page<DigitalDocument> getAllDocs(Pageable pageable);
+
+    @Query(value="select doc from DigitalDocument doc limit 1000",  nativeQuery=true)
+    @QueryHints(value= @QueryHint(name= HINT_FETCH_SIZE, value=""+Integer.MIN_VALUE))
+    public List<DigitalDocument> getAllDocs();
+
+
+    @Query(value="select doc from DigitalDocument doc")
+    @QueryHints(value= @QueryHint(name= HINT_FETCH_SIZE, value=""+Integer.MIN_VALUE))
+    public Stream<DigitalDocument> getAllDocsStream();
 }

@@ -1,0 +1,25 @@
+{
+  "config" : {
+    "speedmentVersion" : "Speedment:3.2.9",
+    "appId" : "b2657d86-ff75-4527-9d3a-b8064eebbd19",
+    "name" : "exposition",
+    "packageName" : "org.simplon.epec.archivage.exposition.db",
+    "id" : "exposition",
+    "enabled" : true,
+    "dbmses" : [
+      {
+        "schemas" : [
+          {
+            "name" : "exposition",
+            "id" : "exposition",
+            "enabled" : true
+          }
+        ],
+        "name" : "exposition",
+        "typeName" : "MySQL",
+        "id" : "exposition",
+        "enabled" : true
+      }
+    ]
+  }
+}

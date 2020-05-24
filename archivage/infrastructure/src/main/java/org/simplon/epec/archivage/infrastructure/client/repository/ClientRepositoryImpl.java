@@ -4,7 +4,6 @@ import org.simplon.epec.archivage.domain.client.entity.Client;
 import org.simplon.epec.archivage.domain.client.repository.ClientRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Set;
 
 @Repository
@@ -22,7 +21,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public Client findOneByCientId(String clientID) {
+    public Client findOneByCientId(Long clientID) {
         return clientJpaRepository.findById(clientID).get();
     }
 

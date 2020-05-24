@@ -2,7 +2,6 @@ package org.simplon.epec.archivage.exposition.account.rest;
 
 import org.simplon.epec.archivage.application.account.AccountService;
 import org.simplon.epec.archivage.domain.account.entity.Account;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,7 +41,7 @@ public class AccountResource {
 
 
     @GetMapping("/get-account-by-client-id")
-    public Account getAccountByCientId(@RequestParam("clientID") String clientID) {
+    public Account getAccountByCientId(@RequestParam("clientID") Long clientID) {
      return accountService.getAccountByCientId(clientID);
     }
 

@@ -1,7 +1,8 @@
 package org.simplon.epec.archivage.domain.document.entity;
 
+import org.apache.commons.lang3.RandomUtils;
+
 import java.io.Serializable;
-import java.util.UUID;
 
 /**
  * Class DigitalDocument
@@ -12,7 +13,7 @@ public class DigitalDocument implements Serializable {
   // Fields
   //
 
-  private String document_id;
+  private Long document_id;
   private String file_name;
   private String archive_format;
   private byte [] encoding_doc;
@@ -24,7 +25,7 @@ public class DigitalDocument implements Serializable {
   public DigitalDocument () { };
 
   public DigitalDocument(String file_name, String archive_format, byte [] encoding_doc, Context context) {
-    this.document_id = UUID.randomUUID().toString();
+    this.document_id = RandomUtils.nextLong();
     this.file_name = file_name;
     this.archive_format = archive_format;
     this.encoding_doc = encoding_doc;
@@ -43,7 +44,7 @@ public class DigitalDocument implements Serializable {
    * Set the value of document_id
    * @param newVar the new value of document_id
    */
-  public void setDocument_id (String newVar) {
+  public void setDocument_id (Long newVar) {
     document_id = newVar;
   }
 
@@ -51,7 +52,7 @@ public class DigitalDocument implements Serializable {
    * Get the value of document_id
    * @return the value of document_id
    */
-  public String getDocument_id () {
+  public Long getDocument_id () {
     return document_id;
   }
 

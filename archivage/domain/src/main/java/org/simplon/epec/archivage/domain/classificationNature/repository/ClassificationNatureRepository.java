@@ -8,9 +8,9 @@ public interface ClassificationNatureRepository {
 
      ClassificationNature addClassificationNature(ClassificationNature classificationNature);
      ClassificationNature findByClassificationNatureCode(String classificationNatureCode);
-     ClassificationNature findById(String id);
+     ClassificationNature findById(Long id);
      ClassificationNature updateClassificationNature(ClassificationNature classificationNature);
-     void removeClassificationNature(String classificationNatureID);
-     ClassificationNature findByClassificationNatureId(String classificationNatureId);
+     void removeClassificationNature(Long classificationNatureID);
+     ClassificationNature findByClassificationNatureId(Long classificationNatureId);
      List<ClassificationNature> getAllClassificationNature();
 }

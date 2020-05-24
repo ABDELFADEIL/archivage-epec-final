@@ -2,7 +2,6 @@ package org.simplon.epec.archivage.application.account;
 
 import org.simplon.epec.archivage.domain.account.entity.Account;
 import org.simplon.epec.archivage.domain.account.repository.AccountRepository;
-import org.simplon.epec.archivage.domain.client.entity.Client;
 import org.simplon.epec.archivage.domain.user.entity.User;
 import org.simplon.epec.archivage.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -28,13 +27,16 @@ public class AccountServiceImpl implements AccountService {
     public Account createAccount(Account account) {
         String account_number = createNewAccountNumber();
         User user = userRepository.getAuthentificatedUser();
-        Account a = new Account( account.getAccount_id_type_code(),  account.getAccount_id_label(),  account_number,
+        if (user==null){
+            user = userRepository.findByUID("aaa");
+        }
+        Account a = new Account( account.getAccount_id_type_code("CC"),  account.getAccount_id_label(),  account_number,
                 account.getClient(), user);
         return accountRepository.createAccount(a);
     }
 
     @Override
-    public Account getAccountByCientId(String clientID) {
+    public Account getAccountByCientId(Long clientID) {
         return accountRepository.getAccountByCientId(clientID);
     }
 
@@ -75,10 +77,11 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public String createNewAccountNumber() {
-        String account_number_pre = accountRepository.getMaxAccountNumber();
-        long account_number =  Long.parseLong(account_number_pre);
-        long new_account_number = account_number + 1;
-        String account_number_nex = "00000000000".substring(String.valueOf(new_account_number).length()+1)+new_account_number;
-        return account_number_nex;
+
+            String account_number_pre = getMaxAccountNumber();
+            long account_number =  Long.parseLong(account_number_pre);
+            long new_account_number = account_number + 1;
+            String account_number_nex = "00000000000".substring(String.valueOf(new_account_number).length()+1)+new_account_number;
+            return account_number_nex;
     }
 }

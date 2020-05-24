@@ -7,7 +7,7 @@ import java.util.Set;
 public interface ClientService {
 
     public Client createClient(Client client);
-    public Client findOneByCientId(String clientID);
+    public Client findOneByCientId(Long clientID);
     public Client findOnByClientNumber(String clientNumber);
     public Client UpdateCient(Client client);
     public void removeClient(Client client);

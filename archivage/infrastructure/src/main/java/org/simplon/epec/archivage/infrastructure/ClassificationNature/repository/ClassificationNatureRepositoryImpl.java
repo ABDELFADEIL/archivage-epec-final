@@ -5,7 +5,6 @@ import org.simplon.epec.archivage.domain.classificationNature.repository.Classif
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public class ClassificationNatureRepositoryImpl implements ClassificationNatureRepository {
@@ -28,7 +27,7 @@ public class ClassificationNatureRepositoryImpl implements ClassificationNatureR
     }
 
     @Override
-    public ClassificationNature findById(String id) {
+    public ClassificationNature findById(Long id) {
         return classificationJpaNatureRepository.findById(id).get();
     }
 
@@ -38,12 +37,12 @@ public class ClassificationNatureRepositoryImpl implements ClassificationNatureR
     }
 
     @Override
-    public void removeClassificationNature(String classificationNatureID) {
+    public void removeClassificationNature(Long classificationNatureID) {
           classificationJpaNatureRepository.deleteById(classificationNatureID);
     }
 
     @Override
-    public ClassificationNature findByClassificationNatureId(String classificationNatureId) {
+    public ClassificationNature findByClassificationNatureId(Long classificationNatureId) {
         return classificationJpaNatureRepository.findById(classificationNatureId).get();
     }
 

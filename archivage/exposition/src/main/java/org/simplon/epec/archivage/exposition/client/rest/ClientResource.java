@@ -23,7 +23,7 @@ public class ClientResource {
     }
 
     @GetMapping("get-client-id")
-    public Client findOneByCientId(@RequestParam(name = "clientID",  required = true) String clientID) {
+    public Client findOneByCientId(@RequestParam(name = "clientID",  required = true) Long clientID) {
         return clientService.findOneByCientId(clientID);
     }
 

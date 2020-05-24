@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
@@ -64,14 +63,19 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User getAuthentificatedUser() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            String email = ((UserDetails)principal).getUsername();
-            return userJpaRepository.findByEmail(email);
-        } else {
-            String email = principal.toString();
-            return userJpaRepository.findByEmail(email);
+        try {
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            if (principal instanceof UserDetails) {
+                String email = ((UserDetails)principal).getUsername();
+                return userJpaRepository.findByEmail(email);
+            } else {
+                String email = principal.toString();
+                return userJpaRepository.findByEmail(email);
+
+            }
+        }catch (Exception e){
 
         }
+      return null;
     }
 }

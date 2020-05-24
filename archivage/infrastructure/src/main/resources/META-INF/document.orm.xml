@@ -18,7 +18,8 @@
                 <column name="archive_format" />
             </basic>
             <basic name="encoding_doc">
-                <column name="encoding_doc" />
+                <column name="encoding_doc"/>
+                <lob/>
             </basic>
             <basic name="file_name">
                 <column name="file_name" />
@@ -37,7 +38,7 @@
     <entity
             class="org.simplon.epec.archivage.domain.document.entity.Context"
             name="Context" access="FIELD">
-        <table name="context" />
+        <table name="context"/>
 
         <attributes>
             <id name="context_id">
@@ -79,14 +80,6 @@
             <basic name="original_value_id">
                 <column name="original_value_id" />
             </basic>
-
-            <many-to-one name="client" fetch="LAZY"
-                         target-entity="org.simplon.epec.archivage.domain.client.entity.Client">
-                <join-column name="client" nullable="false" updatable="false"/>
-                <cascade>
-                    <cascade-all />
-                </cascade>
-            </many-to-one>
             <one-to-one name="account" fetch="LAZY"
                          target-entity="org.simplon.epec.archivage.domain.account.entity.Account">
                 <join-column name="account" nullable="true" updatable="false"/>

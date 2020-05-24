@@ -5,6 +5,7 @@ org/simplon/epec/archivage/application/document/DigitalDocumentService.class
 org/simplon/epec/archivage/application/destructionList/DestructionListService.class
 org/simplon/epec/archivage/application/account/AccountServiceImpl.class
 org/simplon/epec/archivage/application/user/UserServiceImpl.class
+org/simplon/epec/archivage/config/CacheConfig.class
 org/simplon/epec/archivage/application/user/RoleServiceImpl.class
 org/simplon/epec/archivage/application/statistic/StatisticServiceImpl.class
 org/simplon/epec/archivage/application/event/EventService.class

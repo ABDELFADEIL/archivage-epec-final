@@ -2,15 +2,12 @@ package org.simplon.epec.archivage.infrastructure.account.repository;
 
 import org.simplon.epec.archivage.domain.account.entity.Account;
 import org.simplon.epec.archivage.domain.account.repository.AccountRepository;
-import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
 import org.simplon.epec.archivage.domain.classificationNature.repository.ClassificationNatureRepository;
-import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.domain.event.entity.Event;
 import org.simplon.epec.archivage.domain.event.repository.EventRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
 @Repository
@@ -36,7 +33,7 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public Account getAccountByCientId(String clientID) {
+    public Account getAccountByCientId(Long clientID) {
         return accountJpaRepository.getOne(clientID);
     }
 

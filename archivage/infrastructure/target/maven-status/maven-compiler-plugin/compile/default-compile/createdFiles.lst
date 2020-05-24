@@ -14,6 +14,7 @@ org/simplon/epec/archivage/infrastructure/history/repository/HistoryJpaRepositor
 org/simplon/epec/archivage/infrastructure/context/repository/ContextRepositoryImpl.class
 org/simplon/epec/archivage/infrastructure/security/JWTAuthorizationFilter.class
 org/simplon/epec/archivage/infrastructure/account/repository/AccountJpaRepository.class
+org/simplon/epec/archivage/infrastructure/document/repository/DigitalDocumentRepositoryImpl.class
 org/simplon/epec/archivage/infrastructure/statistic/repository/StatisticJpaRepository.class
 org/simplon/epec/archivage/infrastructure/contract/repository/ContractRepositoryImpl.class
 org/simplon/epec/archivage/infrastructure/user/repository/UserJpaRepository.class

@@ -1,17 +1,15 @@
 package org.simplon.epec.archivage.domain.contract.repository;
 
-import org.simplon.epec.archivage.domain.account.entity.Account;
 import org.simplon.epec.archivage.domain.contract.entity.Contract;
 import org.simplon.epec.archivage.domain.event.entity.Event;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Set;
 
 public interface ContractRepository {
 
     Contract createContract(Contract contract);
-    Contract getContractByCientId(String clientID);
+    Contract getContractByCientId(Long clientID);
     Contract getContractByNumber(String contract_number);
     Contract UpdateContract(Contract contract);
     void removeContract(Contract contract);
