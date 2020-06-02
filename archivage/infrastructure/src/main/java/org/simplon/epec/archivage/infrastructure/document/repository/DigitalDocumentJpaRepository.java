@@ -12,20 +12,21 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.hibernate.jpa.QueryHints.HINT_FETCH_SIZE;
+import static org.hibernate.jpa.QueryHints.HINT_PASS_DISTINCT_THROUGH;
 
 public interface DigitalDocumentJpaRepository extends JpaRepository<DigitalDocument, Long> {
 
 
     @Query(value="select doc from DigitalDocument doc")
-    @QueryHints(value= @QueryHint(name= HINT_FETCH_SIZE, value=""+Integer.MIN_VALUE))
+    @QueryHints(value={ @QueryHint(name= HINT_FETCH_SIZE, value=""+Integer.MIN_VALUE), @QueryHint(name = HINT_PASS_DISTINCT_THROUGH, value = "false")})
     public Page<DigitalDocument> getAllDocs(Pageable pageable);
 
-    @Query(value="select doc from DigitalDocument doc limit 1000",  nativeQuery=true)
-    @QueryHints(value= @QueryHint(name= HINT_FETCH_SIZE, value=""+Integer.MIN_VALUE))
+    @Query(value="select * from digital_document limit 1000",  nativeQuery=true)
+    @QueryHints(value= {@QueryHint(name= HINT_FETCH_SIZE, value=""+Integer.MIN_VALUE), @QueryHint(name = HINT_PASS_DISTINCT_THROUGH, value = "false")})
     public List<DigitalDocument> getAllDocs();
 
 
     @Query(value="select doc from DigitalDocument doc")
-    @QueryHints(value= @QueryHint(name= HINT_FETCH_SIZE, value=""+Integer.MIN_VALUE))
+    @QueryHints(value= {@QueryHint(name= HINT_FETCH_SIZE, value=""+Integer.MIN_VALUE), @QueryHint(name = HINT_PASS_DISTINCT_THROUGH, value = "false")})
     public Stream<DigitalDocument> getAllDocsStream();
 }

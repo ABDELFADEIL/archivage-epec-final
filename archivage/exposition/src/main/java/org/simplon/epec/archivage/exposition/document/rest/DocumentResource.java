@@ -8,6 +8,7 @@ import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.infrastructure.document.repository.DigitalDocumentJpaRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,8 +18,8 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/documents")
@@ -50,7 +51,7 @@ public class DocumentResource {
     }
 
     @ApiOperation(value = "/get-all-docs")
-    @GetMapping( value = "/get-all-docs", produces = { "application/json;charset=UTF-8" })
+    @GetMapping( value = "/get-all-docs", produces = MediaType.APPLICATION_JSON_VALUE)
     public Page<DigitalDocument> getAllDocs(
             @ApiParam(value = "page", required = true) @RequestParam("page") int page,
             @ApiParam(value = "size", required = true) @RequestParam("size") int size
@@ -67,7 +68,7 @@ public class DocumentResource {
         return digitalDocumentService.getAllDocs(PageRequest.of(page, size));
     }
 
-    @PutMapping( value = {"/update-doc-context-by-doc-id"} , produces = { "application/json;charset=UTF-8" }, consumes = {"application/json;charset=UTF-8" })
+    @PutMapping( value = {"/update-doc-context-by-doc-id"} , produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     DigitalDocument updateContext(Long docID, Context context) {
         return digitalDocumentService.updateContext(docID, context);
     }
@@ -79,11 +80,18 @@ public class DocumentResource {
         return digitalDocumentService.saveDocFileWhithId(docID, multipartFile);
     }
 
-    @GetMapping("/all-docs-list")
+    @GetMapping(value = "/all-docs-list", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<DigitalDocument> getAllDocs(){
-        return digitalDocumentJpaRepository.getAllDocs()
-                .stream()
-                .collect(Collectors.toList());
+        List<DigitalDocument> documents = new ArrayList<>();
+        digitalDocumentJpaRepository.getAllDocs().forEach(digitalDocument -> {
+            DigitalDocument d = new DigitalDocument();
+            d.setDocument_id(digitalDocument.getDocument_id());
+            d.setArchive_format(digitalDocument.getArchive_format());
+            d.setFile_name(digitalDocument.getFile_name());
+            d.setContext(digitalDocument.getContext());
+            documents.add(d);
+        });
+        return documents;
     }
 
 }

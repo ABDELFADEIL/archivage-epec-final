@@ -62,7 +62,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User getAuthentificatedUser() {
+    public User getAuthenticatedUser() {
         try {
             Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             if (principal instanceof UserDetails) {

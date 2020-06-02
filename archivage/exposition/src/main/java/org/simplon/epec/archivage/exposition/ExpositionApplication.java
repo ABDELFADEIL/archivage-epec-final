@@ -36,7 +36,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
 
 
 
@@ -111,8 +110,8 @@ public class ExpositionApplication  extends SpringBootServletInitializer impleme
         for (int i = 0; i > 0; i --){
             Role role = new Role("ADMIN");
             role= roleRepository.findByName(role.getName());
-            //User u = new User(RandomUtils.nextBytes(10).toString(), RandomUtils.nextBytes(6).toString()+"@gmail.com", "abcd", role);
-            User u = userRepository.findByUID("[B@1a9d2022");
+            User u = new User(RandomUtils.nextBytes(10).toString(), RandomUtils.nextBytes(6).toString()+"@gmail.com", "abcd", role);
+             u = userRepository.saveUser(u);
             //User user = userRepository.findByEmail(u.getEmail());
             Client c = new Client(RandomUtils.nextBytes(10).toString(), null, RandomUtils.nextBytes(8).toString(), RandomUtils.nextBytes(8).toString(),"M", null, null, "SIREN"+RandomUtils.nextInt(), "SIRET"+RandomUtils.nextInt(), u.getUser_id());
            c = clientService.createClient(c);
@@ -138,7 +137,7 @@ public class ExpositionApplication  extends SpringBootServletInitializer impleme
                 System.out.println("contract 2 nb = "+nb);
             }
 
-              for (int x = 0; x < 1; x++){
+              for (int x = 0; x < 2; x++){
                   Context context = new Context("conseve id", "null", "pdf", null, nature.getClassification_nature_code(),
                           null, null,
                           false, false, null, null);
@@ -185,14 +184,14 @@ public class ExpositionApplication  extends SpringBootServletInitializer impleme
       //  ArrayList<DigitalDocument> arrayList = digitalDocumentJpaRepository.getAllDocs().stream().collect(Collectors.toCollection(ArrayList<DigitalDocument>::new));
 
       //  List<DigitalDocument> arrayList =  digitalDocumentJpaRepository.getAllDocs();
-         AtomicInteger i= new AtomicInteger();
-        digitalDocumentJpaRepository.getAllDocs().forEach(document -> {
-           i.getAndIncrement();
+       //  AtomicInteger i= new AtomicInteger();
+       // digitalDocumentJpaRepository.getAllDocs().forEach(document -> {
+         //  i.getAndIncrement();
         //    document.setDocument_id(RandomUtils.nextLong());
            //// digitalDocumentJpaRepository.save(document);
        // System.out.println("Random ///////// : "+" : "+i+RandomUtils.nextLong());
 
-            System.out.println("id doc n° "+i+" : "+document.getDocument_id());
+           // System.out.println("id doc n° "+i+" : ");
             /*
             byte[] file = new byte[0];
             try {
@@ -217,7 +216,7 @@ public class ExpositionApplication  extends SpringBootServletInitializer impleme
             }
 
              */
-       });
+       //});
 
 
 
