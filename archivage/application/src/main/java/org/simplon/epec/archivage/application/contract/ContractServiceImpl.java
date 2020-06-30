@@ -27,7 +27,7 @@ public class ContractServiceImpl implements ContractService {
     public Contract createContract(Contract contract) {
         try {
             String contract_number = createNewContractNumber();
-            User user = userRepository.getAuthentificatedUser();
+            User user = userRepository.getAuthenticatedUser();
             if (user==null){
                 user= userRepository.findByUID("aaa");
             }
@@ -91,6 +91,5 @@ public class ContractServiceImpl implements ContractService {
         long new_contract_number = contract_number + 1;
         String contract_number_nex = "00000000000".substring(String.valueOf(new_contract_number).length()+1)+new_contract_number;
         return contract_number_nex;
-
     }
 }

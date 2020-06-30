@@ -4,7 +4,6 @@
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/document/CrypterDocument.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/security/config/SecurityConstants.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/mailing/SendingMail.java
-/media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/statistic/repository/StatisticRepositoryImpl.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/event/repository/EventRepositoryImpl.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/security/config/SecurityConfig.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/user/repository/UserRepositoryImpl.java
@@ -20,7 +19,6 @@
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/context/repository/ContextRepositoryImpl.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/event/repository/EventJapRepository.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/account/repository/AccountJpaRepository.java
-/media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/statistic/repository/StatisticJpaRepository.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/destructionList/repository/DestructionListJpaRepository.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/security/JWTAuthenticationFilter.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/context/repository/ContextJpaRepository.java

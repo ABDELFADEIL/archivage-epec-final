@@ -28,7 +28,7 @@ public class ClientServiceImpl implements ClientService {
     public Client createClient(Client client) {
         ////////////// code logic
         String client_number = createNewClientNumber();
-        User user = userRepository.getAuthentificatedUser();
+        User user = userRepository.getAuthenticatedUser();
         if (user==null){
             user = userRepository.findByUID("aaa");
         }

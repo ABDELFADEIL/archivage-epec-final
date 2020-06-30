@@ -30,12 +30,8 @@ public class DigitalDocumentRepositoryImpl implements DigitalDocumentRepository 
     }
 
     @Override
-    public DigitalDocument createDocument(DigitalDocument document, MultipartFile multipartFile) throws IOException, NoSuchAlgorithmException, BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, InvalidKeyException {
-        CrypterDocument crypterDocument = new CrypterDocument();
-        byte[] data = multipartFile.getBytes();
-        byte[] enryptedFile = crypterDocument.encrypt(data);
-        DigitalDocument document1 = new DigitalDocument(multipartFile.getOriginalFilename(), document.getArchive_format(), enryptedFile, document.getContext());
-        return digitalDocumentJpaRepository.save(document1);
+    public DigitalDocument createDocument(DigitalDocument document) throws IOException, NoSuchAlgorithmException, BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, InvalidKeyException {
+        return digitalDocumentJpaRepository.save(document);
     }
 
     @Override

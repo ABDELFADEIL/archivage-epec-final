@@ -24,6 +24,8 @@ public class History implements Serializable {
   //
   // Constructors
   //
+
+
   public History () { };
 
   public History(String event_type, User calling_user, String calling_application) {

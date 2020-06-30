@@ -81,9 +81,9 @@ public class Account implements Serializable {
   /**
    * Get the value of account_id_type_code
    * @return the value of account_id_type_code
-   * @param cc
+   * @param
    */
-  public String getAccount_id_type_code(String cc) {
+  public String getAccount_id_type_code() {
     return account_id_type_code;
   }
 

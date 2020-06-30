@@ -5,7 +5,6 @@ import org.simplon.epec.archivage.domain.user.entity.User;
 import org.simplon.epec.archivage.domain.user.repository.RoleRepository;
 import org.simplon.epec.archivage.domain.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -80,6 +79,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getAuthentificatedUser() {
-        return userRepository.getAuthentificatedUser();
+        return userRepository.getAuthenticatedUser();
     }
 }

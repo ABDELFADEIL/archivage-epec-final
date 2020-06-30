@@ -29,8 +29,8 @@ public class ContractResource {
         return contractService.findContractByEventStatusEventDateBeforAndDateAfter(status, dateAfter, dateBefor);
     }
 
-    @PostMapping("/create-new-account")
-    public Contract createAccount(@RequestBody Contract contract) {
+    @PostMapping("/create-new-contract")
+    public Contract createContract(@RequestBody Contract contract) {
         return contractService.createContract(contract);
     }
 
@@ -56,12 +56,12 @@ public class ContractResource {
     }
 
     @GetMapping("/get-contracts-by-number-key")
-    public Set<Contract> getContractsByContractNumberContains(String contract_number) {
+    public Set<Contract> getContractsByContractNumberContains( @RequestParam("contract_number") String contract_number) {
         return contractService.getContractsByContractNumberContains(contract_number);
     }
 
     @GetMapping("/get-contracts-by-client-name-key")
-    public Set<Contract> getContractsByClientNameContains(String name) {
+    public Set<Contract> getContractsByClientNameContains(@RequestParam("name") String name) {
         return contractService.getContractsByClientNameContains(name);
     }
 

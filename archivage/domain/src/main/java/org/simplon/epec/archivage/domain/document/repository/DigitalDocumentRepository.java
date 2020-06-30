@@ -15,7 +15,7 @@ import java.security.NoSuchAlgorithmException;
 
 public interface DigitalDocumentRepository {
 
-    DigitalDocument createDocument(DigitalDocument document, MultipartFile multipartFile) throws IOException, NoSuchAlgorithmException, BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, InvalidKeyException;
+    DigitalDocument createDocument(DigitalDocument document) throws IOException, NoSuchAlgorithmException, BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, InvalidKeyException;
     DigitalDocument getDocById(Long docID);
     DigitalDocument updateContext(Long docID, Context context);
     DigitalDocument saveDocFileWhithId(Long docID, MultipartFile multipartFile) throws IOException, NoSuchAlgorithmException, BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, InvalidKeyException;

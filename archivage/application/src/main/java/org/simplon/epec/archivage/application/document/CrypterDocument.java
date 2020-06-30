@@ -11,18 +11,18 @@ public class CrypterDocument {
 
     private String encryptionKeyString =  "thisisa128bitkey";
 
-    public static byte[] encrypt(byte[] data, byte[] keyBytes) throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException,
+    public  byte[] encrypt(byte[] data) throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException,
             BadPaddingException, IllegalBlockSizeException {
-
+        byte[] keyBytes = "thisisa128bitkey".getBytes();
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         SecretKey secretKey = new SecretKeySpec(keyBytes, "AES");
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
         return cipher.doFinal(data);
     }
 
-    public static byte[] decrypt(byte[] data, byte[] keyBytes) throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException,
+    public  byte[] decrypt(byte[] data) throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException,
             BadPaddingException, IllegalBlockSizeException {
-
+        byte[] keyBytes = "thisisa128bitkey".getBytes();
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         SecretKey secretKey = new SecretKeySpec(keyBytes, "AES");
         cipher.init(Cipher.DECRYPT_MODE, secretKey);
@@ -31,15 +31,15 @@ public class CrypterDocument {
 
 
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException, BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, InvalidKeyException {
-       /*
 
+/*
         String encryptionKeyString =  "thisisa128bitkey";
         byte[] encryptionKeyBytes = encryptionKeyString.getBytes();
 
         String data = "digitalDocument";
 
-        byte [] enc = encrypt(data.getBytes(), encryptionKeyBytes);
-        byte [] dec = decrypt(enc, encryptionKeyBytes);
+        byte [] enc = encrypt(data.getBytes());
+        byte [] dec = decrypt(enc);
         System.out.println("original "+ data);
         System.out.println("Encripted "+ enc);
         System.out.println("Decrypted "+ new String(dec));
@@ -48,6 +48,8 @@ public class CrypterDocument {
 
         byte[] file = Files.readAllBytes(Paths.get(System.getProperty("user.home")+"/Diagramme.png"));
         System.out.println("file length "+file);
+
+        /*
         byte[] fileEnc = encrypt(file, encryptionKeyBytes);
         System.out.println("file length en "+Paths.get(System.getProperty("user.home"))+"/fichier.txt");
         byte[] fileDec = decrypt(fileEnc, encryptionKeyBytes);

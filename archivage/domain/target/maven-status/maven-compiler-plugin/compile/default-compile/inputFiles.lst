@@ -10,7 +10,6 @@
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/domain/src/main/java/org/simplon/epec/archivage/domain/contract/entity/Contract.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/domain/src/main/java/org/simplon/epec/archivage/domain/destructionList/entity/DestructionList.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/domain/src/main/java/org/simplon/epec/archivage/domain/user/repository/UserRepository.java
-/media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/domain/src/main/java/org/simplon/epec/archivage/domain/statistic/repository/StatisticRepository.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/domain/src/main/java/org/simplon/epec/archivage/domain/event/entity/Event.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/domain/src/main/java/org/simplon/epec/archivage/domain/event/repository/EventRepository.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/domain/src/main/java/org/simplon/epec/archivage/domain/document/entity/Context.java
@@ -20,5 +19,4 @@
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/domain/src/main/java/org/simplon/epec/archivage/domain/account/repository/AccountRepository.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/domain/src/main/java/org/simplon/epec/archivage/domain/contract/repository/ContractRepository.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/domain/src/main/java/org/simplon/epec/archivage/domain/classificationNature/repository/ClassificationNatureRepository.java
-/media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/domain/src/main/java/org/simplon/epec/archivage/domain/statistic/entity/Statistic.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/domain/src/main/java/org/simplon/epec/archivage/domain/history/entity/History.java

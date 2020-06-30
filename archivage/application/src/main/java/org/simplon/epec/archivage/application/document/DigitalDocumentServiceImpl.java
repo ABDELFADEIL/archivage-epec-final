@@ -1,5 +1,7 @@
 package org.simplon.epec.archivage.application.document;
 
+import org.simplon.epec.archivage.application.classificationNature.ClassificationNatureService;
+import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
 import org.simplon.epec.archivage.domain.document.entity.Context;
 import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.domain.document.repository.DigitalDocumentRepository;
@@ -22,16 +24,32 @@ import java.security.NoSuchAlgorithmException;
 public class DigitalDocumentServiceImpl implements DigitalDocumentService{
 
     private final transient DigitalDocumentRepository digitalDocumentRepository;
-
+    private final transient ClassificationNatureService classificationNatureService;
     @Autowired
-    public DigitalDocumentServiceImpl(DigitalDocumentRepository digitalDocumentRepository) {
+    public DigitalDocumentServiceImpl(DigitalDocumentRepository digitalDocumentRepository, ClassificationNatureService classificationNatureService) {
         this.digitalDocumentRepository = digitalDocumentRepository;
+        this.classificationNatureService = classificationNatureService;
     }
 
 
     @Override
     public DigitalDocument createDocument(DigitalDocument document, MultipartFile multipartFile) throws BadPaddingException, NoSuchAlgorithmException, IOException, IllegalBlockSizeException, NoSuchPaddingException, InvalidKeyException {
-        return digitalDocumentRepository.createDocument(document, multipartFile);
+
+        CrypterDocument crypterDocument = new CrypterDocument();
+        byte[] data = multipartFile.getBytes();
+        byte[] enryptedFile = crypterDocument.encrypt(data);
+        ClassificationNature classificationNature = classificationNatureService.findByClassificationNatureCode(document.getContext().getClassification_nature_code());
+        java.time.LocalDate deletion_date = null;
+        if (document.getContext().getFinal_business_processing_date()!=null){
+             deletion_date = document.getContext().getFinal_business_processing_date().plusYears(classificationNature.getDuration());
+        }
+
+        Context context = new Context("conserv_unit_id", multipartFile.getContentType(),
+                document.getContext().getClassification_nature_code(), document.getContext().getFinal_business_processing_date(),
+                null,  false,  false, null, deletion_date);
+        DigitalDocument document1 = new DigitalDocument(multipartFile.getOriginalFilename(), document.getArchive_format(), enryptedFile, document.getContext());
+
+        return digitalDocumentRepository.createDocument(document1);
     }
 
     @Override

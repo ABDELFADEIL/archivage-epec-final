@@ -18,13 +18,11 @@ public class Context implements Serializable {
 
   private Long context_id;
   private String conserv_unit_id;
-  private String media_type;
   private String mine_type;
-  private String original_value_id;
   private LocalDate archiving_reference_date;
   private Contract contract;
   private Account account;
-  private String classification_nature_id;
+  private String classification_nature_code;
   private LocalDate final_business_processing_date;
   private String frozen_label;
   private boolean hold_status;
@@ -39,14 +37,12 @@ public class Context implements Serializable {
   //
   public Context () { };
 
-  public Context(String conserv_unit_id, String media_type, String mine_type, String original_value_id,
-                 String classification_nature_id, LocalDate final_business_processing_date, String frozen_label, boolean hold_status, boolean frozen, LocalDate final_hold_date, LocalDate deletion_date) {
+  public Context(String conserv_unit_id, String mine_type,
+                 String classification_nature_code, LocalDate final_business_processing_date, String frozen_label, boolean hold_status, boolean frozen, LocalDate final_hold_date, LocalDate deletion_date) {
     this.conserv_unit_id = conserv_unit_id;
-    this.media_type = media_type;
     this.mine_type = mine_type;
-    this.original_value_id = original_value_id;
     this.archiving_reference_date = LocalDate.now();
-    this.classification_nature_id = classification_nature_id;
+    this.classification_nature_code = classification_nature_code;
     this.final_business_processing_date = final_business_processing_date;
     this.frozen_label = frozen_label;
     this.hold_status = hold_status;
@@ -96,21 +92,7 @@ public class Context implements Serializable {
     return conserv_unit_id;
   }
 
-  /**
-   * Set the value of media_type
-   * @param newVar the new value of media_type
-   */
-  public void setMedia_type (String newVar) {
-    media_type = newVar;
-  }
 
-  /**
-   * Get the value of media_type
-   * @return the value of media_type
-   */
-  public String getMedia_type () {
-    return media_type;
-  }
 
   /**
    * Set the value of mine_type
@@ -128,21 +110,6 @@ public class Context implements Serializable {
     return mine_type;
   }
 
-  /**
-   * Set the value of original_value_id
-   * @param newVar the new value of original_value_id
-   */
-  public void setOriginal_value_id (String newVar) {
-    original_value_id = newVar;
-  }
-
-  /**
-   * Get the value of original_value_id
-   * @return the value of original_value_id
-   */
-  public String getOriginal_value_id () {
-    return original_value_id;
-  }
 
   /**
    * Set the value of archiving_reference_date
@@ -196,16 +163,16 @@ public class Context implements Serializable {
    * Set the value of classification_nature_id
    * @param newVar the new value of classification_nature_id
    */
-  public void setClassification_nature_id (String newVar) {
-    classification_nature_id = newVar;
+  public void setClassification_nature_code (String newVar) {
+    classification_nature_code = newVar;
   }
 
   /**
    * Get the value of classification_nature_id
    * @return the value of classification_nature_id
    */
-  public String getClassification_nature_id () {
-    return classification_nature_id;
+  public String getClassification_nature_code () {
+    return classification_nature_code;
   }
 
   /**

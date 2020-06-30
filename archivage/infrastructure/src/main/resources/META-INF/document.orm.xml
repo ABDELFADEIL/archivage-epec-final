@@ -71,14 +71,8 @@
             <basic name="hold_status">
                 <column name="hold_status" />
             </basic>
-            <basic name="media_type">
-                <column name="media_type" />
-            </basic>
             <basic name="mine_type">
                 <column name="mine_type" />
-            </basic>
-            <basic name="original_value_id">
-                <column name="original_value_id" />
             </basic>
             <one-to-one name="account" fetch="LAZY"
                          target-entity="org.simplon.epec.archivage.domain.account.entity.Account">

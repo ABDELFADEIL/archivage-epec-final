@@ -20,7 +20,7 @@ spring:
       - META-INF/contract.orm.xml
       - META-INF/document.orm.xml
       - META-INF/event.orm.xml
-      - META-INF/history-statistic.orm.xml
+      - META-INF/history.orm.xml
       - META-INF/user.orm.xml
       - META-INF/destructionList.orm.xml
     open-in-view: false

@@ -26,11 +26,11 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account createAccount(Account account) {
         String account_number = createNewAccountNumber();
-        User user = userRepository.getAuthentificatedUser();
+        User user = userRepository.getAuthenticatedUser();
         if (user==null){
             user = userRepository.findByUID("aaa");
         }
-        Account a = new Account( account.getAccount_id_type_code("CC"),  account.getAccount_id_label(),  account_number,
+        Account a = new Account( account.getAccount_id_type_code(),  account.getAccount_id_label(),  account_number,
                 account.getClient(), user);
         return accountRepository.createAccount(a);
     }

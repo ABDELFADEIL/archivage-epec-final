@@ -1,5 +1,4 @@
 org/simplon/epec/archivage/domain/user/entity/Role.class
-org/simplon/epec/archivage/domain/statistic/entity/Statistic.class
 org/simplon/epec/archivage/domain/event/entity/Event.class
 org/simplon/epec/archivage/domain/user/repository/UserRepository.class
 org/simplon/epec/archivage/domain/event/repository/EventRepository.class
@@ -8,7 +7,6 @@ org/simplon/epec/archivage/domain/user/repository/RoleRepository.class
 org/simplon/epec/archivage/domain/document/repository/ContextRepository.class
 org/simplon/epec/archivage/domain/user/entity/User.class
 org/simplon/epec/archivage/domain/client/entity/Client.class
-org/simplon/epec/archivage/domain/statistic/repository/StatisticRepository.class
 org/simplon/epec/archivage/domain/classificationNature/entity/ClassificationNature.class
 org/simplon/epec/archivage/domain/document/repository/DigitalDocumentRepository.class
 org/simplon/epec/archivage/domain/history/repository/HistoryRepository.class

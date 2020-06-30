@@ -7,11 +7,9 @@ org/simplon/epec/archivage/application/account/AccountServiceImpl.class
 org/simplon/epec/archivage/application/user/UserServiceImpl.class
 org/simplon/epec/archivage/config/CacheConfig.class
 org/simplon/epec/archivage/application/user/RoleServiceImpl.class
-org/simplon/epec/archivage/application/statistic/StatisticServiceImpl.class
 org/simplon/epec/archivage/application/event/EventService.class
 org/simplon/epec/archivage/application/history/HistoryService.class
 org/simplon/epec/archivage/application/document/CrypterDocument.class
-org/simplon/epec/archivage/application/statistic/StatisticService.class
 org/simplon/epec/archivage/application/classificationNature/ClassificationNatureService.class
 org/simplon/epec/archivage/application/document/DigitalDocumentServiceImpl.class
 org/simplon/epec/archivage/application/client/ClientService.class

@@ -34,15 +34,20 @@ public class DocumentResource {
     }
 
 
-    @PostMapping( value = "/create-doc-file", produces = { "application/json;charset=UTF-8" }, consumes = {"application/json;charset=UTF-8" })
-    public List<DigitalDocument> createDocument(List<DigitalDocument> documents, MultipartFile [] multipartFiles) throws IOException, NoSuchAlgorithmException,
+    @PostMapping( value = "/create-doc-file", headers = {"content-type=multipart/mixed", "content-type=multipart/form-data"},
+            consumes = {"multipart/form-data"})
+    public List<DigitalDocument> createDocuments(@RequestPart(value = "files") List<MultipartFile>  files,
+                                                @RequestPart(value = "documents") DigitalDocument document) throws IOException, NoSuchAlgorithmException,
             BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, InvalidKeyException
     {
-        List<DigitalDocument> digitalDocumentList = new ArrayList<>();
-            for (int i = 0; i < multipartFiles.length; i++){
-                digitalDocumentList.add(i, digitalDocumentService.createDocument(documents.get(i), multipartFiles [i]));
-            }
-            return digitalDocumentList;
+                 List<DigitalDocument> digitalDocumentList = null;
+                 if (files.size() > 0){
+                   for (int i = 0; i < files.size(); i++){
+                       DigitalDocument doc = digitalDocumentService.createDocument(document, files.get(i));
+                       digitalDocumentList.add(doc);
+                   }
+                 }
+                 return digitalDocumentList;
     }
 
     @GetMapping( value= {"/get-doc-by-id"}, produces = { "application/json;charset=UTF-8" }, consumes = {"application/json;charset=UTF-8" })

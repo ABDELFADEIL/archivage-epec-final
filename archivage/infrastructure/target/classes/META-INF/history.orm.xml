@@ -6,7 +6,7 @@
     <description>Archivage domain module</description>
 
     <entity
-            class="org.simplon.epec.archivageElectronique.domain.history.entity.History"
+            class="org.simplon.epec.archivage.domain.history.entity.History"
             name="History" access="FIELD">
         <table name="history" />
 
@@ -24,36 +24,12 @@
                 <column name="calling_application" />
             </basic>
             <many-to-one name="calling_user" fetch="LAZY"
-                         target-entity="org.simplon.epec.archivageElectronique.domain.user.entity.User">
+                         target-entity="org.simplon.epec.archivage.domain.user.entity.User">
                 <join-column name="calling_user" nullable="false" updatable="false"/>
                 <cascade>
                     <cascade-all />
                 </cascade>
             </many-to-one>
-        </attributes>
-    </entity>
-
-    <entity
-            class="org.simplon.epec.archivageElectronique.domain.statistic.entity.Statistic"
-            name="Statistic" access="FIELD">
-        <table name="statistic" />
-
-        <attributes>
-            <id name="statistic_id">
-                <column name="statistic_id" length="55" />
-            </id>
-            <basic name="event_type">
-                <column name="event_type" />
-            </basic>
-            <basic name="event_date">
-                <column name="event_date" />
-            </basic>
-            <basic name="document_id">
-                <column name="document_id" />
-            </basic>
-            <basic name="user_id">
-                <column name="user_id" />
-            </basic>
         </attributes>
     </entity>
 
