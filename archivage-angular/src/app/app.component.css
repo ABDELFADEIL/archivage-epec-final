@@ -1,0 +1,30 @@
+.row {
+  padding: 10px;
+}
+.breadcrumb {
+  border-radius: 0;
+  background: white;
+}
+
+.btn-side {
+  min-width: 90%;
+  margin: auto;
+  margin-bottom: 5px;
+
+}
+
+.btn-side a {
+  float: left;
+}
+
+.btn-side a:hover, a:hover {
+  text-decoration: none;
+}
+
+.btn-side:hover {
+  background: #e9edf7;
+}
+
+.dropdown-toggle::after {
+  float: right;
+}

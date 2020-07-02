@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
+
+.spacer {
+  margin-top: 20px;
+}
+
+div.bg-light {
+  background: white !important;
+}
+
+.color1 {
+  background: #DEE6F9;
+}

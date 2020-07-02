@@ -1,0 +1,68 @@
+<app-header></app-header>
+
+<div class="row" style="background: #F2F5FA; margin: 0">
+
+  <div class="col-lg-2 spacer bg-light " >
+
+    <!-- Sidebar -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h3 style="font-family: 'Bungee Inline', cursive;"><a [routerLink]="'home'">DigiArchive</a></h3>
+      </div>
+
+      <div class="dropdown">
+        <button [routerLink]="'home'" [routerLinkActive]="'active'" class="btn btn-side btn-light color1"  type="button">
+          <a >Accueil</a>
+        </button>
+      </div>
+
+      <div class="dropdown">
+        <button [routerLink]="'clients'" [routerLinkActive]="'active'" class="btn btn-light color1 dropdown-toggle btn-side" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a >Clients</a>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <button class="dropdown-item" type="button"><a [routerLink]="'new-client'" [routerLinkActive]="'active'">Nouveau client</a></button>
+          <button class="dropdown-item" type="button"><a [routerLink]="'clients'" [routerLinkActive]="'active'">Gérer client</a></button>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button [routerLink]="'contracts'" [routerLinkActive]="'active'" class="btn btn-light color1 dropdown-toggle btn-side" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a >Contrats</a>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <button class="dropdown-item" type="button"><a [routerLink]="'new-contrat'" [routerLinkActive]="'active'">Nouveau contrat</a></button>
+          <button class="dropdown-item" type="button"><a [routerLink]="'contracts'" [routerLinkActive]="'active'">Gérer contrat</a></button>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button [routerLink]="'accounts'" [routerLinkActive]="'active'" class="btn btn-light color1 dropdown-toggle btn-side" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a >Comptes</a>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <button class="dropdown-item" type="button"><a [routerLink]="'new-account'" [routerLinkActive]="'active'">Nouveau compte</a></button>
+          <button class="dropdown-item" type="button"><a [routerLink]="'accounts'" [routerLinkActive]="'active'">Gérer compte</a></button>
+        </div>
+      </div>
+
+    </nav>
+
+  </div>
+
+  <div class="col-lg-10  spacer">
+
+    <nav aria-label="breadcrumb" class="bg-light">
+      <ol class="breadcrumb">
+        <li *ngIf="title=='Accueil';" class="breadcrumb-item"><a routerLink="home">Accueil</a></li>
+        <li *ngIf="title!='Accueil';" class="breadcrumb-item"><a routerLink="home">Accueil</a></li>
+        <li *ngIf="title!='Accueil';" class="breadcrumb-item active" aria-current="page" >{{title | titlecase}}</li>
+      </ol>
+    </nav>
+
+    <div class="panel col-12 bg-light" style="min-height: 80vh; ">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+</div>
