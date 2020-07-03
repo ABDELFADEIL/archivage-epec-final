@@ -19,12 +19,12 @@ import { DocumentsToDestroyComponent } from './documents-to-destroy/documents-to
 import { DocumentsToBeValidatedComponent } from './documents-to-be-validated/documents-to-be-validated.component';
 import { DocumentsDestroyedComponent } from './documents-destroyed/documents-destroyed.component';
 import { UpdateDfpmDocComponent } from './update-dfpm-doc/update-dfpm-doc.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ClassificationNatureComponent } from './classification-nature/classification-nature.component';
 import { HistoryComponent } from './history/history.component';
-import {AppService} from './appService';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -47,17 +47,20 @@ import {AppService} from './appService';
     UpdateDfpmDocComponent,
     ClassificationNatureComponent,
     HistoryComponent,
+    SidebarComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    FormsModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
 
-  ],
-  providers: [Title, AppService],
+
+    ],
+  providers: [Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

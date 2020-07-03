@@ -1,2 +1,2 @@
-export interface Context {
+export class Context {
 }

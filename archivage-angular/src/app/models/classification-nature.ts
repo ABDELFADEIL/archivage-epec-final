@@ -1,2 +1,2 @@
-export interface ClassificationNature {
+export class ClassificationNature {
 }

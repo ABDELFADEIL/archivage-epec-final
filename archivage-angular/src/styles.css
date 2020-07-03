@@ -16,3 +16,15 @@ div.bg-light {
 a {
   color: #212b35;
 }
+
+body {
+  overflow: hidden;
+  background: #F2F5FA;
+}
+
+.aut.col-lg-10 {
+}
+
+.panel.col-12.bg-light {
+  background: #F2F5FA !important;
+}

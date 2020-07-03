@@ -1,2 +1,2 @@
-export interface Account {
+export class Account {
 }

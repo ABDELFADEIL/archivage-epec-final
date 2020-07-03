@@ -1,2 +1,2 @@
-export interface Document {
+export class Document {
 }

@@ -1,0 +1,40 @@
+.btn-side {
+  min-width: 90%;
+  margin: auto;
+  margin-bottom: 5px;
+
+}
+
+.btn-side a {
+  float: left;
+}
+
+.btn-side a:hover, a:hover {
+  text-decoration: none;
+}
+
+.btn-side:hover {
+  background: #e9edf7;
+}
+
+.dropdown-toggle::after {
+  float: right;
+}
+
+.dropdown-menu {
+  position: relative;
+  padding: 0rem 0;
+  margin: .080rem .160rem .080rem ;
+  background-color: #f2f5fa;
+  border-radius: .002rem;
+  min-width: 90% !important;
+
+}
+
+.dropdown-item a{
+  color: #333229 !important;
+}
+
+.btn-light:not(:disabled):not(.disabled).active {
+  background-color: #f2f5fa;
+}

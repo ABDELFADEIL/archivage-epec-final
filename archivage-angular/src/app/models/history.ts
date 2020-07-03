@@ -1,2 +1,2 @@
-export interface History {
+export class History {
 }
