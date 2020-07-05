@@ -19,12 +19,15 @@ import { DocumentsToDestroyComponent } from './documents-to-destroy/documents-to
 import { DocumentsToBeValidatedComponent } from './documents-to-be-validated/documents-to-be-validated.component';
 import { DocumentsDestroyedComponent } from './documents-destroyed/documents-destroyed.component';
 import { UpdateDfpmDocComponent } from './update-dfpm-doc/update-dfpm-doc.component';
-import {HttpClientModule, HttpClient} from '@angular/common/http';
+import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ClassificationNatureComponent } from './classification-nature/classification-nature.component';
 import { HistoryComponent } from './history/history.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ClassificationNatureManageComponent } from './classification-nature-manage/classification-nature-manage.component';
+import {JwtInterceptor} from './helpers/jwt.interceptor';
+import {ErrorInterceptor} from './helpers/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ClassificationNatureComponent,
     HistoryComponent,
     SidebarComponent,
+    ClassificationNatureManageComponent,
 
   ],
     imports: [
@@ -60,7 +64,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
 
     ],
-  providers: [Title],
+  providers: [Title, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

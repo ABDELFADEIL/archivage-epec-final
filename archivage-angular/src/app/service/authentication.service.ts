@@ -73,9 +73,9 @@ export class AuthenticationService {
 
 
   getUserInfo(){
-    if(this.jwtToken==null)
-      this.jwtToken = this.loadToken();
-    return this.http.get(this.host+"/api/users/user-info",  {headers:new HttpHeaders({'authorization':this.jwtToken})});
+    // if(this.jwtToken==null)
+      //this.jwtToken = this.loadToken();
+    return this.http.get(this.host+"/api/users/user-info");
   }
 
 

@@ -23,6 +23,7 @@ export class SidebarComponent implements OnInit {
   // titleAfiche:string;
   supTitle: string;
   @ViewChild('tog') toggleButton: ElementRef;
+  public sidbarOpenNC: boolean= false;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, public authService:AuthenticationService,
               private renderer: Renderer2, private titleService: Title, private _eref: ElementRef) {
@@ -79,6 +80,8 @@ export class SidebarComponent implements OnInit {
     this.sidbarOpenClients = !this.sidbarOpenClients;
     this.sidbarOpenContracts = false;
     this.sidbarOpenAccounts = false;
+    this.sidbarOpenNC = false;
+
   }
   toggleNavbar() {
     if (this.sidbarOpenClients){
@@ -90,20 +93,33 @@ export class SidebarComponent implements OnInit {
     if (this.sidbarOpenAccounts){
       this.sidbarOpenAccounts = false;
     }
+    if(this.sidbarOpenNC){
+      this.sidbarOpenNC = false;
+    }
   }
 
   toggleNavbarContracts() {
     this.sidbarOpenContracts = !this.sidbarOpenContracts;
-    this.sidbarOpenAccounts = false;
     this.sidbarOpenClients = false;
+    this.sidbarOpenAccounts = false;
+    this.sidbarOpenNC = false;
+
   }
   toggleNavbarAccounts() {
     this.sidbarOpenAccounts = !this.sidbarOpenAccounts;
-    this.sidbarOpenClients = false;
     this.sidbarOpenContracts = false;
+    this.sidbarOpenClients = false;
+    this.sidbarOpenNC = false;
+
   }
 
   ngOnInit(): void {
   }
 
+  toggleNavbarNC() {
+    this.sidbarOpenNC = !this.sidbarOpenNC;
+    this.sidbarOpenContracts = false;
+    this.sidbarOpenClients = false;
+    this.sidbarOpenAccounts = false;
+  }
 }

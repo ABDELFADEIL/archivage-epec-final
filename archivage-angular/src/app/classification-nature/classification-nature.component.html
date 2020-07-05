@@ -1,1 +1,33 @@
-<p>classification-nature works!</p>
+<div class="card">
+  <div class="card-header color1">
+    <h4>Nature de classement </h4>
+  </div>
+  <div class="row spacer">
+    <div class="col-1"></div>
+  <div class="col-md-10">
+  <table class="table table-hover table-bordered">
+  <thead>
+  <tr>
+    <th scope="col">Id Nature de Classification</th>
+    <th scope="col">Libellé Nature de Classification</th>
+    <th scope="col">Code nature de classification</th>
+    <th scope="col">Duration</th>
+    <td></td>
+    <td></td>
+  </tr>
+  </thead>
+  <tbody *ngIf="classements">
+  <tr *ngFor="let c of classements">
+    <th scope="row">{{c.classification_nature_id}}</th>
+    <td>{{c.classification_nature_label}}</td>
+    <td>{{c.classification_nature_code}}</td>
+    <td>{{c.duration}}</td>
+    <td style="cursor: pointer" (click)="onDelete(c.classification_nature_id)"><i class="text-danger fa fa-trash"></i></td>
+    <td style="cursor: pointer" (click)="update(c)"><i class="text-primary fa fa-edit"></i></td>
+  </tr>
+  </tbody>
+</table>
+  </div>
+  </div>
+
+</div>

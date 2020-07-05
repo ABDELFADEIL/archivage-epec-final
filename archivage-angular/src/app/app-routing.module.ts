@@ -17,26 +17,29 @@ import {DocumentsDestroyedComponent} from './documents-destroyed/documents-destr
 import {UpdateDfpmDocComponent} from './update-dfpm-doc/update-dfpm-doc.component';
 import {HistoryComponent} from './history/history.component';
 import {ClassificationNatureComponent} from './classification-nature/classification-nature.component';
+import {ClassificationNatureManageComponent} from './classification-nature-manage/classification-nature-manage.component';
+import {AuthGuard} from './helpers/authGuard';
 
 
 const routes: Routes = [
   { path: 'pre-login', component: PreLoginComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'home', component: HomeComponent, data : {title:'Accueil'}},
-  { path: 'clients', component: ClientsComponent, data : {title:'clients'}},
-  { path: 'new-client', component: NewClientComponent, data : {title:'nouveau client'}},
-  { path: 'contracts', component: ContractsComponent, data : {title:'contrats'}},
-  { path: 'new-contract', component: NewContractComponent, data : {title:'nouveau contrat'}},
-  { path: 'accounts', component: AccountsComponent, data : {title:'comptes'}},
-  { path: 'new-account', component: NewAccountComponent, data : {title:'nouveau compte'}},
-  { path: 'documents', component: DocumentsComponent, data : {title:'documents'}},
-  { path: 'documents-to-validated', component: DocumentsToBeValidatedComponent, data : {title:'Documents à valider'}},
-  { path: 'documents-to-destroyed', component: DocumentsToDestroyComponent, data : {title:'Documents à détruire'}},
-  { path: 'documents-destroyed', component: DocumentsDestroyedComponent, data : {title:'Documents détruits'}},
-  { path: 'update-dfpm-document', component: UpdateDfpmDocComponent, data : {title:'Mis à jour DFPM'}},
-  { path: 'history', component: HistoryComponent, data : {title:'Historique'}},
-  { path: 'classifcation-nature', component: ClassificationNatureComponent, data : {title:'Classification nature'}},
-  { path: '',  redirectTo: 'home', pathMatch: 'full'},
+  { path: 'home', component: HomeComponent, data : {title:'Accueil'}, canActivate: [AuthGuard]},
+  { path: 'clients', component: ClientsComponent, data : {title:'clients'}, canActivate: [AuthGuard]},
+  { path: 'new-client', component: NewClientComponent, data : {title:'nouveau client'}, canActivate: [AuthGuard]},
+  { path: 'contracts', component: ContractsComponent, data : {title:'contrats'}, canActivate: [AuthGuard]},
+  { path: 'new-contract', component: NewContractComponent, data : {title:'nouveau contrat'}, canActivate: [AuthGuard]},
+  { path: 'accounts', component: AccountsComponent, data : {title:'comptes'}, canActivate: [AuthGuard]},
+  { path: 'new-account', component: NewAccountComponent, data : {title:'nouveau compte'}, canActivate: [AuthGuard]},
+  { path: 'documents', component: DocumentsComponent, data : {title:'documents'}, canActivate: [AuthGuard]},
+  { path: 'documents-to-validated', component: DocumentsToBeValidatedComponent, data : {title:'Documents à valider'}, canActivate: [AuthGuard]},
+  { path: 'documents-to-destroyed', component: DocumentsToDestroyComponent, data : {title:'Documents à détruire'}, canActivate: [AuthGuard]},
+  { path: 'documents-destroyed', component: DocumentsDestroyedComponent, data : {title:'Documents détruits'}, canActivate: [AuthGuard]},
+  { path: 'update-dfpm-document', component: UpdateDfpmDocComponent, data : {title:'Mis à jour DFPM'}, canActivate: [AuthGuard]},
+  { path: 'history', component: HistoryComponent, data : {title:'Historique'}, canActivate: [AuthGuard]},
+  { path: 'classifcation-nature', component: ClassificationNatureComponent, data : {title:'Classification nature'}, canActivate: [AuthGuard]},
+  { path: 'classifcation-nature-form', component: ClassificationNatureManageComponent, data : {title:'Classification nature form'}, canActivate: [AuthGuard]},
+  { path: '',  redirectTo: 'home', pathMatch: 'full', canActivate: [AuthGuard]},
   { path: '**', component: NotFoundComponent},
 ];
 
