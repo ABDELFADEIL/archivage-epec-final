@@ -23,8 +23,23 @@ body {
 }
 
 .aut.col-lg-10 {
+
 }
 
 .panel.col-12.bg-light {
   background: #F2F5FA !important;
+  height: 82vh !important;
+
+}
+.panel.col-12.bg-light {
+  margin: 0 0 !important;
+  padding: 0 0 !important;
+}
+.card-header {
+  height: 3rem;
+}
+.card {
+  height: 82vh !important;
+  margin: 0 !important;
+  padding: 0 0 !important;
 }

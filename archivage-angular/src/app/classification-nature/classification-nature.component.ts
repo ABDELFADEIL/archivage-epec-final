@@ -12,6 +12,7 @@ export class ClassificationNatureComponent implements OnInit {
   classements: ClassificationNature;
 
   constructor(private  classificationNatureService: ClassificationNatureService, private router: Router) { }
+  public headerTitle:string="Classification Nature";
 
   ngOnInit(): void {
     this.getAllClassifcationNature();
