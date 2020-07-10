@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/classificationNatures")
+@CrossOrigin("**")
 public class ClassificationNatureResource {
 
 
@@ -30,8 +31,12 @@ public class ClassificationNatureResource {
     }
 
     @GetMapping("/get-all-classificationNature")
-    public List<ClassificationNature> getAll() {
-        return classificationNatureService.getAllClassificationNature();
+    public List<ClassificationNature> getAll(@RequestParam(value = "page", required = true) int page, @RequestParam(value = "size", required = true) int size) {
+       // Page<ClassificationNature> naturePage = classificationNatureService.getAllClassificationNature(page, size);
+        List<ClassificationNature> naturePage = classificationNatureService.getAllClassificationNature();
+
+
+        return naturePage;
     }
 
     @GetMapping("/get-by-id")

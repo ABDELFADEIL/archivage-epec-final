@@ -138,9 +138,7 @@ public class ExpositionApplication  extends SpringBootServletInitializer impleme
             }
 
               for (int x = 0; x < 2; x++){
-                  Context context = new Context("conseve id", "null", "pdf", null, nature.getClassification_nature_code(),
-                          null, null,
-                          false, false, null, null);
+                  Context context = null;//new Context("conseve id", "null", "pdf", null, nature.getClassification_nature_code(), null, null, false, false, null, null);
 
 
                   if(nb==1){

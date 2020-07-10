@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DocumentService} from '../service/document.service';
 
 @Component({
   selector: 'app-documents',
@@ -7,9 +8,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DocumentsComponent implements OnInit {
 
-  constructor() { }
+  documents: Document [];
+  public page : number = 1;
+  public size : number= 12;
+  public currentSize : number;
+  currentPage : number = 1;
+  public totalPages: number;
+  public pages: number[];
+
+  constructor(private documentService: DocumentService) {
+    this.getAllDocs();
+  }
 
   ngOnInit(): void {
+
   }
+
+  getAllDocs(){
+    console.log("docs initialés ::::: ");
+    this.documentService.getAllDocs().
+    subscribe(value => {
+      console.log("docs ::::: ");
+      // this.totalPages=value["totalPages"];
+      // this.pages= new Array<number>(this.totalPages);
+      this.documents= value;
+    }, error => {
+      console.log(error);
+    })
+  }
+
+
 
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin("**")
 public class UserResource {
 
 
@@ -31,7 +32,7 @@ public class UserResource {
         userService.resendPassword(email);
 
     }
-    @GetMapping("user-info")
+    @GetMapping("/user-info")
     public User getAuthentificatedUser(){
         return userService.getAuthentificatedUser();
     }

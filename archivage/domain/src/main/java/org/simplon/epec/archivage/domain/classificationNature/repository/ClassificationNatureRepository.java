@@ -1,6 +1,7 @@
 package org.simplon.epec.archivage.domain.classificationNature.repository;
 
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface ClassificationNatureRepository {
      void removeClassificationNature(Long classificationNatureID);
      ClassificationNature findByClassificationNatureId(Long classificationNatureId);
      List<ClassificationNature> getAllClassificationNature();
+     Page<ClassificationNature> getAllClassificationNature(int page, int size);
 }

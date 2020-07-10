@@ -28,6 +28,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ClassificationNatureManageComponent } from './classification-nature-manage/classification-nature-manage.component';
 import {JwtInterceptor} from './helpers/jwt.interceptor';
 import {ErrorInterceptor} from './helpers/error.interceptor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import {ErrorInterceptor} from './helpers/error.interceptor';
         BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
+        NgbModule,
 
 
     ],

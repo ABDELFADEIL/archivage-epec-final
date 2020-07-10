@@ -18,7 +18,6 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -74,9 +73,11 @@ public class DocumentResource {
     }
 
     @PutMapping( value = {"/update-doc-context-by-doc-id"} , produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    DigitalDocument updateContext(Long docID, Context context) {
+    DigitalDocument updateContext(@RequestParam("docId") Long docID, @RequestBody(required = true) Context context) {
         return digitalDocumentService.updateContext(docID, context);
     }
+
+
 
     @PostMapping( value = "/save-digital-doc-by-id", produces = { "application/json;charset=UTF-8" }, consumes = {"application/json;charset=UTF-8" })
     DigitalDocument saveDocFileWhithId(Long docID, MultipartFile multipartFile) throws IOException, NoSuchAlgorithmException,
@@ -87,6 +88,7 @@ public class DocumentResource {
 
     @GetMapping(value = "/all-docs-list", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<DigitalDocument> getAllDocs(){
+        /*
         List<DigitalDocument> documents = new ArrayList<>();
         digitalDocumentJpaRepository.getAllDocs().forEach(digitalDocument -> {
             DigitalDocument d = new DigitalDocument();
@@ -96,7 +98,9 @@ public class DocumentResource {
             d.setContext(digitalDocument.getContext());
             documents.add(d);
         });
-        return documents;
+
+         */
+        return digitalDocumentJpaRepository.getAllMetadata();
     }
 
 }

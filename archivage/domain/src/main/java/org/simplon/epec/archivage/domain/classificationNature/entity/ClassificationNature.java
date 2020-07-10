@@ -14,6 +14,7 @@ public class ClassificationNature implements Serializable {
   //
 
   private Long classification_nature_id;
+  private String classification_nature_label;
   private String classification_nature_code;
   private int duration;
   
@@ -67,6 +68,23 @@ public class ClassificationNature implements Serializable {
   public String getClassification_nature_code () {
     return classification_nature_code;
   }
+
+  /**
+   * Set the value of classification_nature_label
+   * @param classification_nature_label the new value of classification_nature_label
+   */
+  public void setClassification_nature_label (String classification_nature_label) {
+    classification_nature_label = classification_nature_label;
+  }
+
+  /**
+   * Get the value of classification_nature_label
+   * @return the value of classification_nature_label
+   */
+  public String getClassification_nature_label () {
+    return classification_nature_label;
+  }
+
 
   /**
    * Set the value of duration

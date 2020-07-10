@@ -50,5 +50,16 @@
     </div>
   </div>
 
+  <div class="dropdown">
+    <button (click)="toggleNavbarNC()" class="dropdown-toggle btn-side btn btn-light color1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a>Documents</a>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu3" [ngClass]="{ 'show': sidbarOpenNC }">
+      <button class="dropdown-item btn  btn-light color1" type="button"><a [routerLink]="'documents'">liste des docs </a></button>
+      <button class="dropdown-item btn btn-light color1" type="button"><a [routerLink]="'new-document'">Ajouter doc</a></button>
+    </div>
+  </div>
+
+
 </nav>
 

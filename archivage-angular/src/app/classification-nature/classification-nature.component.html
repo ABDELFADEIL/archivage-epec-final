@@ -2,20 +2,20 @@
   <div class="row spacer ">
     <div class="col-1"></div>
   <div class="col-md-10" style="max-height: 82vh">
-    <div class="" style="overflow-y: scroll;max-height: 82vh;">
-
-  <table class="table table-hover">
+    <div class="" >
+  <table class="table table-bordered table-hover">
   <thead>
   <tr>
     <th scope="col">Id Nature de Classification</th>
     <th scope="col">Libellé Nature de Classification</th>
     <th scope="col">Code nature de classification</th>
     <th scope="col">Duration</th>
-
+    <th scope="col"></th>
+    <th scope="col"></th>
   </tr>
   </thead>
   <tbody *ngIf="classements">
-  <tr *ngFor="let c of classements">
+  <tr *ngFor="let c of classements | slice: (page-1) * size : (page-1) * size + size;">
     <th scope="row">{{c.classification_nature_id}}</th>
     <td>{{c.classification_nature_label}}</td>
     <td>{{c.classification_nature_code}}</td>
@@ -25,6 +25,19 @@
   </tr>
   </tbody>
 </table>
+
+      <div class="d-flex justify-content-between p-2" *ngIf="classements">
+        <ngb-pagination [collectionSize]="classements.length" [(page)]="page" [maxSize]="size" [pageSize]="size" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="getAllClassifcationNaturePage(page)">
+
+        </ngb-pagination>
+          <select class="custom-select" style="width: auto; color: #212b35" [(ngModel)]="size" (ngModelChange)="getAllClassifcationNaturePage(page)">
+          <option [ngValue]="8">8 items per page</option>
+          <option [ngValue]="10">10 items per page</option>
+          <option [ngValue]="12">12 items per page</option>
+        </select>
+      </div>
+
+
     </div>
   </div>
   </div>

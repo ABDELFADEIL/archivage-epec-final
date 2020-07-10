@@ -17,6 +17,9 @@
             <basic name="classification_nature_code" >
                 <column name="classification_nature_code" unique="true"/>
             </basic>
+            <basic name="classification_nature_label" >
+                <column name="classification_nature_label" unique="true"/>
+            </basic>
             <basic name="duration">
                 <column name="duration" />
             </basic>

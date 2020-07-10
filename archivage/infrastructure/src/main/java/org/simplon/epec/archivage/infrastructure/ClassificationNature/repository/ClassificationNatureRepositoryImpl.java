@@ -2,6 +2,8 @@ package org.simplon.epec.archivage.infrastructure.ClassificationNature.repositor
 
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
 import org.simplon.epec.archivage.domain.classificationNature.repository.ClassificationNatureRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -48,6 +50,11 @@ public class ClassificationNatureRepositoryImpl implements ClassificationNatureR
 
     @Override
     public List<ClassificationNature> getAllClassificationNature() {
-        return  classificationJpaNatureRepository.findAll();
+        return classificationJpaNatureRepository.findAll();
+    }
+
+    @Override
+    public Page<ClassificationNature> getAllClassificationNature(int page, int size) {
+        return  classificationJpaNatureRepository.findAll(PageRequest.of(page, size));
     }
 }

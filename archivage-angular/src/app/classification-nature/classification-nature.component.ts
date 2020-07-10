@@ -9,23 +9,39 @@ import {Router} from '@angular/router';
   styleUrls: ['./classification-nature.component.css']
 })
 export class ClassificationNatureComponent implements OnInit {
-  classements: ClassificationNature;
+  classements: ClassificationNature [];
+  public page : number = 1;
+  public size : number= 12;
+  public currentSize : number;
+  currentPage : number = 1;
+  public totalPages: number;
+  public pages: number[];
 
-  constructor(private  classificationNatureService: ClassificationNatureService, private router: Router) { }
+  constructor(private  classificationNatureService: ClassificationNatureService, private router: Router) {
+    this.getAllClassifcationNature();
+  }
   public headerTitle:string="Classification Nature";
 
   ngOnInit(): void {
-    this.getAllClassifcationNature();
+
   }
 
-  getAllClassifcationNature(){
-    this.classificationNatureService.getAll().subscribe(value => {
-      console.log(value);
+  getAllClassifcationNaturePage(page){
+    this.currentPage = page;
+    this.classificationNatureService.getAll(this.currentPage).
+    subscribe(value => {
+      // this.totalPages=value["totalPages"];
+      // this.pages= new Array<number>(this.totalPages);
       this.classements= value;
     }, error => {
       console.log(error);
     })
   }
+
+  getAllClassifcationNature(){
+    this.getAllClassifcationNaturePage(this.currentPage);
+  }
+
   update(classificationNature: ClassificationNature) {
     this.classificationNatureService.update(classificationNature);
   }

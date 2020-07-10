@@ -5,7 +5,6 @@
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/application/src/main/java/org/simplon/epec/archivage/application/document/ContextServiceImpl.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/application/src/main/java/org/simplon/epec/archivage/application/document/ContextService.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/application/src/main/java/org/simplon/epec/archivage/application/classificationNature/ClassificationNatureServiceImpl.java
-/media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/application/src/main/java/org/simplon/epec/archivage/config/CacheConfig.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/application/src/main/java/org/simplon/epec/archivage/application/contract/ContractService.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/application/src/main/java/org/simplon/epec/archivage/application/classificationNature/ClassificationNatureService.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/application/src/main/java/org/simplon/epec/archivage/application/user/UserService.java
