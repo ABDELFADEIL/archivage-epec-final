@@ -31,6 +31,14 @@ public class DigitalDocument implements Serializable {
     this.encoding_doc = encoding_doc;
     this.context = context;
   }
+
+  public DigitalDocument(Long document_id, String file_name, String archive_format, Context context) {
+    this.document_id = document_id;
+    this.file_name = file_name;
+    this.archive_format = archive_format;
+    this.encoding_doc = encoding_doc;
+    this.context = context;
+  }
   //
   // Methods
   //

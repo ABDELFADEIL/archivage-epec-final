@@ -27,3 +27,4 @@ org/simplon/epec/archivage/infrastructure/client/repository/ClientJpaRepository.
 org/simplon/epec/archivage/infrastructure/account/repository/AccountRepositoryImpl.class
 org/simplon/epec/archivage/infrastructure/security/JWTAuthenticationFilter.class
 org/simplon/epec/archivage/infrastructure/security/config/SecurityConfig.class
+org/simplon/epec/archivage/infrastructure/document/dto/DocumentSearchCriteria.class

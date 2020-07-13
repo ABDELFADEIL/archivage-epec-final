@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiParam;
 import org.simplon.epec.archivage.application.document.DigitalDocumentService;
 import org.simplon.epec.archivage.domain.document.entity.Context;
 import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
+import org.simplon.epec.archivage.infrastructure.context.repository.ContextJpaRepository;
 import org.simplon.epec.archivage.infrastructure.document.repository.DigitalDocumentJpaRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,20 +17,25 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/documents")
+    @RequestMapping("/api/documents")
 public class DocumentResource {
 
     private  final DigitalDocumentService digitalDocumentService;
     private final DigitalDocumentJpaRepository digitalDocumentJpaRepository;
+    private final ContextJpaRepository contextJpaRepository;
 
-    public DocumentResource(DigitalDocumentService digitalDocumentService, DigitalDocumentJpaRepository digitalDocumentJpaRepository) {
+    public DocumentResource(DigitalDocumentService digitalDocumentService, DigitalDocumentJpaRepository digitalDocumentJpaRepository,  ContextJpaRepository contextJpaRepository) {
         this.digitalDocumentService = digitalDocumentService;
         this.digitalDocumentJpaRepository = digitalDocumentJpaRepository;
+        this.contextJpaRepository = contextJpaRepository;
     }
 
 
@@ -89,7 +95,6 @@ public class DocumentResource {
     @GetMapping(value = "/all-docs-list", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<DigitalDocument> getAllDocs(){
         /*
-        List<DigitalDocument> documents = new ArrayList<>();
         digitalDocumentJpaRepository.getAllDocs().forEach(digitalDocument -> {
             DigitalDocument d = new DigitalDocument();
             d.setDocument_id(digitalDocument.getDocument_id());
@@ -100,7 +105,26 @@ public class DocumentResource {
         });
 
          */
-        return digitalDocumentJpaRepository.getAllMetadata();
+        List<DigitalDocument> documents = new ArrayList<>();
+        List<Optional<Context>> contexts = new ArrayList<>();
+        digitalDocumentJpaRepository.getAllMetadata().forEach(doc -> {
+            Long id = 0L;
+            BigInteger object = (BigInteger) doc[3];
+            id = object.longValue();
+
+            System.out.println("BigInteger "+id);
+            Context c = contextJpaRepository.findById(id).get();
+            DigitalDocument document = new DigitalDocument();
+            document.setContext(c);
+            BigInteger idDoc = (BigInteger) doc[0];
+            document.setDocument_id(idDoc.longValue());
+            document.setArchive_format((String) doc[1]);
+            document.setFile_name((String) doc[2]);
+            documents.add(document);
+            System.out.println("============= cannot cast "+ object.getClass());
+        });
+
+        return documents;
     }
 
 }

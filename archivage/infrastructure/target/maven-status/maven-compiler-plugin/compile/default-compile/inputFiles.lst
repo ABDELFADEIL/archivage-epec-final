@@ -7,6 +7,7 @@
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/event/repository/EventRepositoryImpl.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/security/config/SecurityConfig.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/user/repository/UserRepositoryImpl.java
+/media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/document/dto/DocumentSearchCriteria.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/contract/repository/ContractRepositoryImpl.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/history/repository/HistoryRepositoryImpl.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/projets/java_projets/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/contract/repository/ContractJpaRepository.java

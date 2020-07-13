@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DocumentService} from '../service/document.service';
+import { observe } from "rxjs-observe";
+
 
 @Component({
   selector: 'app-documents',
@@ -38,5 +40,15 @@ export class DocumentsComponent implements OnInit {
   }
 
 
+  onDelete(classification_nature_id: any) {
+    
+  }
 
+  update(c: any) {
+    
+  }
+
+  getAllDocsPage(page: number) {
+    
+  }
 }

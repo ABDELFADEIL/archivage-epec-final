@@ -1,1 +1,45 @@
-<p>documents works!</p>
+
+<div class="row spacer ">
+  <div class="col-1"></div>
+  <div class="col-md-10" style="max-height: 82vh">
+    <div class="" >
+      <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <th scope="col">document_id</th>
+          <th scope="col">file_name</th>
+          <th scope="col">Code nature de classification</th>
+          <th scope="col">account_id_label</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody *ngIf="documents">
+        <tr *ngFor="let d of documents | slice: (page-1) * size : (page-1) * size + size;">
+          <th scope="row">{{d.document_id}}</th>
+          <td>{{d.file_name}}</td>
+          <td>{{d["account.account_id_label"]}}</td>
+          <td>{{d.final_business_processing_date}}</td>
+          <td style="cursor: pointer" (click)="onDelete(d.document_id)"><i class="text-danger fa fa-trash"></i></td>
+          <td style="cursor: pointer" (click)="update(d)"><i class="text-primary fa fa-edit"></i></td>
+        </tr>
+        </tbody>
+      </table>
+
+      <div class="d-flex justify-content-between p-2" *ngIf="documents">
+        <ngb-pagination [collectionSize]="documents.length" [(page)]="page" [maxSize]="size" [pageSize]="size" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="getAllDocsPage(page)">
+
+        </ngb-pagination>
+        <select class="custom-select" style="width: auto; color: #212b35" [(ngModel)]="size" (ngModelChange)="getAllDocsPage(page)">
+          <option [ngValue]="8">8 items per page</option>
+          <option [ngValue]="10">10 items per page</option>
+          <option [ngValue]="12">12 items per page</option>
+        </select>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
