@@ -25,9 +25,9 @@ public interface DigitalDocumentJpaRepository extends JpaRepository<DigitalDocum
     @QueryHints(value= {@QueryHint(name= HINT_FETCH_SIZE, value=""+Integer.MIN_VALUE), @QueryHint(name = HINT_PASS_DISTINCT_THROUGH, value = "false")})
     public List<DigitalDocument> getAllDocs();
 
-    @Query(value="select from document_id, archive_format,  file_name, context FROM digital_document" ,  nativeQuery=true)
+    @Query(value="select document_id, archive_format,  file_name, context FROM digital_document where document_id > 0 order by document_id limit 10000" ,  nativeQuery=true)
     @QueryHints(value= {@QueryHint(name= HINT_FETCH_SIZE, value=""+Integer.MIN_VALUE), @QueryHint(name = HINT_PASS_DISTINCT_THROUGH, value = "false")})
-    public List<DigitalDocument> getAllMetadata();
+    public List<Object[]> getAllMetadata();
 
     @Query(value="select doc from DigitalDocument doc")
     @QueryHints(value= {@QueryHint(name= HINT_FETCH_SIZE, value=""+Integer.MIN_VALUE), @QueryHint(name = HINT_PASS_DISTINCT_THROUGH, value = "false")})
