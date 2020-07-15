@@ -12,4 +12,8 @@ export class ClassificationNatureManageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit(form) {
+  console.log(form.value)
+  }
+
 }

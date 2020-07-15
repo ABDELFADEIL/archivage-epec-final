@@ -12,4 +12,7 @@ export class NewClientComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit(form){
+    console.log("onSubmit méthode"+ form.value)
+  }
 }

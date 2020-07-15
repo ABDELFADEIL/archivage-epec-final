@@ -14,4 +14,7 @@ export class AccountsComponent implements OnInit {
 
   }
 
+  onSubmit(f){
+    console.log(f.value);
+  }
 }

@@ -17,7 +17,7 @@ export class DocumentsComponent implements OnInit {
   currentPage : number = 1;
   public totalPages: number;
   public pages: number[];
-
+  public filter;
   constructor(private documentService: DocumentService) {
     this.getAllDocs();
   }

@@ -1,3 +1,4 @@
+<div class="page" id="page">
 <app-header *ngIf="authService.jwtToken"></app-header>
 
 <div class="row" >
@@ -19,7 +20,7 @@
     </nav>
 
     <div class="panel col-12 bg-light">
-      <div class="card">
+      <div class="card"  style="overflow-y: auto; min-height: 72vh">
         <div class="card-header color1">
           <h4>{{ title }}</h4>
         </div>
@@ -27,4 +28,7 @@
     </div>
     </div>
   </div>
+
+  <app-footer></app-footer>
+</div>
 </div>
