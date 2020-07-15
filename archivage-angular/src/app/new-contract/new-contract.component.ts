@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-new-contract',
@@ -12,4 +13,7 @@ export class NewContractComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit(f: NgForm) {
+
+  }
 }
