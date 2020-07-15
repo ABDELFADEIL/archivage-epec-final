@@ -29,6 +29,7 @@ import { ClassificationNatureManageComponent } from './classification-nature-man
 import {JwtInterceptor} from './helpers/jwt.interceptor';
 import {ErrorInterceptor} from './helpers/error.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HistoryComponent,
     SidebarComponent,
     ClassificationNatureManageComponent,
+    FooterComponent,
 
   ],
     imports: [

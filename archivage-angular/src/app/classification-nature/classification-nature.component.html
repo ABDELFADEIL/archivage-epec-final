@@ -3,6 +3,11 @@
     <div class="col-1"></div>
   <div class="col-md-10" style="max-height: 82vh">
     <div class="" >
+        <form *ngIf="classements">
+            <div class="form-group form-inline" >
+                Full text search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
+            </div>
+          </form>
   <table class="table table-bordered table-hover">
   <thead>
   <tr>

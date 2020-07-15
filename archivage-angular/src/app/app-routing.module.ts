@@ -22,9 +22,10 @@ import {AuthGuard} from './helpers/authGuard';
 
 
 const routes: Routes = [
+  { path: '',  redirectTo: 'home', pathMatch: 'full', canActivate: [AuthGuard]},
+  { path: 'home', component: HomeComponent, data : {title:'Accueil'}, canActivate: [AuthGuard]},
   { path: 'pre-login', component: PreLoginComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'home', component: HomeComponent, data : {title:'Accueil'}, canActivate: [AuthGuard]},
   { path: 'clients', component: ClientsComponent, data : {title:'clients'}, canActivate: [AuthGuard]},
   { path: 'new-client', component: NewClientComponent, data : {title:'nouveau client'}, canActivate: [AuthGuard]},
   { path: 'contracts', component: ContractsComponent, data : {title:'contrats'}, canActivate: [AuthGuard]},
@@ -39,7 +40,6 @@ const routes: Routes = [
   { path: 'history', component: HistoryComponent, data : {title:'Historique'}, canActivate: [AuthGuard]},
   { path: 'classifcation-nature', component: ClassificationNatureComponent, data : {title:'Classification nature'}, canActivate: [AuthGuard]},
   { path: 'classifcation-nature-form', component: ClassificationNatureManageComponent, data : {title:'Classification nature form'}, canActivate: [AuthGuard]},
-  { path: '',  redirectTo: 'home', pathMatch: 'full', canActivate: [AuthGuard]},
   { path: '**', component: NotFoundComponent},
 ];
 

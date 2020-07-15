@@ -1,1 +1,84 @@
-<p>new-contract works!</p>
+<div class="container-fluid" style="padding: 10px">
+
+        <form class="spacer"  #f="ngForm" (ngSubmit)="onSubmit(f)">
+    
+            <div class="row form"> 
+    
+              <div class="col-md-6">
+                <div class="form-group row">
+                        <div class="col-sm-3">
+                  <label  class="col-form-label float-right">Nom Article Nom </label>
+                  </div>
+                  <div class="col-sm-7">
+                        <input type="text" class="form-control" name="name" ngModel>
+                  </div>
+                 
+                </div>
+              </div>
+    
+              <div class="col-md-6">
+                <div class="form-group row">
+                <div class="col-sm-3">
+                  <label  class="col-form-label float-right">Description Description</label>
+                </div>
+                  <div class="col-sm-7">
+                  <input type="text" class="form-control" name="description" ngModel>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="col-md-6">
+                <div class="form-group row">
+                <div class="col-sm-3">
+                  <label class="col-form-label float-right">Prix Prix </label>
+                </div>
+                  <div class="col-sm-7">
+                  <input type="text" class="form-control" name="prix" ngModel>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="col-md-6">
+                <div class="form-group row">
+                <div class="col-sm-3">
+                  <label class="col-form-label float-right">Quantity Quantity</label>
+                </div>
+                  <div class="col-sm-7">
+                  <input type="text" class="form-control" name="quantity" ngModel>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                    <div class="form-group row">
+                    <div class="col-sm-3">
+                      <label class="col-form-label float-right">Prix Prix </label>
+                    </div>
+                      <div class="col-sm-7">
+                      <input type="text" class="form-control" name="prix" ngModel>
+                      </div>
+                    </div>
+                  </div>
+        
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                    <div class="col-sm-3">
+                      <label class="col-form-label float-right">Quantity Quantity</label>
+                    </div>
+                      <div class="col-sm-7">
+                      <input type="text" class="form-control" name="quantity" ngModel>
+                      </div>
+                    </div>
+                  </div>
+                <div class="col-md-12">
+                <div class="file-upload-wrapper">
+                   <input type="file" id="input-file-now" class="file-upload" />
+                </div>
+                </div>
+              <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-l btn-primary col-md-6"> Enoyer</button>
+              </div>
+    
+            </div>
+        </form>
+    
+

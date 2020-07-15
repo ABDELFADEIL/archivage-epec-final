@@ -16,7 +16,7 @@ export class ClassificationNatureComponent implements OnInit {
   currentPage : number = 1;
   public totalPages: number;
   public pages: number[];
-
+  public filter;
   constructor(private  classificationNatureService: ClassificationNatureService, private router: Router) {
     this.getAllClassifcationNature();
   }

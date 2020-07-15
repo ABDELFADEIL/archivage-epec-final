@@ -1,1 +1,49 @@
-<p>classification-nature-manage works!</p>
+<div class="container-fluid" style="padding: 10px">
+
+        <form class="spacer"  #f="ngForm" (ngSubmit)="onSubmit(f)">
+    
+            <div class="row form"> 
+    
+              <div class="col-md-6">
+                <div class="form-group row">
+                        <div class="col-sm-3">
+                  <label  class="col-form-label float-right">Code Nature de classification </label>
+                  </div>
+                  <div class="col-sm-7">
+                        <input type="text" class="form-control" name="classification-nature-code" ngModel>
+                  </div>
+                 
+                </div>
+              </div>
+    
+              <div class="col-md-6">
+                <div class="form-group row">
+                <div class="col-sm-3">
+                  <label  class="col-form-label float-right">Libellé nature de classification </label>
+                </div>
+                  <div class="col-sm-7">
+                  <input type="text" class="form-control" name="classification-nature-label" ngModel>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="col-md-6">
+                <div class="form-group row">
+                <div class="col-sm-3">
+                  <label class="col-form-label float-right">Duration </label>
+                </div>
+                  <div class="col-sm-7">
+                  <input type="text" class="form-control" name="duration" ngModel>
+                  </div>
+                </div>
+              </div>
+    
+             
+                           
+              <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-l btn-primary col-md-6"> Enoyer</button>
+              </div>
+    
+            </div>
+        </form>
+    
