@@ -46,7 +46,7 @@ html, body { width: 100%;}
 body { margin: 3px; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
-body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: auto}
 .panel.col-12.bg-light {
 
 }

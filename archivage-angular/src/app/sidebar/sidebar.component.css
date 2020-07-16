@@ -39,3 +39,4 @@
 .btn-light:not(:disabled):not(.disabled).active {
   background-color: #f2f5fa;
 }
+#sidebar {}
