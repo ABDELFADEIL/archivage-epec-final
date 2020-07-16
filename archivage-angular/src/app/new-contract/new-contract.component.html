@@ -1,89 +1,110 @@
-<div class="container" style="padding: 10px; overflow-y: scroll; overflow-x: hidden">
+<div class="container" style="padding: 10px;">
 
   <form class="spacer"  #f="ngForm" (ngSubmit)="onSubmit(f)">
 
-      <div class="row form"> 
+    <div class="row form">
 
-        <div class="col-md-6">
-          <div class="form-group row">
-                  <div class="col-sm-3">
+      <div class="col-md-6">
+        <div class="form-group row">
+          <div class="col-sm-4">
             <label  class="col-form-label float-right">Nom Article Nom </label>
-            </div>
-            <div class="col-sm-7">
-                  <input type="text" class="form-control" name="name" ngModel>
-            </div>
-           
           </div>
-        </div>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="name" ngModel>
+          </div>
 
-        <div class="col-md-6">
-          <div class="form-group row">
-          <div class="col-sm-3">
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group row">
+          <div class="col-sm-4">
             <label  class="col-form-label float-right">Description Description</label>
           </div>
-            <div class="col-sm-7">
+          <div class="col-sm-6">
             <input type="text" class="form-control" name="description" ngModel>
-            </div>
           </div>
         </div>
+      </div>
 
-        <div class="col-md-6">
-          <div class="form-group row">
-          <div class="col-sm-3">
+      <div class="col-md-6">
+        <div class="form-group row">
+          <div class="col-sm-4">
             <label class="col-form-label float-right">Prix Prix </label>
           </div>
-            <div class="col-sm-7">
+          <div class="col-sm-6">
             <input type="text" class="form-control" name="prix" ngModel>
-            </div>
           </div>
         </div>
+      </div>
 
-        <div class="col-md-6">
-          <div class="form-group row">
-          <div class="col-sm-3">
+      <div class="col-md-6">
+        <div class="form-group row">
+          <div class="col-sm-4">
             <label class="col-form-label float-right">Quantity Quantity</label>
           </div>
-            <div class="col-sm-7">
+          <div class="col-sm-6">
             <input type="text" class="form-control" name="quantity" ngModel>
-            </div>
           </div>
         </div>
-        <div class="col-md-6">
-              <div class="form-group row">
-              <div class="col-sm-3">
-                <label class="col-form-label float-right">Prix Prix </label>
-              </div>
-                <div class="col-sm-7">
-                <input type="text" class="form-control" name="prix" ngModel>
-                </div>
-              </div>
-            </div>
-  
-            <div class="col-md-6">
-              <div class="form-group row">
-              <div class="col-sm-3">
-                <label class="col-form-label float-right">Quantity Quantity</label>
-              </div>
-                <div class="col-sm-7">
-                <input type="text" class="form-control" name="quantity" ngModel>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12">
-                <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
-                    <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
-                  </div>
-                    <div  class="files-list" *ngFor="let file of files;let i=index">
-                      <p>{{ file }}</p>
-                      <button class="delete-file" (click)="deleteAttachment(i)">
-                        <img src="../../assets/Recycle_Bin_Full.png">
-                      </button>
-                    </div>
-                 </div>
-        <div class="col-md-12 text-center">
-          <button type="submit" class="btn btn-l col-md-6" style="background: #dee6f9;"> Enoyer</button>
-        </div>
-
       </div>
+      <div class="col-md-6">
+        <div class="form-group row">
+          <div class="col-sm-4">
+            <label class="col-form-label float-right">Prix Prix </label>
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="prix" ngModel>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group row">
+          <div class="col-sm-4">
+            <label class="col-form-label float-right">Quantity Quantity</label>
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="quantity" ngModel>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row">
+          <div class="col-sm-4">
+            <label class="col-form-label float-right">Prix Prix </label>
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="prix" ngModel>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group row">
+          <div class="col-sm-4">
+            <label class="col-form-label float-right">Quantity Quantity</label>
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="quantity" ngModel>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
+          <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
+        </div>
+        <div  class="files-list" *ngFor="let file of files;let i=index">
+          <p>{{ file }}</p>
+          <button class="delete-file" (click)="deleteAttachment(i)">
+            <img src="../../../assets/Recycle_Bin_Full.png">
+          </button>
+        </div>
+      </div>
+      <div class="col-md-12 text-center">
+        <button type="submit" class="btn btn-l col-md-6" style="background: #dee6f9;"> Enoyer</button>
+      </div>
+
+    </div>
   </form>
 

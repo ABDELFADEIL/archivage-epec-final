@@ -1,0 +1,113 @@
+<div class="container" style="padding: 10px;">
+
+  <form class="spacer"  #f="ngForm" (ngSubmit)="onSubmit(f)">
+
+    <!--
+      client_nature_id;client_name;client_first_name; civility_id; birth_date; birth_dept; siren_number; siret_number;
+    -->
+      <div class="row form">
+
+        <div class="col-md-6">
+          <div class="form-group row">
+                  <div class="col-sm-4">
+            <label  class="col-form-label float-right">Nature de client </label>
+            </div>
+            <div class="col-sm-6">
+                  <input type="text" class="form-control" name="client_nature_id" ngModel>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group row">
+          <div class="col-sm-4">
+            <label  class="col-form-label float-right">Nom</label>
+          </div>
+            <div class="col-sm-6">
+            <input type="text" class="form-control" name="client_name" ngModel>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group row">
+          <div class="col-sm-4">
+            <label class="col-form-label float-right">First name </label>
+          </div>
+            <div class="col-sm-6">
+            <input type="text" class="form-control" name="client_first_name" ngModel>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group row">
+          <div class="col-sm-4">
+            <label class="col-form-label float-right">civility_id</label>
+          </div>
+            <div class="col-sm-6">
+            <input type="text" class="form-control" name="civility_id" ngModel>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+              <div class="form-group row">
+              <div class="col-sm-4">
+                <label class="col-form-label float-right">birth_date</label>
+              </div>
+                <div class="col-sm-6">
+                <input type="text" class="form-control" type="datetime" name="birth_date" ngModel>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group row">
+              <div class="col-sm-4">
+                <label class="col-form-label float-right">birth_dept</label>
+              </div>
+                <div class="col-sm-6">
+                <input type="text" class="form-control" name="birth_dept" ngModel>
+                </div>
+              </div>
+            </div>
+        <div class="col-md-6">
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label class="col-form-label float-right">siren number </label>
+            </div>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" name="siren_number" ngModel>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label class="col-form-label float-right">siret number</label>
+            </div>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" name="siret_number" ngModel>
+            </div>
+          </div>
+        </div>
+            <div class="col-md-12">
+                <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
+                    <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
+                  </div>
+                    <div  class="files-list" *ngFor="let file of files;let i=index">
+                      <p>{{ file }}</p>
+                      <button class="delete-file" (click)="deleteAttachment(i)">
+                        <img src="../../../assets/Recycle_Bin_Full.png">
+                      </button>
+                    </div>
+                 </div>
+        <div class="col-md-12 text-center">
+          <button type="submit" class="btn btn-l col-md-6" style="background: #dee6f9;"> Enoyer</button>
+        </div>
+
+      </div>
+  </form>
+

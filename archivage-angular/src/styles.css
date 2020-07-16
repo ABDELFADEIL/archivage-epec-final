@@ -43,7 +43,7 @@ html, body { width: 100%; overflow-x: hidden }
 body { margin: 3px; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
-body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: auto}
+body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 .panel.col-12.bg-light {
 
 }
@@ -66,10 +66,10 @@ div.page#page {
 }
 
 /*
-new fome upload files  
+new fome upload files
 */
 .uploadfilecontainer {
-  background-image: url("/../assets/Upload-512.png");
+  background-image: url("/assets/Upload-512.png");
   background-repeat: no-repeat;
   background-size: 100px;
   background-position: center;
@@ -109,5 +109,5 @@ new fome upload files
 }
 
 .col-sm-7 input{
-   
+
 }

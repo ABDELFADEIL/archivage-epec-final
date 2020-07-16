@@ -8,7 +8,7 @@ import { PreLoginComponent } from './pre-login/pre-login.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
-import { NewClientComponent } from './new-client/new-client.component';
+import { NewClientComponent } from './clients/new-client/new-client.component';
 import { ClientsComponent } from './clients/clients.component';
 import { ContractsComponent } from './contracts/contracts.component';
 import { NewContractComponent } from './new-contract/new-contract.component';

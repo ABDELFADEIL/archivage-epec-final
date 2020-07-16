@@ -25,7 +25,7 @@
   position: relative;
   padding: 0rem 0;
   margin: .080rem .160rem .080rem ;
-  background-color: #fdfdfd;
+  background-color: #ffffff;
   border-radius: .002rem;
   min-width: 100% !important;
 
@@ -37,6 +37,6 @@
 }
 
 .btn-light:not(:disabled):not(.disabled).active {
-  background-color: #f2f5fa;
+  background-color: #dee6f9;
 }
 #sidebar {}

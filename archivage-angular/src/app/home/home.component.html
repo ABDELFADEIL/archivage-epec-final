@@ -1,10 +1,10 @@
 <div class="container-fluid" style="padding: 10px; margin-left: 30px">
 
- 
+
 
     <div class="row form justify-content-between">
       <div class="col-md-6">
-      
+
        <form class="form"  #f="ngForm" (ngSubmit)="onSubmit(f)">
          <div class="row">
         <div class="form-group col-md-5">
@@ -22,21 +22,21 @@
         </div>
       </div>
       </form>
-  
+
     </div>
 
     <div class="col-md-6">
       <div class="col-md-12 text-center spacer">
-        <a type="submit" class="col-md-6" >
+        <a type="submit" class="col-md-6" routerLink="/new-client">
           <p>Ajouter client <i class="fa fa-user-plus"></i></p>
         </a>
       </div>
     </div>
     </div>
-  
+
 <div class="row spacer" style="margin-top: 70px">
- 
-  
+
+
   <div class=" col-md-9" >
   <table class="table" >
     <thead *ngIf="true" >
