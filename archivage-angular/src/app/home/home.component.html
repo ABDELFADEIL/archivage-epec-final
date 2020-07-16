@@ -1,1 +1,65 @@
-<p>home works!</p>
+<div class="container-fluid" style="padding: 10px; margin-left: 30px">
+
+ 
+
+    <div class="row form justify-content-between">
+      <div class="col-md-6">
+      
+       <form class="form"  #f="ngForm" (ngSubmit)="onSubmit(f)">
+         <div class="row">
+        <div class="form-group col-md-5">
+            <label  class="col-form-label">Nom client</label>
+            <input type="text" class="form-control" name="name" ngModel>
+        </div>
+
+        <div class="col-md-1 d-flex align-self-center">
+            <P class="">OU/ET</P>
+        </div>
+
+        <div class="form-group col-md-5">
+            <label  class="col-form-label">Numéro client</label>
+            <input type="text" class="form-control" name="description" ngModel>
+        </div>
+      </div>
+      </form>
+  
+    </div>
+
+    <div class="col-md-6">
+      <div class="col-md-12 text-center spacer">
+        <a type="submit" class="col-md-6" >
+          <p>Ajouter client <i class="fa fa-user-plus"></i></p>
+        </a>
+      </div>
+    </div>
+    </div>
+  
+<div class="row spacer" style="margin-top: 70px">
+ 
+  
+  <div class=" col-md-9" >
+  <table class="table" >
+    <thead *ngIf="true" >
+    <tr>
+      <th class="table-th" scope="col">#</th>
+      <th class="table-th"  scope="col">First</th>
+      <th class="table-th" scope="col">Last</th>
+      <th class="table-th" scope="col">Handle</th>
+    </tr>
+    </thead>
+    <tbody *ngIf="true">
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    </tbody>
+    <tbody *ngIf="!false">
+        <tr> <td colspan="4" class="alert alert-danger text-center" style="border-radius: 0"><div>Il n'a aucun client crrespond aux données saisies!</div></td></tr>
+        </tbody>
+  </table>
+</div>
+</div>
+
+</div>
