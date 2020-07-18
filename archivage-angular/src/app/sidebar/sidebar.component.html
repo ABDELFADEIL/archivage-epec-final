@@ -9,7 +9,7 @@
     </button>
   </div>
 
-  <div class="dropdown">
+  <!-- <div class="dropdown">
     <button (click)="toggleNavbarClients()" id="tog" [routerLink]="'clients'" [routerLinkActive]="'active'" class="dropdown-toggle btn btn-light color1 btn-side" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <a >Clients</a>
     </button>
@@ -17,46 +17,46 @@
       <button class="dropdown-item btn btn  btn-light color1" type="button"><a [routerLink]="'new-client'">Nouveau client</a></button>
       <button class="dropdown-item btn btn  btn-light color1" type="button"><a [routerLink]="'clients'">Gérer client</a></button>
     </div>
-  </div>
+  </div> -->
 
-  <div class="dropdown">
-    <button (click)="toggleNavbarContracts()" [routerLink]="'contracts'" [routerLinkActive]="'active'" class="dropdown-toggle btn btn-light color1 btn-side" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <div class="" ngbDropdown>
+    <button [routerLink]="'contracts'" [routerLinkActive]="'active'" ngbDropdownToggle  class="btn btn-light  btn-side color1" type="button">
       <a >Contrats</a>
     </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenu2" [ngClass]="{ 'show': sidbarOpenContracts }">
-      <button class="dropdown-item btn  btn-light color1" type="button"><a [routerLink]="'new-contract'" >Nouveau contrat</a></button>
-      <button class="dropdown-item btn  btn-light color1" type="button"><a [routerLink]="'contracts'">Gérer contrat</a></button>
+    <div ngbDropdownMenu  >
+      <button class="btn btn  btn-light " ngbDropdownItem type="button"><a [routerLink]="'new-contract'">Nouveau contrat</a></button>
+      <button class="btn btn  btn-light " ngbDropdownItem type="button"><a [routerLink]="'contracts'" >Gérer contrat</a></button>
     </div>
   </div>
 
-  <div class="dropdown">
-    <button (click)="toggleNavbarAccounts()" [routerLink]="'accounts'" [routerLinkActive]="'active'" class="dropdown-toggle btn-side btn btn-light color1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <div ngbDropdown>
+    <button [routerLink]="'accounts'" ngbDropdownToggle [routerLinkActive]="'active'" class="btn-side btn btn-light color1" type="button">
       <a >Comptes</a>
     </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenu3" [ngClass]="{ 'show': sidbarOpenAccounts }">
-      <button class="dropdown-item btn  btn-light color1" type="button"><a [routerLink]="'new-account'">Nouveau compte</a></button>
-      <button class="dropdown-item btn btn-light color1" type="button"><a [routerLink]="'accounts'">Gérer compte</a></button>
+    <div ngbDropdownMenu>
+      <button class="btn btn  btn-light " ngbDropdownItem type="button"><a [routerLink]="'new-account'">Nouveau compte</a></button>
+      <button class="btn btn  btn-light " ngbDropdownItem type="button"><a [routerLink]="'accounts'">Gérer compte</a></button>
     </div>
   </div>
 
 
-  <div class="dropdown">
-    <button (click)="toggleNavbarNC()" [routerLink]="'classifcation-nature'" [routerLinkActive]="'active'" class="dropdown-toggle btn-side btn btn-light color1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <div ngbDropdown>
+    <button [routerLink]="'classifcation-nature'" ngbDropdownToggle [routerLinkActive]="'active'" class="btn-side btn btn-light color1" type="button">
       <a>N Classement</a>
     </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenu3" [ngClass]="{ 'show': sidbarOpenNC }">
-      <button class="dropdown-item btn  btn-light color1" type="button"><a [routerLink]="'classifcation-nature'">Gestion de NC </a></button>
-      <button class="dropdown-item btn btn-light color1" type="button"><a [routerLink]="'classifcation-nature-form'">Ajouter NC</a></button>
+    <div ngbDropdownMenu>
+      <button class="btn btn  btn-light " ngbDropdownItem type="button"><a [routerLink]="'classifcation-nature'">Gestion de NC </a></button>
+      <button class="btn btn  btn-light" ngbDropdownItem type="button"><a [routerLink]="'classifcation-nature-form'">Ajouter NC</a></button>
     </div>
   </div>
 
-  <div class="dropdown">
-    <button (click)="toggleNavbarNC()" [routerLink]="'documents'" [routerLinkActive]="'active'" class="dropdown-toggle btn-side btn btn-light color1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <div ngbDropdown>
+    <button ngbDropdownToggle [routerLink]="'documents'" [routerLinkActive]="'active'" class="btn-side btn btn-light color1" type="button">
       <a>Documents</a>
     </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenu3" [ngClass]="{ 'show': sidbarOpenNC }">
-      <button class="dropdown-item btn  btn-light color1" type="button"><a [routerLink]="'documents'">Gestion documents </a></button>
-      <button class="dropdown-item btn btn-light color1" type="button"><a [routerLink]="'new-document'">Ajouter doc</a></button>
+    <div ngbDropdownMenu>
+      <button class="btn btn  btn-light" ngbDropdownItem type="button"><a [routerLink]="'documents'">Gestion docs </a></button>
+      <button class="btn btn  btn-light" ngbDropdownItem type="button"><a [routerLink]="'new-document'">Ajouter doc</a></button>
     </div>
   </div>
 

@@ -8,29 +8,36 @@
 .btn-side a {
   float: left;
 }
+.dropdown-menu a
+{
+  font-size: .80rem !important;
+ 
 
+}
 .btn-side a:hover, a:hover {
   text-decoration: none;
 }
 
 .btn-side:hover {
-  background: #e9edf7;
 }
 
 .dropdown-toggle::after {
   float: right;
 }
 
-.dropdown-menu {
-  position: relative;
+.dropdown-menu, .ddm {
+  position: relative !important;
+  transform: translate(0px, 0px) !important;
   padding: 0rem 0;
   margin: .080rem .160rem .080rem ;
-  background-color: #ffffff;
   border-radius: .002rem;
   min-width: 100% !important;
-
+  
 }
 
+.dropdown-item {
+
+}
 .dropdown-item a{
   color: #333229 !important;
 

@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
     this.clicked = true;
   }
 
+  
 @HostListener('document:click', ['event'])
 
   private clickedOutside(event): void {

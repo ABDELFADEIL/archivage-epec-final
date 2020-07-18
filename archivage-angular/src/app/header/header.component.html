@@ -1,5 +1,5 @@
 
-<header class="navbar navbar-expand-md navbar-light" style="background-color: #DEE6F9; max-height: 64px !important">
+<header class="navbar navbar-expand-md navbar-light" style="background-color: #DEE6F9; min-height: 64px !important">
   <div class="container-fluid">
   <a class="navbar-brand" [routerLink]="'home'"><img src="assets/digiArchive.png" height="57px" width="60px"  style="margin: -5px; padding: -5px"></a>
   <button (click)="toggleNavbar()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"  aria-label="Toggle navigation">
@@ -10,9 +10,9 @@
       <li class="nav-item">
         <a class="nav-link" [routerLink]="'home'" [routerLinkActive]="['active']">Accueil</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" [routerLink]="'clients'" [routerLinkActive]="['active']">Cients</a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link" [routerLink]="'contracts'" [routerLinkActive]="['active']">Contrats</a>
       </li>
