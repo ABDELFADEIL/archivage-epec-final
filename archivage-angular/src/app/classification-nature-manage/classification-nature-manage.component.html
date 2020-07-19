@@ -1,49 +1,54 @@
-<div class="container-fluid" style="padding: 10px">
+<div class="container" style="padding: 10px;">
 
-        <form class="spacer"  #f="ngForm" (ngSubmit)="onSubmit(f)">
-    
-            <div class="row form"> 
-    
-              <div class="col-md-6">
-                <div class="form-group row">
-                        <div class="col-sm-3">
-                  <label  class="col-form-label float-right">Code Nature de classification </label>
-                  </div>
-                  <div class="col-sm-7">
-                        <input type="text" class="form-control" name="classification-nature-code" ngModel>
-                  </div>
-                 
-                </div>
-              </div>
-    
-              <div class="col-md-6">
-                <div class="form-group row">
-                <div class="col-sm-3">
-                  <label  class="col-form-label float-right">Libellé nature de classification </label>
-                </div>
-                  <div class="col-sm-7">
-                  <input type="text" class="form-control" name="classification-nature-label" ngModel>
-                  </div>
-                </div>
-              </div>
-    
-              <div class="col-md-6">
-                <div class="form-group row">
-                <div class="col-sm-3">
-                  <label class="col-form-label float-right">Duration </label>
-                </div>
-                  <div class="col-sm-7">
-                  <input type="text" class="form-control" name="duration" ngModel>
-                  </div>
-                </div>
-              </div>
-    
-             
-                           
-              <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-l btn-primary col-md-6"> Enoyer</button>
-              </div>
-    
-            </div>
-        </form>
-    
+  <form class="spacer"  #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+
+    <div class="row form">
+      <div class="col-sm-8">
+
+      <div class="col-md-12">
+        <div class="form-group row">
+          <div class="col-sm-4">
+            <label class="col-form-label float-right">Libellé Nature de classification</label>
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="classification_nature_label" ngModel>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="form-group row">
+          <div class="col-sm-4">
+            <label  class="col-form-label float-right">Code Nature de classification</label>
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="classification_nature_code" ngModel>
+          </div>
+
+        </div>
+      </div>
+
+
+
+      <div class="col-md-12">
+        <div class="form-group row">
+          <div class="col-sm-4">
+            <label class="col-form-label float-right">Durée</label>
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="duration" ngModel>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="col-md-12 text-center">
+        <button type="submit" class="btn btn-l col-md-6" style="background: #dee6f9;"> Enoyer</button>
+      </div>
+
+    </div>
+    </div>
+  </form>
+
+</div>

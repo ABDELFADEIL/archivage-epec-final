@@ -1,7 +1,6 @@
 package org.simplon.epec.archivage.domain.history.entity;
 
 import org.apache.commons.lang3.RandomUtils;
-import org.simplon.epec.archivage.domain.user.entity.User;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -18,20 +17,27 @@ public class History implements Serializable {
   private Long history_id;
   private LocalDate history_date;
   private String event_type;
-  private User calling_user;
   private String calling_application;
-  
-  //
+    private String user_id;
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    //
   // Constructors
   //
 
 
   public History () { };
 
-  public History(String event_type, User calling_user, String calling_application) {
+  public History(String event_type, String calling_application) {
     this.history_date = LocalDate.now();
     this.event_type = event_type;
-    this.calling_user = calling_user;
     this.calling_application = calling_application;
     this.history_id = RandomUtils.nextLong();
   }
@@ -92,21 +98,6 @@ public class History implements Serializable {
     return event_type;
   }
 
-  /**
-   * Set the value of calling_user
-   * @param newVar the new value of calling_user
-   */
-  public void setCalling_user (User newVar) {
-    calling_user = newVar;
-  }
-
-  /**
-   * Get the value of calling_user
-   * @return the value of calling_user
-   */
-  public User getCalling_user () {
-    return calling_user;
-  }
 
   /**
    * Set the value of calling_application

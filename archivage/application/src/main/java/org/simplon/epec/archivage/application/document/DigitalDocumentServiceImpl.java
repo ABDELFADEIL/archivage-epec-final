@@ -38,14 +38,14 @@ public class DigitalDocumentServiceImpl implements DigitalDocumentService{
         CrypterDocument crypterDocument = new CrypterDocument();
         byte[] data = multipartFile.getBytes();
         byte[] enryptedFile = crypterDocument.encrypt(data);
-        ClassificationNature classificationNature = classificationNatureService.findByClassificationNatureCode(document.getContext().getClassification_nature_code());
+        ClassificationNature classificationNature = classificationNatureService.findByClassificationNatureCode(document.getContext().getClassification_nature().getClassification_nature_code());
         java.time.LocalDate deletion_date = null;
         if (document.getContext().getFinal_business_processing_date()!=null){
              deletion_date = document.getContext().getFinal_business_processing_date().plusYears(classificationNature.getDuration());
         }
 
         Context context = new Context("conserv_unit_id", multipartFile.getContentType(),
-                document.getContext().getClassification_nature_code(), document.getContext().getFinal_business_processing_date(),
+                document.getContext().getClassification_nature(), document.getContext().getFinal_business_processing_date(),
                 null,  false,  false, null, deletion_date);
         DigitalDocument document1 = new DigitalDocument(multipartFile.getOriginalFilename(), document.getArchive_format(), enryptedFile, document.getContext());
 

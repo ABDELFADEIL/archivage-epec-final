@@ -26,6 +26,9 @@
             <basic name="account_number">
                 <column name="account_number" nullable="false" updatable="false" />
             </basic>
+            <basic name="user_id">
+                <column name="user_id" nullable="false"/>
+            </basic>
             <many-to-one name="client" fetch="LAZY"
                         target-entity="org.simplon.epec.archivage.domain.client.entity.Client">
                 <join-column name="client" nullable="false" updatable="false"/>
@@ -33,14 +36,6 @@
                     <cascade-all />
                 </cascade>
             </many-to-one>
-            <many-to-one name="user" fetch="LAZY"
-                         target-entity="org.simplon.epec.archivage.domain.user.entity.User">
-                <join-column name="user" nullable="false" updatable="false"/>
-                <cascade>
-                    <cascade-all />
-                </cascade>
-            </many-to-one>
-
             <one-to-one name="event" fetch="LAZY"
                         target-entity="org.simplon.epec.archivage.domain.event.entity.Event">
                 <join-column name="event" />

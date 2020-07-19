@@ -8,11 +8,12 @@ import java.util.List;
 public interface ClassificationNatureService {
 
      ClassificationNature addClassificationNature(ClassificationNature classificationNature);
-     ClassificationNature findByClassificationNatureCode(String classificationNatureCode);
+     ClassificationNature findByClassificationNatureCode(int classificationNatureCode);
      ClassificationNature updateClassificationNature(ClassificationNature classificationNature);
      void removeClassificationNature(Long classificationNatureID);
      ClassificationNature findByClassificationNatureId(Long classificationNatureId);
      List<ClassificationNature> getAllClassificationNature();
      Page<ClassificationNature> getAllClassificationNature(int page, int size);
 
+    List<ClassificationNature> getAllClassificationNatureByKeyWord(String keyword);
 }

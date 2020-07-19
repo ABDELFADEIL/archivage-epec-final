@@ -19,18 +19,23 @@ public class ClassificationNatureRepositoryImpl implements ClassificationNatureR
 
     @Override
     public ClassificationNature addClassificationNature(ClassificationNature classificationNature) {
-        ClassificationNature cn = new ClassificationNature(classificationNature.getClassification_nature_code(), classificationNature.getDuration());
-        return classificationJpaNatureRepository.save(classificationNature);
+        ClassificationNature cn = new ClassificationNature
+                (
+                classificationNature.getClassification_nature_label(),
+                classificationNature.getClassification_nature_code(),
+                classificationNature.getDuration()
+                );
+        return classificationJpaNatureRepository.save(cn);
     }
 
     @Override
-    public ClassificationNature findByClassificationNatureCode(String classificationNatureCode) {
+    public ClassificationNature findByClassificationNatureCode(int classificationNatureCode) {
         return classificationJpaNatureRepository.findByClassification_nature_code(classificationNatureCode);
     }
 
     @Override
     public ClassificationNature findById(Long id) {
-        return classificationJpaNatureRepository.findById(id).get();
+        return classificationJpaNatureRepository.getOne(id);
     }
 
     @Override
@@ -39,8 +44,8 @@ public class ClassificationNatureRepositoryImpl implements ClassificationNatureR
     }
 
     @Override
-    public void removeClassificationNature(Long classificationNatureID) {
-          classificationJpaNatureRepository.deleteById(classificationNatureID);
+    public void removeClassificationNature(ClassificationNature classificationNature) {
+          classificationJpaNatureRepository.delete(classificationNature);
     }
 
     @Override
@@ -56,5 +61,10 @@ public class ClassificationNatureRepositoryImpl implements ClassificationNatureR
     @Override
     public Page<ClassificationNature> getAllClassificationNature(int page, int size) {
         return  classificationJpaNatureRepository.findAll(PageRequest.of(page, size));
+    }
+
+    @Override
+    public List<ClassificationNature> getAllClassificationNatureByKeyWord(String keyword) {
+        return classificationJpaNatureRepository.getAllClassificationNatureByKeyWord(keyword);
     }
 }

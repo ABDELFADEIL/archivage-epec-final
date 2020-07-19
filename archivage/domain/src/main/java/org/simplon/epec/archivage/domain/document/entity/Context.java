@@ -2,7 +2,9 @@ package org.simplon.epec.archivage.domain.document.entity;
 
 import org.apache.commons.lang3.RandomUtils;
 import org.simplon.epec.archivage.domain.account.entity.Account;
+import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
 import org.simplon.epec.archivage.domain.contract.entity.Contract;
+import org.simplon.epec.archivage.domain.event.entity.Event;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -22,7 +24,7 @@ public class Context implements Serializable {
   private LocalDate archiving_reference_date;
   private Contract contract;
   private Account account;
-  private String classification_nature_code;
+  private ClassificationNature classification_nature;
   private LocalDate final_business_processing_date;
   private String frozen_label;
   private boolean hold_status;
@@ -31,18 +33,21 @@ public class Context implements Serializable {
   private LocalDate final_hold_date;
   // @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
   private LocalDate deletion_date;
-  
-  //
+    private Event event;
+  private String user_id;
+
+
+    //
   // Constructors
   //
   public Context () { };
 
   public Context(String conserv_unit_id, String mine_type,
-                 String classification_nature_code, LocalDate final_business_processing_date, String frozen_label, boolean hold_status, boolean frozen, LocalDate final_hold_date, LocalDate deletion_date) {
+                 ClassificationNature classification_nature, LocalDate final_business_processing_date, String frozen_label, boolean hold_status, boolean frozen, LocalDate final_hold_date, LocalDate deletion_date) {
     this.conserv_unit_id = conserv_unit_id;
     this.mine_type = mine_type;
     this.archiving_reference_date = LocalDate.now();
-    this.classification_nature_code = classification_nature_code;
+    this.classification_nature = classification_nature;
     this.final_business_processing_date = final_business_processing_date;
     this.frozen_label = frozen_label;
     this.hold_status = hold_status;
@@ -161,18 +166,18 @@ public class Context implements Serializable {
 
   /**
    * Set the value of classification_nature_id
-   * @param newVar the new value of classification_nature_id
+   * @param classification_nature the new value of classification_nature_id
    */
-  public void setClassification_nature_code (String newVar) {
-    classification_nature_code = newVar;
+  public void setClassification_nature (ClassificationNature classification_nature) {
+    classification_nature = classification_nature;
   }
 
   /**
-   * Get the value of classification_nature_id
-   * @return the value of classification_nature_id
+   * Get the value of classification_nature
+   * @return the value of classification_nature
    */
-  public String getClassification_nature_code () {
-    return classification_nature_code;
+  public ClassificationNature getClassification_nature () {
+    return classification_nature;
   }
 
   /**
@@ -270,6 +275,23 @@ public class Context implements Serializable {
   public LocalDate getDeletion_date () {
     return deletion_date;
   }
+
+  public String getUser_id() {
+    return user_id;
+  }
+
+  public void setUser_id(String user_id) {
+    this.user_id = user_id;
+  }
+
+  public Event getEvent() {
+    return event;
+  }
+
+  public void setEvent(Event event) {
+    this.event = event;
+  }
+
 
   //
   // Other methods

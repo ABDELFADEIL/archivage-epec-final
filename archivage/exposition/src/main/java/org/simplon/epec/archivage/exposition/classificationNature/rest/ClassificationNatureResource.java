@@ -26,17 +26,18 @@ public class ClassificationNatureResource {
 
 
     @GetMapping("/get-classificationNature-code")
-    public ClassificationNature findByClassificationNatureCode(@RequestParam(value = "classificationNature", required = true) String classificationNatureCode) {
+    public ClassificationNature findByClassificationNatureCode(@RequestParam(value = "classificationNature", required = true) int classificationNatureCode) {
         return classificationNatureService.findByClassificationNatureCode(classificationNatureCode);
     }
 
     @GetMapping("/get-all-classificationNature")
-    public List<ClassificationNature> getAll(@RequestParam(value = "page", required = true) int page, @RequestParam(value = "size", required = true) int size) {
-       // Page<ClassificationNature> naturePage = classificationNatureService.getAllClassificationNature(page, size);
-        List<ClassificationNature> naturePage = classificationNatureService.getAllClassificationNature();
+    public List<ClassificationNature> getAll() {
+        return classificationNatureService.getAllClassificationNature();
+    }
 
-
-        return naturePage;
+    @GetMapping("/get-all-classificationNature-keyWord")
+    public List<ClassificationNature> getByKeyWord(@RequestParam(value = "keyword", required = true, defaultValue = "") String keyword) {
+        return classificationNatureService.getAllClassificationNatureByKeyWord(keyword);
     }
 
     @GetMapping("/get-by-id")

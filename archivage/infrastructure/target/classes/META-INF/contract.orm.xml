@@ -23,16 +23,12 @@
             <basic name="creating_date">
                 <column name="creating_date"/>
             </basic>
+            <basic name="user_id">
+                <column name="user_id" nullable="false"/>
+            </basic>
             <many-to-one name="client" fetch="LAZY"
                         target-entity="org.simplon.epec.archivage.domain.client.entity.Client">
                 <join-column name="client" nullable="false" updatable="false"/>
-                <cascade>
-                    <cascade-all />
-                </cascade>
-            </many-to-one>
-            <many-to-one name="user" fetch="LAZY"
-                         target-entity="org.simplon.epec.archivage.domain.user.entity.User">
-                <join-column name="user" nullable="false" updatable="false"/>
                 <cascade>
                     <cascade-all />
                 </cascade>

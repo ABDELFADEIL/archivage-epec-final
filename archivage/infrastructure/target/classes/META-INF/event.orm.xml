@@ -20,13 +20,6 @@
             <basic name="event_date">
                 <column name="event_date" />
             </basic>
-            <many-to-one name="classificationNature" fetch="LAZY"
-                        target-entity="org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature">
-                <join-column name="classificationNature" nullable="true" updatable="true"/>
-                <cascade>
-                    <cascade-all />
-                </cascade>
-            </many-to-one>
         </attributes>
     </entity>
 </entity-mappings>

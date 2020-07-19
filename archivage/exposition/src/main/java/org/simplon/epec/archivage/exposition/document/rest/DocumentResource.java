@@ -22,7 +22,6 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
     @RequestMapping("/api/documents")
@@ -106,23 +105,42 @@ public class DocumentResource {
 
          */
         List<DigitalDocument> documents = new ArrayList<>();
-        List<Optional<Context>> contexts = new ArrayList<>();
+        List<Context> contexts = new ArrayList<>();
+         //ArrayList<Long> idsontext = null;
+        // List<Context> contextList = null;
+        // document_id, archive_format,  file_name, context.context_id,
+        // context.archiving_reference_date, context.account.account_id_label, context.contract.contract_id_label
         digitalDocumentJpaRepository.getAllMetadata().forEach(doc -> {
             Long id = 0L;
             BigInteger object = (BigInteger) doc[3];
             id = object.longValue();
+            try {
+               // idsontext.add(id);
+            }catch (Exception e){
+               e.getStackTrace();
+            }
 
             System.out.println("BigInteger "+id);
-            Context c = contextJpaRepository.findById(id).get();
             DigitalDocument document = new DigitalDocument();
-            document.setContext(c);
+
             BigInteger idDoc = (BigInteger) doc[0];
             document.setDocument_id(idDoc.longValue());
             document.setArchive_format((String) doc[1]);
             document.setFile_name((String) doc[2]);
+            try {
+                Context c = contextJpaRepository.findById(id).get();
+                document.setContext(c);
+               // contextList.add(c);
+            }catch(Exception e){
+                e.getStackTrace();
+            }
+
             documents.add(document);
             System.out.println("============= cannot cast "+ object.getClass());
         });
+
+
+
 
         return documents;
     }

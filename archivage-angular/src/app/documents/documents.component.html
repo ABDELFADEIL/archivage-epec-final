@@ -13,9 +13,9 @@
         <thead>
         <tr>
           <th scope="col">document_id</th>
-          <th scope="col">file_name</th>
+          <th scope="col">archiving_reference_date</th>
           <th scope="col">Code nature de classification</th>
-          <th scope="col">account_id_label</th>
+          <th scope="col">classification_nature_code</th>
           <th scope="col"></th>
           <th scope="col"></th>
         </tr>
@@ -24,8 +24,8 @@
         <tr *ngFor="let d of documents | slice: (page-1) * size : (page-1) * size + size;">
           <th scope="row">{{d.document_id}}</th>
           <td>{{d.file_name}}</td>
-          <td>{{d["account.account_id_label"]}}</td>
-          <td>{{d.final_business_processing_date}}</td>
+          <td>{{d.context['classification_nature_code']}}</td>
+          <td>{{d.context.account['account_id_label']}}</td>
           <td style="cursor: pointer" (click)="onDelete(d.document_id)"><i class="text-danger fa fa-trash"></i></td>
           <td style="cursor: pointer" (click)="update(d)"><i class="text-primary fa fa-edit"></i></td>
         </tr>

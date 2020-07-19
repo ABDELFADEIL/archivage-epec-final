@@ -25,7 +25,16 @@ public class Contract implements Serializable {
   private Event event;
   private LocalDate creating_date;
   private User user;
- // private Set<DigitalDocument> digitalDocuments;
+    private String user_id;
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+    // private Set<DigitalDocument> digitalDocuments;
 
 
 

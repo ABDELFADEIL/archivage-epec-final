@@ -30,7 +30,7 @@ export class DocumentsComponent implements OnInit {
     console.log("docs initialés ::::: ");
     this.documentService.getAllDocs().
     subscribe(value => {
-      console.log("docs ::::: ");
+      console.log(value);
       // this.totalPages=value["totalPages"];
       // this.pages= new Array<number>(this.totalPages);
       this.documents= value;
@@ -41,14 +41,14 @@ export class DocumentsComponent implements OnInit {
 
 
   onDelete(classification_nature_id: any) {
-    
+
   }
 
   update(c: any) {
-    
+
   }
 
   getAllDocsPage(page: number) {
-    
+
   }
 }

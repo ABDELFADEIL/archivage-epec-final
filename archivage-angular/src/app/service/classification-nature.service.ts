@@ -11,15 +11,23 @@ export class ClassificationNatureService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAll(page) :Observable<ClassificationNature []>{
-   return this.httpClient.get<ClassificationNature []>(environment.apiUrl+"/api/classificationNatures/get-all-classificationNature?page="+page+"&size="+12);
+  getAll() :Observable<ClassificationNature []>{
+   return this.httpClient.get<ClassificationNature []>(environment.apiUrl+"/api/classificationNatures/get-all-classificationNature");
   }
 
   update(classificationNature:ClassificationNature) {
     return this.httpClient.put(environment.apiUrl+"/api/classificationNatures/update-one", classificationNature);
   }
 
-  delete(id: any) {
-   return this.httpClient.delete(environment.apiUrl+ "/api/classificationNatures/delete-one?classificationNatureId="+id);
+  delete(classificationNatureId: any) {
+   return this.httpClient.delete(environment.apiUrl+ "/api/classificationNatures/delete-one?classificationNatureId="+classificationNatureId);
+  }
+
+  create(classificationNature: ClassificationNature) {
+    return this.httpClient.post(environment.apiUrl+"/api/classificationNatures/create-classificationNature", classificationNature);
+  }
+
+  getByKeyWord(keyWord: any) {
+    return this.httpClient.get<ClassificationNature []>(environment.apiUrl+"/api/classificationNatures/get-all-classificationNature-keyWord?keyword="+keyWord);
   }
 }

@@ -16,30 +16,31 @@ export class ClassificationNatureComponent implements OnInit {
   currentPage : number = 1;
   public totalPages: number;
   public pages: number[];
-  public filter;
+  public keyword;
+
   constructor(private  classificationNatureService: ClassificationNatureService, private router: Router) {
     this.getAllClassifcationNature();
   }
   public headerTitle:string="Classification Nature";
 
+
   ngOnInit(): void {
 
   }
 
-  getAllClassifcationNaturePage(page){
-    this.currentPage = page;
-    this.classificationNatureService.getAll(this.currentPage).
+  getAllClassifcationNaturePage(){
+
+    this.classificationNatureService.getAll().
     subscribe(value => {
-      // this.totalPages=value["totalPages"];
-      // this.pages= new Array<number>(this.totalPages);
       this.classements= value;
+      console.log(this.classements);
     }, error => {
       console.log(error);
     })
   }
 
   getAllClassifcationNature(){
-    this.getAllClassifcationNaturePage(this.currentPage);
+    this.getAllClassifcationNaturePage();
   }
 
   update(classificationNature: ClassificationNature) {
@@ -53,8 +54,18 @@ export class ClassificationNatureComponent implements OnInit {
         this.getAllClassifcationNature();
         this.router.navigateByUrl('/classifcation-nature');
       }, error => {
+        console.log(error)
       });
     }
 
+  }
+
+  chercher(keyWord: any) {
+    this.classificationNatureService.getByKeyWord(keyWord).subscribe(value => {
+      this.classements= value;
+      console.log(this.classements);
+    }, error => {
+      console.log(error);
+    });
   }
 }

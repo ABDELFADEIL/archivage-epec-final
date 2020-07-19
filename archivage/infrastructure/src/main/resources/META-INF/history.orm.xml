@@ -23,13 +23,9 @@
             <basic name="calling_application">
                 <column name="calling_application" />
             </basic>
-            <many-to-one name="calling_user" fetch="LAZY"
-                         target-entity="org.simplon.epec.archivage.domain.user.entity.User">
-                <join-column name="calling_user" nullable="false" updatable="false"/>
-                <cascade>
-                    <cascade-all />
-                </cascade>
-            </many-to-one>
+            <basic name="user_id">
+                <column name="user_id" nullable="false"/>
+            </basic>
         </attributes>
     </entity>
 

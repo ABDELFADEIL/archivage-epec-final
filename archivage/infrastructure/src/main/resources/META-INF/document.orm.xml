@@ -47,9 +47,6 @@
             <basic name="archiving_reference_date">
                 <column name="archiving_reference_date" />
             </basic>
-            <basic name="classification_nature_id">
-                <column name="classification_nature_id" />
-            </basic>
             <basic name="conserv_unit_id">
                 <column name="conserv_unit_id" />
             </basic>
@@ -74,6 +71,14 @@
             <basic name="mine_type">
                 <column name="mine_type" />
             </basic>
+
+            <many-to-one name="classification_nature" fetch="LAZY"
+                         target-entity="org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature">
+                <join-column name="classification_nature" nullable="false" updatable="false"/>
+                <cascade>
+                    <cascade-all />
+                </cascade>
+            </many-to-one>
             <one-to-one name="account" fetch="LAZY"
                          target-entity="org.simplon.epec.archivage.domain.account.entity.Account">
                 <join-column name="account" nullable="true" updatable="false"/>
@@ -88,6 +93,14 @@
                     <cascade-all />
                 </cascade>
             </one-to-one>
+            <one-to-one name="event" fetch="LAZY"
+                        target-entity="org.simplon.epec.archivage.domain.event.entity.Event">
+                <join-column name="event" nullable="true" updatable="false"/>
+                <cascade>
+                    <cascade-all />
+                </cascade>
+            </one-to-one>
+
         </attributes>
     </entity>
 </entity-mappings>

@@ -24,7 +24,7 @@ public class ClassificationNatureServiceImpl implements ClassificationNatureServ
     }
 
     @Override
-    public ClassificationNature findByClassificationNatureCode(String classificationNatureCode) {
+    public ClassificationNature findByClassificationNatureCode(int classificationNatureCode) {
         return classificationNatureRepository.findByClassificationNatureCode(classificationNatureCode);
     }
 
@@ -35,7 +35,8 @@ public class ClassificationNatureServiceImpl implements ClassificationNatureServ
 
     @Override
     public void removeClassificationNature(Long classificationNatureID) {
-        classificationNatureRepository.removeClassificationNature(classificationNatureID);
+        ClassificationNature c = classificationNatureRepository.findById(classificationNatureID);
+        classificationNatureRepository.removeClassificationNature(c);
     }
 
     @Override
@@ -51,5 +52,10 @@ public class ClassificationNatureServiceImpl implements ClassificationNatureServ
     @Override
     public Page<ClassificationNature> getAllClassificationNature(int page, int size) {
         return classificationNatureRepository.getAllClassificationNature(page, size);
+    }
+
+    @Override
+    public List<ClassificationNature> getAllClassificationNatureByKeyWord(String keyword) {
+        return classificationNatureRepository.getAllClassificationNatureByKeyWord(keyword);
     }
 }

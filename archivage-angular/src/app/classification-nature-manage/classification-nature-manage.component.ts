@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ClassificationNatureService} from '../service/classification-nature.service';
+import {ClassificationNature} from '../models/classification-nature';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-classification-nature-manage',
@@ -7,13 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClassificationNatureManageComponent implements OnInit {
 
-  constructor() { }
+  classificationNature : ClassificationNature;
+
+  constructor(private classificationNatureService: ClassificationNatureService, private router: Router) { }
 
   ngOnInit(): void {
+
   }
 
-  onSubmit(form) {
-  console.log(form.value)
+  onSubmit(classificationNature) {
+    this.classificationNature = classificationNature;
+    console.log(this.classificationNature)
+    this.classificationNatureService.create(this.classificationNature).subscribe( data => {
+      console.log(data);
+      this.router.navigateByUrl('/classifcation-nature');
+    }, error => {
+      console.log(error);
+    });
   }
+
+
+
 
 }
