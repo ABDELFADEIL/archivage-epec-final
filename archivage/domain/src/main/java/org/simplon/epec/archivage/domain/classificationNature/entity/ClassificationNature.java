@@ -13,7 +13,7 @@ public class ClassificationNature implements Serializable {
   // Fields
   //
 
-  private Long classification_nature_id;
+  private String classification_nature_id;
   private String classification_nature_label;
   private int classification_nature_code;
   private int duration;
@@ -22,17 +22,17 @@ public class ClassificationNature implements Serializable {
   }
 
   public ClassificationNature(String classification_nature_label, int classification_nature_code, int duration) {
-    classification_nature_id = RandomUtils.nextLong();
+    classification_nature_id = RandomUtils.nextLong()+"";
     this.classification_nature_label = classification_nature_label;
     this.classification_nature_code = classification_nature_code;
     this.duration = duration;
   }
 
-  public void setClassification_nature_id(Long classification_nature_id) {
+  public void setClassification_nature_id(String classification_nature_id) {
     this.classification_nature_id = classification_nature_id;
   }
 
-  public Long getClassification_nature_id() {
+  public String getClassification_nature_id() {
     return classification_nature_id;
   }
 
@@ -59,5 +59,15 @@ public class ClassificationNature implements Serializable {
 
   public void setDuration(int duration) {
     this.duration = duration;
+  }
+
+  @Override
+  public String toString() {
+    return "ClassificationNature{" +
+            "classification_nature_id=" + classification_nature_id +
+            ", classification_nature_label='" + classification_nature_label + '\'' +
+            ", classification_nature_code=" + classification_nature_code +
+            ", duration=" + duration +
+            '}';
   }
 }

@@ -22,6 +22,8 @@ public class ExpositionApplication  extends SpringBootServletInitializer impleme
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+  //  @Autowired
+   // private  ClassificationJpaNatureRepository classificationJpaNatureRepository;
 
 
     public static void main(String[] args) {
@@ -46,7 +48,10 @@ public class ExpositionApplication  extends SpringBootServletInitializer impleme
      */
     @Override
     public void run(String... args) throws Exception {
+        System.out.println("//////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
 
+       // ClassificationNature c = classificationJpaNatureRepository.findById(4821085995791567000L).get();
+       // System.out.println(c);
 
     }
 

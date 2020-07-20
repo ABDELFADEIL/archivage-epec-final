@@ -25,11 +25,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ClassificationNatureComponent } from './classification-nature/classification-nature.component';
 import { HistoryComponent } from './history/history.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { ClassificationNatureManageComponent } from './classification-nature-manage/classification-nature-manage.component';
+import { ClassificationNatureManageComponent } from './classification-nature/classification-nature-manage/classification-nature-manage.component';
 import {JwtInterceptor} from './helpers/jwt.interceptor';
 import {ErrorInterceptor} from './helpers/error.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './footer/footer.component';
+import { UpdateClassificationNatureComponent } from './classification-nature/update-classification-nature/update-classification-nature.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { FooterComponent } from './footer/footer.component';
     SidebarComponent,
     ClassificationNatureManageComponent,
     FooterComponent,
+    UpdateClassificationNatureComponent,
 
   ],
     imports: [
@@ -71,6 +73,9 @@ import { FooterComponent } from './footer/footer.component';
   providers: [Title, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    UpdateClassificationNatureComponent
+  ]
 })
 export class AppModule { }

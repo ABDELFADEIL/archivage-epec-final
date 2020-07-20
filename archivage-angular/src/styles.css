@@ -65,6 +65,12 @@ div.page#page {
   }
 }
 
+
+div.modal-dialog div.modal-content {
+  top: 130px !important;
+
+}
+
 /*
 new fome upload files
 */

@@ -17,7 +17,7 @@ import {DocumentsDestroyedComponent} from './documents-destroyed/documents-destr
 import {UpdateDfpmDocComponent} from './update-dfpm-doc/update-dfpm-doc.component';
 import {HistoryComponent} from './history/history.component';
 import {ClassificationNatureComponent} from './classification-nature/classification-nature.component';
-import {ClassificationNatureManageComponent} from './classification-nature-manage/classification-nature-manage.component';
+import {ClassificationNatureManageComponent} from './classification-nature/classification-nature-manage/classification-nature-manage.component';
 import {AuthGuard} from './helpers/authGuard';
 
 
@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: 'update-dfpm-document', component: UpdateDfpmDocComponent, data : {title:'Mis à jour DFPM'}, canActivate: [AuthGuard]},
   { path: 'history', component: HistoryComponent, data : {title:'Historique'}, canActivate: [AuthGuard]},
   { path: 'classifcation-nature', component: ClassificationNatureComponent, data : {title:'Classification nature'}, canActivate: [AuthGuard]},
-  { path: 'classifcation-nature-form', component: ClassificationNatureManageComponent, data : {title:'Classification nature form'}, canActivate: [AuthGuard]},
+  { path: 'new-classifcation-nature', component: ClassificationNatureManageComponent, data : {title:'Classification nature form'}, canActivate: [AuthGuard]},
   { path: '**', component: NotFoundComponent},
 ];
 

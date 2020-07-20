@@ -34,8 +34,8 @@ public class ClassificationNatureRepositoryImpl implements ClassificationNatureR
     }
 
     @Override
-    public ClassificationNature findById(Long id) {
-        return classificationJpaNatureRepository.getOne(id);
+    public ClassificationNature findById(String id) {
+        return classificationJpaNatureRepository.findByClassificationId(id);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class ClassificationNatureRepositoryImpl implements ClassificationNatureR
     }
 
     @Override
-    public ClassificationNature findByClassificationNatureId(Long classificationNatureId) {
+    public ClassificationNature findByClassificationNatureId(String classificationNatureId) {
         return classificationJpaNatureRepository.findById(classificationNatureId).get();
     }
 

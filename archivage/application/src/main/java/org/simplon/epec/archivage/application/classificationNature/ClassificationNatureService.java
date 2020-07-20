@@ -10,8 +10,8 @@ public interface ClassificationNatureService {
      ClassificationNature addClassificationNature(ClassificationNature classificationNature);
      ClassificationNature findByClassificationNatureCode(int classificationNatureCode);
      ClassificationNature updateClassificationNature(ClassificationNature classificationNature);
-     void removeClassificationNature(Long classificationNatureID);
-     ClassificationNature findByClassificationNatureId(Long classificationNatureId);
+     void removeClassificationNature(String classificationNatureID);
+     ClassificationNature findByClassificationNatureId(String classificationNatureId);
      List<ClassificationNature> getAllClassificationNature();
      Page<ClassificationNature> getAllClassificationNature(int page, int size);
 

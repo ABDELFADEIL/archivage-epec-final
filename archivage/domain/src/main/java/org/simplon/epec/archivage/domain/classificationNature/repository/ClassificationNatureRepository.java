@@ -9,10 +9,10 @@ public interface ClassificationNatureRepository {
 
      ClassificationNature addClassificationNature(ClassificationNature classificationNature);
      ClassificationNature findByClassificationNatureCode(int classificationNatureCode);
-     ClassificationNature findById(Long id);
+     ClassificationNature findById(String id);
      ClassificationNature updateClassificationNature(ClassificationNature classificationNature);
      void removeClassificationNature(ClassificationNature classificationNature);
-     ClassificationNature findByClassificationNatureId(Long classificationNatureId);
+     ClassificationNature findByClassificationNatureId(String classificationNatureId);
      List<ClassificationNature> getAllClassificationNature();
      Page<ClassificationNature> getAllClassificationNature(int page, int size);
     List<ClassificationNature> getAllClassificationNatureByKeyWord(String keyword);

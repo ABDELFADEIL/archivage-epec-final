@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ClassificationNatureService} from '../service/classification-nature.service';
-import {ClassificationNature} from '../models/classification-nature';
+import {ClassificationNatureService} from '../../service/classification-nature.service';
+import {ClassificationNature} from '../../models/classification-nature';
 import {Router} from '@angular/router';
 
 @Component({

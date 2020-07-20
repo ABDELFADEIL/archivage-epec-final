@@ -19,7 +19,7 @@ export class ClassificationNatureService {
     return this.httpClient.put(environment.apiUrl+"/api/classificationNatures/update-one", classificationNature);
   }
 
-  delete(classificationNatureId: any) {
+  delete(classificationNatureId: number) {
    return this.httpClient.delete(environment.apiUrl+ "/api/classificationNatures/delete-one?classificationNatureId="+classificationNatureId);
   }
 

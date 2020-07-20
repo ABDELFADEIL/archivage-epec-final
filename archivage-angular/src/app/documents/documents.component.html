@@ -23,9 +23,9 @@
         <tbody *ngIf="documents">
         <tr *ngFor="let d of documents | slice: (page-1) * size : (page-1) * size + size;">
           <th scope="row">{{d.document_id}}</th>
-          <td>{{d.file_name}}</td>
-          <td>{{d.context['classification_nature_code']}}</td>
-          <td>{{d.context.account['account_id_label']}}</td>
+          <td>{{d.context['archiving_reference_date']}}</td>
+          <td>{{d.context['frozen']}}</td>
+          <td>{{d.context['context_id']}}</td>
           <td style="cursor: pointer" (click)="onDelete(d.document_id)"><i class="text-danger fa fa-trash"></i></td>
           <td style="cursor: pointer" (click)="update(d)"><i class="text-primary fa fa-edit"></i></td>
         </tr>

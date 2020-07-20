@@ -41,7 +41,7 @@ public class ClassificationNatureResource {
     }
 
     @GetMapping("/get-by-id")
-    public ClassificationNature getById(@RequestParam("classificationNatureId") Long classificationNatureId){
+    public ClassificationNature getById(@RequestParam(value = "classificationNatureId") String classificationNatureId){
         return classificationNatureService.findByClassificationNatureId(classificationNatureId);
     }
 
@@ -51,9 +51,14 @@ public class ClassificationNatureResource {
     }
 
     @DeleteMapping("/delete-one")
-    public void removeClassificationNature(@RequestParam("classificationNatureId") Long classificationNatureId) {
-         classificationNatureService.removeClassificationNature(classificationNatureId);
+    public void removeClassificationNature(@RequestParam(value = "classificationNatureId") String classificationNatureId) {
+        classificationNatureService.removeClassificationNature(classificationNatureId);
     }
-
+/*
+    @PutMapping("/add-all")
+    public List<ClassificationNature> AddAllClassificationNature(@RequestBody(required = true) List<ClassificationNature> classificationNatures) {
+        return classificationJpaNatureRepository.saveAll(classificationNatures);
+    }
+ */
 
 }

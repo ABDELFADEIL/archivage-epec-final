@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {ClassificationNature} from '../models/classification-nature';
 import {ClassificationNatureService} from '../service/classification-nature.service';
 import {Router} from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {UpdateClassificationNatureComponent} from './update-classification-nature/update-classification-nature.component';
+
 
 @Component({
   selector: 'app-classification-nature',
@@ -17,8 +20,9 @@ export class ClassificationNatureComponent implements OnInit {
   public totalPages: number;
   public pages: number[];
   public keyword;
+  public classificationNature;
 
-  constructor(private  classificationNatureService: ClassificationNatureService, private router: Router) {
+  constructor(private  classificationNatureService: ClassificationNatureService, private router: Router, private modalService: NgbModal) {
     this.getAllClassifcationNature();
   }
   public headerTitle:string="Classification Nature";
@@ -28,19 +32,14 @@ export class ClassificationNatureComponent implements OnInit {
 
   }
 
-  getAllClassifcationNaturePage(){
 
+  getAllClassifcationNature(){
     this.classificationNatureService.getAll().
     subscribe(value => {
       this.classements= value;
-      console.log(this.classements);
     }, error => {
       console.log(error);
     })
-  }
-
-  getAllClassifcationNature(){
-    this.getAllClassifcationNaturePage();
   }
 
   update(classificationNature: ClassificationNature) {
@@ -63,9 +62,20 @@ export class ClassificationNatureComponent implements OnInit {
   chercher(keyWord: any) {
     this.classificationNatureService.getByKeyWord(keyWord).subscribe(value => {
       this.classements= value;
-      console.log(this.classements);
     }, error => {
       console.log(error);
     });
   }
+
+  openFormModal(c) {
+    console.log(c);
+    this.classificationNature = c;
+    const modalRef = this.modalService.open(UpdateClassificationNatureComponent);
+    modalRef.componentInstance.classificationNature = c;
+    modalRef.result.then((result) => {
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
 }

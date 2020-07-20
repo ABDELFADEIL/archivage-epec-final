@@ -20,43 +20,45 @@
   </div> -->
 
   <div class="" ngbDropdown>
-    <button [routerLink]="'contracts'" [routerLinkActive]="'active'" ngbDropdownToggle  class="btn btn-light  btn-side color1" type="button">
+    <button ngbDropdownToggle  class="btn btn-light  btn-side color1" type="button">
       <a >Contrats</a>
     </button>
     <div ngbDropdownMenu  >
-      <button class="btn btn  btn-light " ngbDropdownItem type="button"><a [routerLink]="'new-contract'">Nouveau contrat</a></button>
-      <button class="btn btn  btn-light " ngbDropdownItem type="button"><a [routerLink]="'contracts'" >Gérer contrat</a></button>
+      <button class="btn btn  btn-light " ngbDropdownItem type="button"><a [routerLink]="'contracts'">Gérer contrat</a></button>
+      <button class="btn btn  btn-light " ngbDropdownItem type="button"><a [routerLink]="'new-contract'" >Nouveau contrat</a></button>
     </div>
   </div>
 
   <div ngbDropdown>
-    <button [routerLink]="'accounts'" ngbDropdownToggle [routerLinkActive]="'active'" class="btn-side btn btn-light color1" type="button">
+    <button  ngbDropdownToggle class="btn-side btn btn-light color1" type="button">
       <a >Comptes</a>
     </button>
     <div ngbDropdownMenu>
+      <button class="btn btn  btn-light " ngbDropdownItem type="button"><a  [routerLink]="'accounts'">Gérer compte</a></button>
       <button class="btn btn  btn-light " ngbDropdownItem type="button"><a [routerLink]="'new-account'">Nouveau compte</a></button>
-      <button class="btn btn  btn-light " ngbDropdownItem type="button"><a [routerLink]="'accounts'">Gérer compte</a></button>
     </div>
   </div>
 
 
   <div ngbDropdown>
-    <button [routerLink]="'classifcation-nature'" ngbDropdownToggle [routerLinkActive]="'active'" class="btn-side btn btn-light color1" type="button">
+    <button ngbDropdownToggle class="btn-side btn btn-light color1" type="button">
       <a>N Classement</a>
     </button>
     <div ngbDropdownMenu>
-      <button class="btn btn  btn-light " ngbDropdownItem type="button"><a [routerLink]="'classifcation-nature'">Gestion de NC </a></button>
-      <button class="btn btn  btn-light" ngbDropdownItem type="button"><a [routerLink]="'classifcation-nature-form'">Ajouter NC</a></button>
+      <button class="btn btn  btn-light " ngbDropdownItem type="button"><a [routerLink]="'classifcation-nature'">Gestion de NC</a></button>
+      <button class="btn btn  btn-light" ngbDropdownItem type="button"><a [routerLink]="'new-classifcation-nature'">Ajouter NC</a></button>
     </div>
   </div>
 
   <div ngbDropdown>
-    <button ngbDropdownToggle [routerLink]="'documents'" [routerLinkActive]="'active'" class="btn-side btn btn-light color1" type="button">
+    <button ngbDropdownToggle class="btn-side btn btn-light color1" type="button">
       <a>Documents</a>
     </button>
     <div ngbDropdownMenu>
       <button class="btn btn  btn-light" ngbDropdownItem type="button"><a [routerLink]="'documents'">Gestion docs </a></button>
-      <button class="btn btn  btn-light" ngbDropdownItem type="button"><a [routerLink]="'new-document'">Ajouter doc</a></button>
+      <button class="btn btn  btn-light" ngbDropdownItem type="button"><a [routerLink]="'documents-to-validated'">Documents à valider</a></button>
+      <button class="btn btn  btn-light" ngbDropdownItem type="button"><a [routerLink]="'documents-to-destroyed'">Documents à détruire</a></button>
+      <button class="btn btn  btn-light" ngbDropdownItem type="button"><a [routerLink]="'documents-destroyed'">Documents détruits</a></button>
     </div>
   </div>
 

@@ -1,19 +1,18 @@
 <div class="container" style="padding: 10px;">
 
   <form class="spacer"  #f="ngForm" (ngSubmit)="onSubmit(f.value)">
-
-    <!--
-      client_nature_id;client_name;client_first_name; civility_id; birth_date; birth_dept; siren_number; siret_number;
-    -->
       <div class="row form">
-
         <div class="col-md-6">
           <div class="form-group row">
                   <div class="col-sm-4">
             <label  class="col-form-label float-right">Nature de client </label>
             </div>
             <div class="col-sm-6">
-                  <input type="text" class="form-control" name="client_nature_id" ngModel>
+              <select class="form-control" name="client_nature_id" ngModel>
+                <option value="">select...</option>
+                <option value="Personne physique">Personne physique</option>
+                <option value="personne morale">personne morale</option>
+              </select>
             </div>
 
           </div>
@@ -25,7 +24,7 @@
             <label  class="col-form-label float-right">Nom</label>
           </div>
             <div class="col-sm-6">
-            <input type="text" class="form-control" name="client_name" ngModel>
+            <input type="text" class="form-control" name="client_name" value="name" ngModel>
             </div>
           </div>
         </div>
@@ -44,20 +43,29 @@
         <div class="col-md-6">
           <div class="form-group row">
           <div class="col-sm-4">
-            <label class="col-form-label float-right">civility_id</label>
+            <label class="col-form-label float-right">Id civility</label>
           </div>
             <div class="col-sm-6">
-            <input type="text" class="form-control" name="civility_id" ngModel>
+              <select class="form-control" name="civility_id" ngModel>
+                <option value="">select...</option>
+                <option value="Monsieur">Monsieur</option>
+                <option value="Madame">Madame</option>
+                <option value="Messieurs">Messieurs</option>
+                <option value="Mesdames">Mesdames</option>
+                <option value="Messieurs, Mesdames">Messieurs, Mesdames</option>
+                <option value="Monsieur, Madame">Monsieur, Madame</option>
+
+              </select>
             </div>
           </div>
         </div>
         <div class="col-md-6">
               <div class="form-group row">
               <div class="col-sm-4">
-                <label class="col-form-label float-right">birth_date</label>
+                <label class="col-form-label float-right">Date de naissance</label>
               </div>
                 <div class="col-sm-6">
-                <input type="text" class="form-control" type="datetime" name="birth_date" ngModel>
+                <input type="date" class="form-control" name="birth_date" ngModel>
                 </div>
               </div>
             </div>
@@ -65,7 +73,7 @@
             <div class="col-md-6">
               <div class="form-group row">
               <div class="col-sm-4">
-                <label class="col-form-label float-right">birth_dept</label>
+                <label class="col-form-label float-right">Dept de naissance</label>
               </div>
                 <div class="col-sm-6">
                 <input type="text" class="form-control" name="birth_dept" ngModel>
@@ -75,7 +83,7 @@
         <div class="col-md-6">
           <div class="form-group row">
             <div class="col-sm-4">
-              <label class="col-form-label float-right">siren number </label>
+              <label class="col-form-label float-right">Numéro Siren </label>
             </div>
             <div class="col-sm-6">
               <input type="text" class="form-control" name="siren_number" ngModel>
@@ -86,7 +94,7 @@
         <div class="col-md-6">
           <div class="form-group row">
             <div class="col-sm-4">
-              <label class="col-form-label float-right">siret number</label>
+              <label class="col-form-label float-right">Numéro Siret</label>
             </div>
             <div class="col-sm-6">
               <input type="text" class="form-control" name="siret_number" ngModel>
@@ -98,7 +106,7 @@
                     <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
                   </div>
                     <div  class="files-list" *ngFor="let file of files;let i=index">
-                      <p>{{ file }}</p>
+                      <p>{{ file.name }}</p>
                       <button class="delete-file" (click)="deleteAttachment(i)">
                         <img src="../../../assets/Recycle_Bin_Full.png">
                       </button>
@@ -111,3 +119,4 @@
       </div>
   </form>
 
+</div>

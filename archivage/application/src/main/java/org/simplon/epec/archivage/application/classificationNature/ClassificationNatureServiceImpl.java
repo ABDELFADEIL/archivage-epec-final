@@ -34,13 +34,13 @@ public class ClassificationNatureServiceImpl implements ClassificationNatureServ
     }
 
     @Override
-    public void removeClassificationNature(Long classificationNatureID) {
+    public void removeClassificationNature(String classificationNatureID) {
         ClassificationNature c = classificationNatureRepository.findById(classificationNatureID);
         classificationNatureRepository.removeClassificationNature(c);
     }
 
     @Override
-    public ClassificationNature findByClassificationNatureId(Long classificationNatureId) {
+    public ClassificationNature findByClassificationNatureId(String classificationNatureId) {
         return classificationNatureRepository.findByClassificationNatureId(classificationNatureId);
     }
 
