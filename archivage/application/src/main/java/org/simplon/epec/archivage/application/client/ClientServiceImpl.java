@@ -29,8 +29,10 @@ public class ClientServiceImpl implements ClientService {
         ////////////// code logic
         String client_number = createNewClientNumber();
         User user = userRepository.getAuthenticatedUser();
-        Client c = new Client( client.getClient_nature_id(),  client_number,  client.getClient_name(),
-                client.getClient_first_name(), client.getCivility_id(), client.getBirth_date(),
+        int clientNatureId = client.getClient_nature_id();
+        int civilityId = client.getCivility_id();
+        Client c = new Client( clientNatureId,  client_number,  client.getClient_name(),
+                client.getClient_first_name(), civilityId, client.getBirth_date(),
                 client.getBirth_dept(), client.getSiren_number(), client.getSiret_number(), user.getUser_id());
         return clientRepository.createClient(c);
     }

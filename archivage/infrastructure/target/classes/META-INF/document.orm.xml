@@ -79,6 +79,14 @@
                     <cascade-all />
                 </cascade>
             </many-to-one>
+            <many-to-one name="client" fetch="LAZY"
+                         target-entity="org.simplon.epec.archivage.domain.client.entity.Client">
+                <join-column name="client" nullable="false" updatable="false"/>
+                <cascade>
+                    <cascade-all />
+                </cascade>
+            </many-to-one>
+
             <one-to-one name="account" fetch="LAZY"
                          target-entity="org.simplon.epec.archivage.domain.account.entity.Account">
                 <join-column name="account" nullable="true" updatable="false"/>

@@ -20,4 +20,6 @@ public interface DigitalDocumentRepository {
     DigitalDocument updateContext(Long docID, Context context);
     DigitalDocument saveDocFileWhithId(Long docID, MultipartFile multipartFile) throws IOException, NoSuchAlgorithmException, BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, InvalidKeyException;
     Page<DigitalDocument> getAllDocs(Pageable pageable);
+
+
 }

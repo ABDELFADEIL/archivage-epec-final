@@ -5,25 +5,24 @@
     <div class="" >
         <form *ngIf="documents">
             <div class="form-group form-inline">
-                Full text search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
+                Chercher: <input class="form-control ml-2" type="text"/>
             </div>
           </form>
 
       <table class="table table-bordered table-hover">
         <thead>
         <tr>
-          <th scope="col">document_id</th>
-          <th scope="col">archiving_reference_date</th>
-          <th scope="col">Code nature de classification</th>
-          <th scope="col">classification_nature_code</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
+          <td scope="col">document_id</td>
+          <td scope="col">archiving_reference_date</td>
+          <td scope="col">Code nature de classification</td>
+          <td scope="col">classification_nature_code</td>
+          <td colspan="2" scope="col"></td>
         </tr>
         </thead>
         <tbody *ngIf="documents">
         <tr *ngFor="let d of documents | slice: (page-1) * size : (page-1) * size + size;">
-          <th scope="row">{{d.document_id}}</th>
-          <td>{{d.context['archiving_reference_date']}}</td>
+          <td scope="row">{{d.document_id}}</td>
+          <td> {{d.context['archiving_reference_date']}}</td>
           <td>{{d.context['frozen']}}</td>
           <td>{{d.context['context_id']}}</td>
           <td style="cursor: pointer" (click)="onDelete(d.document_id)"><i class="text-danger fa fa-trash"></i></td>
@@ -33,10 +32,10 @@
       </table>
 
       <div class="d-flex justify-content-between p-2" *ngIf="documents">
-        <ngb-pagination [collectionSize]="documents.length" [(page)]="page" [maxSize]="size" [pageSize]="size" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="getAllDocsPage(page)">
+        <ngb-pagination [collectionSize]="documents.length" [(page)]="page" [maxSize]="size" [pageSize]="size" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" >
 
         </ngb-pagination>
-        <select class="custom-select" style="width: auto; color: #212b35" [(ngModel)]="size" (ngModelChange)="getAllDocsPage(page)">
+        <select class="custom-select" style="width: auto; color: #212b35" [(ngModel)]="size" >
           <option [ngValue]="8">8 items per page</option>
           <option [ngValue]="10">10 items per page</option>
           <option [ngValue]="12">12 items per page</option>

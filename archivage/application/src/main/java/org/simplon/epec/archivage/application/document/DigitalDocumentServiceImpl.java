@@ -1,6 +1,7 @@
 package org.simplon.epec.archivage.application.document;
 
 import org.simplon.epec.archivage.application.classificationNature.ClassificationNatureService;
+import org.simplon.epec.archivage.application.user.UserService;
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
 import org.simplon.epec.archivage.domain.document.entity.Context;
 import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
@@ -25,31 +26,45 @@ public class DigitalDocumentServiceImpl implements DigitalDocumentService{
 
     private final transient DigitalDocumentRepository digitalDocumentRepository;
     private final transient ClassificationNatureService classificationNatureService;
+    private final transient ContextService contextRepository;
+    private final transient UserService userService;
     @Autowired
-    public DigitalDocumentServiceImpl(DigitalDocumentRepository digitalDocumentRepository, ClassificationNatureService classificationNatureService) {
+    public DigitalDocumentServiceImpl(DigitalDocumentRepository digitalDocumentRepository, ClassificationNatureService classificationNatureService, ContextService contextRepository, UserService userService) {
         this.digitalDocumentRepository = digitalDocumentRepository;
         this.classificationNatureService = classificationNatureService;
+        this.contextRepository = contextRepository;
+        this.userService = userService;
     }
 
 
-    @Override
-    public DigitalDocument createDocument(DigitalDocument document, MultipartFile multipartFile) throws BadPaddingException, NoSuchAlgorithmException, IOException, IllegalBlockSizeException, NoSuchPaddingException, InvalidKeyException {
 
+    @Override
+    public DigitalDocument createDocument(DigitalDocument document, ClassificationNature classificationNature, MultipartFile multipartFile) throws BadPaddingException, NoSuchAlgorithmException, IOException, IllegalBlockSizeException, NoSuchPaddingException, InvalidKeyException {
+
+        // encrypter le doc avec un code secret avant l'archivage pour séruriser l'accès //////
         CrypterDocument crypterDocument = new CrypterDocument();
         byte[] data = multipartFile.getBytes();
         byte[] enryptedFile = crypterDocument.encrypt(data);
-        ClassificationNature classificationNature = classificationNatureService.findByClassificationNatureCode(document.getContext().getClassification_nature().getClassification_nature_code());
-        java.time.LocalDate deletion_date = null;
+        // gestion le pérode d'archivage de doc
+        ClassificationNature nature = classificationNatureService.findByClassificationNatureCode(classificationNature.getClassification_nature_code());
+
+        java.time.LocalDate final_stage_date = null;
         if (document.getContext().getFinal_business_processing_date()!=null){
-             deletion_date = document.getContext().getFinal_business_processing_date().plusYears(classificationNature.getDuration());
+             final_stage_date = document.getContext().getFinal_business_processing_date().plusYears(nature.getDuration());
         }
 
-        Context context = new Context("conserv_unit_id", multipartFile.getContentType(),
-                document.getContext().getClassification_nature(), document.getContext().getFinal_business_processing_date(),
-                null,  false,  false, null, deletion_date);
-        DigitalDocument document1 = new DigitalDocument(multipartFile.getOriginalFilename(), document.getArchive_format(), enryptedFile, document.getContext());
-
-        return digitalDocumentRepository.createDocument(document1);
+        // paramètres le context de doc à archiver
+        Long user_id = userService.getAuthentificatedUser().getUser_id();
+        Context context = document.getContext();
+        context.setFinal_stage_date(final_stage_date);
+        context.setClassification_nature(nature);
+        context.setUser_id(user_id);
+         context = contextRepository.createContext(context);
+        // création de l'objet digitalDocument pour archiver le doc avec toutes les infos obligatoires
+        document.setEncoding_doc(enryptedFile);
+        document.setContext(context);
+        // archiver le doc dans la base de données et retourner le avec l'id
+        return digitalDocumentRepository.createDocument(document);
     }
 
     @Override

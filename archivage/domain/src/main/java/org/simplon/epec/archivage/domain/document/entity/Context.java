@@ -3,6 +3,7 @@ package org.simplon.epec.archivage.domain.document.entity;
 import org.apache.commons.lang3.RandomUtils;
 import org.simplon.epec.archivage.domain.account.entity.Account;
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
+import org.simplon.epec.archivage.domain.client.entity.Client;
 import org.simplon.epec.archivage.domain.contract.entity.Contract;
 import org.simplon.epec.archivage.domain.event.entity.Event;
 
@@ -19,8 +20,9 @@ public class Context implements Serializable {
   //
 
   private Long context_id;
-  private String conserv_unit_id;
+  private long conserv_unit_id;
   private String mine_type;
+  private LocalDate final_stage_date;
   private LocalDate archiving_reference_date;
   private Contract contract;
   private Account account;
@@ -34,7 +36,8 @@ public class Context implements Serializable {
   // @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
   private LocalDate deletion_date;
     private Event event;
-  private String user_id;
+  private Long user_id;
+  private Client client;
 
 
     //
@@ -42,19 +45,23 @@ public class Context implements Serializable {
   //
   public Context () { };
 
-  public Context(String conserv_unit_id, String mine_type,
-                 ClassificationNature classification_nature, LocalDate final_business_processing_date, String frozen_label, boolean hold_status, boolean frozen, LocalDate final_hold_date, LocalDate deletion_date) {
+  public Context(
+                 long conserv_unit_id,
+                 String mine_type,
+                 ClassificationNature classification_nature,
+                 LocalDate final_business_processing_date,
+                 LocalDate final_stage_date,
+                 Client client
+                )
+  {
     this.conserv_unit_id = conserv_unit_id;
     this.mine_type = mine_type;
     this.archiving_reference_date = LocalDate.now();
     this.classification_nature = classification_nature;
     this.final_business_processing_date = final_business_processing_date;
-    this.frozen_label = frozen_label;
-    this.hold_status = hold_status;
-    this.frozen = frozen;
-    this.final_hold_date = final_hold_date;
-    this.deletion_date = deletion_date;
-    this.context_id = RandomUtils.nextLong();;
+    this.final_stage_date = final_stage_date;
+    this.client = client;
+    this.context_id = RandomUtils.nextLong();
   }
   //
   // Methods
@@ -73,6 +80,7 @@ public class Context implements Serializable {
     context_id = newVar;
   }
 
+
   /**
    * Get the value of context_id
    * @return the value of context_id
@@ -85,7 +93,7 @@ public class Context implements Serializable {
    * Set the value of conserv_unit_id
    * @param newVar the new value of conserv_unit_id
    */
-  public void setConserv_unit_id (String newVar) {
+  public void setConserv_unit_id (long newVar) {
     conserv_unit_id = newVar;
   }
 
@@ -93,7 +101,7 @@ public class Context implements Serializable {
    * Get the value of conserv_unit_id
    * @return the value of conserv_unit_id
    */
-  public String getConserv_unit_id () {
+  public long getConserv_unit_id () {
     return conserv_unit_id;
   }
 
@@ -276,11 +284,11 @@ public class Context implements Serializable {
     return deletion_date;
   }
 
-  public String getUser_id() {
+  public Long getUser_id() {
     return user_id;
   }
 
-  public void setUser_id(String user_id) {
+  public void setUser_id(Long user_id) {
     this.user_id = user_id;
   }
 
@@ -292,8 +300,30 @@ public class Context implements Serializable {
     this.event = event;
   }
 
+  public boolean isHold_status() {
+    return hold_status;
+  }
 
-  //
+  public boolean isFrozen() {
+    return frozen;
+  }
+
+  public Client getClient() {
+    return client;
+  }
+
+  public void setClient(Client client) {
+    this.client = client;
+  }
+
+  public LocalDate getFinal_stage_date() {
+    return final_stage_date;
+  }
+
+  public void setFinal_stage_date(LocalDate final_stage_date) {
+    this.final_stage_date = final_stage_date;
+  }
+//
   // Other methods
   //
 

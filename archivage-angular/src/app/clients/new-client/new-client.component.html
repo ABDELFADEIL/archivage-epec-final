@@ -8,10 +8,10 @@
             <label  class="col-form-label float-right">Nature de client </label>
             </div>
             <div class="col-sm-6">
-              <select class="form-control" name="client_nature_id" ngModel>
+              <select name="client_nature_id"  class="form-control"  ngModel>
                 <option value="">select...</option>
-                <option value="Personne physique">Personne physique</option>
-                <option value="personne morale">personne morale</option>
+                <option value="1">Personne physique</option>
+                <option value="2">personne morale</option>
               </select>
             </div>
 
@@ -24,7 +24,7 @@
             <label  class="col-form-label float-right">Nom</label>
           </div>
             <div class="col-sm-6">
-            <input type="text" class="form-control" name="client_name" value="name" ngModel>
+            <input type="text" class="form-control" name="client_name" ngModel>
             </div>
           </div>
         </div>
@@ -48,12 +48,10 @@
             <div class="col-sm-6">
               <select class="form-control" name="civility_id" ngModel>
                 <option value="">select...</option>
-                <option value="Monsieur">Monsieur</option>
-                <option value="Madame">Madame</option>
-                <option value="Messieurs">Messieurs</option>
-                <option value="Mesdames">Mesdames</option>
-                <option value="Messieurs, Mesdames">Messieurs, Mesdames</option>
-                <option value="Monsieur, Madame">Monsieur, Madame</option>
+                <option value="1">Monsieur</option>
+                <option value="2">Madame</option>
+                <option value="3">Demoiselle</option>
+
 
               </select>
             </div>
@@ -73,10 +71,10 @@
             <div class="col-md-6">
               <div class="form-group row">
               <div class="col-sm-4">
-                <label class="col-form-label float-right">Dept de naissance</label>
+                <label for="typeahead-format" class="col-form-label float-right">Dept de naissance</label>
               </div>
                 <div class="col-sm-6">
-                <input type="text" class="form-control" name="birth_dept" ngModel>
+                <input type="text" class="form-control" name="birth_dept" id="typeahead-format" [(ngModel)]="modelDep" [ngbTypeahead]="searchDep" ngModel />
                 </div>
               </div>
             </div>
@@ -101,7 +99,37 @@
             </div>
           </div>
         </div>
-            <div class="col-md-12">
+
+        <div class="col-md-6">
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label  class="col-form-label float-right" for="typeahead-template">Nature de classification</label>
+            </div>
+            <div class="col-sm-6">
+              <ng-template #rt let-r="result">
+                <ngb-highlight [result]="r.classification_nature_label"></ngb-highlight>
+              </ng-template>
+              <input class="form-control" name="classification_nature"  [inputFormatter]="formatter" id="typeahead-template" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" [resultTemplate]="rt"
+              />
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label  class="col-form-label float-right">Date de fin processus métier</label>
+            </div>
+            <div class="col-sm-6">
+              <input type="datetime-local" class="form-control" name="final_business_processing_date" ngModel>
+
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-12">
                 <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
                     <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
                   </div>

@@ -27,11 +27,8 @@ public class AccountServiceImpl implements AccountService {
     public Account createAccount(Account account) {
         String account_number = createNewAccountNumber();
         User user = userRepository.getAuthenticatedUser();
-        if (user==null){
-            user = userRepository.findByUID("aaa");
-        }
-        Account a = new Account( account.getAccount_id_type_code(),  account.getAccount_id_label(),  account_number,
-                account.getClient(), user);
+
+        Account a = new Account( account.getAccount_id_type_code(),  account.getAccount_id_label(),  account_number, account.getClient(), user.getUser_id());
         return accountRepository.createAccount(a);
     }
 

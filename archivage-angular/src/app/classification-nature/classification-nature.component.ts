@@ -12,7 +12,7 @@ import {UpdateClassificationNatureComponent} from './update-classification-natur
   styleUrls: ['./classification-nature.component.css']
 })
 export class ClassificationNatureComponent implements OnInit {
-  classements: ClassificationNature [];
+  classements: ClassificationNature [] = [];
   public page : number = 1;
   public size : number= 12;
   public currentSize : number;
@@ -38,6 +38,7 @@ export class ClassificationNatureComponent implements OnInit {
     subscribe(value => {
       this.classements= value;
     }, error => {
+
       console.log(error);
     })
   }

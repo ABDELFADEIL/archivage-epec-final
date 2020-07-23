@@ -3,6 +3,7 @@ package org.simplon.epec.archivage.exposition.document.rest;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.simplon.epec.archivage.application.document.DigitalDocumentService;
+import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
 import org.simplon.epec.archivage.domain.document.entity.Context;
 import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.infrastructure.context.repository.ContextJpaRepository;
@@ -41,13 +42,14 @@ public class DocumentResource {
     @PostMapping( value = "/create-doc-file", headers = {"content-type=multipart/mixed", "content-type=multipart/form-data"},
             consumes = {"multipart/form-data"})
     public List<DigitalDocument> createDocuments(@RequestPart(value = "files") List<MultipartFile>  files,
-                                                @RequestPart(value = "documents") DigitalDocument document) throws IOException, NoSuchAlgorithmException,
+                                                @RequestPart(value = "documents") DigitalDocument document,
+                                                 ClassificationNature classificationNature) throws IOException, NoSuchAlgorithmException,
             BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, InvalidKeyException
     {
                  List<DigitalDocument> digitalDocumentList = null;
                  if (files.size() > 0){
                    for (int i = 0; i < files.size(); i++){
-                       DigitalDocument doc = digitalDocumentService.createDocument(document, files.get(i));
+                       DigitalDocument doc = digitalDocumentService.createDocument(document, classificationNature, files.get(i));
                        digitalDocumentList.add(doc);
                    }
                  }

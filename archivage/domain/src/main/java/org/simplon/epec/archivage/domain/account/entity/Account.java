@@ -3,7 +3,6 @@ package org.simplon.epec.archivage.domain.account.entity;
 import org.apache.commons.lang3.RandomUtils;
 import org.simplon.epec.archivage.domain.client.entity.Client;
 import org.simplon.epec.archivage.domain.event.entity.Event;
-import org.simplon.epec.archivage.domain.user.entity.User;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -24,14 +23,23 @@ public class Account implements Serializable {
   private Client client;
   private Event event;
   private LocalDate creating_date;
-  private User user;
-    private String user_id;
+    private Long user_id;
 
-    public String getUser_id() {
+    public Account(String account_id_type_code, String account_id_label, String account_number, Client client, Long user_id) {
+      this.account_id_type_code = account_id_type_code;
+      this.account_id_label = account_id_label;
+      this.client = client;
+      this.account_id = RandomUtils.nextLong();
+      this.creating_date = LocalDate.now();
+      this.user_id = user_id;
+      this.account_number = account_number;
+    }
+
+    public Long getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(Long user_id) {
         this.user_id = user_id;
     }
     //private Set<DigitalDocument> digitalDocuments;
@@ -39,15 +47,14 @@ public class Account implements Serializable {
   //
   // Constructors
   //
-  public Account(String cc, String account_id_label, String account_number, Client client, User user) { };
 
-  public Account(String account_id_type_code, String account_id_label, Client client, User user) {
+  public Account(String account_id_type_code, String account_id_label, Client client, Long user_id) {
     this.account_id_type_code = account_id_type_code;
     this.account_id_label = account_id_label;
     this.client = client;
-    this.user = user;
     this.account_id = RandomUtils.nextLong();
     this.creating_date = LocalDate.now();
+    this.user_id = user_id;
   }
 
   public Account() {
@@ -176,13 +183,6 @@ public class Account implements Serializable {
     return creating_date;
   }
 
-  public User getUser() {
-    return user;
-  }
-
-  public void setUser(User user) {
-    this.user = user;
-  }
   //
   // Other methods
   //

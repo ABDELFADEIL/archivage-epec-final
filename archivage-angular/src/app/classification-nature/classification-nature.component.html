@@ -29,7 +29,7 @@
     <td style="cursor: pointer" (click)="openFormModal(c)"><i class="text-primary fa fa-edit"></i></td>
   </tr>
   </tbody>
-    <tbody *ngIf="classements.length == 0">
+    <tbody *ngIf="classements.length == 0 || !classements">
     <tr> <td colspan="6" class="alert alert-danger text-center" style="border-radius: 0"><div>Il n'a aucun elements!</div></td></tr>
     </tbody>
 </table>
