@@ -48,7 +48,7 @@ public class ExpositionApplication  extends SpringBootServletInitializer impleme
      */
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("//////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
+        //System.out.println("//////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
 
        // ClassificationNature c = classificationJpaNatureRepository.findById(4821085995791567000L).get();
        // System.out.println(c);

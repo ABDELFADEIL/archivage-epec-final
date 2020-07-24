@@ -8,6 +8,7 @@ import {NgbTypeahead} from '@ng-bootstrap/ng-bootstrap';
 import {Observable, Subject, merge} from 'rxjs';
 import {debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
 import {Client} from '../../models/client';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 
 
@@ -51,18 +52,53 @@ export class NewClientComponent implements OnInit {
   click$ = new Subject<string>();
 
   public classificationNatures: ClassificationNature [] = [];
-
+  public created: boolean;
+  public clientId: number;
 
   constructor(private clientService: ClientService, private router: Router, private  classificationNatureService: ClassificationNatureService) {
   }
 
   ngOnInit(): void {
+    this.initializeFormGroup();
     this.getClassificationNature();
   }
 
 
+    form :FormGroup = new FormGroup({
+      // client_id: new FormControl(null),
+      client_name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      client_first_name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      client_nature_id: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      civility_id: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      birth_date: new FormControl('', Validators.required),
+      birth_dept: new FormControl('', Validators.required),
+      siren_number: new FormControl(''),
+      siret_number: new FormControl(''),
+      files: new FormControl('', Validators.required),
+      final_business_processing_date: new FormControl('', Validators.required),
+      classification_nature: new FormControl(null, Validators.required)
+    });
 
-  onSubmit(form) {
+  initializeFormGroup() {
+    this.form.setValue({
+      client_name: '',
+      client_first_name: '',
+      client_nature_id: '',
+      civility_id: '',
+      birth_date: '',
+      birth_dept: '',
+      siren_number: '',
+      siret_number: '',
+      files: '',
+      final_business_processing_date: '',
+      classification_nature: ''
+    });
+  }
+
+
+  onSubmit() {
+    const form = this.form.value;
+    console.log(form)
      const formdata = new FormData();
     const cn: ClassificationNature = form.classification_nature;
     console.log(cn);
@@ -79,7 +115,9 @@ export class NewClientComponent implements OnInit {
     this.clientService.createClient(formdata).subscribe(data => {
       console.log("onSubmit méthode réussie");
       console.log(data);
-    //  this.router.navigateByUrl('')
+      this.created = true;
+      this.client = data[0].context.client;
+      console.log(this.client)
     }, error => {
       console.log(error);
 
@@ -97,7 +135,11 @@ export class NewClientComponent implements OnInit {
   }
 
   deleteAttachment(index) {
-    this.files.splice(index, 1)
+    this.files.splice(index, 1);
+    if (this.files.length === 0){
+      this.form.removeControl('files');
+      this.form.addControl('files', new FormControl('', Validators.required));
+    }
   }
 
 

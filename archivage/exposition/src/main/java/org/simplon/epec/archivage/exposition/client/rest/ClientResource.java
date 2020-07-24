@@ -14,9 +14,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -37,39 +43,41 @@ public class ClientResource {
         return clientService.createClient(client);
     }
 
-    // headers = {"content-type=multipart/form-data;boundary=----WebKitFormBoundaryOJAXpJeIgZ33GbTJ"},
-    // consumes = {"multipart/form-data;boundary=----WebKitFormBoundaryoHxquTVoEekJwWSy", "application/mixed;charset=UTF-8", MediaType.APPLICATION_OCTET_STREAM_VALUE},produces="applcation/json"
-    @PostMapping(value = "/new-client-with-docs", consumes = {"multipart/form-data;boundary=----WebKitFormBoundaryGU19yc6e19LFwvk2"})
-    public ResponseEntity<List<DigitalDocument>> createClientWithdocs(
+
+   @PostMapping(value = "/new-client-with-docs", consumes = {"multipart/form-data;boundary=----WebKitFormBoundaryGU19yc6e19LFwvk2"})
+    public List<DigitalDocument> createClientWithdocs(
             @RequestPart("client") String client,
              @RequestPart("classificationNature") String classificationNature,
             @RequestPart("final_business_processing_date") String final_business_processing_date,
-             @RequestPart("files") MultipartFile  [] files) throws IOException {
-        List<DigitalDocument> documentList = null;
+             @RequestPart("files") MultipartFile  [] files) throws IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException {
+        List<DigitalDocument> documentList = new ArrayList<DigitalDocument>();
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         Client client1 = objectMapper.readValue(client, Client.class);
         ClassificationNature classificationNature1 = objectMapper.readValue(classificationNature, ClassificationNature.class);
         String dateString = objectMapper.readValue(final_business_processing_date, String.class);
-        LocalDateTime FBPD =  LocalDateTime.parse(dateString);
-        LocalDate finalBusiness_ProcessingDate = LocalDate.from(FBPD);
-        try {
+        LocalDateTime FBPD=null;
+        LocalDate finalBusiness_ProcessingDate = null;
+        if(!dateString.isEmpty() || dateString.equals(null)){
+             //FBPD =  LocalDateTime.parse(dateString);
+            finalBusiness_ProcessingDate = LocalDate.parse(dateString).plusDays(1l);
+        }
+
             Client c = clientService.createClient(client1);
             DigitalDocument document = null;
             Context ctx = new Context(RandomUtils.nextLong(), null, classificationNature1, finalBusiness_ProcessingDate, null, c);
-            for (MultipartFile file: files) {
-                ctx.setMine_type(file.getContentType());
-                document = new DigitalDocument(file.getOriginalFilename(), file.getContentType().split("/")[1], null, ctx);
-                DigitalDocument doc = documentService.createDocument(document, classificationNature1, file);
-                documentList.add(doc);
 
+            if (files.length > 0) {
+                for (MultipartFile file: files) {
+                    ctx.setMine_type(file.getContentType());
+                    document = new DigitalDocument(file.getOriginalFilename(), file.getContentType().split("/")[1], null, ctx);
+                    DigitalDocument doc = documentService.createDocument(document, classificationNature1, file);
+                    documentList.add(doc);
+                }
             }
 
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity< List<DigitalDocument>>(HttpStatus.OK);
-    }
+            return documentList;
+         }
 
     @GetMapping("get-client-id")
     public Client findOneByCientId(@RequestParam(name = "clientID",  required = true) Long clientID) {

@@ -1,4 +1,5 @@
 org/simplon/epec/archivage/domain/user/entity/Role.class
+org/simplon/epec/archivage/domain/event/entity/Event.class
 org/simplon/epec/archivage/domain/user/repository/UserRepository.class
 org/simplon/epec/archivage/domain/event/repository/EventRepository.class
 org/simplon/epec/archivage/domain/account/repository/AccountRepository.class

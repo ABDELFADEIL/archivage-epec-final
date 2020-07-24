@@ -9,6 +9,7 @@ import org.simplon.epec.archivage.domain.event.entity.Event;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Class Context
@@ -23,7 +24,7 @@ public class Context implements Serializable {
   private long conserv_unit_id;
   private String mine_type;
   private LocalDate final_stage_date;
-  private LocalDate archiving_reference_date;
+  private LocalDateTime archiving_reference_date;
   private Contract contract;
   private Account account;
   private ClassificationNature classification_nature;
@@ -56,7 +57,7 @@ public class Context implements Serializable {
   {
     this.conserv_unit_id = conserv_unit_id;
     this.mine_type = mine_type;
-    this.archiving_reference_date = LocalDate.now();
+    this.archiving_reference_date = LocalDateTime.now();
     this.classification_nature = classification_nature;
     this.final_business_processing_date = final_business_processing_date;
     this.final_stage_date = final_stage_date;
@@ -128,7 +129,7 @@ public class Context implements Serializable {
    * Set the value of archiving_reference_date
    * @param newVar the new value of archiving_reference_date
    */
-  public void setArchiving_reference_date (LocalDate newVar) {
+  public void setArchiving_reference_date (LocalDateTime newVar) {
     archiving_reference_date = newVar;
   }
 
@@ -136,7 +137,7 @@ public class Context implements Serializable {
    * Get the value of archiving_reference_date
    * @return the value of archiving_reference_date
    */
-  public LocalDate getArchiving_reference_date () {
+  public LocalDateTime getArchiving_reference_date () {
     return archiving_reference_date;
   }
 
