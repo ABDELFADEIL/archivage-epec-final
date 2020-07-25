@@ -68,6 +68,7 @@ export class ClassificationNatureComponent implements OnInit {
     });
   }
 
+
   openFormModal(c) {
     console.log(c);
     this.classificationNature = c;

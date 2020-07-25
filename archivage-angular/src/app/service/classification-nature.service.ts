@@ -8,6 +8,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class ClassificationNatureService {
+  public classificationNature: ClassificationNature;
 
   constructor(private httpClient: HttpClient) { }
 

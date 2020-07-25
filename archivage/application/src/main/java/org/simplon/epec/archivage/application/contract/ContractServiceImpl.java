@@ -25,19 +25,15 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public Contract createContract(Contract contract) {
+        Contract c = null;
         try {
             String contract_number = createNewContractNumber();
             User user = userRepository.getAuthenticatedUser();
-            if (user==null){
-                user= userRepository.findByUID("aaa");
-            }
-            Contract c = new Contract( contract.getContract_id_type_code(),  contract.getContract_id_type_label(),
-                    contract.getClient());
-            return contractRepository.createContract(c);
+            c = new Contract( contract.getContract_id_type_code(),  contract.getContract_id_type_label(), contract.getClient());
         }catch (Exception e){
-
+            e.getStackTrace();
         }
-       return null;
+        return contractRepository.createContract(c);
     }
 
     @Override
