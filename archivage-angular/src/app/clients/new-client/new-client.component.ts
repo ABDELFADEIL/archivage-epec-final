@@ -36,14 +36,13 @@ export class NewClientComponent implements OnInit {
   public classificationNatures: ClassificationNature [] = [];
   public created: boolean;
   public clientId: number;
-  public classificationNature: ClassificationNature;
 
-  constructor(private clientService: ClientService, private router: Router, private  classificationNatureService: ClassificationNatureService) {
+
+  constructor(private clientService: ClientService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.initializeFormGroup();
-    this.getClassificationNature();
   }
 
 
@@ -58,8 +57,6 @@ export class NewClientComponent implements OnInit {
       siren_number: new FormControl(''),
       siret_number: new FormControl(''),
       files: new FormControl('', Validators.required),
-      final_business_processing_date: new FormControl('', Validators.required),
-      classification_nature: new FormControl(null, Validators.required)
     });
 
   initializeFormGroup() {
@@ -73,8 +70,6 @@ export class NewClientComponent implements OnInit {
       siren_number: '',
       siret_number: '',
       files: '',
-      final_business_processing_date: '',
-      classification_nature: ''
     });
   }
 
@@ -83,17 +78,11 @@ export class NewClientComponent implements OnInit {
     const form = this.form.value;
     console.log(form)
      const formdata = new FormData();
-    const cn: ClassificationNature = form.classification_nature;
-    this.classificationNatureService.classificationNature = cn;
-    console.log(cn);
     const client: Client = form;
-    const final_business_processing_date = form.final_business_processing_date;
     console.log(client);
     for (let file of this.files) {
       formdata.append("files", file);
     }
-    formdata.append('classificationNature', JSON.stringify(cn));
-    formdata.append('final_business_processing_date', JSON.stringify(final_business_processing_date));
     formdata.append('client', JSON.stringify(client));
     console.log(formdata)
     this.clientService.createClient(formdata).subscribe(data => {
@@ -128,13 +117,7 @@ export class NewClientComponent implements OnInit {
   }
 
 
-  getClassificationNature() {
-    this.classificationNatureService.getAll().subscribe(value => {
-      this.classificationNatures = value;
-    }, error => {
-      console.log(error);
-    })
-  }
+
 
   search = (text$: Observable<string>) =>
     text$.pipe(

@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.time.LocalDate;
 import java.util.Set;
 
-public interface ContractJpaRepository extends JpaRepository<Contract, Long> {
+public interface ContractJpaRepository extends JpaRepository<Contract, String> {
 
     @Query(value="select MAX(c.contract_number) from contract c group by c.contract_number order by c.contract_number desc limit 1", nativeQuery=true)
     public String findMaxContractNumber();
@@ -26,7 +26,7 @@ public interface ContractJpaRepository extends JpaRepository<Contract, Long> {
     @Query(value="select * from  contract where contract.event in (select id_event from  event where event_type=:status and event_date between :dateAfter and :dateBefor)", nativeQuery=true)
     Set<Contract> findContractsByEventStatusAndEventDateAfterAndDateBefor(@Param("status") String status, @Param("dateAfter") LocalDate dateAfter, @Param("dateBefor") LocalDate dateBefor);
 
-    public Contract findByClient(@Param("client_id")Long client_id);
+    public Contract findByClient(@Param("client_id")String client_id);
 
 
 }

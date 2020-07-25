@@ -126,7 +126,7 @@ public class DocumentResource {
             DigitalDocument document = new DigitalDocument();
 
             BigInteger idDoc = (BigInteger) doc[0];
-            document.setDocument_id(idDoc.longValue());
+            document.setDocument_id(String.valueOf(idDoc));
             document.setArchive_format((String) doc[1]);
             document.setFile_name((String) doc[2]);
             try {

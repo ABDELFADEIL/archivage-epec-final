@@ -3,6 +3,7 @@ package org.simplon.epec.archivage.exposition.client.rest;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.RandomUtils;
+import org.simplon.epec.archivage.application.classificationNature.ClassificationNatureService;
 import org.simplon.epec.archivage.application.client.ClientService;
 import org.simplon.epec.archivage.application.document.DigitalDocumentService;
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
@@ -20,22 +21,23 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 @RestController
 @RequestMapping("/api/clients")
+@CrossOrigin("*")
 public class ClientResource {
 
     private final transient ClientService clientService;
     private final transient DigitalDocumentService documentService;
+    private final transient ClassificationNatureService classificationNatureService;
 
-    public ClientResource(ClientService clientService, DigitalDocumentService documentService) {
+    public ClientResource(ClientService clientService, DigitalDocumentService documentService, ClassificationNatureService classificationNatureService) {
         this.clientService = clientService;
         this.documentService = documentService;
+        this.classificationNatureService = classificationNatureService;
     }
 
     @PostMapping("create-new-client")
@@ -46,32 +48,24 @@ public class ClientResource {
 
    @PostMapping(value = "/new-client-with-docs", consumes = {"multipart/form-data;boundary=----WebKitFormBoundaryGU19yc6e19LFwvk2"})
     public List<DigitalDocument> createClientWithdocs(
-            @RequestPart("client") String client,
-             @RequestPart("classificationNature") String classificationNature,
-            @RequestPart("final_business_processing_date") String final_business_processing_date,
-             @RequestPart("files") MultipartFile  [] files) throws IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException {
+             @RequestPart("client") String client,
+             @RequestPart("files") MultipartFile  [] files
+                                                      ) throws IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException {
+
         List<DigitalDocument> documentList = new ArrayList<DigitalDocument>();
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         Client client1 = objectMapper.readValue(client, Client.class);
-        ClassificationNature classificationNature1 = objectMapper.readValue(classificationNature, ClassificationNature.class);
-        String dateString = objectMapper.readValue(final_business_processing_date, String.class);
-        LocalDateTime FBPD=null;
-        LocalDate finalBusiness_ProcessingDate = null;
-        if(!dateString.isEmpty() || dateString.equals(null)){
-             //FBPD =  LocalDateTime.parse(dateString);
-            finalBusiness_ProcessingDate = LocalDate.parse(dateString).plusDays(1l);
-        }
-
+       ClassificationNature classificationNature = classificationNatureService.findByClassificationNatureCode(10);
             Client c = clientService.createClient(client1);
             DigitalDocument document = null;
-            Context ctx = new Context(RandomUtils.nextLong(), null, classificationNature1, finalBusiness_ProcessingDate, null, c);
+            Context ctx = new Context(RandomUtils.nextLong(), null, classificationNature, null, null, c);
 
             if (files.length > 0) {
                 for (MultipartFile file: files) {
                     ctx.setMine_type(file.getContentType());
                     document = new DigitalDocument(file.getOriginalFilename(), file.getContentType().split("/")[1], null, ctx);
-                    DigitalDocument doc = documentService.createDocument(document, classificationNature1, file);
+                    DigitalDocument doc = documentService.createDocument(document, classificationNature, file);
                     documentList.add(doc);
                 }
             }
@@ -79,8 +73,8 @@ public class ClientResource {
             return documentList;
          }
 
-    @GetMapping("get-client-id")
-    public Client findOneByCientId(@RequestParam(name = "clientID",  required = true) Long clientID) {
+    @GetMapping(value="get-client-id", produces = { "application/json;charset=UTF-8" }, consumes = {"application/json;charset=UTF-8" })
+    public Client findOneByCientId(@RequestParam(name = "clientID",  required = true) String clientID) {
         return clientService.findOneByCientId(clientID);
     }
 
@@ -100,8 +94,8 @@ public class ClientResource {
         clientService.removeClient(client);
     }
 
-    @GetMapping("/get-clients-name-mc")
-    public Set<Client> getClientsByNameContains(@RequestParam(name = "name", required = true) String name) {
+    @GetMapping(value="/get-clients-name-mc", produces =  {"application/json;charset=UTF-8" })
+    public Set<Client> getClientsByNameContains(@RequestParam(name = "name",required = true) String name) {
         return clientService.getClientsByNameContains(name);
     }
 

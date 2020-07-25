@@ -21,7 +21,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public Client findOneByCientId(Long clientID) {
+    public Client findOneByCientId(String clientID) {
         return clientJpaRepository.findById(clientID).get();
     }
 

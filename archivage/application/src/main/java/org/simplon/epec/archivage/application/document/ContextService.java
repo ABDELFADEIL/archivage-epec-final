@@ -5,5 +5,6 @@ import org.simplon.epec.archivage.domain.document.entity.Context;
 public interface ContextService {
 
     Context createContext(Context context);
+    Context saveContext(Context context);
 
 }

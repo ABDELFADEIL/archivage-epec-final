@@ -16,7 +16,7 @@ public class Contract implements Serializable {
   // Fields
   //
 
-  private Long contact_id;
+  private String contact_id;
   private String contract_id_type_code;
   private String contract_id_type_label;
   private Client client;
@@ -46,7 +46,7 @@ public class Contract implements Serializable {
   //
 
   public Contract(String contract_id_type_code, String contract_id_type_label, Client client) {
-    this.contact_id = RandomUtils.nextLong();
+    this.contact_id = RandomUtils.nextLong()+"";
     this.contract_id_type_code = contract_id_type_code;
     this.contract_id_type_label = contract_id_type_label;
     this.client = client;
@@ -58,7 +58,7 @@ public class Contract implements Serializable {
   // Accessor methods
   //
 
-  public Long getContact_id() {
+  public String getContact_id() {
     return contact_id;
   }
 
@@ -88,7 +88,7 @@ public class Contract implements Serializable {
 
 
 
-  public void setContact_id(Long contact_id) {
+  public void setContact_id(String contact_id) {
     this.contact_id = contact_id;
   }
 

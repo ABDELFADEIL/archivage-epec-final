@@ -46,18 +46,17 @@ public class DigitalDocumentServiceImpl implements DigitalDocumentService{
         byte[] data = multipartFile.getBytes();
         byte[] enryptedFile = crypterDocument.encrypt(data);
         // gestion le pérode d'archivage de doc
-        ClassificationNature nature = classificationNatureService.findByClassificationNatureCode(classificationNature.getClassification_nature_code());
 
         java.time.LocalDate final_stage_date = null;
         if (document.getContext().getFinal_business_processing_date()!=null){
-             final_stage_date = document.getContext().getFinal_business_processing_date().plusYears(nature.getDuration());
+             final_stage_date = document.getContext().getFinal_business_processing_date().plusYears(classificationNature.getDuration());
         }
 
         // paramètres le context de doc à archiver
         Long user_id = userService.getAuthentificatedUser().getUser_id();
         Context context = document.getContext();
         context.setFinal_stage_date(final_stage_date);
-        context.setClassification_nature(nature);
+        context.setClassification_nature(classificationNature);
         context.setUser_id(user_id);
          context = contextRepository.createContext(context);
         // création de l'objet digitalDocument pour archiver le doc avec toutes les infos obligatoires
@@ -94,5 +93,10 @@ public class DigitalDocumentServiceImpl implements DigitalDocumentService{
                });
          */
         return digitalDocumentRepository.getAllDocs(pageable);
+    }
+
+    @Override
+    public DigitalDocument savedoc(DigitalDocument doc) {
+        return digitalDocumentRepository.saveDoc(doc);
     }
 }

@@ -17,4 +17,9 @@ public class ContextRepositoryImpl implements ContextRepository {
     public Context createContext(Context context) {
         return contextJpaRepository.save(context);
     }
+
+    @Override
+    public Context saveContext(Context context) {
+        return contextJpaRepository.save(context);
+    }
 }

@@ -3,7 +3,9 @@ package org.simplon.epec.archivage.exposition.contract.rest;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.RandomUtils;
+import org.simplon.epec.archivage.application.client.ClientService;
 import org.simplon.epec.archivage.application.contract.ContractService;
+import org.simplon.epec.archivage.application.document.DigitalDocumentService;
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
 import org.simplon.epec.archivage.domain.client.entity.Client;
 import org.simplon.epec.archivage.domain.contract.entity.Contract;
@@ -13,6 +15,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,10 +31,14 @@ import java.util.Set;
 @RequestMapping("/api/contracts")
 public class ContractResource {
 
-    private final ContractService contractService;
+    private final transient ContractService contractService;
+    private final transient DigitalDocumentService documentService;
+    private final transient ClientService clientService;
 
-    public ContractResource(ContractService contractService) {
+    public ContractResource(ContractService contractService, DigitalDocumentService documentService, ClientService clientService) {
         this.contractService = contractService;
+        this.documentService = documentService;
+        this.clientService = clientService;
     }
 
 
@@ -40,43 +52,49 @@ public class ContractResource {
         return contractService.findContractByEventStatusEventDateBeforAndDateAfter(status, dateAfter, dateBefor);
     }
 
-    @PostMapping("/new-contract-with-docs")
-    public Contract createContract(
-                                    @RequestPart("contract") Contract contract,
+    @PostMapping(value = "/new-contract-with-docs", consumes = {"multipart/form-data;boundary=----WebKitFormBoundaryGU19yc6e19LFwvk2"})
+    public List<DigitalDocument> createContract(
+                                    @RequestPart("contract") String contract,
+                                    @RequestPart("client") String client,
                                     @RequestPart("classificationNature") String classificationNature,
                                     @RequestPart("final_business_processing_date") String final_business_processing_date,
                                     @RequestPart("files") MultipartFile[] files
-
-                                   ) {
+                                   ) throws IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException {
 
         List<DigitalDocument> documentList = new ArrayList<DigitalDocument>();
+
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        Client client1 = objectMapper.readValue(client, Client.class);
+
+        Contract contract1 = objectMapper.readValue(contract, Contract.class);
+        //Client c = contract1.getClient();
+        // Client c = contract1.getClient();
+        Client c = objectMapper.readValue(client, Client.class);
         ClassificationNature classificationNature1 = objectMapper.readValue(classificationNature, ClassificationNature.class);
         String dateString = objectMapper.readValue(final_business_processing_date, String.class);
+
         LocalDateTime FBPD=null;
         LocalDate finalBusiness_ProcessingDate = null;
         if(!dateString.isEmpty() || dateString.equals(null)){
             //FBPD =  LocalDateTime.parse(dateString);
             finalBusiness_ProcessingDate = LocalDate.parse(dateString).plusDays(1l);
         }
-
-        Client c = clientService.createClient(client1);
+        Contract contract2 = contractService.createContract(new Contract(contract1.getContract_id_type_code(), contract1.getContract_id_type_label(), c));
         DigitalDocument document = null;
-        Context ctx = new Context(RandomUtils.nextLong(), null, classificationNature1, finalBusiness_ProcessingDate, null, c);
 
         if (files.length > 0) {
             for (MultipartFile file: files) {
+                Context ctx = new Context(RandomUtils.nextLong(), null, classificationNature1, finalBusiness_ProcessingDate, null, c);
+                ctx.setContract(contract2);
                 ctx.setMine_type(file.getContentType());
                 document = new DigitalDocument(file.getOriginalFilename(), file.getContentType().split("/")[1], null, ctx);
                 DigitalDocument doc = documentService.createDocument(document, classificationNature1, file);
+               // documentService.savedoc(doc);
                 documentList.add(doc);
             }
         }
-
-        return contractService.createContract(contract);
-                                      }
+        return documentList;
+    }
 
     @PostMapping("/update-contract")
     public Contract updateContract(@RequestBody  Contract contract) {
@@ -85,7 +103,7 @@ public class ContractResource {
 
 
     @GetMapping("/get-contract-by-client-id")
-    public Contract getAccountByCientId(@RequestParam("clientID") Long clientID) {
+    public Contract getAccountByCientId(@RequestParam("clientID") String clientID) {
         return contractService.getContractByCientId(clientID);
     }
 

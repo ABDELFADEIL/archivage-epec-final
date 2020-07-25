@@ -20,7 +20,7 @@ public class Context implements Serializable {
   // Fields
   //
 
-  private Long context_id;
+  private String context_id;
   private long conserv_unit_id;
   private String mine_type;
   private LocalDate final_stage_date;
@@ -62,7 +62,7 @@ public class Context implements Serializable {
     this.final_business_processing_date = final_business_processing_date;
     this.final_stage_date = final_stage_date;
     this.client = client;
-    this.context_id = RandomUtils.nextLong();
+    this.context_id = RandomUtils.nextLong()+"";
   }
   //
   // Methods
@@ -77,7 +77,7 @@ public class Context implements Serializable {
    * Set the value of context_id
    * @param newVar the new value of context_id
    */
-  public void setContext_id (Long newVar) {
+  public void setContext_id (String newVar) {
     context_id = newVar;
   }
 
@@ -86,7 +86,7 @@ public class Context implements Serializable {
    * Get the value of context_id
    * @return the value of context_id
    */
-  public Long getContext_id () {
+  public String getContext_id () {
     return context_id;
   }
 

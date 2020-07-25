@@ -29,7 +29,7 @@ public class ContractRepositoryImpl implements ContractRepository {
     }
 
     @Override
-    public Contract getContractByCientId(Long clientID) {
+    public Contract getContractByCientId(String clientID) {
         return contractJpaRepository.findByClient(clientID);
     }
 
@@ -73,5 +73,10 @@ public class ContractRepositoryImpl implements ContractRepository {
     public Contract createEvent(Contract contract, Event event) {
          eventRepository.createEventContract(contract, event);
          return contractJpaRepository.findByContract_number(contract.getContract_number());
+    }
+
+    @Override
+    public Contract findById(String id) {
+        return contractJpaRepository.findById(id).get();
     }
 }

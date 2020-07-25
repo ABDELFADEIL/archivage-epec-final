@@ -13,7 +13,7 @@ public class DigitalDocument implements Serializable {
   // Fields
   //
 
-  private Long document_id;
+  private String document_id;
   private String file_name;
   private String archive_format;
   private byte [] encoding_doc;
@@ -24,7 +24,7 @@ public class DigitalDocument implements Serializable {
   public DigitalDocument () { };
 
   public DigitalDocument(String file_name, String archive_format, byte [] encoding_doc, Context context) {
-    this.document_id = RandomUtils.nextLong();
+    this.document_id = RandomUtils.nextLong()+"";
     this.file_name = file_name;
     this.archive_format = archive_format;
     this.encoding_doc = encoding_doc;
@@ -40,7 +40,7 @@ public class DigitalDocument implements Serializable {
   // Accessor methods
   //
 
-  public Long getDocument_id() {
+  public String getDocument_id() {
     return document_id;
   }
 
@@ -60,7 +60,7 @@ public class DigitalDocument implements Serializable {
     return context;
   }
 
-  public void setDocument_id(Long document_id) {
+  public void setDocument_id(String document_id) {
     this.document_id = document_id;
   }
 

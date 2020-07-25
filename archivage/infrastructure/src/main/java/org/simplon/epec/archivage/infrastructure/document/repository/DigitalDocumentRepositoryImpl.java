@@ -35,19 +35,19 @@ public class DigitalDocumentRepositoryImpl implements DigitalDocumentRepository 
     }
 
     @Override
-    public DigitalDocument getDocById(Long docID) {
+    public DigitalDocument getDocById(String docID) {
         return digitalDocumentJpaRepository.findById(docID).get();
     }
 
     @Override
-    public DigitalDocument updateContext(Long docID, Context context) {
+    public DigitalDocument updateContext(String docID, Context context) {
        DigitalDocument document = digitalDocumentJpaRepository.findById(docID).get();
-      document.setContext(context);
+       document.setContext(context);
         return null; //digitalDocumentJpaRepository.save(document);
     }
 
     @Override
-    public DigitalDocument saveDocFileWhithId(Long docID, MultipartFile multipartFile) throws IOException, NoSuchAlgorithmException, BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, InvalidKeyException {
+    public DigitalDocument saveDocFileWhithId(String docID, MultipartFile multipartFile) throws IOException, NoSuchAlgorithmException, BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, InvalidKeyException {
         CrypterDocument crypterDocument = new CrypterDocument();
         byte[] data = multipartFile.getBytes();
         byte[] enryptedFile = crypterDocument.encrypt(data);
@@ -59,5 +59,10 @@ public class DigitalDocumentRepositoryImpl implements DigitalDocumentRepository 
     @Override
     public Page<DigitalDocument> getAllDocs(Pageable pageable) {
         return  digitalDocumentJpaRepository.getAllDocs(pageable);
+    }
+
+    @Override
+    public DigitalDocument saveDoc(DigitalDocument doc) {
+        return digitalDocumentJpaRepository.save(doc);
     }
 }

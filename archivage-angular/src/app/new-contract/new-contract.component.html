@@ -84,7 +84,7 @@
 
   <div *ngIf="created" class="container spacer">
     <div >
-      <h2 class="text-center text-lg-center text-primary" style="font-weight: normal">Création d'un nouveau compte avec succès!</h2>
+      <h2 class="text-center text-lg-center text-primary" style="font-weight: normal">Création d'un nouveau contract avec succès!</h2>
       <div  *ngIf="client">
         <div >
           <p><span class="h6">Nom: </span> {{client.client_name}}</p>
@@ -97,9 +97,9 @@
       <div class=" spacer">
 
         <div class="col-md-12 text-center mr-auto">
-          <button type="submit" class="btn btn-l col-sm-5" [routerLink]="'/new-contract'" style="background: #dee6f9;"> Nouveau contrat</button>
+          <button type="submit" class="btn btn-l col-sm-5" [routerLink]="'/home'" style="background: #dee6f9;"> Allez à la page d'accuil</button>
 
-          <button  type="submit" class="btn btn-l col-sm-5" [routerLink]="'/new-account'" style="background: #dee6f9;margin-left:10px"> Nouveau compte</button>
+          <button  type="submit" class="btn btn-l col-sm-5" [routerLink]="'/accounts'" style="background: #dee6f9;margin-left:10px">Gestion comptes</button>
         </div>
       </div>
     </div>

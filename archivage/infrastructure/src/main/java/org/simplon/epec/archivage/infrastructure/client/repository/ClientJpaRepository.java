@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Set;
 
-public interface ClientJpaRepository extends JpaRepository<Client, Long> {
+public interface ClientJpaRepository extends JpaRepository<Client, String> {
 
 
     @Query("select client from Client client where client.client_number=:client_number")

@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 import static org.hibernate.jpa.QueryHints.HINT_FETCH_SIZE;
 import static org.hibernate.jpa.QueryHints.HINT_PASS_DISTINCT_THROUGH;
 
-public interface DigitalDocumentJpaRepository extends JpaRepository<DigitalDocument, Long> {
+public interface DigitalDocumentJpaRepository extends JpaRepository<DigitalDocument, String> {
 
 
     @Query(value="select doc from DigitalDocument doc")

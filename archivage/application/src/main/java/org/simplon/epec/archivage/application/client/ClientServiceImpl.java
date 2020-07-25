@@ -31,8 +31,7 @@ public class ClientServiceImpl implements ClientService {
         User user = userRepository.getAuthenticatedUser();
         int clientNatureId = client.getClient_nature_id();
         int civilityId = client.getCivility_id();
-        Client c = new Client( clientNatureId,  client_number,  client.getClient_name(),
-                client.getClient_first_name(), civilityId, client.getBirth_date(),
+        Client c = new Client( clientNatureId,  client_number,  client.getClient_name(), client.getClient_first_name(), civilityId, client.getBirth_date(),
                 client.getBirth_dept(), client.getSiren_number(), client.getSiret_number(), user.getUser_id());
         return clientRepository.createClient(c);
     }
@@ -43,7 +42,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client findOneByCientId(Long clientID) {
+    public Client findOneByCientId(String clientID) {
         return clientRepository.findOneByCientId(clientID);
     }
 

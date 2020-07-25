@@ -9,7 +9,7 @@ import java.util.Set;
 public interface ContractRepository {
 
     Contract createContract(Contract contract);
-    Contract getContractByCientId(Long clientID);
+    Contract getContractByCientId(String clientID);
     Contract getContractByNumber(String contract_number);
     Contract UpdateContract(Contract contract);
     void removeContract(Contract contract);
@@ -18,5 +18,5 @@ public interface ContractRepository {
     String getMaxContractNumber();
     Set<Contract> findContractByEventStatusEventDateBeforAndDateAfter(String status, LocalDate dateAfter, LocalDate dateBefor);
     Contract createEvent(Contract contract, Event event);
-
+    Contract findById(String id);
 }

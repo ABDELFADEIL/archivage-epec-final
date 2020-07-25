@@ -14,7 +14,7 @@ public class Client implements Serializable {
   // Fields
   //
 
-  private Long client_id;
+  private String client_id;
   private String client_number;
   private int client_nature_id;
   private String client_name;
@@ -22,8 +22,8 @@ public class Client implements Serializable {
   private int civility_id;
   private Date birth_date;
   private String birth_dept;
-  private long siren_number;
-  private long siret_number;
+  private String siren_number;
+  private String siret_number;
   private Long user_id;
 
 
@@ -38,8 +38,8 @@ public class Client implements Serializable {
 
   public Client(int client_nature_id, String client_number, String client_name,
                 String client_first_name, int civility_id, Date birth_date,
-                String birth_dept, long siren_number, long siret_number, Long user_id) {
-    this.client_id = RandomUtils.nextLong();
+                String birth_dept, String siren_number, String siret_number, Long user_id) {
+    this.client_id = RandomUtils.nextLong()+"";
     this.client_nature_id = client_nature_id;
     this.client_number = client_number;
     this.client_name = client_name;
@@ -57,7 +57,7 @@ public class Client implements Serializable {
   // Accessor methods
   //
 
-  public Long getClient_id() {
+  public String getClient_id() {
     return client_id;
   }
 
@@ -89,11 +89,11 @@ public class Client implements Serializable {
     return birth_dept;
   }
 
-  public long getSiren_number() {
+  public String getSiren_number() {
     return siren_number;
   }
 
-  public long getSiret_number() {
+  public String getSiret_number() {
     return siret_number;
   }
 
@@ -101,7 +101,7 @@ public class Client implements Serializable {
     return user_id;
   }
 
-  public void setClient_id(Long client_id) {
+  public void setClient_id(String client_id) {
     this.client_id = client_id;
   }
 
@@ -133,11 +133,11 @@ public class Client implements Serializable {
     this.birth_dept = birth_dept;
   }
 
-  public void setSiren_number(long siren_number) {
+  public void setSiren_number(String siren_number) {
     this.siren_number = siren_number;
   }
 
-  public void setSiret_number(long siret_number) {
+  public void setSiret_number(String siret_number) {
     this.siret_number = siret_number;
   }
 
@@ -145,7 +145,7 @@ public class Client implements Serializable {
     this.user_id = user_id;
   }
 
-  //
+//
   // Other methods
   //
 

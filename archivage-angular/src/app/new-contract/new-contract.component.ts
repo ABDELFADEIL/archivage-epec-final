@@ -44,7 +44,10 @@ export class NewContractComponent implements OnInit {
     const formdata = new FormData();
     const cn: ClassificationNature = form.classification_nature;
     console.log(cn);
-    const contract: Contract = form;
+    let contract: Contract = new Contract();
+    contract.contract_id_type_label = form.contract_id_type_label;
+    contract.contract_id_type_code = form.contract_id_type_code;
+    // contract.client = this.clientService.client;
     const final_business_processing_date = form.final_business_processing_date;
     console.log(contract);
     for (let file of this.files) {
@@ -53,23 +56,26 @@ export class NewContractComponent implements OnInit {
     formdata.append('classificationNature', JSON.stringify(cn));
     formdata.append('final_business_processing_date', JSON.stringify(final_business_processing_date));
     formdata.append('contract', JSON.stringify(contract));
+    formdata.append('client', JSON.stringify(this.clientService.client));
     console.log(form);
     console.log(this.clientService.client);
-    /*
+    console.log(contract);
+
     this.contractService.createContract(formdata).subscribe(data => {
       console.log("onSubmit méthode réussie");
+      this.created = true
       console.log(data);
       this.created = true;
       this.client = data[0].context.client;
       this.contract = data[0].context.contract;
-      console.log(this.contract)
-      console.log(this.client)
+      this.final_business_processing_date =  data[0].context.final_business_processing_date;
+     // console.log(this.contract)
+
     }, error => {
       console.log(error);
 
     })
 
-     */
 
   }
 
@@ -108,8 +114,9 @@ export class NewContractComponent implements OnInit {
   uploadFile(event) {
     for (let index = 0; index < event.length; index++) {
       const element = event[index];
-      this.files.push(element.name)
+      this.files.push(element)
     }
+    console.log(this.files);
   }
 
   deleteAttachment(index) {

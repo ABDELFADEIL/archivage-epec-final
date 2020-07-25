@@ -25,19 +25,20 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public Contract createContract(Contract contract) {
-        Contract c = null;
         try {
             String contract_number = createNewContractNumber();
             User user = userRepository.getAuthenticatedUser();
-            c = new Contract( contract.getContract_id_type_code(),  contract.getContract_id_type_label(), contract.getClient());
+            contract.setContract_number(contract_number);
+            contract.setUser_id(user.getUser_id());
+            return contractRepository.createContract(contract);
         }catch (Exception e){
             e.getStackTrace();
+            return null;
         }
-        return contractRepository.createContract(c);
     }
 
     @Override
-    public Contract getContractByCientId(Long clientID) {
+    public Contract getContractByCientId(String clientID) {
         return contractRepository.getContractByCientId(clientID);
     }
 
@@ -78,14 +79,20 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public String createNewContractNumber() {
-
+        System.out.println("contract_number_pre///////////////////////////////*******************************************************************************");
         String contract_number_pre = getMaxContractNumber();
-        if (contract_number_pre==null){
-            contract_number_pre= "00000000000";
-        }
+        System.out.println(contract_number_pre);
         long contract_number =  Long.parseLong(contract_number_pre);
+        System.out.println(contract_number);
         long new_contract_number = contract_number + 1;
+        System.out.println(new_contract_number);
         String contract_number_nex = "00000000000".substring(String.valueOf(new_contract_number).length()+1)+new_contract_number;
+        System.out.println(contract_number_nex);
         return contract_number_nex;
+    }
+
+    @Override
+    public Contract findById(String id) {
+        return contractRepository.findById(id);
     }
 }

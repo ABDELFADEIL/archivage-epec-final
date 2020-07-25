@@ -19,4 +19,9 @@ public class ContextServiceImpl implements ContextService {
     public Context createContext(Context context) {
         return contextRepository.createContext(context);
     }
+
+    @Override
+    public Context saveContext(Context context) {
+        return contextRepository.saveContext(context);
+    }
 }
