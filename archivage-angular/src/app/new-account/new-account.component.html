@@ -1,110 +1,82 @@
 <div class="container" style="padding: 10px;">
+  <div *ngIf="!created">
+    <form class="spacer" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row form">
 
-  <form class="spacer"  #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label  class="col-form-label float-right">Libellé de type account</label>
+            </div>
+            <div class="col-sm-6">
+              <select formControlName="account_id_type_code"  class="form-control">
+                <option value="">select...</option>
+                <option value="CCP">Compte courant (CCP)</option>
+                <option value="LIVRET A">LIVRET A</option>
+                <option value="LIVRET Jeune">LIVRET Jeune</option>
+                <option value="LEP">Livret d’épargne populaire (LEP)</option>
+                <option value="PEL">Plan d’épargne logement (PEL)</option>
+                <option value="PERP">Plan d’épargne retraite (PERP)</option>
+                <option value="LDDS">Livret de développement durable et solidaire (LDDS)</option>
+              </select>
+            </div>
 
-    <div class="row form">
-
-      <div class="col-md-6">
-        <div class="form-group row">
-          <div class="col-sm-4">
-            <label  class="col-form-label float-right">Nom Article Nom </label>
           </div>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" name="name" ngModel>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label  class="col-form-label float-right" for="typeahead-template">Nature de classification</label>
+            </div>
+            <div class="col-sm-6">
+              <ng-template #rt let-r="result">
+                <ngb-highlight [result]="r.classification_nature_label"></ngb-highlight>
+              </ng-template>
+              <input class="form-control" formControlName="classification_nature" [inputFormatter]="formatter" id="typeahead-template" type="text" [ngbTypeahead]="search" [resultTemplate]="rt" />
+            </div>
           </div>
+        </div>
+
+
+        <div class="col-md-12">
+          <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
+            <input hidden formControlName="files" type="file" #fileInput (change)="uploadFile($event.target.files)">
+          </div>
+          <div  class="files-list" *ngFor="let file of files;let i=index">
+            <p>{{ file.name }}</p>
+            <button class="delete-file" (click)="deleteAttachment(i)">
+              <img src="../../../assets/Recycle_Bin_Full.png">
+            </button>
+          </div>
+        </div>
+        <div class="col-md-12 text-center">
+          <button type="submit" class="btn btn-l col-md-6" style="background: #dee6f9;" [disabled]="form.invalid"> Enoyer</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="created" class="container spacer">
+    <div >
+      <h2 class="text-center text-lg-center text-primary" style="font-weight: normal">Création d'un nouveau compte avec succès!</h2>
+      <div  *ngIf="client">
+        <div >
+          <p><span class="h6">Nom: </span> {{client.client_name}}</p>
+          <p><span class="h6">Prénom: </span> {{client.client_first_name}}</p>
+          <p><span class="h6">Type de compte: </span> {{account.account_id_type_label}}</p>
+          <p><span class="h6">Numéro compte: </span> {{ account.account_number }}</p>
+        </div>
+      </div>
+      <div class=" spacer">
+
+        <div class="col-md-12 text-center mr-auto">
+          <button type="submit" class="btn btn-l col-sm-5" [routerLink]="'/home'" style="background: #dee6f9;"> Allez à la page d'accuil</button>
 
         </div>
       </div>
-
-      <div class="col-md-6">
-        <div class="form-group row">
-          <div class="col-sm-4">
-            <label  class="col-form-label float-right">Description Description</label>
-          </div>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" name="description" ngModel>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group row">
-          <div class="col-sm-4">
-            <label class="col-form-label float-right">Prix Prix </label>
-          </div>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" name="prix" ngModel>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group row">
-          <div class="col-sm-4">
-            <label class="col-form-label float-right">Quantity Quantity</label>
-          </div>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" name="quantity" ngModel>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group row">
-          <div class="col-sm-4">
-            <label class="col-form-label float-right">Prix Prix </label>
-          </div>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" name="prix" ngModel>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group row">
-          <div class="col-sm-4">
-            <label class="col-form-label float-right">Quantity Quantity</label>
-          </div>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" name="quantity" ngModel>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group row">
-          <div class="col-sm-4">
-            <label class="col-form-label float-right">Prix Prix </label>
-          </div>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" name="prix" ngModel>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group row">
-          <div class="col-sm-4">
-            <label class="col-form-label float-right">Quantity Quantity</label>
-          </div>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" name="quantity" ngModel>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
-          <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
-        </div>
-        <div  class="files-list" *ngFor="let file of files;let i=index">
-          <p>{{ file }}</p>
-          <button class="delete-file" (click)="deleteAttachment(i)">
-            <img src="../../../assets/Recycle_Bin_Full.png">
-          </button>
-        </div>
-      </div>
-      <div class="col-md-12 text-center">
-        <button type="submit" class="btn btn-l col-md-6" style="background: #dee6f9;"> Enoyer</button>
-      </div>
-
     </div>
-  </form>
+  </div>
 
+</div>

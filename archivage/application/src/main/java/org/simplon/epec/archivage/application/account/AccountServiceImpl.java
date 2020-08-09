@@ -1,8 +1,8 @@
 package org.simplon.epec.archivage.application.account;
 
+import org.simplon.epec.archivage.application.user.UserService;
 import org.simplon.epec.archivage.domain.account.entity.Account;
 import org.simplon.epec.archivage.domain.account.repository.AccountRepository;
-import org.simplon.epec.archivage.domain.user.entity.User;
 import org.simplon.epec.archivage.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,25 +15,26 @@ import java.util.Set;
 public class AccountServiceImpl implements AccountService {
 
     private final transient AccountRepository accountRepository;
-    private final transient UserRepository userRepository;
+    private final transient UserService userService;
 
-    public AccountServiceImpl(AccountRepository accountRepository, UserRepository userRepository) {
+    public AccountServiceImpl(AccountRepository accountRepository, UserRepository userRepository, UserService userService) {
         this.accountRepository = accountRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
 
     @Override
     public Account createAccount(Account account) {
         String account_number = createNewAccountNumber();
-        User user = userRepository.getAuthenticatedUser();
+        // paramètres le context de doc à archiver
+        Long user_id = userService.getAuthentificatedUser().getUser_id();
 
-        Account a = new Account( account.getAccount_id_type_code(),  account.getAccount_id_label(),  account_number, account.getClient(), user.getUser_id());
+        Account a = new Account( account.getAccount_id_type_code(),  account.getAccount_id_type_label(),  account_number, account.getClient(), user_id);
         return accountRepository.createAccount(a);
     }
 
     @Override
-    public Account getAccountByCientId(Long clientID) {
+    public Account getAccountByCientId(String clientID) {
         return accountRepository.getAccountByCientId(clientID);
     }
 

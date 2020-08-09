@@ -10,8 +10,8 @@ export class AccountService {
   constructor(private httpClient : HttpClient) { }
 
 
-  createContract(form: FormData) {
-    return this.httpClient.post(environment.apiUrl+"/api/contracts/new-contract-with-docs", form);
+  createAccount(form: FormData) {
+    return this.httpClient.post(environment.apiUrl+"/api/accounts/create-new-account-with-docs", form);
   }
 
 }

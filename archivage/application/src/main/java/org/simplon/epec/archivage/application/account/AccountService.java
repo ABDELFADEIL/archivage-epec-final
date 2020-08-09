@@ -8,7 +8,7 @@ import java.util.Set;
 public interface AccountService {
 
     public Account createAccount(Account account);
-    public Account getAccountByCientId(Long clientID);
+    public Account getAccountByCientId(String clientID);
     public Account getAccountByNumber(String account_number);
     public Account UpdateAccount(Account account);
     public void removeAccount(Account account);

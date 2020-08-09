@@ -48,8 +48,8 @@ export class NewClientComponent implements OnInit {
 
     form :FormGroup = new FormGroup({
       // client_id: new FormControl(null),
-      client_name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-      client_first_name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      client_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      client_first_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
       client_nature_id: new FormControl('', [Validators.required, Validators.minLength(1)]),
       civility_id: new FormControl('', [Validators.required, Validators.minLength(1)]),
       birth_date: new FormControl('', Validators.required),

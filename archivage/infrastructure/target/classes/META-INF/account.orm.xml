@@ -17,8 +17,8 @@
             <basic name="account_id_type_code">
                 <column name="account_id_type_code" />
             </basic>
-            <basic name="account_id_label">
-                <column name="account_id_label" />
+            <basic name="account_id_type_label">
+                <column name="account_id_type_label" />
             </basic>
             <basic name="creating_date">
                 <column name="creating_date" />
@@ -33,7 +33,7 @@
                         target-entity="org.simplon.epec.archivage.domain.client.entity.Client">
                 <join-column name="client" nullable="false" updatable="false"/>
                 <cascade>
-                    <cascade-all />
+                    <cascade-detach />
                 </cascade>
             </many-to-one>
             <one-to-one name="event" fetch="LAZY"

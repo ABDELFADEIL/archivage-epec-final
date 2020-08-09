@@ -18,7 +18,6 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -57,7 +56,7 @@ public class DocumentResource {
     }
 
     @GetMapping( value= {"/get-doc-by-id"}, produces = { "application/json;charset=UTF-8" }, consumes = {"application/json;charset=UTF-8" })
-      public  DigitalDocument getDocById(@RequestParam("docId") Long docID){
+      public  DigitalDocument getDocById(@RequestParam("docId") String docID){
         return digitalDocumentService.getDocById(docID);
     }
 
@@ -80,14 +79,14 @@ public class DocumentResource {
     }
 
     @PutMapping( value = {"/update-doc-context-by-doc-id"} , produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    DigitalDocument updateContext(@RequestParam("docId") Long docID, @RequestBody(required = true) Context context) {
+    DigitalDocument updateContext(@RequestParam("docId") String docID, @RequestBody(required = true) Context context) {
         return digitalDocumentService.updateContext(docID, context);
     }
 
 
 
     @PostMapping( value = "/save-digital-doc-by-id", produces = { "application/json;charset=UTF-8" }, consumes = {"application/json;charset=UTF-8" })
-    DigitalDocument saveDocFileWhithId(Long docID, MultipartFile multipartFile) throws IOException, NoSuchAlgorithmException,
+    DigitalDocument saveDocFileWhithId(String docID, MultipartFile multipartFile) throws IOException, NoSuchAlgorithmException,
             BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, InvalidKeyException
     {
         return digitalDocumentService.saveDocFileWhithId(docID, multipartFile);
@@ -113,19 +112,18 @@ public class DocumentResource {
         // document_id, archive_format,  file_name, context.context_id,
         // context.archiving_reference_date, context.account.account_id_label, context.contract.contract_id_label
         digitalDocumentJpaRepository.getAllMetadata().forEach(doc -> {
-            Long id = 0L;
-            BigInteger object = (BigInteger) doc[3];
-            id = object.longValue();
+
+            String id = (String) doc[3];
             try {
                // idsontext.add(id);
             }catch (Exception e){
                e.getStackTrace();
             }
 
-            System.out.println("BigInteger "+id);
+            System.out.println("string "+id);
             DigitalDocument document = new DigitalDocument();
 
-            BigInteger idDoc = (BigInteger) doc[0];
+            String idDoc = (String) doc[0];
             document.setDocument_id(String.valueOf(idDoc));
             document.setArchive_format((String) doc[1]);
             document.setFile_name((String) doc[2]);
@@ -138,11 +136,8 @@ public class DocumentResource {
             }
 
             documents.add(document);
-            System.out.println("============= cannot cast "+ object.getClass());
+            System.out.println("============= cannot cast "+ id.getClass());
         });
-
-
-
 
         return documents;
     }

@@ -16,23 +16,23 @@ public class Account implements Serializable {
   // Fields
   //
 
-  private Long account_id;
+  private String account_id;
   private String account_id_type_code;
-  private String account_id_label;
+  private String account_id_type_label;
   private String account_number;
   private Client client;
   private Event event;
   private LocalDate creating_date;
     private Long user_id;
 
-    public Account(String account_id_type_code, String account_id_label, String account_number, Client client, Long user_id) {
+    public Account(String account_id_type_code, String account_id_type_label, String account_number, Client client, Long user_id) {
       this.account_id_type_code = account_id_type_code;
-      this.account_id_label = account_id_label;
+      this.account_id_type_label = account_id_type_label;
       this.client = client;
-      this.account_id = RandomUtils.nextLong();
+      this.account_id = RandomUtils.nextLong()+"";
       this.creating_date = LocalDate.now();
-      this.user_id = user_id;
       this.account_number = account_number;
+      this.user_id = user_id;
     }
 
     public Long getUser_id() {
@@ -48,11 +48,11 @@ public class Account implements Serializable {
   // Constructors
   //
 
-  public Account(String account_id_type_code, String account_id_label, Client client, Long user_id) {
+  public Account(String account_id_type_code, String account_id_type_label, Client client, Long user_id) {
     this.account_id_type_code = account_id_type_code;
-    this.account_id_label = account_id_label;
+    this.account_id_type_label = account_id_type_label;
     this.client = client;
-    this.account_id = RandomUtils.nextLong();
+    this.account_id = RandomUtils.nextLong()+"";
     this.creating_date = LocalDate.now();
     this.user_id = user_id;
   }
@@ -74,7 +74,7 @@ public class Account implements Serializable {
    * Set the value of account_id
    * @param newVar the new value of account_id
    */
-  public void setAccount_id (Long newVar) {
+  public void setAccount_id (String newVar) {
     account_id = newVar;
   }
 
@@ -82,7 +82,7 @@ public class Account implements Serializable {
    * Get the value of account_id
    * @return the value of account_id
    */
-  public Long getAccount_id () {
+  public String getAccount_id () {
     return account_id;
   }
 
@@ -107,16 +107,16 @@ public class Account implements Serializable {
    * Set the value of account_id_label
    * @param newVar the new value of account_id_label
    */
-  public void setAccount_id_label (String newVar) {
-    account_id_label = newVar;
+  public void setAccount_id_type_label (String newVar) {
+    account_id_type_label = newVar;
   }
 
   /**
    * Get the value of account_id_label
    * @return the value of account_id_label
    */
-  public String getAccount_id_label () {
-    return account_id_label;
+  public String getAccount_id_type_label () {
+    return account_id_type_label;
   }
 
    /**

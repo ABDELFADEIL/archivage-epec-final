@@ -67,17 +67,17 @@ public class DigitalDocumentServiceImpl implements DigitalDocumentService{
     }
 
     @Override
-    public DigitalDocument getDocById(Long docID) {
+    public DigitalDocument getDocById(String docID) {
         return digitalDocumentRepository.getDocById(docID);
     }
 
     @Override
-    public DigitalDocument updateContext(Long docID, Context context) {
+    public DigitalDocument updateContext(String docID, Context context) {
         return digitalDocumentRepository.updateContext(docID, context);
     }
 
     @Override
-    public DigitalDocument saveDocFileWhithId(Long docID, MultipartFile multipartFile) throws IOException, NoSuchAlgorithmException, BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, InvalidKeyException {
+    public DigitalDocument saveDocFileWhithId(String docID, MultipartFile multipartFile) throws IOException, NoSuchAlgorithmException, BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, InvalidKeyException {
         return digitalDocumentRepository.saveDocFileWhithId(docID, multipartFile);
     }
 

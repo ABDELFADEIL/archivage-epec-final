@@ -45,8 +45,32 @@ export class NewContractComponent implements OnInit {
     const cn: ClassificationNature = form.classification_nature;
     console.log(cn);
     let contract: Contract = new Contract();
-    contract.contract_id_type_label = form.contract_id_type_label;
+   // contract.contract_id_type_label = form.contract_id_type_label;
     contract.contract_id_type_code = form.contract_id_type_code;
+
+    if(contract.contract_id_type_code == 'CAH'){
+      contract.contract_id_type_label = 'Contrats d\'assurance habitation';
+    }else if(contract.contract_id_type_code == 'CAV'){
+      contract.contract_id_type_label = 'Assurance vie';
+    } else if(contract.contract_id_type_code == 'CAHP'){
+      contract.contract_id_type_label = 'Contrats d\'assurance habitation professionnelle';
+    }else if(contract.contract_id_type_code == 'ADI'){
+      contract.contract_id_type_label = 'Assurance décès invalidité ';
+    }else if(contract.contract_id_type_code == 'PERP'){
+      contract.contract_id_type_label = 'Assurance automobile';
+    }else if(contract.contract_id_type_code == 'APJ'){
+      contract.contract_id_type_label = 'Assurance protection juridique';
+    }
+    else if(contract.contract_id_type_code == 'AMP'){
+      contract.contract_id_type_label = 'Assurance moyens de paiements ';
+    }
+    else if(contract.contract_id_type_code == 'AAP'){
+      contract.contract_id_type_label = 'Assurance activité professionnelle';
+    }
+    else if(contract.contract_id_type_code == 'ACS'){
+      contract.contract_id_type_label = 'Assurance complémentaire santé';
+    }
+
     // contract.client = this.clientService.client;
     const final_business_processing_date = form.final_business_processing_date;
     console.log(contract);
@@ -93,7 +117,7 @@ export class NewContractComponent implements OnInit {
     contract_id_type_label: new FormControl(''),
     contract_number: new FormControl(''),
     files: new FormControl('', Validators.required),
-    final_business_processing_date: new FormControl('', Validators.required),
+    final_business_processing_date: new FormControl(''),
     classification_nature: new FormControl(null, Validators.required)
   });
 

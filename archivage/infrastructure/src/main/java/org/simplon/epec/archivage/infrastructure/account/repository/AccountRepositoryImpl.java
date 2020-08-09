@@ -28,12 +28,11 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public Account createAccount(Account account) {
-
         return accountJpaRepository.save(account);
     }
 
     @Override
-    public Account getAccountByCientId(Long clientID) {
+    public Account getAccountByCientId(String clientID) {
         return accountJpaRepository.getOne(clientID);
     }
 

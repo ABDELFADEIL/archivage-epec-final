@@ -19,7 +19,6 @@ org/simplon/epec/archivage/application/client/ClientServiceImpl.class
 org/simplon/epec/archivage/application/destructionList/DestructionListServiceImpl.class
 org/simplon/epec/archivage/application/document/ContextService.class
 org/simplon/epec/archivage/application/account/AccountService.class
-org/simplon/epec/archivage/application/account/IAccountService.class
 org/simplon/epec/archivage/application/document/ContextServiceImpl.class
 org/simplon/epec/archivage/application/history/HistoryServiceImpl.class
 org/simplon/epec/archivage/application/classificationNature/ClassificationNatureServiceImpl.class

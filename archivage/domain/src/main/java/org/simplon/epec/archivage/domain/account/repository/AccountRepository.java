@@ -9,7 +9,7 @@ import java.util.Set;
 public interface AccountRepository {
 
     Account createAccount(Account account);
-    Account getAccountByCientId(Long clientID);
+    Account getAccountByCientId(String clientID);
     Account getAccountByNumber(String account_number);
     Account UpdateAccount(Account account);
     void removeAccount(Account account);

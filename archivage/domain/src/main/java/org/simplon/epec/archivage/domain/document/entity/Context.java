@@ -64,6 +64,21 @@ public class Context implements Serializable {
     this.client = client;
     this.context_id = RandomUtils.nextLong()+"";
   }
+
+  public Context(
+          long conserv_unit_id,
+          String mine_type,
+          ClassificationNature classification_nature,
+          Client client
+  )
+  {
+    this.conserv_unit_id = conserv_unit_id;
+    this.mine_type = mine_type;
+    this.archiving_reference_date = LocalDateTime.now();
+    this.classification_nature = classification_nature;
+    this.client = client;
+    this.context_id = RandomUtils.nextLong()+"";
+  }
   //
   // Methods
   //
