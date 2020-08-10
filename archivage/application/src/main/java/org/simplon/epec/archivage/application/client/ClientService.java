@@ -14,4 +14,5 @@ public interface ClientService {
     public Set<Client> getClientsByNameContains(String name);
     public Set<Client> getClientByClientNumberContains(String clientNumber);
     public String createNewClientNumber();
+    public Set<Client> findByClientNameOrClientNumberContains(String client_name, String client_number);
 }

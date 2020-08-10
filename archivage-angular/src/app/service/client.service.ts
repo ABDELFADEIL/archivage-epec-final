@@ -14,4 +14,9 @@ export class ClientService {
   createClient(form: FormData) {
     return this.httpClient.post(environment.apiUrl+"/api/clients/new-client-with-docs", form);
   }
+
+  searchClientByNameOrNumberClient(client_name: string, client_number: number) {
+    return this.httpClient.get<Client[]>(environment.apiUrl+"/api/clients/get-clients-by-client-name-number?client_name="+client_name+"&client_number="+client_number);
+
+  }
 }

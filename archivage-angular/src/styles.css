@@ -4,7 +4,13 @@
 .spacer {
   margin-top: 20px;
 }
+* {
+  font-weight: normal;
+}
 
+th {
+  font-size: 130%;
+}
 div.bg-light {
   background: white !important;
 }
@@ -124,6 +130,19 @@ new fome upload files
 
 
 /*
-
+hover show
  */
+#to-show , .to-show{
+  display: none !important;
+}
+
+#to-show1{
+  display: none !important;
+}
+
+#to-hover:hover #to-show, #to-hover:hover #to-show1 {
+  display: block !important;
+  border-bottom: 1px solid #dee2e6 !important;
+}
+
 

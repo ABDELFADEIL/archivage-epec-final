@@ -28,5 +28,6 @@ public interface ContractJpaRepository extends JpaRepository<Contract, String> {
 
     public Contract findByClient(@Param("client_id")String client_id);
 
-
+    @Query("select contract from Contract contract where  contract.contract_number like %:contract_number% or (contract.client.client_name like %:client_name% or contract.client.client_first_name like %:client_name%)")
+    Set<Contract> getContractsByClientNameAndContractNumberContains(@Param("client_name") String client_name, @Param("contract_number") String contract_number);
 }

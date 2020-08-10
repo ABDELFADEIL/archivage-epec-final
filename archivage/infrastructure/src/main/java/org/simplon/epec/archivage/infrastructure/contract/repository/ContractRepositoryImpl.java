@@ -79,4 +79,9 @@ public class ContractRepositoryImpl implements ContractRepository {
     public Contract findById(String id) {
         return contractJpaRepository.findById(id).get();
     }
+
+    @Override
+    public Set<Contract> getContractsByClientNameAndContractNumberContains(String client_name, String contract_number) {
+        return contractJpaRepository.getContractsByClientNameAndContractNumberContains(client_name, contract_number);
+    }
 }

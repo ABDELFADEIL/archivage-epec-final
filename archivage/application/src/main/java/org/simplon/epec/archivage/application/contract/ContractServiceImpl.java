@@ -95,4 +95,9 @@ public class ContractServiceImpl implements ContractService {
     public Contract findById(String id) {
         return contractRepository.findById(id);
     }
+
+    @Override
+    public Set<Contract> getContractsByClientNameAndContractNumberContains(String client_name, String contract_number) {
+        return contractRepository.getContractsByClientNameAndContractNumberContains(client_name, contract_number);
+    }
 }

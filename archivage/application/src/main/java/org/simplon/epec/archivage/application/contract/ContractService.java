@@ -18,5 +18,5 @@ public interface ContractService {
     public Set<Contract> findContractByEventStatusEventDateBeforAndDateAfter(String status, LocalDate dateAfter, LocalDate dateBefor);
     public String createNewContractNumber();
     public Contract findById(String id);
-
+    Set<Contract> getContractsByClientNameAndContractNumberContains(String client_name, String contract_number);
 }

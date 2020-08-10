@@ -54,4 +54,9 @@ public class ClientRepositoryImpl implements ClientRepository {
     public String getMaxClientNumber(){
       return clientJpaRepository.findMaxClientNumber();
     }
+
+    @Override
+    public Set<Client> findByClientNameOrClientNumberContains(String client_name, String client_number) {
+        return clientJpaRepository.findByClientNameOrClientNumberContains(client_name, client_number);
     }
+}

@@ -42,6 +42,10 @@ export class NewClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.clientService.client){
+      this.created = true;
+      console.log(this.client)
+    }
     this.initializeFormGroup();
   }
 

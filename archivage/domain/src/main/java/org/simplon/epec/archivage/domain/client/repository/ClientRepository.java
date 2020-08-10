@@ -14,4 +14,5 @@ public interface ClientRepository {
      Set<Client> getClientsByNameContains(String name);
      Set<Client> getClientByClientNumberContains(String clientNumber);
      String getMaxClientNumber();
+     Set<Client> findByClientNameOrClientNumberContains(String client_name, String client_number);
 }

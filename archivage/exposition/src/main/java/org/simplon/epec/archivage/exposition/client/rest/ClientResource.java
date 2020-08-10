@@ -103,4 +103,11 @@ public class ClientResource {
     public Set<Client> getClientByClientNumberContains(@RequestParam(name="clientNumber", required = true) String clientNumber) {
         return clientService.getClientByClientNumberContains(clientNumber);
     }
+
+    @GetMapping("/get-clients-by-client-name-number")
+    public Set<Client> getClientByClientNameOrClientNumber(@RequestParam(name="client_name") String clientName, @RequestParam(name="client_number")String clientNumber) {
+
+        return clientService.findByClientNameOrClientNumberContains(clientName, clientNumber);
+    }
+
 }

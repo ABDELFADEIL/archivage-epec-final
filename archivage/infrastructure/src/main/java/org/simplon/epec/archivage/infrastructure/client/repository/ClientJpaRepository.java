@@ -18,7 +18,10 @@ public interface ClientJpaRepository extends JpaRepository<Client, String> {
     @Query("select client from Client client where client.client_name like %:client_name% or client.client_first_name like %:client_name%")
     public Set<Client> findByClientNameContains( @Param("client_name") String client_name);
 
-            @Query(value="select MAX(c.client_number) from client c group by c.client_number order by c.client_number desc limit 1", nativeQuery=true)
+    @Query("select client from Client client where  client.client_number like %:client_number% or (client.client_name like %:client_name% or client.client_first_name like %:client_name%)")
+    public Set<Client> findByClientNameOrClientNumberContains( @Param("client_name") String client_name, @Param("client_number") String client_number);
+
+    @Query(value="select MAX(c.client_number) from client c group by c.client_number order by c.client_number desc limit 1", nativeQuery=true)
             public String findMaxClientNumber();
 
 /*

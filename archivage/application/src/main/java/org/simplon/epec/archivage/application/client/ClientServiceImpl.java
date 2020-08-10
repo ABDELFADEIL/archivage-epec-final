@@ -84,4 +84,9 @@ public class ClientServiceImpl implements ClientService {
         String client_number_nex = "00000000000".substring(String.valueOf(new_number_account).length()+1)+new_number_account;
         return client_number_nex;
     }
+
+    @Override
+    public Set<Client> findByClientNameOrClientNumberContains(String client_name, String client_number) {
+        return clientRepository.findByClientNameOrClientNumberContains(client_name, client_number);
+    }
 }

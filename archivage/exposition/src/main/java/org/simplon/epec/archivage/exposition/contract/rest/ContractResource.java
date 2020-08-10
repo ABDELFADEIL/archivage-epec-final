@@ -128,4 +128,12 @@ public class ContractResource {
     }
 
 
+    @GetMapping("/get-contracts-by-client-name-number")
+    public Set<Contract> getContractsByClientNameAndCOntractNumberContains(
+            @RequestParam(value = "contract_number") String contract_number,
+            @RequestParam(value = "client_name") String client_name) {
+        return contractService.getContractsByClientNameAndContractNumberContains(client_name, contract_number);
+    }
+
+
 }
