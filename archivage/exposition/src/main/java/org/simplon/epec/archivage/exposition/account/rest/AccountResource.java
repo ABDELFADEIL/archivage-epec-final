@@ -102,6 +102,7 @@ public class AccountResource {
         return documentList;
     }
 
+
     @PostMapping("/update-account")
     public Account updateAccount(@RequestBody Account account) {
         return accountService.UpdateAccount(account);
@@ -133,5 +134,12 @@ public class AccountResource {
         return accountService.getAccountsByClientNameContains(name);
     }
 
+
+    @GetMapping("/get-accounts-by-client-name-account-number")
+    public Set<Account> getAccountsByClientNameAndAccountNumberContains(
+            @RequestParam(value = "account_number") String account_number,
+            @RequestParam(value = "client_name") String client_name) {
+        return accountService.getAccountstsByClientNameAndAccountNumberContains(client_name, account_number);
+    }
 
 }

@@ -18,11 +18,5 @@ public interface AccountRepository {
     String getMaxAccountNumber();
     Set<Account> findAccountByEventStatusEventDateBeforAndDateAfter(String status, LocalDate dateAfter, LocalDate dateBefor);
     Account createEvent(Account account ,Event event);
-
-
-
-
-
-
-
+    Set<Account> getAccountstsByClientNameAndAccountNumberContains(String client_name, String account_number);
 }

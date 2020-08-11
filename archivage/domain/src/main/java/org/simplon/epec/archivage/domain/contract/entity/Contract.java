@@ -24,6 +24,7 @@ public class Contract implements Serializable {
   private Event event;
   private LocalDate creating_date;
     private Long user_id;
+    private String status;
 
     public Long getUser_id() {
         return user_id;
@@ -116,6 +117,13 @@ public class Contract implements Serializable {
     this.creating_date = creating_date;
   }
 
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
 //
   // Other methods
   //

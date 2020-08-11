@@ -1,1 +1,87 @@
-<p>accounts works!</p>
+<div class="container-fluid" style="padding: 10px; margin-left: 30px">
+
+
+
+
+  <div class="col-md-8">
+    <form class=""  (ngSubmit)="onSubmit(client_name, account_number)">
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label  class="col-form-label">Nom client</label>
+          <input type="text" class="form-control" name="client_name" [(ngModel)]="client_name">
+        </div>
+
+        <div class="form-group col-md-1 align-self-end">
+          <P class="">OU/ET</P>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label  class="col-form-label">Numéro de compte</label>
+          <input type="text" class="form-control" name="contract_number" [(ngModel)]="account_number">
+        </div>
+        <div class="form-group col-md-2 align-self-end">
+          <button class="btn btn-light my-2 my-sm-0" style="background: #dee6f9" type="submit">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+
+  <div class="row spacer" style="margin-top: 70px">
+
+    <div class="col-md-9">
+      <!-- table 2 -->
+
+      <table class="table table-hover" *ngIf="chercher">
+        <thead *ngIf="accounts.length > 0 || accounts">
+        <tr>
+          <th class="table-th" scope="col"></th>
+          <th class="table-th"  scope="col">Client nom</th>
+          <th class="table-th" scope="col">Client prénom</th>
+          <th class="table-th" scope="col">Date naissance</th>
+          <th class="table-th" scope="col">Numéro de compte</th>
+          <th class="table-th"></th>
+
+        </tr>
+        </thead>
+        <tbody *ngIf="accounts">
+        <tr *ngFor="let a of accounts | slice: (page-1) * size : (page-1) * size + size;" id="to-hover">
+          <td ></td>
+          <td >{{a.account_id}}</td>
+          <td >{{a.account_id_type_label}}</td>
+          <td >{{a.creating_date | date : 'dd/MM/yyyy'  : 'locale' }}</td>
+          <td >{{a.account_number}}</td>
+          <td (click)="openFormModal(a)" >
+            <svg  id="to-show1" width="1.4em" height="1.4em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus text-success" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 1H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5v-1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h5v2.5A1.5 1.5 0 0 0 10.5 6H13v2h1V6L9 1z"/>
+              <path fill-rule="evenodd" d="M13.5 10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13v-1.5a.5.5 0 0 1 .5-.5z"/>
+              <path fill-rule="evenodd" d="M13 12.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
+            </svg>
+          </td>
+          <td (click)="onUpdateAccount(a)">
+            <svg id="to-show" width="1.4em" height="1.4em" viewBox="0 0 16 16"  class="bi bi-folder-plus text-primary" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M9.828 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91H9v1H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181L15.546 8H14.54l.265-2.91A1 1 0 0 0 13.81 4H9.828zm-2.95-1.707L7.587 3H2.19c-.24 0-.47.042-.684.12L1.5 2.98a1 1 0 0 1 1-.98h3.672a1 1 0 0 1 .707.293z"/>
+              <path fill-rule="evenodd" d="M13.5 10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13v-1.5a.5.5 0 0 1 .5-.5z"/>
+              <path fill-rule="evenodd" d="M13 12.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
+            </svg>
+          </td>
+
+        </tr>
+        </tbody>
+        <tbody *ngIf="accounts.length == 0 || !accounts">
+        <tr> <td colspan="6" class="alert alert-danger text-center" style="border-radius: 0"><div>Il n'a aucun elements!</div></td></tr>
+        </tbody>
+      </table>
+
+      <div class="d-flex justify-content-between p-2" *ngIf="accounts && chercher && accounts.length > 0">
+        <ngb-pagination [collectionSize]="accounts.length" [(page)]="page" [maxSize]="size" [pageSize]="size" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="onSubmit(client_name, account_number)">
+        </ngb-pagination>
+
+      </div>
+
+    </div>
+  </div>
+
+
+</div>

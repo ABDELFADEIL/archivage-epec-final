@@ -25,5 +25,6 @@ public interface AccountJpaRepository extends JpaRepository<Account, String> {
     @Query(value="select * from  account where account.event in (select id_event from  event where event_type=:status and event_date between :dateAfter and :dateBefor)", nativeQuery=true)
     Set<Account> findAccountByEventStatusEventDateBeforAndDateAfter(@Param("status") String status, @Param("dateAfter") LocalDate dateAfter, @Param("dateBefor") LocalDate dateBefor);
 
-
+    @Query("select account from Account account where  account.account_number like %:account_number% or (account.client.client_name like %:client_name% or account.client.client_first_name like %:client_name%)")
+    Set<Account> getAccountstsByClientNameAndAccountNumberContains(@Param("client_name") String client_name, @Param("account_number") String account_number);
 }

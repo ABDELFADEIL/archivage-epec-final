@@ -24,6 +24,7 @@ public class Account implements Serializable {
   private Event event;
   private LocalDate creating_date;
     private Long user_id;
+    private String status;
 
     public Account(String account_id_type_code, String account_id_type_label, String account_number, Client client, Long user_id) {
       this.account_id_type_code = account_id_type_code;
@@ -182,6 +183,15 @@ public class Account implements Serializable {
   public LocalDate getCreating_date () {
     return creating_date;
   }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
 
   //
   // Other methods

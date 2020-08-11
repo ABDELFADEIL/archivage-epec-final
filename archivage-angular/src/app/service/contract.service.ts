@@ -18,4 +18,8 @@ export class ContractService {
   searchContractByClientNameOrContractNumber(client_name: string, contract_number: string) {
     return this.httpClient.get<Contract[]>(environment.apiUrl+"/api/contracts/get-contracts-by-client-name-number?client_name="+client_name+"&contract_number="+contract_number);
   }
+
+  update(contract: Contract) {
+    return this.httpClient.post(environment.apiUrl+"/api/contracts/update-contract", contract);
+  }
 }

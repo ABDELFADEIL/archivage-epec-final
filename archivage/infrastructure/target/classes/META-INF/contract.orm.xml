@@ -21,6 +21,9 @@
             <basic name="creating_date">
                 <column name="creating_date"/>
             </basic>
+            <basic name="status">
+                <column name="status" nullable="false" updatable="false" />
+            </basic>
             <basic name="user_id">
                 <column name="user_id" nullable="false"/>
             </basic>

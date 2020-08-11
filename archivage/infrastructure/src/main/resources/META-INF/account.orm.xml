@@ -26,6 +26,9 @@
             <basic name="account_number">
                 <column name="account_number" nullable="false" updatable="false" />
             </basic>
+            <basic name="status">
+                <column name="status" nullable="false" updatable="false" />
+            </basic>
             <basic name="user_id">
                 <column name="user_id" nullable="false"/>
             </basic>

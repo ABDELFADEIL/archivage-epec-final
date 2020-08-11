@@ -4,6 +4,10 @@ import {ContractService} from '../service/contract.service';
 import {Router} from '@angular/router';
 import {ClientService} from '../service/client.service';
 import {Client} from '../models/client';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Account} from '../models/account';
+import {UpdateAccountComponent} from '../update-account/update-account.component';
+import {UpdateContractComponent} from '../update-contract/update-contract.component';
 
 @Component({
   selector: 'app-contracts',
@@ -25,8 +29,9 @@ export class ContractsComponent implements OnInit {
   public client : Client;
   public client_name;
   public client_number;
+  private contract: Contract;
 
-  constructor(private contractService: ContractService, private router: Router, private clientService: ClientService) { }
+  constructor(private contractService: ContractService, private router: Router, private clientService: ClientService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
   }
@@ -60,5 +65,21 @@ export class ContractsComponent implements OnInit {
 
   onAddDocsContract(c: Contract) {
 
+  }
+
+  onUpdateContract(c: Contract) {
+
+  }
+
+
+  openFormModal(contract:Contract) {
+    console.log(contract);
+    this.contract = contract;
+    const modalRef = this.modalService.open(UpdateContractComponent);
+    modalRef.componentInstance.contract = contract;
+    modalRef.result.then((result) => {
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 }

@@ -45,7 +45,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account UpdateAccount(Account account) {
-        return accountRepository.UpdateAccount(account);
+        Account a = accountRepository.getAccountByNumber(account.getAccount_number());
+        a.setStatus(account.getStatus());
+        return accountRepository.UpdateAccount(a);
     }
 
     @Override
@@ -84,5 +86,10 @@ public class AccountServiceImpl implements AccountService {
             long new_account_number = account_number + 1;
             String account_number_nex = "00000000000".substring(String.valueOf(new_account_number).length()+1)+new_account_number;
             return account_number_nex;
+    }
+
+    @Override
+    public Set<Account> getAccountstsByClientNameAndAccountNumberContains(String client_name, String account_number) {
+        return accountRepository.getAccountstsByClientNameAndAccountNumberContains(client_name, account_number);
     }
 }

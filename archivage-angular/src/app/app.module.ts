@@ -30,6 +30,8 @@ import {ErrorInterceptor} from './helpers/error.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './footer/footer.component';
 import { UpdateClassificationNatureComponent } from './classification-nature/update-classification-nature/update-classification-nature.component';
+import { UpdateAccountComponent } from './update-account/update-account.component';
+import { UpdateContractComponent } from './update-contract/update-contract.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { UpdateClassificationNatureComponent } from './classification-nature/upd
     ClassificationNatureManageComponent,
     FooterComponent,
     UpdateClassificationNatureComponent,
+    UpdateAccountComponent,
+    UpdateContractComponent,
 
   ],
     imports: [

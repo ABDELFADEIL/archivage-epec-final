@@ -104,7 +104,7 @@ export class NewAccountComponent implements OnInit {
       console.log(error);
     })
   }
-
+  //   public files: File [] = [];
   form :FormGroup = new FormGroup({
     // client_id: new FormControl(null),
     account_id_type_code: new FormControl('', Validators.required),
