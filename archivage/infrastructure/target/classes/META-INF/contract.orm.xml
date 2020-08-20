@@ -9,7 +9,7 @@
         <table name="contract" />
 
         <attributes>
-            <id name="contact_id">
+            <id name="contract_id">
                 <column  name="contract_id" length="55" />
             </id>
             <basic name="contract_id_type_code">
@@ -22,7 +22,7 @@
                 <column name="creating_date"/>
             </basic>
             <basic name="status">
-                <column name="status" nullable="false" updatable="false" />
+                <column name="status" nullable="true" updatable="true" />
             </basic>
             <basic name="user_id">
                 <column name="user_id" nullable="false"/>

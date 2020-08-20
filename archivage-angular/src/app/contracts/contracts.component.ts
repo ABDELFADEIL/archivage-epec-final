@@ -72,11 +72,12 @@ export class ContractsComponent implements OnInit {
   }
 
 
-  openFormModal(contract:Contract) {
+  openFormModal(contract:Contract, action) {
     console.log(contract);
     this.contract = contract;
     const modalRef = this.modalService.open(UpdateContractComponent);
     modalRef.componentInstance.contract = contract;
+    modalRef.componentInstance.action = action;
     modalRef.result.then((result) => {
     }).catch((error) => {
       console.log(error);

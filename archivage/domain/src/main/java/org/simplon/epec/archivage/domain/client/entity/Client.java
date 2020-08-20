@@ -24,7 +24,7 @@ public class Client implements Serializable {
   private String birth_dept;
   private String siren_number;
   private String siret_number;
-  private Long user_id;
+  private String user_id;
 
 
   //
@@ -38,7 +38,7 @@ public class Client implements Serializable {
 
   public Client(int client_nature_id, String client_number, String client_name,
                 String client_first_name, int civility_id, Date birth_date,
-                String birth_dept, String siren_number, String siret_number, Long user_id) {
+                String birth_dept, String siren_number, String siret_number, String user_id) {
     this.client_id = RandomUtils.nextLong()+"";
     this.client_nature_id = client_nature_id;
     this.client_number = client_number;
@@ -97,7 +97,7 @@ public class Client implements Serializable {
     return siret_number;
   }
 
-  public Long getUser_id() {
+  public String getUser_id() {
     return user_id;
   }
 
@@ -141,7 +141,7 @@ public class Client implements Serializable {
     this.siret_number = siret_number;
   }
 
-  public void setUser_id(Long user_id) {
+  public void setUser_id(String user_id) {
     this.user_id = user_id;
   }
 

@@ -31,10 +31,18 @@ export class NewAccountComponent implements OnInit {
   public clientId: number;
   final_business_processing_date: any;
   public account: Account;
+   client_name: string;
+   client_number: string;
+
 
   constructor(private accountService: AccountService, private clientService: ClientService, private router: Router, private  classificationNatureService: ClassificationNatureService) { }
 
   ngOnInit(): void {
+    if (!this.clientService.client){
+      this.router.navigateByUrl('home')
+    }else {
+      this.client = this.clientService.client;
+    }
     this.initializeFormGroup();
     this.getClassificationNature();
   }
@@ -160,6 +168,8 @@ export class NewAccountComponent implements OnInit {
       map(term => term === '' ? []
         : departs.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     )
+
+
 
 }
 

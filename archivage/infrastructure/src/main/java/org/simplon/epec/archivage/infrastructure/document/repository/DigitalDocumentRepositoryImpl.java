@@ -17,6 +17,7 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 @Repository
 public class DigitalDocumentRepositoryImpl implements DigitalDocumentRepository {
@@ -64,5 +65,11 @@ public class DigitalDocumentRepositoryImpl implements DigitalDocumentRepository 
     @Override
     public DigitalDocument saveDoc(DigitalDocument doc) {
         return digitalDocumentJpaRepository.save(doc);
+    }
+
+    @Override
+    public List<DigitalDocument> getAllDocsByContractId(String contract_id) {
+
+        return digitalDocumentJpaRepository.getDocsContractById(contract_id);
     }
 }

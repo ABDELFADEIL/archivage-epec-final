@@ -27,7 +27,7 @@ public class AccountServiceImpl implements AccountService {
     public Account createAccount(Account account) {
         String account_number = createNewAccountNumber();
         // paramètres le context de doc à archiver
-        Long user_id = userService.getAuthentificatedUser().getUser_id();
+        String user_id = userService.getAuthentificatedUser().getUser_id();
 
         Account a = new Account( account.getAccount_id_type_code(),  account.getAccount_id_type_label(),  account_number, account.getClient(), user_id);
         return accountRepository.createAccount(a);
@@ -45,9 +45,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account UpdateAccount(Account account) {
-        Account a = accountRepository.getAccountByNumber(account.getAccount_number());
-        a.setStatus(account.getStatus());
-        return accountRepository.UpdateAccount(a);
+      //  Account a = accountRepository.findById(account.getAccount_id());
+       // a.setStatus(account.getStatus());
+        return accountRepository.save(account);
     }
 
     @Override
@@ -91,5 +91,10 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Set<Account> getAccountstsByClientNameAndAccountNumberContains(String client_name, String account_number) {
         return accountRepository.getAccountstsByClientNameAndAccountNumberContains(client_name, account_number);
+    }
+
+    @Override
+    public Account findById(String account_id) {
+        return accountRepository.findById(account_id);
     }
 }

@@ -1,8 +1,13 @@
 package org.simplon.epec.archivage.application.document;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.lang3.RandomUtils;
 import org.simplon.epec.archivage.application.classificationNature.ClassificationNatureService;
+import org.simplon.epec.archivage.application.contract.ContractService;
 import org.simplon.epec.archivage.application.user.UserService;
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
+import org.simplon.epec.archivage.domain.contract.entity.Contract;
 import org.simplon.epec.archivage.domain.document.entity.Context;
 import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.domain.document.repository.DigitalDocumentRepository;
@@ -19,6 +24,8 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -28,12 +35,14 @@ public class DigitalDocumentServiceImpl implements DigitalDocumentService{
     private final transient ClassificationNatureService classificationNatureService;
     private final transient ContextService contextRepository;
     private final transient UserService userService;
+    private final transient ContractService contractService;
     @Autowired
-    public DigitalDocumentServiceImpl(DigitalDocumentRepository digitalDocumentRepository, ClassificationNatureService classificationNatureService, ContextService contextRepository, UserService userService) {
+    public DigitalDocumentServiceImpl(DigitalDocumentRepository digitalDocumentRepository, ClassificationNatureService classificationNatureService, ContextService contextRepository, UserService userService, ContractService contractService) {
         this.digitalDocumentRepository = digitalDocumentRepository;
         this.classificationNatureService = classificationNatureService;
         this.contextRepository = contextRepository;
         this.userService = userService;
+        this.contractService = contractService;
     }
 
 
@@ -53,7 +62,7 @@ public class DigitalDocumentServiceImpl implements DigitalDocumentService{
         }
 
         // paramètres le context de doc à archiver
-        Long user_id = userService.getAuthentificatedUser().getUser_id();
+        String user_id = userService.getAuthentificatedUser().getUser_id();
         Context context = document.getContext();
         context.setFinal_stage_date(final_stage_date);
         context.setClassification_nature(classificationNature);
@@ -98,5 +107,35 @@ public class DigitalDocumentServiceImpl implements DigitalDocumentService{
     @Override
     public DigitalDocument savedoc(DigitalDocument doc) {
         return digitalDocumentRepository.saveDoc(doc);
+    }
+
+    @Override
+    public Contract addDocsToContract(String contract_id, MultipartFile[] files) throws IOException, BadPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, NoSuchPaddingException, InvalidKeyException {
+        List<DigitalDocument> docs = digitalDocumentRepository.getAllDocsByContractId(contract_id);
+        List<DigitalDocument> documentList = new ArrayList<DigitalDocument>();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
+        String contractId = objectMapper.readValue(contract_id, String.class);
+
+        //Client c = contract1.getClient();
+        // Client c = contract1.getClient();
+
+        Contract contract = contractService.findById(contractId);
+        DigitalDocument document = null;
+
+        if (files.length > 0) {
+            for (MultipartFile file: files) {
+                Context ctx = new Context(RandomUtils.nextLong(), null, docs.get(0).getContext().getClassification_nature(), docs.get(0).getContext().getFinal_business_processing_date(), null, contract.getClient());
+                ctx.setContract(contract);
+                ctx.setMine_type(file.getContentType());
+                document = new DigitalDocument(file.getOriginalFilename(), file.getContentType().split("/")[1], null, ctx);
+                DigitalDocument doc = createDocument(document, docs.get(0).getContext().getClassification_nature(), file);
+                // documentService.savedoc(doc);
+                documentList.add(doc);
+            }
+        }
+        return documentList.get(0).getContext().getContract();
     }
 }

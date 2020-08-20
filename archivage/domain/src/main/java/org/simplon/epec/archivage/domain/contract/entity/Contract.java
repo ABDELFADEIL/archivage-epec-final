@@ -16,21 +16,21 @@ public class Contract implements Serializable {
   // Fields
   //
 
-  private String contact_id;
+  private String contract_id;
   private String contract_id_type_code;
   private String contract_id_type_label;
   private Client client;
   private String contract_number;
   private Event event;
   private LocalDate creating_date;
-    private Long user_id;
+    private String user_id;
     private String status;
 
-    public Long getUser_id() {
+    public String getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(Long user_id) {
+    public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
     // private Set<DigitalDocument> digitalDocuments;
@@ -47,7 +47,7 @@ public class Contract implements Serializable {
   //
 
   public Contract(String contract_id_type_code, String contract_id_type_label, Client client) {
-    this.contact_id = RandomUtils.nextLong()+"";
+    this.contract_id = RandomUtils.nextLong()+"";
     this.contract_id_type_code = contract_id_type_code;
     this.contract_id_type_label = contract_id_type_label;
     this.client = client;
@@ -59,8 +59,8 @@ public class Contract implements Serializable {
   // Accessor methods
   //
 
-  public String getContact_id() {
-    return contact_id;
+  public String getContract_id() {
+    return contract_id;
   }
 
   public String getContract_id_type_code() {
@@ -89,8 +89,8 @@ public class Contract implements Serializable {
 
 
 
-  public void setContact_id(String contact_id) {
-    this.contact_id = contact_id;
+  public void setContract_id(String contract_id) {
+    this.contract_id = contract_id;
   }
 
   public void setContract_id_type_code(String contract_id_type_code) {

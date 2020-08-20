@@ -18,7 +18,8 @@ export class UpdateContractComponent implements OnInit {
 
 
   @Input()  contract: Contract;
-
+  @Input()  action: string;
+  private contract_id: string;
   constructor(public activeModal: NgbActiveModal, private contractService: ContractService, private router : Router) { }
 
   ngOnInit(): void {
@@ -26,9 +27,8 @@ export class UpdateContractComponent implements OnInit {
 
   onSubmit() {
     console.log(this.contract);
-    this.contract.status = this.status;
-    console.log(this.status)
-    this.contractService.update(this.contract).subscribe(data => {
+    const contract: Contract = this.contract;
+    this.contractService.update(contract).subscribe(data => {
       this.closeModal();
       this.router.navigateByUrl('contracts')
     }, error => {
@@ -48,14 +48,22 @@ export class UpdateContractComponent implements OnInit {
     console.log(this.files);
   }
 
-
-
-  docs: boolean = false;
-
-
-
   deleteAttachment(index) {
     this.files.splice(index, 1);
+  }
+
+  addDocs() {
+    console.log("addDocs() method ****");
+    const formdata = new FormData();
+    formdata.append("contract_id", this.contract.contract_id);
+    for (let file of this.files) {
+      formdata.append("files", file);
+    }
+    this.contractService.addDocsToContract(formdata).subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log(error);
+    });
   }
 }
 

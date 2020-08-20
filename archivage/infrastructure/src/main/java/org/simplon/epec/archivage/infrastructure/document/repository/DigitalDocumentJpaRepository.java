@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.QueryHints;
+import org.springframework.data.repository.query.Param;
 
 import javax.persistence.QueryHint;
 import java.util.List;
@@ -32,4 +33,6 @@ public interface DigitalDocumentJpaRepository extends JpaRepository<DigitalDocum
     @Query(value="select doc from DigitalDocument doc")
     @QueryHints(value= {@QueryHint(name= HINT_FETCH_SIZE, value=""+Integer.MIN_VALUE), @QueryHint(name = HINT_PASS_DISTINCT_THROUGH, value = "false")})
     public Stream<DigitalDocument> getAllDocsStream();
+    @Query(value = "select digitalDocument from DigitalDocument digitalDocument where digitalDocument.context.contract.contract_id =:contract_id")
+    List<DigitalDocument> getDocsContractById(@Param("contract_id") String contract_id);
 }

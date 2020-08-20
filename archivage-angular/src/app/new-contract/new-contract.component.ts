@@ -34,6 +34,11 @@ export class NewContractComponent implements OnInit {
   constructor(private contractService: ContractService, private clientService: ClientService, private router: Router, private  classificationNatureService: ClassificationNatureService) { }
 
   ngOnInit(): void {
+    if(!this.clientService.client){
+      this.router.navigateByUrl('home');
+    }else {
+      this.client = this.clientService.client;
+    }
     this.initializeFormGroup();
     this.getClassificationNature();
   }

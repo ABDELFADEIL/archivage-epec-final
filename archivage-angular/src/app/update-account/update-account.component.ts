@@ -15,6 +15,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class UpdateAccountComponent implements OnInit {
 
   @Input()  account: Account;
+  @Input()  action: string;
+
   public files: File [] = [];
   public status;
   constructor(public activeModal: NgbActiveModal, private accountService: AccountService, private router : Router) { }
@@ -57,5 +59,18 @@ export class UpdateAccountComponent implements OnInit {
     this.files.splice(index, 1);
   }
 
+
+  addDocs() {
+    const formdata = new FormData();
+    const account_id =  formdata.append("account_id", this.account.account_id);
+    for (let file of this.files) {
+      formdata.append("files", file);
+    }
+    this.accountService.addDocsToAccount(formdata).subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log(error);
+    });
+  }
 }
 

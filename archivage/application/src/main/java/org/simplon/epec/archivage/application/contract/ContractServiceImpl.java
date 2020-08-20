@@ -2,12 +2,15 @@ package org.simplon.epec.archivage.application.contract;
 
 import org.simplon.epec.archivage.domain.contract.entity.Contract;
 import org.simplon.epec.archivage.domain.contract.repository.ContractRepository;
+import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.domain.user.entity.User;
 import org.simplon.epec.archivage.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -100,4 +103,6 @@ public class ContractServiceImpl implements ContractService {
     public Set<Contract> getContractsByClientNameAndContractNumberContains(String client_name, String contract_number) {
         return contractRepository.getContractsByClientNameAndContractNumberContains(client_name, contract_number);
     }
+
+
 }

@@ -37,7 +37,7 @@ public class Context implements Serializable {
   // @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
   private LocalDate deletion_date;
     private Event event;
-  private Long user_id;
+  private String user_id;
   private Client client;
 
 
@@ -300,11 +300,11 @@ public class Context implements Serializable {
     return deletion_date;
   }
 
-  public Long getUser_id() {
+  public String getUser_id() {
     return user_id;
   }
 
-  public void setUser_id(Long user_id) {
+  public void setUser_id(String user_id) {
     this.user_id = user_id;
   }
 

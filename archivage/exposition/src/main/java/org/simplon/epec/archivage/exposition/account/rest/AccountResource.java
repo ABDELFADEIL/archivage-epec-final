@@ -12,6 +12,7 @@ import org.simplon.epec.archivage.domain.client.entity.Client;
 import org.simplon.epec.archivage.domain.document.entity.Context;
 import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -103,7 +104,7 @@ public class AccountResource {
     }
 
 
-    @PostMapping("/update-account")
+    @PutMapping(value = "/update-account", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Account updateAccount(@RequestBody Account account) {
         return accountService.UpdateAccount(account);
     }

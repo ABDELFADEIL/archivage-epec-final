@@ -18,4 +18,6 @@ public interface AccountService {
     public Set<Account> findAccountByEventStatusEventDateBeforAndDateAfter(String status, LocalDate dateAfter, LocalDate dateBefor);
     public String createNewAccountNumber();
     Set<Account> getAccountstsByClientNameAndAccountNumberContains(String client_name, String account_number);
+    Account findById(String account_id);
+
 }

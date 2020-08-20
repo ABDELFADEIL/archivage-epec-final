@@ -3,7 +3,6 @@ package org.simplon.epec.archivage.infrastructure.account.repository;
 import org.simplon.epec.archivage.domain.account.entity.Account;
 import org.simplon.epec.archivage.domain.account.repository.AccountRepository;
 import org.simplon.epec.archivage.domain.classificationNature.repository.ClassificationNatureRepository;
-import org.simplon.epec.archivage.domain.contract.entity.Contract;
 import org.simplon.epec.archivage.domain.event.entity.Event;
 import org.simplon.epec.archivage.domain.event.repository.EventRepository;
 import org.springframework.stereotype.Repository;
@@ -83,6 +82,16 @@ public class AccountRepositoryImpl implements AccountRepository {
     @Override
     public Set<Account> getAccountstsByClientNameAndAccountNumberContains(String client_name, String account_number) {
         return accountJpaRepository.getAccountstsByClientNameAndAccountNumberContains(client_name, account_number);
+    }
+
+    @Override
+    public Account findById(String account_id) {
+        return accountJpaRepository.findById(account_id).get();
+    }
+
+    @Override
+    public Account save(Account a) {
+        return accountJpaRepository.save(a);
     }
 
 

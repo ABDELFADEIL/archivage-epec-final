@@ -23,10 +23,10 @@ public class Account implements Serializable {
   private Client client;
   private Event event;
   private LocalDate creating_date;
-    private Long user_id;
+    private String user_id;
     private String status;
 
-    public Account(String account_id_type_code, String account_id_type_label, String account_number, Client client, Long user_id) {
+    public Account(String account_id_type_code, String account_id_type_label, String account_number, Client client, String user_id) {
       this.account_id_type_code = account_id_type_code;
       this.account_id_type_label = account_id_type_label;
       this.client = client;
@@ -36,11 +36,11 @@ public class Account implements Serializable {
       this.user_id = user_id;
     }
 
-    public Long getUser_id() {
+    public String getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(Long user_id) {
+    public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
     //private Set<DigitalDocument> digitalDocuments;
@@ -49,7 +49,7 @@ public class Account implements Serializable {
   // Constructors
   //
 
-  public Account(String account_id_type_code, String account_id_type_label, Client client, Long user_id) {
+  public Account(String account_id_type_code, String account_id_type_label, Client client, String user_id) {
     this.account_id_type_code = account_id_type_code;
     this.account_id_type_label = account_id_type_label;
     this.client = client;

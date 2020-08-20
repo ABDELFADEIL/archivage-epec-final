@@ -76,11 +76,12 @@ export class AccountsComponent implements OnInit {
 
   }
 
-  openFormModal(account:Account) {
+  openFormModal(account:Account, action) {
     console.log(account);
     this.account = account;
     const modalRef = this.modalService.open(UpdateAccountComponent);
     modalRef.componentInstance.account = account;
+    modalRef.componentInstance.action = action;
     modalRef.result.then((result) => {
     }).catch((error) => {
       console.log(error);

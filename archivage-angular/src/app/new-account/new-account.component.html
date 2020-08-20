@@ -1,4 +1,19 @@
 <div class="container" style="padding: 10px;">
+
+  <div *ngIf="!created" class="container spacer">
+    <div >
+      <div  *ngIf="client">
+        <div >
+          <p><span class="h6">Nom: </span> {{client.client_name}}</p>
+          <p><span class="h6">Prénom: </span> {{client.client_first_name}}</p>
+          <p><span class="h6">Departement naissance: </span> {{client.birth_dept}}</p>
+          <p><span class="h6">Date naissance: </span> {{client.birth_date | date : 'mediumDate'  : 'locale'  }}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <hr>
   <div *ngIf="!created">
     <form class="spacer" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="row form">

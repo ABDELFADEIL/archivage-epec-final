@@ -96,9 +96,15 @@ public class ContractResource {
         return documentList;
     }
 
-    @PostMapping("/update-contract")
+    @PutMapping("/update-contract")
     public Contract updateContract(@RequestBody  Contract contract) {
         return contractService.UpdateAccount(contract);
+    }
+
+    // update-contract-docs
+    @PutMapping(value = "/update-contract-docs", consumes = {"multipart/form-data;boundary=----WebKitFormBoundaryGU19yc6e19LFwvk2"})
+    public Contract updateDocsContract(@RequestPart("contract_id")  String contract_id, @RequestPart("files")  MultipartFile [] files) throws BadPaddingException, NoSuchAlgorithmException, IOException, IllegalBlockSizeException, NoSuchPaddingException, InvalidKeyException {
+        return documentService.addDocsToContract(contract_id, files);
     }
 
 

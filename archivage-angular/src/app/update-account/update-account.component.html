@@ -1,15 +1,16 @@
 
 <div class="card">
-  <div *ngIf="!docs">
+  <div >
     <div class="row card-header justify-content-between ">
 
-      <h4 class=" text-center">Mis à jour compte </h4>
+      <h4 class=" text-center" *ngIf="action == 'update'">Mis à jour compte </h4>
+      <h4 class=" text-center" *ngIf="action == 'add'">Ajouter des documents </h4>
       <button class="btn  bg-light">
         <i class="fa fa-window-close"  (click)="activeModal.dismiss('Cross click')"></i>
       </button>
     </div>
 
-    <div class="card-body">
+    <div class="card-body" *ngIf="action == 'update'">
       <form class="spacer"  (ngSubmit)="onSubmit()">
 
         <div class="row form">
@@ -17,35 +18,34 @@
 
             <div class="col-md-12">
               <div class="form-group row">
-                <div class="col-sm-4">
-                  <p class="float-right">Numéro de compte:</p>
+                <div class="col-sm-5">
+                  <p class="">Numéro de compte: </p>
                 </div>
-                <div class="col-sm-6">
-                  <p class="">{{account.account_number}}</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-12">
-              <div class="form-group row">
-                <div class="col-sm-4">
-                  <p class="col-form-label float-right">Libellé de compte:</p>
-                </div>
-                <div class="col-sm-6">
-                  <p class="" >{{account.account_id_type_label}}</p>
+                <div class="col-sm-5">
+                  <p class="text float-left">{{account.account_id_type_label}}</p>
                 </div>
               </div>
             </div>
 
             <div class="col-md-12">
               <div class="form-group row">
-                <div class="col-sm-4">
-                  <label  class="col-form-label float-right">Statut de compte</label>
+                <div class="col-sm-5">
+                  <p class="">Libellé de compte:</p>
                 </div>
-                <div class="col-sm-6">
-                  <input type="text" class="form-control" name="status" [(ngModel)]="account.status">
+                <div class="col-sm-5">
+                  <p class="text float-left">{{account.account_id_type_label}}</p>
                 </div>
+              </div>
+            </div>
 
+            <div class="col-md-12">
+              <div class="form-group row">
+                <div class="col-sm-5">
+                  <label  class="col-form-label">Statut de compte</label>
+                </div>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control float-left" name="status" [(ngModel)]="account.status">
+                </div>
               </div>
             </div>
             <input type="hidden" class="form-control" name="account_id" [(ngModel)]="account.account_id">
@@ -66,8 +66,10 @@
 
     </div>
   </div>
+</div>
 
-  <div class="container-fluid" *ngIf="docs">
+<div class="card-body" *ngIf="action == 'add'">
+  <div class="container-fluid" >
     <form>
     <div class="col-md-12">
       <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">

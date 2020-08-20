@@ -19,4 +19,6 @@ public interface AccountRepository {
     Set<Account> findAccountByEventStatusEventDateBeforAndDateAfter(String status, LocalDate dateAfter, LocalDate dateBefor);
     Account createEvent(Account account ,Event event);
     Set<Account> getAccountstsByClientNameAndAccountNumberContains(String client_name, String account_number);
+    Account findById(String account_id);
+    Account save(Account a);
 }

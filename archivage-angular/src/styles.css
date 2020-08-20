@@ -146,3 +146,24 @@ hover show
 }
 
 
+.modal-content {
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: .3rem;
+  width: 720px;
+}
+
+.modal-content .card-body {
+  min-height: 440px;
+  padding: 50px;
+}
+
+.modal-content .card-header {
+  height: 3.6rem;
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+
+}
+

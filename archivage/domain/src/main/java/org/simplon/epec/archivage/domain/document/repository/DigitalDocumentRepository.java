@@ -12,6 +12,7 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 public interface DigitalDocumentRepository {
 
@@ -21,4 +22,5 @@ public interface DigitalDocumentRepository {
     DigitalDocument saveDocFileWhithId(String docID, MultipartFile multipartFile) throws IOException, NoSuchAlgorithmException, BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, InvalidKeyException;
     Page<DigitalDocument> getAllDocs(Pageable pageable);
     DigitalDocument saveDoc(DigitalDocument doc);
+    List<DigitalDocument> getAllDocsByContractId(String contract_id);
 }

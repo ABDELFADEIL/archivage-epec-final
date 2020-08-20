@@ -20,6 +20,11 @@ export class ContractService {
   }
 
   update(contract: Contract) {
-    return this.httpClient.post(environment.apiUrl+"/api/contracts/update-contract", contract);
+    return this.httpClient.put(environment.apiUrl+"/api/contracts/update-contract", contract);
+  }
+
+  addDocsToContract(formdata: FormData) {
+    return this.httpClient.put(environment.apiUrl+"/api/contracts/update-contract-docs", formdata);
+
   }
 }

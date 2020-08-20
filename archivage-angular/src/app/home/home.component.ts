@@ -51,6 +51,7 @@ export class HomeComponent implements OnInit {
     this.clientService.searchClientByNameOrNumberClient(this.client_name, this.client_number).subscribe(data => {
       console.log(data)
       this.clients = data;
+      this.clientService.client = this.client;
     }, error => {
       console.log(error)
     })
@@ -68,5 +69,15 @@ export class HomeComponent implements OnInit {
     this.client = c;
     this.create = true
    // this.router.navigateByUrl('/new-client')
+  }
+
+  NewAccount() {
+    this.clientService.client = this.client;
+    this.router.navigateByUrl('new-account')
+  }
+
+  NewContract(){
+    this.clientService.client = this.client;
+    this.router.navigateByUrl('new-contract')
   }
 }
