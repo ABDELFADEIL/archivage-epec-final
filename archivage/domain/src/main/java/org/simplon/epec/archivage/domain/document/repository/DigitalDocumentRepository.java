@@ -23,4 +23,5 @@ public interface DigitalDocumentRepository {
     Page<DigitalDocument> getAllDocs(Pageable pageable);
     DigitalDocument saveDoc(DigitalDocument doc);
     List<DigitalDocument> getAllDocsByContractId(String contract_id);
+    List<DigitalDocument> getDocsAccountById(String account_id);
 }

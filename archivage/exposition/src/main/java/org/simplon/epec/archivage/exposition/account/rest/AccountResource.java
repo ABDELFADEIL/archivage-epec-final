@@ -83,9 +83,6 @@ public class AccountResource {
         }
 
         */
-
-
-
         Account account2 = accountService.createAccount(new Account(account1.getAccount_id_type_code(), account1.getAccount_id_type_label(), c, account1.getUser_id()));
         DigitalDocument document = null;
 
@@ -101,6 +98,11 @@ public class AccountResource {
             }
         }
         return documentList;
+    }
+
+    @PutMapping(value = "/update-account-docs", consumes = {"multipart/form-data;boundary=----WebKitFormBoundaryGU19yc6e19LFwvk2"})
+    public Account updateDocsAccount(@RequestPart("account_id")  String account_id, @RequestPart("files")  MultipartFile [] files) throws BadPaddingException, NoSuchAlgorithmException, IOException, IllegalBlockSizeException, NoSuchPaddingException, InvalidKeyException {
+        return documentService.addDocsToAccount(account_id, files);
     }
 
 

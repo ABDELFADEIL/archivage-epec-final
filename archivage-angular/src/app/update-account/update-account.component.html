@@ -4,13 +4,15 @@
     <div class="row card-header justify-content-between ">
 
       <h4 class=" text-center" *ngIf="action == 'update'">Mis à jour compte </h4>
-      <h4 class=" text-center" *ngIf="action == 'add'">Ajouter des documents </h4>
+      <h4 class=" text-center" *ngIf="action == 'add'">Ajouter des documents </h4><br>
+
       <button class="btn  bg-light">
         <i class="fa fa-window-close"  (click)="activeModal.dismiss('Cross click')"></i>
       </button>
     </div>
 
     <div class="card-body" *ngIf="action == 'update'">
+
       <form class="spacer"  (ngSubmit)="onSubmit()">
 
         <div class="row form">
@@ -69,6 +71,9 @@
 </div>
 
 <div class="card-body" *ngIf="action == 'add'">
+  <h4>Nom de cient: {{account.client.client_name +' '+ account.client.client_first_name}}</h4>
+  <h4>Libellé compte: {{account.account_id_type_code}}</h4>
+  <h4>Numéro compte: {{account.account_number}}</h4>
   <div class="container-fluid" >
     <form>
     <div class="col-md-12">
@@ -84,7 +89,7 @@
     </div>
 
     <div class="col-md-12 text-center">
-      <button type="submit" class="btn btn-l col-md-6" style="background: #dee6f9;" [disabled]="files.length == 0"> Enoyer</button>
+      <button type="submit" class="btn btn-l col-md-6" style="background: #dee6f9;" [disabled]="files.length == 0" (click)="addDocs()"> Enoyer</button>
     </div>
     </form>
   </div>

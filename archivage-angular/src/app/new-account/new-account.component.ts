@@ -48,7 +48,7 @@ export class NewAccountComponent implements OnInit {
   }
 
   onSubmit(){
-   // console.log(f.value)
+    // console.log(f.value)
     const form = this.form.value;
     console.log(form)
     const formdata = new FormData();

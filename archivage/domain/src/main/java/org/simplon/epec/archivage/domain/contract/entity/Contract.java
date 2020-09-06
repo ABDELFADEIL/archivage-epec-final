@@ -2,7 +2,6 @@ package org.simplon.epec.archivage.domain.contract.entity;
 
 import org.apache.commons.lang3.RandomUtils;
 import org.simplon.epec.archivage.domain.client.entity.Client;
-import org.simplon.epec.archivage.domain.event.entity.Event;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -21,7 +20,7 @@ public class Contract implements Serializable {
   private String contract_id_type_label;
   private Client client;
   private String contract_number;
-  private Event event;
+  //private Event event;
   private LocalDate creating_date;
     private String user_id;
     private String status;
@@ -78,11 +77,11 @@ public class Contract implements Serializable {
   public String getContract_number() {
     return contract_number;
   }
-
+/*
   public Event getEvent() {
     return event;
   }
-
+*/
   public LocalDate getCreating_date() {
     return creating_date;
   }
@@ -108,11 +107,11 @@ public class Contract implements Serializable {
   public void setContract_number(String contract_number) {
     this.contract_number = contract_number;
   }
-
+/*
   public void setEvent(Event event) {
     this.event = event;
   }
-
+*/
   public void setCreating_date(LocalDate creating_date) {
     this.creating_date = creating_date;
   }

@@ -11,10 +11,20 @@
   </div>
 
   <div class="card-body" *ngIf="action == 'update'">
-    <form class="spacer"  (ngSubmit)="onSubmit()">
 
-      <div class="row form">
+    <form class="spacer"  (ngSubmit)="onSubmit()">
+        <div class="row form">
         <div class="col-sm-12">
+          <div class="col-md-12">
+            <div class="form-group row">
+              <div class="col-sm-4">
+                <p class="float-right">Nom de cient:</p>
+              </div>
+              <div class="col-sm-6">
+                <p class="">{{contract.client.client_name +' '+ contract.client.client_first_name}}</p>
+              </div>
+            </div>
+          </div>
 
           <div class="col-md-12">
             <div class="form-group row">
@@ -70,7 +80,9 @@
 </div>
 
 <div class="card-body" *ngIf="action == 'add'">
-
+  <h4>Nom de cient: {{contract.client.client_name +' '+ contract.client.client_first_name}}</h4>
+  <h4>Libellé de contrat: {{contract.contract_id_type_label}}</h4>
+  <h4>Numéro de contrat: {{contract.contract_number}}</h4>
   <div class="container-fluid">
 
     <div class="col-md-12">

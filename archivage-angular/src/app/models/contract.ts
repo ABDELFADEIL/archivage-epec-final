@@ -9,6 +9,7 @@ export class Contract {
     creating_date : Date;
     status:string;
     contract_id: string;
+  contact_id: string;
     constructor() {
     }
 }

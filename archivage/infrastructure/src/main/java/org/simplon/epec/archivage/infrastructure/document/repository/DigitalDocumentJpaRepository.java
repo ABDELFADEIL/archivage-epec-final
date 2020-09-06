@@ -33,6 +33,8 @@ public interface DigitalDocumentJpaRepository extends JpaRepository<DigitalDocum
     @Query(value="select doc from DigitalDocument doc")
     @QueryHints(value= {@QueryHint(name= HINT_FETCH_SIZE, value=""+Integer.MIN_VALUE), @QueryHint(name = HINT_PASS_DISTINCT_THROUGH, value = "false")})
     public Stream<DigitalDocument> getAllDocsStream();
-    @Query(value = "select digitalDocument from DigitalDocument digitalDocument where digitalDocument.context.contract.contract_id =:contract_id")
+    @Query(value = "SELECT * FROM `digital_document` WHERE `digital_document`.`context` IN (SELECT `context`.`context_id` FROM `context` WHERE `context`.`contract` = :contract_id)", nativeQuery = true)
     List<DigitalDocument> getDocsContractById(@Param("contract_id") String contract_id);
+    @Query(value = "SELECT * FROM `digital_document` WHERE `digital_document`.`context` IN (SELECT `context`.`context_id` FROM `context` WHERE `context`.`account` = :account_id)", nativeQuery = true)
+    List<DigitalDocument> getDocsAccountById(@Param("account_id") String account_id);
 }

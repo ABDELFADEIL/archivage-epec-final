@@ -34,7 +34,11 @@ public class ClientResource {
     private final transient DigitalDocumentService documentService;
     private final transient ClassificationNatureService classificationNatureService;
 
-    public ClientResource(ClientService clientService, DigitalDocumentService documentService, ClassificationNatureService classificationNatureService) {
+    public ClientResource(
+            ClientService clientService,
+            DigitalDocumentService documentService,
+            ClassificationNatureService classificationNatureService
+                       ) {
         this.clientService = clientService;
         this.documentService = documentService;
         this.classificationNatureService = classificationNatureService;

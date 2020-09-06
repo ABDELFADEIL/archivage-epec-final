@@ -59,12 +59,16 @@ export class UpdateContractComponent implements OnInit {
     for (let file of this.files) {
       formdata.append("files", file);
     }
+    console.log(this.files)
     this.contractService.addDocsToContract(formdata).subscribe(data => {
       console.log(data);
+      this.closeModal();
     }, error => {
       console.log(error);
     });
   }
+
+
 }
 
 

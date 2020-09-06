@@ -72,4 +72,11 @@ public class DigitalDocumentRepositoryImpl implements DigitalDocumentRepository 
 
         return digitalDocumentJpaRepository.getDocsContractById(contract_id);
     }
+
+    @Override
+    public List<DigitalDocument> getDocsAccountById(String account_id) {
+        return digitalDocumentJpaRepository.getDocsAccountById(account_id);
+    }
+
+
 }

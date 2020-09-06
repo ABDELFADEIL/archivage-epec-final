@@ -2,7 +2,6 @@ package org.simplon.epec.archivage.domain.account.entity;
 
 import org.apache.commons.lang3.RandomUtils;
 import org.simplon.epec.archivage.domain.client.entity.Client;
-import org.simplon.epec.archivage.domain.event.entity.Event;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -21,7 +20,7 @@ public class Account implements Serializable {
   private String account_id_type_label;
   private String account_number;
   private Client client;
-  private Event event;
+  //private Event event;
   private LocalDate creating_date;
     private String user_id;
     private String status;
@@ -155,19 +154,20 @@ public class Account implements Serializable {
   /**
    * Set the value of event
    * @param newVar the new value of event
-   */
-  public void setEvent (Event newVar) {
+
+  //public void setEvent (Event newVar) {
     event = newVar;
   }
+  */
 
   /**
    * Get the value of event
    * @return the value of event
-   */
+
   public Event getEvent () {
     return event;
   }
-
+   */
   /**
    * Set the value of creating_date
    * @param newVar the new value of creating_date

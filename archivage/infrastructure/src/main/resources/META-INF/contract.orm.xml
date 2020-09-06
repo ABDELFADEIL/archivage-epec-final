@@ -35,13 +35,7 @@
                 </cascade>
             </many-to-one>
 
-            <one-to-one name="event" fetch="LAZY"
-                        target-entity="org.simplon.epec.archivage.domain.event.entity.Event">
-                <join-column name="event" />
-                <cascade>
-                    <cascade-all />
-                </cascade>
-            </one-to-one>
+
         </attributes>
     </entity>
 </entity-mappings>

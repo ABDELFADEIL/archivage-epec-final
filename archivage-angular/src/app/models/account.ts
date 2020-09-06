@@ -1,3 +1,5 @@
+import {Client} from './client';
+
 export class Account {
   account_id:string
   creating_date: Date;
@@ -5,4 +7,5 @@ export class Account {
   account_id_type_code:string;
   account_number:number;
   status:string;
+  client:Client;
 }

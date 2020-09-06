@@ -5,8 +5,8 @@ spring:
   profiles:
     active: local
   datasource:
-    url: jdbc:mysql://localhost:3306/archivage?serverTimezone=UTC&useSSL=false&autoreconnect=true
-    username: root
+    url: jdbc:mysql://person-address.cwer0zyk5wjm.eu-central-1.rds.amazonaws.com/archivage
+    username: admin
     password: adminbeel
     driver-class-name: com.mysql.cj.jdbc.Driver
   application:

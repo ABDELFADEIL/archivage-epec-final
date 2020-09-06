@@ -142,7 +142,7 @@ hover show
 
 #to-hover:hover #to-show, #to-hover:hover #to-show1 {
   display: block !important;
-  border-bottom: 1px solid #dee2e6 !important;
+  /*border-bottom: 1px solid #dee2e6 !important; */
 }
 
 

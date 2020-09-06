@@ -3,15 +3,16 @@ package org.simplon.epec.archivage.application.document;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.RandomUtils;
+import org.simplon.epec.archivage.application.account.AccountService;
 import org.simplon.epec.archivage.application.classificationNature.ClassificationNatureService;
 import org.simplon.epec.archivage.application.contract.ContractService;
 import org.simplon.epec.archivage.application.user.UserService;
+import org.simplon.epec.archivage.domain.account.entity.Account;
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
 import org.simplon.epec.archivage.domain.contract.entity.Contract;
 import org.simplon.epec.archivage.domain.document.entity.Context;
 import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.domain.document.repository.DigitalDocumentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -36,13 +37,16 @@ public class DigitalDocumentServiceImpl implements DigitalDocumentService{
     private final transient ContextService contextRepository;
     private final transient UserService userService;
     private final transient ContractService contractService;
-    @Autowired
-    public DigitalDocumentServiceImpl(DigitalDocumentRepository digitalDocumentRepository, ClassificationNatureService classificationNatureService, ContextService contextRepository, UserService userService, ContractService contractService) {
+    private final transient AccountService accountService;
+
+
+    public DigitalDocumentServiceImpl(DigitalDocumentRepository digitalDocumentRepository, ClassificationNatureService classificationNatureService, ContextService contextRepository, UserService userService, ContractService contractService, AccountService accountService) {
         this.digitalDocumentRepository = digitalDocumentRepository;
         this.classificationNatureService = classificationNatureService;
         this.contextRepository = contextRepository;
         this.userService = userService;
         this.contractService = contractService;
+        this.accountService = accountService;
     }
 
 
@@ -127,15 +131,42 @@ public class DigitalDocumentServiceImpl implements DigitalDocumentService{
 
         if (files.length > 0) {
             for (MultipartFile file: files) {
-                Context ctx = new Context(RandomUtils.nextLong(), null, docs.get(0).getContext().getClassification_nature(), docs.get(0).getContext().getFinal_business_processing_date(), null, contract.getClient());
+                if (docs.size() > 0){
+                Context ctx = new Context(RandomUtils.nextLong(), file.getContentType(), docs.get(0).getContext().getClassification_nature(), docs.get(0).getContext().getFinal_business_processing_date(), null, contract.getClient());
                 ctx.setContract(contract);
-                ctx.setMine_type(file.getContentType());
                 document = new DigitalDocument(file.getOriginalFilename(), file.getContentType().split("/")[1], null, ctx);
-                DigitalDocument doc = createDocument(document, docs.get(0).getContext().getClassification_nature(), file);
-                // documentService.savedoc(doc);
-                documentList.add(doc);
+                DigitalDocument document1 = createDocument(document, docs.get(0).getContext().getClassification_nature(), file);
+                documentList.add(document1);
+            }
             }
         }
         return documentList.get(0).getContext().getContract();
+    }
+
+
+    @Override
+    public Account addDocsToAccount(String account_id, MultipartFile[] files) throws IOException, BadPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, NoSuchPaddingException, InvalidKeyException {
+        List<DigitalDocument> docs = digitalDocumentRepository.getDocsAccountById(account_id);
+        List<DigitalDocument> documentList = new ArrayList<DigitalDocument>();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        String accountId = objectMapper.readValue(account_id, String.class);
+        Account account = accountService.findById(accountId);
+        DigitalDocument document = null;
+
+        if (files.length > 0) {
+            for (MultipartFile file: files) {
+                if (docs.size() > 0){
+                    Context ctx = new Context(RandomUtils.nextLong(), file.getContentType(), docs.get(0).getContext().getClassification_nature(), docs.get(0).getContext().getFinal_business_processing_date(), docs.get(0).getContext().getFinal_stage_date(), account.getClient());
+                    ctx.setAccount(account);
+                    ctx.setMine_type(file.getContentType());
+                    document = new DigitalDocument(file.getOriginalFilename(), file.getContentType().split("/")[1], null, ctx);
+                    DigitalDocument document1 = createDocument(document, docs.get(0).getContext().getClassification_nature(), file);
+                    documentList.add(document1);
+                }
+            }
+        }
+        return documentList.get(0).getContext().getAccount();
     }
 }

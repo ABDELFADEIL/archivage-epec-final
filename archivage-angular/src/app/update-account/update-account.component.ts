@@ -62,12 +62,13 @@ export class UpdateAccountComponent implements OnInit {
 
   addDocs() {
     const formdata = new FormData();
-    const account_id =  formdata.append("account_id", this.account.account_id);
+    formdata.append("account_id", this.account.account_id);
     for (let file of this.files) {
       formdata.append("files", file);
     }
     this.accountService.addDocsToAccount(formdata).subscribe(data => {
       console.log(data);
+      this.closeModal();
     }, error => {
       console.log(error);
     });

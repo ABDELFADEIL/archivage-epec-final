@@ -1,5 +1,6 @@
 package org.simplon.epec.archivage.application.document;
 
+import org.simplon.epec.archivage.domain.account.entity.Account;
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
 import org.simplon.epec.archivage.domain.contract.entity.Contract;
 import org.simplon.epec.archivage.domain.document.entity.Context;
@@ -25,4 +26,5 @@ public interface DigitalDocumentService {
     Page<DigitalDocument> getAllDocs(Pageable pageable);
     DigitalDocument savedoc(DigitalDocument doc);
     Contract addDocsToContract(String contract_id, MultipartFile[] files) throws IOException, BadPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, NoSuchPaddingException, InvalidKeyException;
+    Account addDocsToAccount(String account_id, MultipartFile[] files) throws IOException, BadPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, NoSuchPaddingException, InvalidKeyException;
 }

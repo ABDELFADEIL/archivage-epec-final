@@ -4,16 +4,13 @@ import org.apache.commons.lang3.RandomUtils;
 
 import java.io.Serializable;
 import java.util.Date;
-
 /**
  * Class Client
  */
 public class Client implements Serializable {
-
   //
   // Fields
   //
-
   private String client_id;
   private String client_number;
   private int client_nature_id;
@@ -25,16 +22,11 @@ public class Client implements Serializable {
   private String siren_number;
   private String siret_number;
   private String user_id;
-
-
+  private String status;
   //
   // Constructors
   //
   public Client () { };
-  
-  //
-  // Methods
-  //
 
   public Client(int client_nature_id, String client_number, String client_name,
                 String client_first_name, int civility_id, Date birth_date,
@@ -51,12 +43,9 @@ public class Client implements Serializable {
     this.siret_number = siret_number;
     this.user_id = user_id;
   }
-
-
   //
   // Accessor methods
   //
-
   public String getClient_id() {
     return client_id;
   }
@@ -145,7 +134,15 @@ public class Client implements Serializable {
     this.user_id = user_id;
   }
 
-//
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
+  //
   // Other methods
   //
 
