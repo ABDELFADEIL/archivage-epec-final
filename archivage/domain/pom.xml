@@ -12,6 +12,7 @@
     <version>1.0-SNAPSHOT</version>
     <name>${project.artifactId}</name>
     <description>domain</description>
+    <packaging>jar</packaging>
     <dependencies>
 
         <dependency>

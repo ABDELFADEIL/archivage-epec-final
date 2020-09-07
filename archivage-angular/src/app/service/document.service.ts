@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ClassificationNature} from '../models/classification-nature';
 import {environment} from '../environment';
+import {Document} from '../models/document';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class DocumentService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllDocs() :Observable<Document []>{
+  getAllDocs() {
     return this.httpClient.get<Document []>(environment.apiUrl+"/api/documents/all-docs-list");
   }
 

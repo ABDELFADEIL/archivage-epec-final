@@ -32,17 +32,22 @@ export class NewAccountComponent implements OnInit {
   final_business_processing_date: any;
   public account: Account;
    client_name: string;
-   client_number: string;
-
+   client_number: number;
+  clients: Client [] = [];
+  public page : number = 1;
+  public size : number= 12;
+  public currentSize : number;
+  currentPage : number = 1;
+  public totalPages: number;
+  public pages: number[];
+  public keyword;
+  chercher: boolean =false;
+  create: boolean= false;
 
   constructor(private accountService: AccountService, private clientService: ClientService, private router: Router, private  classificationNatureService: ClassificationNatureService) { }
 
   ngOnInit(): void {
-    if (!this.clientService.client){
-      this.router.navigateByUrl('home')
-    }else {
-      this.client = this.clientService.client;
-    }
+    this.client = this.clientService.client;
     this.initializeFormGroup();
     this.getClassificationNature();
   }
@@ -82,9 +87,9 @@ export class NewAccountComponent implements OnInit {
     formdata.append('classificationNature', JSON.stringify(cn));
     //formdata.append('final_business_processing_date', JSON.stringify(final_business_processing_date));
     formdata.append('account', JSON.stringify(account));
-    formdata.append('client', JSON.stringify(this.clientService.client));
+    formdata.append('client', JSON.stringify(this.client));
     console.log(form);
-    console.log(this.clientService.client);
+    console.log(this.client);
     console.log(account);
 
     this.accountService.createAccount(formdata).subscribe(data => {
@@ -171,6 +176,35 @@ export class NewAccountComponent implements OnInit {
 
 
 
+  onChercher(client_name, client_number) {
+
+    this.chercher = true
+    if (client_name==''){
+      this.client_name = null;
+    } else{
+      this.client_name = client_name
+    }
+    if (client_number == ''){
+      this.client_number = null;
+    }else {
+      this.client_number = client_number;
+    }
+
+    console.log(client_name)
+    console.log(client_number)
+
+    this.clientService.searchClientByNameOrNumberClient(this.client_name, this.client_number).subscribe(data => {
+      console.log(data)
+      this.clients = data;
+      this.clientService.client = this.client;
+    }, error => {
+      console.log(error)
+    })
+  }
+
+  onAddAccount(c: Client) {
+    this.client = c;
+  }
 }
 
 

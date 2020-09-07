@@ -3,33 +3,49 @@
   <div class="col-1"></div>
   <div class="col-md-10" style="max-height: 82vh">
     <div class="" >
-        <form *ngIf="documents">
-            <div class="form-group form-inline">
-                Chercher: <input class="form-control ml-2" type="text"/>
-            </div>
-          </form>
+      <form *ngIf="documents">
+        <div class="form-group form-inline">
+          Chercher: <input class="form-control ml-2" type="text"/>
+        </div>
+      </form>
+
 
       <table class="table table-bordered table-hover">
         <thead>
         <tr>
+          <td scope="col">
+            <div style="display: inline list-item; padding-left: 10px;">
+              <input class="form-check-input selectedBtn" (change)="onCheckboxChange($event, 'all')"
+                     type="checkbox"> {{selectedAll}}
+            </div>
+          </td>
           <td scope="col">document_id</td>
           <td scope="col">archiving_reference_date</td>
-          <td scope="col">Code nature de classification</td>
           <td scope="col">classification_nature_code</td>
-          <td colspan="2" scope="col"></td>
+          <td scope="col">Code nature de classification</td>
         </tr>
         </thead>
         <tbody *ngIf="documents">
         <tr *ngFor="let d of documents | slice: (page-1) * size : (page-1) * size + size;">
+          <td scope="col">
+            <form>
+              <div class="form-group">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input selectedAll" (change)="onCheckboxChange($event, d.document_id)"
+                         type="checkbox">
+                </div>
+              </div>
+            </form>
+
+          </td>
           <td scope="row">{{d.document_id}}</td>
-          <td> {{d.context['archiving_reference_date']}}</td>
-          <td>{{d.context['frozen']}}</td>
-          <td>{{d.context['context_id']}}</td>
-          <td style="cursor: pointer" (click)="onDelete(d.document_id)"><i class="text-danger fa fa-trash"></i></td>
-          <td style="cursor: pointer" (click)="update(d)"><i class="text-primary fa fa-edit"></i></td>
+          <td> {{d.context.archiving_reference_date}} </td>
+          <td>{{d.context.event.event_type}}</td>
+          <td>{{d.context.frozen}}</td>
         </tr>
         </tbody>
       </table>
+
 
       <div class="d-flex justify-content-between p-2" *ngIf="documents">
         <ngb-pagination [collectionSize]="documents.length" [(page)]="page" [maxSize]="size" [pageSize]="size" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" >
@@ -46,5 +62,4 @@
     </div>
   </div>
 </div>
-
 

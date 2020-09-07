@@ -5,5 +5,6 @@ export class Document {
 
 
    context: Context;
+  document_id: string;
 
 }

@@ -20,7 +20,6 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -105,41 +104,8 @@ public class DocumentResource {
         });
 
          */
-        List<DigitalDocument> documents = new ArrayList<>();
-        List<Context> contexts = new ArrayList<>();
-         //ArrayList<Long> idsontext = null;
-        // List<Context> contextList = null;
-        // document_id, archive_format,  file_name, context.context_id,
-        // context.archiving_reference_date, context.account.account_id_label, context.contract.contract_id_label
-        digitalDocumentJpaRepository.getAllMetadata().forEach(doc -> {
 
-            String id = (String) doc[3];
-            try {
-               // idsontext.add(id);
-            }catch (Exception e){
-               e.getStackTrace();
-            }
-
-            System.out.println("string "+id);
-            DigitalDocument document = new DigitalDocument();
-
-            String idDoc = (String) doc[0];
-            document.setDocument_id(String.valueOf(idDoc));
-            document.setArchive_format((String) doc[1]);
-            document.setFile_name((String) doc[2]);
-            try {
-                Context c = contextJpaRepository.findById(id).get();
-                document.setContext(c);
-               // contextList.add(c);
-            }catch(Exception e){
-                e.getStackTrace();
-            }
-
-            documents.add(document);
-            System.out.println("============= cannot cast "+ id.getClass());
-        });
-
-        return documents;
+        return digitalDocumentJpaRepository.getAllDocs();
     }
 
 }

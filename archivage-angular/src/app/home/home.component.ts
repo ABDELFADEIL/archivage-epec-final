@@ -29,6 +29,8 @@ export class HomeComponent implements OnInit {
   constructor(private clientService: ClientService, private router: Router) { }
 
   ngOnInit(): void {
+    this.clientService.client = null;
+    this.create = false;
   }
 
   onSubmit(client_name, client_number) {

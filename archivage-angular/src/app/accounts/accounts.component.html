@@ -41,8 +41,8 @@
           <th class="table-th" scope="col">Client prénom</th>
           <th class="table-th" scope="col">Date naissance</th>
           <th class="table-th" scope="col">Numéro de compte</th>
-          <th class="table-th"></th>
-          <th class="table-th"></th>
+          <th class="table-th" scope="col"></th>
+          <th class="table-th" scope="col"></th>
 
         </tr>
         </thead>
@@ -63,7 +63,7 @@
         </tr>
         </tbody>
         <tbody *ngIf="accounts.length == 0 || !accounts">
-        <tr> <td colspan="6" class="alert alert-danger text-center" style="border-radius: 0"><div>Il n'a aucun elements!</div></td></tr>
+        <tr> <td colspan="7" class="alert alert-danger text-center" style="border-radius: 0"><div>Il n'a aucun elements!</div></td></tr>
         </tbody>
       </table>
 
