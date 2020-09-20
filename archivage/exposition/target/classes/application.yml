@@ -45,7 +45,7 @@ management:
       exposure:
         include: info, health, configprops, logfile, metrics, env, loggers, httptrace, mappings, threaddump
     application:
-  version: '1.0-SNAPSHOT'
+  version: '1.1'
   timezone: 
 
 server:

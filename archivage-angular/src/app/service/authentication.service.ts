@@ -11,7 +11,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 })
 export class AuthenticationService {
 
-  host: string = "http://localhost:8080";
+  host: string = "http://ec2-3-123-100-14.eu-central-1.compute.amazonaws.com:8080/exposition-1.1";
   jwtToken: string;
   roles: Array<any> = [];
   public user: Observable<User>;

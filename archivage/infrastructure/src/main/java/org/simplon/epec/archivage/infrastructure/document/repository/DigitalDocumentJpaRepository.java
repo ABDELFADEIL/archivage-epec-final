@@ -25,10 +25,11 @@ public interface DigitalDocumentJpaRepository extends JpaRepository<DigitalDocum
     @Query(value="select * from digital_document limit 1000",  nativeQuery=true)
     @QueryHints(value= {@QueryHint(name= HINT_FETCH_SIZE, value=""+Integer.MIN_VALUE), @QueryHint(name = HINT_PASS_DISTINCT_THROUGH, value = "false")})
     public List<DigitalDocument> getAllDocs();
-
-    @Query(value="select * FROM digital_document where digital_document.context.event not null order by digital_document.context.event.event_date limit 1000" ,  nativeQuery=true)
-    @QueryHints(value= {@QueryHint(name= HINT_FETCH_SIZE, value=""+Integer.MIN_VALUE), @QueryHint(name = HINT_PASS_DISTINCT_THROUGH, value = "false")})
-    public List<DigitalDocument> getAllMetadata();
+    // where digital_document.context.event not null order by digital_document.context.event.event_date
+    //@Query(value="select document_id, context.context_id, context.conserv_unit_id, context.final_stage_date, context.archiving_reference_date, context.final_business_processing_date, context.frozen_label, context.hold_status, context.frozen, classification_nature, event FROM digital_document")
+    //@CriteriaQuery
+    //@QueryHints(value= {@QueryHint(name= HINT_FETCH_SIZE, value=""+Integer.MIN_VALUE), @QueryHint(name = HINT_PASS_DISTINCT_THROUGH, value = "false")})
+    //public List<DigitalDocument> getAllMetadata();
 
     @Query(value="select doc from DigitalDocument doc")
     @QueryHints(value= {@QueryHint(name= HINT_FETCH_SIZE, value=""+Integer.MIN_VALUE), @QueryHint(name = HINT_PASS_DISTINCT_THROUGH, value = "false")})

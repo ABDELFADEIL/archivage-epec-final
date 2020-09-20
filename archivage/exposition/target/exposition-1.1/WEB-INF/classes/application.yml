@@ -1,0 +1,65 @@
+spring:
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+  profiles:
+    active: local
+  datasource:
+    url: jdbc:mysql://person-address.cwer0zyk5wjm.eu-central-1.rds.amazonaws.com/archivage
+    username: admin
+    password: adminbeel
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: 'exposition'
+    log-file-name: ${spring.application.name}
+  jpa:
+    mapping-resources:
+      - META-INF/account.orm.xml
+      - META-INF/classificationNature.orm.xml
+      - META-INF/client.orm.xml
+      - META-INF/contract.orm.xml
+      - META-INF/document.orm.xml
+      - META-INF/event.orm.xml
+      - META-INF/history.orm.xml
+      - META-INF/user.orm.xml
+      - META-INF/destructionList.orm.xml
+    open-in-view: false
+    database: mysql
+    cache:
+      jcache:
+        config: classpath:cache/ehcache.xml
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        format-sql: false
+        use-sql-coments: false
+        generate-statistics: false
+    show-sql: true
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, configprops, logfile, metrics, env, loggers, httptrace, mappings, threaddump
+    application:
+  version: '1.1'
+  timezone: 
+
+server:
+  port: 8080
+  ssl:
+    enabled: false
+
+
+logging:
+  logging:
+    level:
+      ROOT: INFO
+      org.springframework: INFO
+      org.simplon.epec.archivage: INFO
+      org.hibernate.stat: DEBUG
+  pattern:
+    rolling-file-name: logback-spring.xml

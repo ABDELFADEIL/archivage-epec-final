@@ -19,9 +19,9 @@
                      type="checkbox"> {{selectedAll}}
             </div>
           </td>
-          <td scope="col">document_id</td>
-          <td scope="col">archiving_reference_date</td>
-          <td scope="col">classification_nature_code</td>
+          <td scope="col">Id document</td>
+          <td scope="col">Date de l'archivage</td>
+          <td scope="col">Type de l'evenement</td>
           <td scope="col">Code nature de classification</td>
         </tr>
         </thead>
@@ -41,7 +41,7 @@
           <td scope="row">{{d.document_id}}</td>
           <td> {{d.context.archiving_reference_date}} </td>
           <td>{{d.context.event.event_type}}</td>
-          <td>{{d.context.frozen}}</td>
+          <td>{{d.context.classification_nature.classification_nature_code}}</td>
         </tr>
         </tbody>
       </table>

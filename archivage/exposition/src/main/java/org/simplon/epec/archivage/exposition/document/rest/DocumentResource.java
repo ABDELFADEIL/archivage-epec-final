@@ -7,7 +7,9 @@ import org.simplon.epec.archivage.domain.classificationNature.entity.Classificat
 import org.simplon.epec.archivage.domain.document.entity.Context;
 import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.infrastructure.context.repository.ContextJpaRepository;
+import org.simplon.epec.archivage.infrastructure.document.dto.DocumentSearchCriteria;
 import org.simplon.epec.archivage.infrastructure.document.repository.DigitalDocumentJpaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
@@ -29,6 +31,8 @@ public class DocumentResource {
     private  final DigitalDocumentService digitalDocumentService;
     private final DigitalDocumentJpaRepository digitalDocumentJpaRepository;
     private final ContextJpaRepository contextJpaRepository;
+    @Autowired
+    DocumentSearchCriteria documentSearchCriteria;
 
     public DocumentResource(DigitalDocumentService digitalDocumentService, DigitalDocumentJpaRepository digitalDocumentJpaRepository,  ContextJpaRepository contextJpaRepository) {
         this.digitalDocumentService = digitalDocumentService;
@@ -92,7 +96,7 @@ public class DocumentResource {
     }
 
     @GetMapping(value = "/all-docs-list", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<DigitalDocument> getAllDocs(){
+    public List<DocumentSearchCriteria> getAllDocs(){
         /*
         digitalDocumentJpaRepository.getAllDocs().forEach(digitalDocument -> {
             DigitalDocument d = new DigitalDocument();
@@ -105,7 +109,7 @@ public class DocumentResource {
 
          */
 
-        return digitalDocumentJpaRepository.getAllDocs();
+        return documentSearchCriteria.documentSearchCriteria();
     }
 
 }
