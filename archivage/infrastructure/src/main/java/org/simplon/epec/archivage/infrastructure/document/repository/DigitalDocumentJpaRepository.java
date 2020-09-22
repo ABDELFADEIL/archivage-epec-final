@@ -4,6 +4,7 @@ import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.data.repository.query.Param;
@@ -15,7 +16,7 @@ import java.util.stream.Stream;
 import static org.hibernate.jpa.QueryHints.HINT_FETCH_SIZE;
 import static org.hibernate.jpa.QueryHints.HINT_PASS_DISTINCT_THROUGH;
 
-public interface DigitalDocumentJpaRepository extends JpaRepository<DigitalDocument, String> {
+public interface DigitalDocumentJpaRepository extends JpaRepository<DigitalDocument, String>, JpaSpecificationExecutor<DigitalDocument> {
 
 
     @Query(value="select doc from DigitalDocument doc")

@@ -1,5 +1,6 @@
 package org.simplon.epec.archivage.domain.document.entity;
 
+import lombok.Builder;
 import org.apache.commons.lang3.RandomUtils;
 
 import java.io.Serializable;
@@ -7,7 +8,9 @@ import java.io.Serializable;
 /**
  * Class DigitalDocument
  */
+@Builder
 public class DigitalDocument implements Serializable {
+
 
   //
   // Fields
@@ -31,7 +34,14 @@ public class DigitalDocument implements Serializable {
     this.context = context;
   }
 
-  //
+  public DigitalDocument(String document_id, String file_name, String archive_format, byte[] encoding_doc, Context context) {
+    this.document_id = document_id;
+    this.file_name = file_name;
+    this.archive_format = archive_format;
+    this.encoding_doc = encoding_doc;
+    this.context = context;
+  }
+//
   // Methods
   //
 

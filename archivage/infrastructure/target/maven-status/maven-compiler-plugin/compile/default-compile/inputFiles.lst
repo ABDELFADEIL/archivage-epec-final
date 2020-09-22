@@ -1,5 +1,7 @@
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/fadeil/projets-professionnels/archivage-epec-final/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/event/repository/EventJapRepository.java
+/media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/fadeil/projets-professionnels/archivage-epec-final/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/document/dto/DocumentConverter.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/fadeil/projets-professionnels/archivage-epec-final/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/document/repository/DigitalDocumentJpaRepository.java
+/media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/fadeil/projets-professionnels/archivage-epec-final/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/document/dto/DocumentDTO.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/fadeil/projets-professionnels/archivage-epec-final/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/security/JWTAuthorizationFilter.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/fadeil/projets-professionnels/archivage-epec-final/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/event/repository/EventRepositoryImpl.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/fadeil/projets-professionnels/archivage-epec-final/archivage/infrastructure/src/main/java/org/simplon/epec/archivage/infrastructure/user/repository/RoleRepositoryImpl.java

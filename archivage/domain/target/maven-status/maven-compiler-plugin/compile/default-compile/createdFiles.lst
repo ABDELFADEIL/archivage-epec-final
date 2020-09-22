@@ -6,7 +6,9 @@ org/simplon/epec/archivage/domain/account/repository/AccountRepository.class
 org/simplon/epec/archivage/domain/user/repository/RoleRepository.class
 org/simplon/epec/archivage/domain/document/repository/ContextRepository.class
 org/simplon/epec/archivage/domain/user/entity/User.class
+org/simplon/epec/archivage/domain/document/entity/Context$ContextBuilder.class
 org/simplon/epec/archivage/domain/client/entity/Client.class
+org/simplon/epec/archivage/domain/document/entity/DigitalDocument$DigitalDocumentBuilder.class
 org/simplon/epec/archivage/domain/classificationNature/entity/ClassificationNature.class
 org/simplon/epec/archivage/domain/document/repository/DigitalDocumentRepository.class
 org/simplon/epec/archivage/domain/history/repository/HistoryRepository.class

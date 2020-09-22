@@ -7,9 +7,11 @@ org/simplon/epec/archivage/infrastructure/history/repository/HistoryRepositoryIm
 org/simplon/epec/archivage/infrastructure/document/CrypterDocument.class
 org/simplon/epec/archivage/infrastructure/security/UserDetailsServiceImpl.class
 org/simplon/epec/archivage/infrastructure/event/repository/EventRepositoryImpl.class
+org/simplon/epec/archivage/infrastructure/document/dto/DocumentConverter.class
 org/simplon/epec/archivage/infrastructure/contract/repository/ContractJpaRepository.class
 org/simplon/epec/archivage/infrastructure/context/repository/ContextJpaRepository.class
 org/simplon/epec/archivage/infrastructure/history/repository/HistoryJpaRepository.class
+org/simplon/epec/archivage/infrastructure/document/dto/DocumentSearchCriteria$1.class
 org/simplon/epec/archivage/infrastructure/context/repository/ContextRepositoryImpl.class
 org/simplon/epec/archivage/infrastructure/security/JWTAuthorizationFilter.class
 org/simplon/epec/archivage/infrastructure/account/repository/AccountJpaRepository.class
@@ -19,6 +21,7 @@ org/simplon/epec/archivage/infrastructure/user/repository/UserJpaRepository.clas
 org/simplon/epec/archivage/infrastructure/client/repository/ClientRepositoryImpl.class
 org/simplon/epec/archivage/infrastructure/security/config/SecurityConstants.class
 org/simplon/epec/archivage/infrastructure/ClassificationNature/repository/ClassificationJpaNatureRepository.class
+org/simplon/epec/archivage/infrastructure/document/dto/DocumentDTO.class
 org/simplon/epec/archivage/infrastructure/event/repository/EventJapRepository.class
 org/simplon/epec/archivage/infrastructure/user/repository/RoleRepositoryImpl.class
 org/simplon/epec/archivage/infrastructure/ClassificationNature/repository/ClassificationNatureRepositoryImpl.class
@@ -28,3 +31,4 @@ org/simplon/epec/archivage/infrastructure/account/repository/AccountRepositoryIm
 org/simplon/epec/archivage/infrastructure/security/JWTAuthenticationFilter.class
 org/simplon/epec/archivage/infrastructure/security/config/SecurityConfig.class
 org/simplon/epec/archivage/infrastructure/document/dto/DocumentSearchCriteria.class
+org/simplon/epec/archivage/infrastructure/document/dto/DocumentDTO$DocumentDTOBuilder.class

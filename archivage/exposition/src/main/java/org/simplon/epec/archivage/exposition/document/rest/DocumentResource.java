@@ -7,11 +7,13 @@ import org.simplon.epec.archivage.domain.classificationNature.entity.Classificat
 import org.simplon.epec.archivage.domain.document.entity.Context;
 import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.infrastructure.context.repository.ContextJpaRepository;
+import org.simplon.epec.archivage.infrastructure.document.dto.DocumentDTO;
 import org.simplon.epec.archivage.infrastructure.document.dto.DocumentSearchCriteria;
 import org.simplon.epec.archivage.infrastructure.document.repository.DigitalDocumentJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,6 +24,7 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -32,7 +35,9 @@ public class DocumentResource {
     private final DigitalDocumentJpaRepository digitalDocumentJpaRepository;
     private final ContextJpaRepository contextJpaRepository;
     @Autowired
-    DocumentSearchCriteria documentSearchCriteria;
+    private DocumentSearchCriteria documentSearchCriteria;
+    private static final String DATE_PATTERN = "yyyy/MM/dd";
+
 
     public DocumentResource(DigitalDocumentService digitalDocumentService, DigitalDocumentJpaRepository digitalDocumentJpaRepository,  ContextJpaRepository contextJpaRepository) {
         this.digitalDocumentService = digitalDocumentService;
@@ -96,7 +101,10 @@ public class DocumentResource {
     }
 
     @GetMapping(value = "/all-docs-list", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<DocumentSearchCriteria> getAllDocs(){
+    public List<DocumentDTO> getAllDocs(
+            // @RequestParam(name = "since", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDateTime since,
+                                       Pageable pageable){
+
         /*
         digitalDocumentJpaRepository.getAllDocs().forEach(digitalDocument -> {
             DigitalDocument d = new DigitalDocument();
@@ -109,7 +117,7 @@ public class DocumentResource {
 
          */
 
-        return documentSearchCriteria.documentSearchCriteria();
+        return documentSearchCriteria.getDocumentDfbmIsNullArchivingDateBefore(LocalDateTime.now(), pageable);
     }
 
 }

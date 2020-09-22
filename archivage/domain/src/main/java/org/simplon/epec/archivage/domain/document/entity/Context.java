@@ -1,5 +1,6 @@
 package org.simplon.epec.archivage.domain.document.entity;
 
+import lombok.Builder;
 import org.apache.commons.lang3.RandomUtils;
 import org.simplon.epec.archivage.domain.account.entity.Account;
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 /**
  * Class Context
  */
+@Builder
 public class Context implements Serializable {
 
   //
@@ -79,7 +81,30 @@ public class Context implements Serializable {
     this.client = client;
     this.context_id = RandomUtils.nextLong()+"";
   }
-  //
+
+  public Context(String context_id, long conserv_unit_id, String mine_type, LocalDate final_stage_date,
+                 LocalDateTime archiving_reference_date, Contract contract, Account account, ClassificationNature classification_nature,
+                 LocalDate final_business_processing_date, String frozen_label, boolean hold_status, boolean frozen, LocalDate final_hold_date,
+                 LocalDate deletion_date, Event event, String user_id, Client client) {
+    this.context_id = context_id;
+    this.conserv_unit_id = conserv_unit_id;
+    this.mine_type = mine_type;
+    this.final_stage_date = final_stage_date;
+    this.archiving_reference_date = archiving_reference_date;
+    this.contract = contract;
+    this.account = account;
+    this.classification_nature = classification_nature;
+    this.final_business_processing_date = final_business_processing_date;
+    this.frozen_label = frozen_label;
+    this.hold_status = hold_status;
+    this.frozen = frozen;
+    this.final_hold_date = final_hold_date;
+    this.deletion_date = deletion_date;
+    this.event = event;
+    this.user_id = user_id;
+    this.client = client;
+  }
+//
   // Methods
   //
 
