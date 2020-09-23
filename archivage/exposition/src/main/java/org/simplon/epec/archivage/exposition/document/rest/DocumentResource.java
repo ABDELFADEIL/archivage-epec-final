@@ -7,13 +7,11 @@ import org.simplon.epec.archivage.domain.classificationNature.entity.Classificat
 import org.simplon.epec.archivage.domain.document.entity.Context;
 import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.infrastructure.context.repository.ContextJpaRepository;
-import org.simplon.epec.archivage.infrastructure.document.dto.DocumentDTO;
 import org.simplon.epec.archivage.infrastructure.document.dto.DocumentSearchCriteria;
 import org.simplon.epec.archivage.infrastructure.document.repository.DigitalDocumentJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -100,10 +98,11 @@ public class DocumentResource {
         return digitalDocumentService.saveDocFileWhithId(docID, multipartFile);
     }
 
-    @GetMapping(value = "/all-docs-list", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<DocumentDTO> getAllDocs(
+    @GetMapping(value = "/all-docs-infos", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<DigitalDocument> getDocumentDfbmIsNullArchivingDateBefore(
             // @RequestParam(name = "since", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDateTime since,
-                                       Pageable pageable){
+           // @RequestParam(name = "page", required = true) int page, @RequestParam(name = "size", required = true) int size
+                                                                           ){
 
         /*
         digitalDocumentJpaRepository.getAllDocs().forEach(digitalDocument -> {
@@ -114,10 +113,9 @@ public class DocumentResource {
             d.setContext(digitalDocument.getContext());
             documents.add(d);
         });
-
          */
 
-        return documentSearchCriteria.getDocumentDfbmIsNullArchivingDateBefore(LocalDateTime.now(), pageable);
+        return documentSearchCriteria.getDocumentDfbmIsNullArchivingDateBefore(LocalDateTime.now());
     }
 
 }

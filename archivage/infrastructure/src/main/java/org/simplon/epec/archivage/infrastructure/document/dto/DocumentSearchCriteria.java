@@ -5,13 +5,15 @@ import org.simplon.epec.archivage.domain.document.entity.Context;
 import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.infrastructure.document.repository.DigitalDocumentJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -37,21 +39,30 @@ public class DocumentSearchCriteria {
         return documentDTOs;
     }
 
-    public List<DocumentDTO> getDocumentDfbmIsNullArchivingDateBefore(LocalDateTime since, Pageable pageable){
-            List<DigitalDocument> documentList = digitalDocumentJpaRepository.findAll(new Specification<DigitalDocument>() {
+    public List<DigitalDocument> getDocumentDfbmIsNullArchivingDateBefore(LocalDateTime since){
+            List<DigitalDocument> documentList = digitalDocumentJpaRepository.findAll(
+                    new Specification<DigitalDocument>() {
                 @Override
                 public Predicate toPredicate(Root<DigitalDocument> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                   Root<Context> contextRoot = query.from(Context.class);
                     Predicate p = criteriaBuilder.conjunction();
                     if (Objects.nonNull(since)) {
-                        Join<DigitalDocument, Context> ard = root.join("context");
-                        p = criteriaBuilder.and(p, criteriaBuilder.greaterThanOrEqualTo(root.get("ard.archiving_reference_date"), since));
-                        p = criteriaBuilder.and(p, criteriaBuilder.isNull(root.get("ard.final_business_processing_date")));
+                        p = criteriaBuilder.and(p, criteriaBuilder.greaterThanOrEqualTo(contextRoot.get("archiving_reference_date"),   LocalDateTime.of(2020, 9, 19, 00, 00)));
+                        p = criteriaBuilder.and(p, criteriaBuilder.isNotNull(contextRoot.get("final_business_processing_date")));
+                        query.where(p);
+                      //  p = criteriaBuilder.and(p, )
+                        //query.select(root.get("document_id"));
+                        // query.where(criteriaBuilder.lessThanOrEqualTo(contextRoot.get("archiving_reference_date"), since));
+                       //  query.where(criteriaBuilder.isNotNull(contextRoot.get("final_business_processing_date")));
+
                     }
                     return p;
                 }
             });
 
-            return DocumentConverter.convertToStudentDTO(documentList);
+          //  List<DocumentDTO> list = DocumentConverter.convertToStudentDTO(documentList);
+          //  Page<DocumentDTO> documentDTOS = new PageImpl<DocumentDTO>(list, PageRequest.of(0, 10), list.size());
+            return documentList;
     }
 
 
