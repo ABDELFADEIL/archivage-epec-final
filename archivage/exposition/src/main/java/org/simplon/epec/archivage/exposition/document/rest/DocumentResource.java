@@ -22,7 +22,6 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -99,7 +98,7 @@ public class DocumentResource {
     }
 
     @GetMapping(value = "/all-docs-infos", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<DigitalDocument> getDocumentDfbmIsNullArchivingDateBefore(
+    public void getDocumentDfbmIsNullArchivingDateBefore(
             // @RequestParam(name = "since", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDateTime since,
            // @RequestParam(name = "page", required = true) int page, @RequestParam(name = "size", required = true) int size
                                                                            ){
@@ -115,7 +114,7 @@ public class DocumentResource {
         });
          */
 
-        return documentSearchCriteria.getDocumentDfbmIsNullArchivingDateBefore(LocalDateTime.now());
+         documentSearchCriteria.getDocumentDfbmIsNullArchivingDateBefore();
     }
 
 }

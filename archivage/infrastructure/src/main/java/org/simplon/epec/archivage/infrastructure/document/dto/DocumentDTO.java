@@ -1,7 +1,9 @@
 package org.simplon.epec.archivage.infrastructure.document.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
 import org.simplon.epec.archivage.domain.event.entity.Event;
 
@@ -10,6 +12,8 @@ import java.time.LocalDateTime;
 
 @Builder
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class DocumentDTO {
     private String  document_id;
     private long conserv_unit_id;
