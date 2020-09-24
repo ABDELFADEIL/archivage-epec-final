@@ -1,5 +1,6 @@
 package org.simplon.epec.archivage.infrastructure.document.dto;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
@@ -54,72 +55,49 @@ public class DocumentSearchCriteria {
     }
 
    // @Transactional
-    public void getDocumentDfbmIsNullArchivingDateBefore(){
+    public List<DocumentDTO> getDocumentDfbmIsNullArchivingDateBefore(){
         List<DigitalDocument> documents = new ArrayList<>();
         Session session = hibernateFactory.unwrap(SessionFactory.class).openSession();
 
         try {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
            // CriteriaQuery<Tuple> query = criteriaBuilder.createQuery( Tuple.class );
-            CriteriaQuery<Object[]> queryObject = criteriaBuilder.createQuery( Object[].class );
+            CriteriaQuery<DocumentDTO> queryObject = criteriaBuilder.createQuery(DocumentDTO.class );
                         Root<Context> contextRoot = queryObject.from(Context.class);
                         Root<DigitalDocument> root = queryObject.from(DigitalDocument.class);
-                        System.out.println("mmmmmmmmmmmmmmmmmmmm////////////////////////////////////////////////////////////////////////////////////////////////////////////::ùùùùùùùùùù************");
-
-                        Root<ClassificationNature> classficationRoot = queryObject.from(ClassificationNature.class);
+                       Root<ClassificationNature> classficationRoot = queryObject.from(ClassificationNature.class);
                         Root<Event> eventtRoot = queryObject.from(Event.class);
-                       // queryObject.multiselect(root, contextRoot, eventtRoot);
-                       // Predicate contextPredicate = criteriaBuilder.and(criteriaBuilder.lessThanOrEqualTo(contextRoot.get("archiving_reference_date"), LocalDateTime.now()),
-                        //criteriaBuilder.isNull(contextRoot.get("final_business_processing_date")));
-                       // Predicate evenPredicate = criteriaBuilder.and(criteriaBuilder.isNotNull(eventtRoot));
-                        //queryObject.where(contextPredicate, evenPredicate);
-
-                        Path<Object> document_id = root.get("document_id");
-                        Path<Object> context_id = contextRoot.get("context_id");
-                        Path<Object> conserv_unit_id = contextRoot.get("conserv_unit_id");
-                        Path<Object> final_stage_date = contextRoot.get("final_stage_date");
-                        Path<Object> archiving_reference_date = contextRoot.get("archiving_reference_date");
-                        Path<Object> final_business_processing_date = contextRoot.get("final_business_processing_date");
-                        Path<Object> frozen_label = contextRoot.get("frozen_label");
-                        Path<Object> hold_status = contextRoot.get("hold_status");
-                        Path<Object> frozen = contextRoot.get("frozen");
-                        Path<Object> classification_nature = classficationRoot.get("classification_nature");
-                        Path<Object> event = eventtRoot.get("event");
-
-                        queryObject.select(criteriaBuilder.array(document_id, context_id, conserv_unit_id, final_stage_date, archiving_reference_date,
-                                final_business_processing_date, frozen_label, frozen, hold_status, classification_nature, event));
-
-                       List<Object[]> objects = session.createQuery(queryObject).getResultList();
-            System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm**************************************************,,,,,,,,,,,,,,,,,,,ùùùùùùùùùùùù************");
-            for (Object o: objects) {
-               System.out.println(o);
-            }
+                      //  Predicate contextPredicate = criteriaBuilder.and(criteriaBuilder.lessThanOrEqualTo(contextRoot.get("archiving_reference_date"), LocalDateTime.now()),
+                       // criteriaBuilder.isNull(contextRoot.get("final_business_processing_date")));
+                        //Predicate evenPredicate = criteriaBuilder.and(criteriaBuilder.isNotNull(eventtRoot));
+                       // queryObject.where(contextPredicate, evenPredicate);
+            Path<Object> document_id = root.get("document_id");
+            Path<Object> context_id = contextRoot.get("context_id");
+            Path<Object> conserv_unit_id = contextRoot.get("conserv_unit_id");
+            Path<Object> final_stage_date = contextRoot.get("final_stage_date");
+            Path<Object> archiving_reference_date = contextRoot.get("archiving_reference_date");
+            Path<Object> final_business_processing_date = contextRoot.get("final_business_processing_date");
+            Path<Object> frozen_label = contextRoot.get("frozen_label");
+            Path<Object> hold_status = contextRoot.get("hold_status");
+            Path<Object> frozen = contextRoot.get("frozen");
+            Path<Object> classification_nature = contextRoot.get("classification_nature");
+            Path<Object> event = contextRoot.get("event");
+            queryObject.select(criteriaBuilder.construct(DocumentDTO.class ,document_id, context_id, conserv_unit_id, final_stage_date, archiving_reference_date,
+            final_business_processing_date, frozen_label, frozen, hold_status, classification_nature, event));
+            System.out.println("dddddddddddd////queryObject.select(criteriaBuilder.array/////*************///////////////////////////////////////////////////////////////////////////////////////////////////::ùùùùùùùùùù************");
+            Query<DocumentDTO> documentDTOQuery = session.createQuery(queryObject);
+            List<DocumentDTO> liste = documentDTOQuery.getResultList();
+            System.out.println("mmmmmmmQuery<Object[]> objects = session.createQuery(queryObject) ùùùùùùùùùùùù************");
             session.close();
+            return liste;
         }catch (Exception e){
-
+            e.getStackTrace();
         }finally {
             if (!Objects.isNull(session)){
                 session.close();
             }
         }
-                        // LocalDateTime.of(2020, 9, 19, 00, 00);
-                        // document_id, conserv_unit_id, final_stage_date, archiving_reference_date, classification_nature, final_business_processing_date, frozen_label, hold_status, frozen, event
-                      /*  Path<Object> document_id = root.get("document_id");
-                        Path<Object> context_id = contextRoot.get("context_id");
-                        Path<Object> conserv_unit_id = contextRoot.get("conserv_unit_id");
-                        Path<Object> final_stage_date = contextRoot.get("final_stage_date");
-                        Path<Object> archiving_reference_date = contextRoot.get("archiving_reference_date");
-                        Path<Object> final_business_processing_date = contextRoot.get("final_business_processing_date");
-                        Path<Object> frozen_label = contextRoot.get("frozen_label");
-                        Path<Object> hold_status = contextRoot.get("hold_status");
-                        Path<Object> frozen = contextRoot.get("frozen");
-                        Path<Object> classification_nature = classficationRoot.get("classification_nature");
-                        Path<Object> event = eventtRoot.get("event");
-                       */
-                        //query.select(criteriaBuilder.construct(DocumentDTO.class, document_id, context_id, conserv_unit_id, final_stage_date, archiving_reference_date, final_business_processing_date, frozen_label, frozen, classification_nature, event));
-                      //  List<DocumentDTO> list = DocumentConverter.convertToStudentDTO(documentList);
-                      //  Page<DocumentDTO> documentDTOS = new PageImpl<DocumentDTO>(list, PageRequest.of(0, 10), list.size());
-
+        return null;
     }
 
 

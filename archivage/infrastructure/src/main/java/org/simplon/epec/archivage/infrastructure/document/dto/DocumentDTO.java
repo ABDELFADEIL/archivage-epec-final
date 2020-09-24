@@ -1,6 +1,5 @@
 package org.simplon.epec.archivage.infrastructure.document.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Builder
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
 public class DocumentDTO {
     private String  document_id;
