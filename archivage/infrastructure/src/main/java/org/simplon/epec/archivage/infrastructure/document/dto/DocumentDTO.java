@@ -1,5 +1,6 @@
 package org.simplon.epec.archivage.infrastructure.document.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 
 @Builder
 @Data
-//@AllArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
 public class DocumentDTO {
     private String  document_id;
@@ -26,8 +27,8 @@ public class DocumentDTO {
     private Event event;
     private String context_id;
    // private Context context;
-// document_id, conserv_unit_id, final_stage_date, archiving_reference_date, classification_nature, final_business_processing_date, frozen_label, hold_status, frozen, event
-// frozen_label, hold_status, frozen, event
+   // document_id, conserv_unit_id, final_stage_date, archiving_reference_date, classification_nature, final_business_processing_date, frozen_label, hold_status, frozen, event
+   // frozen_label, hold_status, frozen, event
 
 
 

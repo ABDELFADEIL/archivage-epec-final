@@ -13,7 +13,7 @@ export class DocumentService {
   constructor(private httpClient: HttpClient) { }
 
   getAllDocs() {
-    return this.httpClient.get<Document []>(environment.apiUrl+"/api/documents/all-docs-infos?page=0&size=100");
+    return this.httpClient.get<Document []>(environment.apiUrl+"/api/documents/all-docs-infos");
   }
 
   getDocById() :Observable<Document []>{

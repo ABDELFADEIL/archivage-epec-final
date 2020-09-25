@@ -60,6 +60,7 @@ export class NewContractComponent implements OnInit {
     let contract: Contract = new Contract();
    // contract.contract_id_type_label = form.contract_id_type_label;
     contract.contract_id_type_code = form.contract_id_type_code;
+    console.log(contract.contract_id_type_code);
 
     if(contract.contract_id_type_code == 'CAH'){
       contract.contract_id_type_label = 'Contrats d\'assurance habitation';

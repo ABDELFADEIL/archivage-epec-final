@@ -5,13 +5,14 @@ import "rxjs/Rx"
 import { Router } from '@angular/router';
 import {User} from '../models/user';
 import {BehaviorSubject, Observable} from 'rxjs';
+import {environment} from '../environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  host: string = "http://ec2-3-123-100-14.eu-central-1.compute.amazonaws.com:8080/exposition-1.1";
+  //host: string = "http://ec2-3-123-100-14.eu-central-1.compute.amazonaws.com:8080/exposition-1.1";
   jwtToken: string;
   roles: Array<any> = [];
   public user: Observable<User>;
@@ -26,7 +27,7 @@ export class AuthenticationService {
   }
 
   login(user) {
-    return  this.http.post(this.host + "/login", user, { observe: 'response' });
+    return  this.http.post(environment.apiUrl + "/login", user, { observe: 'response' });
   }
 
 
@@ -46,7 +47,7 @@ export class AuthenticationService {
   }
 
   register(user) {
-    return this.http.post(this.host+ "/persons/create-person", user);
+    return this.http.post(environment.apiUrl+ "/persons/create-person", user);
   }
 
 
@@ -75,7 +76,7 @@ export class AuthenticationService {
   getUserInfo(){
     // if(this.jwtToken==null)
       //this.jwtToken = this.loadToken();
-    return this.http.get(this.host+"/api/users/user-info");
+    return this.http.get(environment.apiUrl+"/api/users/user-info");
   }
 
 

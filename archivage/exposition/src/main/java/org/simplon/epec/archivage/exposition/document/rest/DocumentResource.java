@@ -7,7 +7,6 @@ import org.simplon.epec.archivage.domain.classificationNature.entity.Classificat
 import org.simplon.epec.archivage.domain.document.entity.Context;
 import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.infrastructure.context.repository.ContextJpaRepository;
-import org.simplon.epec.archivage.infrastructure.document.dto.DocumentDTO;
 import org.simplon.epec.archivage.infrastructure.document.dto.DocumentSearchCriteria;
 import org.simplon.epec.archivage.infrastructure.document.repository.DigitalDocumentJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,7 +98,7 @@ public class DocumentResource {
     }
 
     @GetMapping(value = "/all-docs-infos", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<DocumentDTO> getDocumentDfbmIsNullArchivingDateBefore(
+    public List<DigitalDocument> getDocumentDfbmIsNullArchivingDateBefore(
             // @RequestParam(name = "since", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDateTime since,
            // @RequestParam(name = "page", required = true) int page, @RequestParam(name = "size", required = true) int size
                                                                            ){
@@ -114,8 +113,7 @@ public class DocumentResource {
             documents.add(d);
         });
          */
-
-         return documentSearchCriteria.getDocumentDfbmIsNullArchivingDateBefore();
+         return documentSearchCriteria.documentSearchCriteria();
     }
 
 }

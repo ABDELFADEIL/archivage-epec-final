@@ -5,13 +5,12 @@ spring:
   profiles:
     active: local
   datasource:
-    url: jdbc:mysql://person-address.cwer0zyk5wjm.eu-central-1.rds.amazonaws.com/archivage
-    username: admin
+    url: jdbc:mysql://localhost:3306/archivage?serverTimezone=UTC
+    username: root
     password: adminbeel
     driver-class-name: com.mysql.cj.jdbc.Driver
   application:
     name: '@project.name@'
-    log-file-name: ${spring.application.name}
   jpa:
     mapping-resources:
       - META-INF/account.orm.xml
@@ -52,14 +51,3 @@ server:
   port: 8080
   ssl:
     enabled: false
-
-
-logging:
-  logging:
-    level:
-      ROOT: INFO
-      org.springframework: INFO
-      org.simplon.epec.archivage: INFO
-      org.hibernate.stat: DEBUG
-  pattern:
-    rolling-file-name: logback-spring.xml

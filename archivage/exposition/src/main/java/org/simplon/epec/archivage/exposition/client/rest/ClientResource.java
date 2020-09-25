@@ -63,10 +63,10 @@ public class ClientResource {
        ClassificationNature classificationNature = classificationNatureService.findByClassificationNatureCode(10);
             Client c = clientService.createClient(client1);
             DigitalDocument document = null;
-            Context ctx = new Context(RandomUtils.nextLong(), null, classificationNature, null, null, c);
 
             if (files.length > 0) {
                 for (MultipartFile file: files) {
+                    Context ctx = new Context(RandomUtils.nextLong(), null, classificationNature, null, null, c);
                     ctx.setMine_type(file.getContentType());
                     document = new DigitalDocument(file.getOriginalFilename(), file.getContentType().split("/")[1], null, ctx);
                     DigitalDocument doc = documentService.createDocument(document, classificationNature, file);
