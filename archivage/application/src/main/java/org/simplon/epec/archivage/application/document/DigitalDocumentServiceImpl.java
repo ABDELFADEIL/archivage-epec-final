@@ -60,7 +60,7 @@ public class DigitalDocumentServiceImpl implements DigitalDocumentService{
         byte[] enryptedFile = crypterDocument.encrypt(data);
         // gestion le pérode d'archivage de doc
 
-        java.time.LocalDate final_stage_date = null;
+        java.time.LocalDateTime final_stage_date = null;
         if (document.getContext().getFinal_business_processing_date()!=null){
              final_stage_date = document.getContext().getFinal_business_processing_date().plusYears(classificationNature.getDuration());
         }
@@ -132,7 +132,7 @@ public class DigitalDocumentServiceImpl implements DigitalDocumentService{
         if (files.length > 0) {
             for (MultipartFile file: files) {
                 if (docs.size() > 0){
-                Context ctx = new Context(RandomUtils.nextLong(), file.getContentType(), docs.get(0).getContext().getClassification_nature(), docs.get(0).getContext().getFinal_business_processing_date(), null, contract.getClient());
+                Context ctx = new Context(RandomUtils.nextLong()+"", file.getContentType(), docs.get(0).getContext().getClassification_nature(), docs.get(0).getContext().getFinal_business_processing_date(), null, contract.getClient());
                 ctx.setContract(contract);
                 document = new DigitalDocument(file.getOriginalFilename(), file.getContentType().split("/")[1], null, ctx);
                 DigitalDocument document1 = createDocument(document, docs.get(0).getContext().getClassification_nature(), file);
@@ -158,7 +158,7 @@ public class DigitalDocumentServiceImpl implements DigitalDocumentService{
         if (files.length > 0) {
             for (MultipartFile file: files) {
                 if (docs.size() > 0){
-                    Context ctx = new Context(RandomUtils.nextLong(), file.getContentType(), docs.get(0).getContext().getClassification_nature(), docs.get(0).getContext().getFinal_business_processing_date(), docs.get(0).getContext().getFinal_stage_date(), account.getClient());
+                    Context ctx = new Context(RandomUtils.nextLong()+"", file.getContentType(), docs.get(0).getContext().getClassification_nature(), docs.get(0).getContext().getFinal_business_processing_date(), docs.get(0).getContext().getFinal_stage_date(), account.getClient());
                     ctx.setAccount(account);
                     ctx.setMine_type(file.getContentType());
                     document = new DigitalDocument(file.getOriginalFilename(), file.getContentType().split("/")[1], null, ctx);

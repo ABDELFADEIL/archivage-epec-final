@@ -22,6 +22,7 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -98,10 +99,10 @@ public class DocumentResource {
     }
 
     @GetMapping(value = "/all-docs-infos", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<DigitalDocument> getDocumentDfbmIsNullArchivingDateBefore(
+    public List getDocumentDfbmIsNullArchivingDateBefore(
             // @RequestParam(name = "since", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDateTime since,
            // @RequestParam(name = "page", required = true) int page, @RequestParam(name = "size", required = true) int size
-                                                                           ){
+                                                                           ) throws ParseException {
 
         /*
         digitalDocumentJpaRepository.getAllDocs().forEach(digitalDocument -> {
@@ -113,7 +114,7 @@ public class DocumentResource {
             documents.add(d);
         });
          */
-         return documentSearchCriteria.documentSearchCriteria();
+          return documentSearchCriteria.documentSearchCriteria();
     }
 
 }

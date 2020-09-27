@@ -74,17 +74,17 @@ public class ContractResource {
         String dateString = objectMapper.readValue(final_business_processing_date, String.class);
 
         LocalDateTime FBPD=null;
-        LocalDate finalBusiness_ProcessingDate = null;
+        LocalDateTime finalBusiness_ProcessingDate = null;
         if(!dateString.isEmpty() || dateString.equals(null)){
             //FBPD =  LocalDateTime.parse(dateString);
-            finalBusiness_ProcessingDate = LocalDate.parse(dateString).plusDays(1l);
+            finalBusiness_ProcessingDate = LocalDateTime.parse(dateString).plusDays(1l);
         }
         Contract contract2 = contractService.createContract(new Contract(contract1.getContract_id_type_code(), contract1.getContract_id_type_label(), c));
         DigitalDocument document = null;
 
         if (files.length > 0) {
             for (MultipartFile file: files) {
-                Context ctx = new Context(RandomUtils.nextLong(), null, classificationNature1, finalBusiness_ProcessingDate, null, c);
+                Context ctx = new Context(RandomUtils.nextLong()+"", null, classificationNature1, finalBusiness_ProcessingDate, null, c);
                 ctx.setContract(contract2);
                 ctx.setMine_type(file.getContentType());
                 document = new DigitalDocument(file.getOriginalFilename(), file.getContentType().split("/")[1], null, ctx);

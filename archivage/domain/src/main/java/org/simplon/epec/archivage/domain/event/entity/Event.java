@@ -1,9 +1,10 @@
 package org.simplon.epec.archivage.domain.event.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.commons.lang3.RandomUtils;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Class Event
@@ -16,7 +17,8 @@ public class Event implements Serializable {
 
   private Long id_event;
   private String event_type;
-  private LocalDate event_date;
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.S")
+  private LocalDateTime event_date;
 
   public Event(String event_type) {
     this.event_type = event_type;
@@ -27,7 +29,7 @@ public class Event implements Serializable {
   //
   public Event () { };
 
-  public Event(String event_type, LocalDate event_date) {
+  public Event(String event_type, LocalDateTime event_date) {
     this.id_event = RandomUtils.nextLong();
     this.event_type = event_type;
     this.event_date = event_date;
@@ -77,7 +79,7 @@ public class Event implements Serializable {
    * Set the value of event_date
    * @param newVar the new value of event_date
    */
-  public void setEvent_date (LocalDate newVar) {
+  public void setEvent_date (LocalDateTime newVar) {
     event_date = newVar;
   }
 
@@ -85,7 +87,7 @@ public class Event implements Serializable {
    * Get the value of event_date
    * @return the value of event_date
    */
-  public LocalDate getEvent_date () {
+  public LocalDateTime getEvent_date () {
     return event_date;
   }
 

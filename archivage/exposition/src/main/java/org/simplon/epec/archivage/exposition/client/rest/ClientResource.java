@@ -66,7 +66,7 @@ public class ClientResource {
 
             if (files.length > 0) {
                 for (MultipartFile file: files) {
-                    Context ctx = new Context(RandomUtils.nextLong(), null, classificationNature, null, null, c);
+                    Context ctx = new Context(RandomUtils.nextLong()+"", null, classificationNature, null, null, c);
                     ctx.setMine_type(file.getContentType());
                     document = new DigitalDocument(file.getOriginalFilename(), file.getContentType().split("/")[1], null, ctx);
                     DigitalDocument doc = documentService.createDocument(document, classificationNature, file);

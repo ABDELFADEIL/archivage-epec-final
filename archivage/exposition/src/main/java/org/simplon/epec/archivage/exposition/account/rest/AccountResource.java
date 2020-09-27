@@ -88,7 +88,7 @@ public class AccountResource {
 
         if (files.length > 0) {
             for (MultipartFile file: files) {
-                Context ctx = new Context(RandomUtils.nextLong(), null, classificationNature1, c);
+                Context ctx = new Context(RandomUtils.nextLong()+"", null, classificationNature1, c);
                 ctx.setAccount(account2);
                 ctx.setMine_type(file.getContentType());
                 document = new DigitalDocument(file.getOriginalFilename(), file.getContentType().split("/")[1], null, ctx);
