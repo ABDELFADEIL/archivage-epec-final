@@ -6,6 +6,7 @@ import org.apache.commons.lang3.RandomUtils;
 import org.simplon.epec.archivage.application.account.AccountService;
 import org.simplon.epec.archivage.application.classificationNature.ClassificationNatureService;
 import org.simplon.epec.archivage.application.contract.ContractService;
+import org.simplon.epec.archivage.application.event.EventService;
 import org.simplon.epec.archivage.application.user.UserService;
 import org.simplon.epec.archivage.domain.account.entity.Account;
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
@@ -38,15 +39,16 @@ public class DigitalDocumentServiceImpl implements DigitalDocumentService{
     private final transient UserService userService;
     private final transient ContractService contractService;
     private final transient AccountService accountService;
+    private final transient EventService eventService;
 
-
-    public DigitalDocumentServiceImpl(DigitalDocumentRepository digitalDocumentRepository, ClassificationNatureService classificationNatureService, ContextService contextRepository, UserService userService, ContractService contractService, AccountService accountService) {
+    public DigitalDocumentServiceImpl(DigitalDocumentRepository digitalDocumentRepository, ClassificationNatureService classificationNatureService, ContextService contextRepository, UserService userService, ContractService contractService, AccountService accountService, EventService eventService) {
         this.digitalDocumentRepository = digitalDocumentRepository;
         this.classificationNatureService = classificationNatureService;
         this.contextRepository = contextRepository;
         this.userService = userService;
         this.contractService = contractService;
         this.accountService = accountService;
+        this.eventService = eventService;
     }
 
 
@@ -71,7 +73,7 @@ public class DigitalDocumentServiceImpl implements DigitalDocumentService{
         context.setFinal_stage_date(final_stage_date);
         context.setClassification_nature(classificationNature);
         context.setUser_id(user_id);
-         context = contextRepository.createContext(context);
+        context = contextRepository.createContext(context);
         // création de l'objet digitalDocument pour archiver le doc avec toutes les infos obligatoires
         document.setEncoding_doc(enryptedFile);
         document.setContext(context);

@@ -103,7 +103,7 @@
             </one-to-one>
             <one-to-one name="event" fetch="LAZY"
                         target-entity="org.simplon.epec.archivage.domain.event.entity.Event">
-                <join-column name="event" nullable="true" updatable="false"/>
+                <join-column name="event" nullable="true" updatable="true" unique="false"/>
                 <cascade>
                     <cascade-all />
                 </cascade>

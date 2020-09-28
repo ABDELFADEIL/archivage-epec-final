@@ -32,6 +32,7 @@ import { FooterComponent } from './footer/footer.component';
 import { UpdateClassificationNatureComponent } from './classification-nature/update-classification-nature/update-classification-nature.component';
 import { UpdateAccountComponent } from './update-account/update-account.component';
 import { UpdateContractComponent } from './update-contract/update-contract.component';
+import { UpdateClientComponent } from './update-client/update-client.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { UpdateContractComponent } from './update-contract/update-contract.compo
     UpdateClassificationNatureComponent,
     UpdateAccountComponent,
     UpdateContractComponent,
+    UpdateClientComponent,
 
   ],
     imports: [

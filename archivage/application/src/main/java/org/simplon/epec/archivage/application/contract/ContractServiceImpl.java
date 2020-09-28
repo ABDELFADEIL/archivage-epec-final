@@ -1,16 +1,14 @@
 package org.simplon.epec.archivage.application.contract;
 
+import org.simplon.epec.archivage.application.event.EventService;
 import org.simplon.epec.archivage.domain.contract.entity.Contract;
 import org.simplon.epec.archivage.domain.contract.repository.ContractRepository;
-import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.domain.user.entity.User;
 import org.simplon.epec.archivage.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -19,25 +17,29 @@ public class ContractServiceImpl implements ContractService {
 
     private final transient ContractRepository contractRepository;
     private final transient UserRepository userRepository;
+    private final transient EventService eventService;
 
-    public ContractServiceImpl(ContractRepository contractRepository1, UserRepository userRepository) {
+    public ContractServiceImpl(ContractRepository contractRepository1, UserRepository userRepository, EventService eventService) {
         this.contractRepository = contractRepository1;
         this.userRepository = userRepository;
+        this.eventService = eventService;
     }
 
 
     @Override
     public Contract createContract(Contract contract) {
+        Contract c = null;
         try {
             String contract_number = createNewContractNumber();
             User user = userRepository.getAuthenticatedUser();
             contract.setContract_number(contract_number);
             contract.setUser_id(user.getUser_id());
-            return contractRepository.createContract(contract);
+             c = contractRepository.createContract(contract);
+            eventService.createEventContract(c);
         }catch (Exception e){
             e.getStackTrace();
-            return null;
         }
+        return c;
     }
 
     @Override

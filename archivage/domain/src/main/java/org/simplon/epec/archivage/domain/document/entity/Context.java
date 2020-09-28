@@ -1,6 +1,5 @@
 package org.simplon.epec.archivage.domain.document.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import org.apache.commons.lang3.RandomUtils;
 import org.simplon.epec.archivage.domain.account.entity.Account;
@@ -25,9 +24,7 @@ public class Context implements Serializable {
   private String context_id;
   private String conserv_unit_id;
   private String mine_type;
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.S")
   private LocalDateTime final_stage_date;
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.S")
   private LocalDateTime archiving_reference_date;
   private Contract contract;
   private Account account;
@@ -36,11 +33,9 @@ public class Context implements Serializable {
   private String frozen_label;
   private boolean hold_status;
   private boolean frozen;
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.S")
   private LocalDateTime final_hold_date;
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.S")
   private LocalDateTime deletion_date;
-    private Event event;
+  private Event event;
   private String user_id;
   private Client client;
 

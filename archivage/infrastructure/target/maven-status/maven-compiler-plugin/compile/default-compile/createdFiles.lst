@@ -19,7 +19,6 @@ org/simplon/epec/archivage/infrastructure/contract/repository/ContractRepository
 org/simplon/epec/archivage/infrastructure/user/repository/UserJpaRepository.class
 org/simplon/epec/archivage/infrastructure/client/repository/ClientRepositoryImpl.class
 org/simplon/epec/archivage/infrastructure/security/config/SecurityConstants.class
-org/simplon/epec/archivage/infrastructure/document/dto/DateUtil.class
 org/simplon/epec/archivage/infrastructure/ClassificationNature/repository/ClassificationJpaNatureRepository.class
 org/simplon/epec/archivage/infrastructure/document/dto/DocumentDTO.class
 org/simplon/epec/archivage/infrastructure/event/repository/EventJapRepository.class

@@ -6,6 +6,7 @@ import org.apache.commons.lang3.RandomUtils;
 import org.simplon.epec.archivage.application.classificationNature.ClassificationNatureService;
 import org.simplon.epec.archivage.application.client.ClientService;
 import org.simplon.epec.archivage.application.document.DigitalDocumentService;
+import org.simplon.epec.archivage.application.event.EventService;
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
 import org.simplon.epec.archivage.domain.client.entity.Client;
 import org.simplon.epec.archivage.domain.document.entity.Context;
@@ -33,15 +34,17 @@ public class ClientResource {
     private final transient ClientService clientService;
     private final transient DigitalDocumentService documentService;
     private final transient ClassificationNatureService classificationNatureService;
+    private final transient EventService eventService;
 
     public ClientResource(
             ClientService clientService,
             DigitalDocumentService documentService,
-            ClassificationNatureService classificationNatureService
-                       ) {
+            ClassificationNatureService classificationNatureService,
+            EventService eventService) {
         this.clientService = clientService;
         this.documentService = documentService;
         this.classificationNatureService = classificationNatureService;
+        this.eventService = eventService;
     }
 
     @PostMapping("create-new-client")
@@ -50,7 +53,7 @@ public class ClientResource {
     }
 
 
-   @PostMapping(value = "/new-client-with-docs", consumes = {"multipart/form-data;boundary=----WebKitFormBoundaryGU19yc6e19LFwvk2"})
+    @PostMapping(value = "/new-client-with-docs", consumes = {"multipart/form-data;boundary=----WebKitFormBoundaryGU19yc6e19LFwvk2"})
     public List<DigitalDocument> createClientWithdocs(
              @RequestPart("client") String client,
              @RequestPart("files") MultipartFile  [] files
@@ -73,7 +76,7 @@ public class ClientResource {
                     documentList.add(doc);
                 }
             }
-
+            eventService.createEventClient(client1);
             return documentList;
          }
 
@@ -91,6 +94,11 @@ public class ClientResource {
     @PutMapping("update-client")
     public Client UpdateCient(@RequestBody(required = true) Client client) {
         return clientService.UpdateCient(client);
+    }
+
+    @PutMapping("create-event-client")
+    public Client createEventCient(@RequestBody(required = true) Client client) {
+        return eventService.createEventClient(client);
     }
 
     @DeleteMapping("/remove-client")

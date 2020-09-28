@@ -35,8 +35,13 @@ public interface DigitalDocumentJpaRepository extends JpaRepository<DigitalDocum
     @Query(value="select doc from DigitalDocument doc")
     @QueryHints(value= {@QueryHint(name= HINT_FETCH_SIZE, value=""+Integer.MIN_VALUE), @QueryHint(name = HINT_PASS_DISTINCT_THROUGH, value = "false")})
     public Stream<DigitalDocument> getAllDocsStream();
-    @Query(value = "SELECT * FROM `digital_document` WHERE `digital_document`.`context` IN (SELECT `context`.`context_id` FROM `context` WHERE `context`.`contract` = :contract_id)", nativeQuery = true)
+    @Query(value = "SELECT * FROM digital_document WHERE digital_document.context in(SELECT c.context_id FROM context c WHERE c.contract=:contract_id)", nativeQuery = true)
     List<DigitalDocument> getDocsContractById(@Param("contract_id") String contract_id);
-    @Query(value = "SELECT * FROM `digital_document` WHERE `digital_document`.`context` IN (SELECT `context`.`context_id` FROM `context` WHERE `context`.`account` = :account_id)", nativeQuery = true)
+    @Query(value = "SELECT * FROM digital_document WHERE digital_document.context in(SELECT c.context_id FROM context c WHERE c.account=:account_id)", nativeQuery = true)
     List<DigitalDocument> getDocsAccountById(@Param("account_id") String account_id);
+    @Query(value = "SELECT * FROM digital_document WHERE digital_document.context in(SELECT c.context_id FROM context c WHERE c.client=:client_id)", nativeQuery = true)
+    List<DigitalDocument> getDocsClientById(@Param("client_id") String client_id);
+
+    @Query(value = "select * from digital_document doc INNER JOIN context c ON doc.context=c.context_id INNER JOIN event e ON e.id_event=c.event AND e.event_type=:eventType AND e.id_event in (select c.event from context c where c.client=:client_id)", nativeQuery = true)
+    List<DigitalDocument> findByEventTypeAndClientId(@Param("eventType") String eventType, @Param("client_id") String client_id);
 }

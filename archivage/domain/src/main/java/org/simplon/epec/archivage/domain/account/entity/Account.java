@@ -33,6 +33,7 @@ public class Account implements Serializable {
       this.creating_date = LocalDate.now();
       this.account_number = account_number;
       this.user_id = user_id;
+      this.status = "CREATED";
     }
 
     public String getUser_id() {
@@ -55,6 +56,7 @@ public class Account implements Serializable {
     this.account_id = RandomUtils.nextLong()+"";
     this.creating_date = LocalDate.now();
     this.user_id = user_id;
+    this.status = "CREATED";
   }
 
   public Account() {

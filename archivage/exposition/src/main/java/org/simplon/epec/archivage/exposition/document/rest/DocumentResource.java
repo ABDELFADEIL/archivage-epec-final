@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -99,22 +101,20 @@ public class DocumentResource {
     }
 
     @GetMapping(value = "/all-docs-infos", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List getDocumentDfbmIsNullArchivingDateBefore(
-            // @RequestParam(name = "since", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDateTime since,
-           // @RequestParam(name = "page", required = true) int page, @RequestParam(name = "size", required = true) int size
+    public List<Object> getDocumentDfbmIsNullArchivingDateBefore(
+            @RequestParam(name = "eventRelation", required = false) String eventRelation,
+            @RequestParam(name = "eventClos", required = false) String eventClos,
+            @RequestParam(name = "since", required = true) String eventDate
+           // @RequestParam(name = "page", required = false) int page,
+            //@RequestParam(name = "size", required = false) int size
                                                                            ) throws ParseException {
 
-        /*
-        digitalDocumentJpaRepository.getAllDocs().forEach(digitalDocument -> {
-            DigitalDocument d = new DigitalDocument();
-            d.setDocument_id(digitalDocument.getDocument_id());
-            d.setArchive_format(digitalDocument.getArchive_format());
-            d.setFile_name(digitalDocument.getFile_name());
-            d.setContext(digitalDocument.getContext());
-            documents.add(d);
-        });
-         */
-          return documentSearchCriteria.documentSearchCriteria();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime localDate = LocalDateTime.parse(eventDate, formatter);
+
+       List<Object> list = documentSearchCriteria.documentSearchCriteria(eventRelation, eventClos, localDate);
+      //  Page<Object> pages = new PageImpl<>(list, PageRequest.of(page, size), list.size());
+          return list;
     }
 
 }

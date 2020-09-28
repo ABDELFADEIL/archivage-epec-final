@@ -24,6 +24,6 @@ export class AccountService {
   }
 
   update(account: Account) {
-    return this.httpClient.put(environment.apiUrl+"/api/accounts/update-account", account);
+    return this.httpClient.put(environment.apiUrl+"/api/accounts/create-event-account", account);
   }
 }

@@ -9,4 +9,5 @@ export class Client {
   birth_dept: string;
   siren_number: number;
   siret_number: number;
+  status: string;
 }

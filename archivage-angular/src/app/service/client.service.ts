@@ -19,4 +19,8 @@ export class ClientService {
     return this.httpClient.get<Client[]>(environment.apiUrl+"/api/clients/get-clients-by-client-name-number?client_name="+client_name+"&client_number="+client_number);
 
   }
+
+  update(client: Client) {
+   return this.httpClient.put(environment.apiUrl+"/api/clients/create-event-client", client);
+  }
 }

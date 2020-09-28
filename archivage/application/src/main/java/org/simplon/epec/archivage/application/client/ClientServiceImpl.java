@@ -1,5 +1,6 @@
 package org.simplon.epec.archivage.application.client;
 
+import org.simplon.epec.archivage.application.event.EventService;
 import org.simplon.epec.archivage.domain.client.entity.Client;
 import org.simplon.epec.archivage.domain.client.repository.ClientRepository;
 import org.simplon.epec.archivage.domain.user.entity.User;
@@ -15,12 +16,13 @@ public class ClientServiceImpl implements ClientService {
 
     private final transient ClientRepository clientRepository;
     private final transient UserRepository userRepository;
+    private final transient EventService eventService;
 
 
-
-    public ClientServiceImpl(ClientRepository clientRepository, UserRepository userRepository) {
+    public ClientServiceImpl(ClientRepository clientRepository, UserRepository userRepository, EventService eventService) {
         this.clientRepository = clientRepository;
         this.userRepository = userRepository;
+        this.eventService = eventService;
     }
 
 
@@ -33,7 +35,9 @@ public class ClientServiceImpl implements ClientService {
         int civilityId = client.getCivility_id();
         Client c = new Client( clientNatureId,  client_number,  client.getClient_name(), client.getClient_first_name(), civilityId, client.getBirth_date(),
                 client.getBirth_dept(), client.getSiren_number(), client.getSiret_number(), user.getUser_id());
-        return clientRepository.createClient(c);
+         c = clientRepository.createClient(c);
+        eventService.createEventClient(c);
+        return c;
     }
 
     @Override

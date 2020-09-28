@@ -27,4 +27,9 @@ export class DocumentService {
   delete(id: any) {
     return this.httpClient.delete(environment.apiUrl+ "/api/documents/delete-one?docID="+id);
   }
+
+  getAllDocsEventTypeBeforeDate(eventRelation: string, eventClos: string, since: string) {
+    return this.httpClient.get<any[]>(environment.apiUrl+"/api/documents/all-docs-infos?eventRelation="+eventRelation+"&eventClos="+eventClos+"&since="+since);
+
+  }
 }

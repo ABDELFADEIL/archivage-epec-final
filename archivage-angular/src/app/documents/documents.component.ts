@@ -11,7 +11,7 @@ import {Document} from '../models/document';
 })
 export class DocumentsComponent implements OnInit {
 
-  public page : number = 1;
+  public page : number = 0;
   public size : number= 12;
   public currentSize : number;
   currentPage : number = 1;
@@ -20,20 +20,24 @@ export class DocumentsComponent implements OnInit {
   public filter;
   documentsExists: any[] = [];
   selectedDocuments: any[] = [];
-  documents: Document[] = [];
-  selectedAll = 'All'
+  documents: any[] = [];
+  selectedAll = 'All';
+  since = "1990-01-01";
 
   constructor(private documentService: DocumentService) {
-    this.getAllDocs();
+    this.getAllDocsEventTypeBeforeDate(this.since);
   }
 
   ngOnInit(): void {
-    this.getAllDocs();
+    this.getAllDocsEventTypeBeforeDate(this.since);
   }
 
-  getAllDocs(){
+  getAllDocsEventTypeBeforeDate(since){
     console.log("docs initialés ::::: ");
-    this.documentService.getAllDocs().
+      since = "1990-01-01";
+    const eventRelation = "CREE";
+    const eventClos = "CLOS";
+    this.documentService.getAllDocsEventTypeBeforeDate(eventRelation, eventClos, since).
     subscribe(value => {
       console.log(value);
       this.documents = value;

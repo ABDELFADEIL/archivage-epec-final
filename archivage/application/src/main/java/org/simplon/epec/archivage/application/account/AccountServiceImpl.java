@@ -1,5 +1,6 @@
 package org.simplon.epec.archivage.application.account;
 
+import org.simplon.epec.archivage.application.event.EventService;
 import org.simplon.epec.archivage.application.user.UserService;
 import org.simplon.epec.archivage.domain.account.entity.Account;
 import org.simplon.epec.archivage.domain.account.repository.AccountRepository;
@@ -16,10 +17,12 @@ public class AccountServiceImpl implements AccountService {
 
     private final transient AccountRepository accountRepository;
     private final transient UserService userService;
+    private final transient EventService eventService;
 
-    public AccountServiceImpl(AccountRepository accountRepository, UserRepository userRepository, UserService userService) {
+    public AccountServiceImpl(AccountRepository accountRepository, UserRepository userRepository, UserService userService, EventService eventService) {
         this.accountRepository = accountRepository;
         this.userService = userService;
+        this.eventService = eventService;
     }
 
 
@@ -30,6 +33,7 @@ public class AccountServiceImpl implements AccountService {
         String user_id = userService.getAuthentificatedUser().getUser_id();
 
         Account a = new Account( account.getAccount_id_type_code(),  account.getAccount_id_type_label(),  account_number, account.getClient(), user_id);
+        eventService.createEventAccount(a);
         return accountRepository.createAccount(a);
     }
 

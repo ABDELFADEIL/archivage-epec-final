@@ -3,7 +3,6 @@ package org.simplon.epec.archivage.infrastructure.contract.repository;
 import org.simplon.epec.archivage.domain.classificationNature.repository.ClassificationNatureRepository;
 import org.simplon.epec.archivage.domain.contract.entity.Contract;
 import org.simplon.epec.archivage.domain.contract.repository.ContractRepository;
-import org.simplon.epec.archivage.domain.event.entity.Event;
 import org.simplon.epec.archivage.domain.event.repository.EventRepository;
 import org.springframework.stereotype.Repository;
 
@@ -69,11 +68,6 @@ public class ContractRepositoryImpl implements ContractRepository {
         return contractJpaRepository.findContractsByEventStatusAndEventDateAfterAndDateBefor(status, dateAfter, dateBefor);
     }
 
-    @Override
-    public Contract createEvent(Contract contract, Event event) {
-         eventRepository.createEventContract(contract, event);
-         return contractJpaRepository.findByContract_number(contract.getContract_number());
-    }
 
     @Override
     public Contract findById(String id) {

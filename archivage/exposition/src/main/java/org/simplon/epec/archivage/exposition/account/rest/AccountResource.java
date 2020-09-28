@@ -4,8 +4,8 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.RandomUtils;
 import org.simplon.epec.archivage.application.account.AccountService;
-import org.simplon.epec.archivage.application.client.ClientService;
 import org.simplon.epec.archivage.application.document.DigitalDocumentService;
+import org.simplon.epec.archivage.application.event.EventService;
 import org.simplon.epec.archivage.domain.account.entity.Account;
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
 import org.simplon.epec.archivage.domain.client.entity.Client;
@@ -33,11 +33,12 @@ public class AccountResource {
 
     private final AccountService accountService;
     private final transient DigitalDocumentService documentService;
-    private final transient ClientService clientService;
-    public AccountResource(AccountService accountService, DigitalDocumentService documentService, ClientService clientService) {
+    private final transient EventService eventService;
+
+    public AccountResource(AccountService accountService, DigitalDocumentService documentService, EventService eventService) {
         this.accountService = accountService;
         this.documentService = documentService;
-        this.clientService = clientService;
+        this.eventService = eventService;
     }
 
 
@@ -97,6 +98,9 @@ public class AccountResource {
                 documentList.add(doc);
             }
         }
+
+            eventService.createEventAccount(account2);
+
         return documentList;
     }
 
@@ -111,6 +115,10 @@ public class AccountResource {
         return accountService.UpdateAccount(account);
     }
 
+    @PutMapping("create-event-account")
+    public Account createEventAccount(@RequestBody(required = true) Account account) {
+        return eventService.createEventAccount(account);
+    }
 
     @GetMapping("/get-account-by-client-id")
     public Account getAccountByCientId(@RequestParam("clientID") String clientID) {

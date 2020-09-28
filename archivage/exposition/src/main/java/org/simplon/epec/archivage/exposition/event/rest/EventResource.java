@@ -28,13 +28,13 @@ public class EventResource {
     @PostMapping("/create-event-account")
     public Account createEventAccount(@RequestBody Account account){
        // Event event = account.getEvent();
-        return eventService.createEventAccount(account, null);
+        return eventService.createEventAccount(account);
     }
 
 
     @PostMapping("/create-event-contract")
     public Contract createEventContract(@RequestBody Contract contract){
       //  Event event = contract.getEvent();
-        return eventService.createEventContract(contract, null);
+        return eventService.createEventContract(contract);
     }
 }

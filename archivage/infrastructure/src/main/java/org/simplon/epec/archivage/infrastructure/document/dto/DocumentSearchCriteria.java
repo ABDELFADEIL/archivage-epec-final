@@ -41,41 +41,23 @@ public class DocumentSearchCriteria {
 
 
 
-    public List documentSearchCriteria() throws ParseException {
+    public List<Object> documentSearchCriteria(String eventRelation, String eventClos, LocalDateTime eventDate) throws ParseException {
         Session session = hibernateFactory.getSessionFactory().openSession();
         List<DocumentDTO> documentDTOList = new ArrayList<>();
-        List tuples = entityManager.createNativeQuery(
+        List<Object> tuples = entityManager.createNativeQuery(
                 "SELECT d.document_id, c.context_id, c.conserv_unit_id, c.final_stage_date, c.archiving_reference_date, " +
-                        "c.final_business_processing_date, c.frozen_label, c.hold_status, c.frozen, cl.*, e.* FROM digital_document d" +
-                        " INNER JOIN context c ON d.context=c.context_id INNER JOIN event e ON e.id_event=c.event INNER JOIN" +
-                        " classification_nature cl ON cl.classification_nature_id=c.classification_nature"
+                        "c.final_business_processing_date, c.frozen_label, c.hold_status, c.frozen, cl.*, e.* FROM digital_document d " +
+                        "INNER JOIN context c ON d.context=c.context_id INNER JOIN event e ON e.id_event=c.event INNER JOIN " +
+                        "classification_nature cl ON cl.classification_nature_id=c.classification_nature WHERE e.event_type=:eventRelation " +
+                        "OR e.event_type=:eventClos AND e.event_date < :eventDate"
          )
-        .getResultList();
+                .setParameter( "eventRelation", eventRelation )
+                .setParameter( "eventClos", eventClos )
+                .setParameter( "eventDate", eventDate)
+                .unwrap( org.hibernate.query.Query.class )
+                .setReadOnly( true )
+                .getResultList();
 
-/*
-        tuples.forEach(tuple -> {
-            DocumentDTO doc = new DocumentDTO();
-            doc.setDocument_id(tuple[0]+"");
-            doc.setContext_id(tuple[1]+"");
-            doc.setConserv_unit_id(tuple[2]+"");
-            doc.setFinal_business_processing_date(tuple[5]+"");
-            doc.setFinal_stage_date(tuple[3]+"");
-            doc.setArchiving_reference_date(tuple[4]+"");
-            doc.setFrozen_label(tuple[6]+"");
-            doc.setHold_status(tuple[7]+"");
-            doc.setFrozen(tuple[8]+"");
-            doc.setClassification_nature_id(tuple[9]+"");
-            doc.setClassification_nature_code(tuple[10]+"");
-            doc.setClassification_nature_label(tuple[11]+"");
-            doc.setDuration(tuple[12]+"");
-            doc.setId_event(tuple[13]+"");
-            doc.setEvent_date(tuple[14]+"");
-            doc.setEvent_type(tuple[15]+"");
-            documentDTOList.add(doc);
-            System.out.println(Arrays.toString(tuple));
-        });
-
- */
         return tuples;
     }
 

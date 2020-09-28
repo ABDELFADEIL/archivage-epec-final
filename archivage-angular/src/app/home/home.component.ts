@@ -4,6 +4,9 @@ import {ClientService} from '../service/client.service';
 import {Router} from '@angular/router';
 import {ClassificationNature} from '../models/classification-nature';
 import {Client} from '../models/client';
+import {UpdateContractComponent} from '../update-contract/update-contract.component';
+import {UpdateClientComponent} from '../update-client/update-client.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +29,7 @@ export class HomeComponent implements OnInit {
   chercher: boolean =false;
   create: boolean= false;
 
-  constructor(private clientService: ClientService, private router: Router) { }
+  constructor(private clientService: ClientService, private router: Router, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.clientService.client = null;
@@ -81,5 +84,17 @@ export class HomeComponent implements OnInit {
   NewContract(){
     this.clientService.client = this.client;
     this.router.navigateByUrl('new-contract')
+  }
+
+  onUpdateStatus(c: Client) {
+    console.log("update client status")
+    console.log(c);
+    this.client = c;
+    const modalRef = this.modalService.open(UpdateClientComponent);
+    modalRef.componentInstance.client = c;
+    modalRef.result.then((result) => {
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 }

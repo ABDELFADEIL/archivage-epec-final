@@ -42,6 +42,7 @@ public class Client implements Serializable {
     this.siren_number = siren_number;
     this.siret_number = siret_number;
     this.user_id = user_id;
+    this.status = "CREATED";
   }
   //
   // Accessor methods

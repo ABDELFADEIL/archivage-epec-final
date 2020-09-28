@@ -73,8 +73,8 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public Account createEvent(Account account, Event event) {
-          eventRepository.createEventAccount(account, event);
+    public Account createEvent(Account account) {
+          eventRepository.createEventAccount(account);
           return accountJpaRepository.findByAccount_number(account.getAccount_number());
 
     }

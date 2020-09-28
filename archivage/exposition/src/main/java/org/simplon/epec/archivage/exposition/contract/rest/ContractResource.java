@@ -6,6 +6,7 @@ import org.apache.commons.lang3.RandomUtils;
 import org.simplon.epec.archivage.application.client.ClientService;
 import org.simplon.epec.archivage.application.contract.ContractService;
 import org.simplon.epec.archivage.application.document.DigitalDocumentService;
+import org.simplon.epec.archivage.application.event.EventService;
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
 import org.simplon.epec.archivage.domain.client.entity.Client;
 import org.simplon.epec.archivage.domain.contract.entity.Contract;
@@ -34,11 +35,13 @@ public class ContractResource {
     private final transient ContractService contractService;
     private final transient DigitalDocumentService documentService;
     private final transient ClientService clientService;
+    private final transient EventService eventService;
 
-    public ContractResource(ContractService contractService, DigitalDocumentService documentService, ClientService clientService) {
+    public ContractResource(ContractService contractService, DigitalDocumentService documentService, ClientService clientService, EventService eventService) {
         this.contractService = contractService;
         this.documentService = documentService;
         this.clientService = clientService;
+        this.eventService = eventService;
     }
 
 
@@ -93,12 +96,18 @@ public class ContractResource {
                 documentList.add(doc);
             }
         }
+        eventService.createEventContract(contract2);
         return documentList;
     }
 
     @PutMapping("/update-contract")
     public Contract updateContract(@RequestBody  Contract contract) {
         return contractService.UpdateAccount(contract);
+    }
+
+    @PutMapping("/create-event-contract")
+    public Contract createEventContract(@RequestBody  Contract contract) {
+        return eventService.createEventContract(contract);
     }
 
     // update-contract-docs
