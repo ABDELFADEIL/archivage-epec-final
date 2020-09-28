@@ -44,7 +44,7 @@ public class DocumentSearchCriteria {
     public List<Object> documentSearchCriteria(String eventRelation, String eventClos, LocalDateTime eventDate) throws ParseException {
         Session session = hibernateFactory.getSessionFactory().openSession();
         List<DocumentDTO> documentDTOList = new ArrayList<>();
-        List<Object> tuples = entityManager.createNativeQuery(
+        List<Object> tuples = session.createNativeQuery(
                 "SELECT d.document_id, c.context_id, c.conserv_unit_id, c.final_stage_date, c.archiving_reference_date, " +
                         "c.final_business_processing_date, c.frozen_label, c.hold_status, c.frozen, cl.*, e.* FROM digital_document d " +
                         "INNER JOIN context c ON d.context=c.context_id INNER JOIN event e ON e.id_event=c.event INNER JOIN " +
@@ -54,9 +54,7 @@ public class DocumentSearchCriteria {
                 .setParameter( "eventRelation", eventRelation )
                 .setParameter( "eventClos", eventClos )
                 .setParameter( "eventDate", eventDate)
-                .unwrap( org.hibernate.query.Query.class )
-                .setReadOnly( true )
-                .getResultList();
+                .list();
 
         return tuples;
     }

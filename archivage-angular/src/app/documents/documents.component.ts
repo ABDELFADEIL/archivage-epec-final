@@ -34,9 +34,9 @@ export class DocumentsComponent implements OnInit {
 
   getAllDocsEventTypeBeforeDate(since){
     console.log("docs initialés ::::: ");
-      since = "1990-01-01";
-    const eventRelation = "CREE";
-    const eventClos = "CLOS";
+      since = "2020-09-28 00:00";
+    const eventRelation = "CLOS";
+    const eventClos = "CREE";
     this.documentService.getAllDocsEventTypeBeforeDate(eventRelation, eventClos, since).
     subscribe(value => {
       console.log(value);

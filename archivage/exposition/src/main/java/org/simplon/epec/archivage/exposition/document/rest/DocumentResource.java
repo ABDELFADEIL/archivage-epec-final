@@ -109,10 +109,10 @@ public class DocumentResource {
             //@RequestParam(name = "size", required = false) int size
                                                                            ) throws ParseException {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDateTime localDate = LocalDateTime.parse(eventDate, formatter);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime formatDateTime = LocalDateTime.parse(eventDate, formatter);
 
-       List<Object> list = documentSearchCriteria.documentSearchCriteria(eventRelation, eventClos, localDate);
+        List<Object> list = documentSearchCriteria.documentSearchCriteria(eventRelation, eventClos, formatDateTime);
       //  Page<Object> pages = new PageImpl<>(list, PageRequest.of(page, size), list.size());
           return list;
     }
