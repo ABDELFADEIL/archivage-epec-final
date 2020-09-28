@@ -1,5 +1,6 @@
 package org.simplon.epec.archivage.domain.document.repository;
 
+import org.simplon.epec.archivage.domain.document.dto.DocumentDTO;
 import org.simplon.epec.archivage.domain.document.entity.Context;
 import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,8 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface DigitalDocumentRepository {
@@ -24,4 +27,5 @@ public interface DigitalDocumentRepository {
     DigitalDocument saveDoc(DigitalDocument doc);
     List<DigitalDocument> getAllDocsByContractId(String contract_id);
     List<DigitalDocument> getDocsAccountById(String account_id);
+    List<DocumentDTO> getDocumentDfbmIsNullArchivingDateBefore(LocalDateTime dateBefore) throws ParseException;
 }

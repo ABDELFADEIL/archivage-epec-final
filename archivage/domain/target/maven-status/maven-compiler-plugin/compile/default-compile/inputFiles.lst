@@ -16,6 +16,7 @@
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/fadeil/projets-professionnels/archivage-epec-final/archivage/domain/src/main/java/org/simplon/epec/archivage/domain/user/entity/Role.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/fadeil/projets-professionnels/archivage-epec-final/archivage/domain/src/main/java/org/simplon/epec/archivage/domain/destructionList/repository/DestructionListRepository.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/fadeil/projets-professionnels/archivage-epec-final/archivage/domain/src/main/java/org/simplon/epec/archivage/domain/document/entity/DigitalDocument.java
+/media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/fadeil/projets-professionnels/archivage-epec-final/archivage/domain/src/main/java/org/simplon/epec/archivage/domain/document/dto/DocumentDTO.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/fadeil/projets-professionnels/archivage-epec-final/archivage/domain/src/main/java/org/simplon/epec/archivage/domain/contract/repository/ContractRepository.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/fadeil/projets-professionnels/archivage-epec-final/archivage/domain/src/main/java/org/simplon/epec/archivage/domain/classificationNature/repository/ClassificationNatureRepository.java
 /media/fadeil/60cf352d-c946-4eb0-ab01-76d3f1bc3a57/fadeil/projets-professionnels/archivage-epec-final/archivage/domain/src/main/java/org/simplon/epec/archivage/domain/user/repository/RoleRepository.java

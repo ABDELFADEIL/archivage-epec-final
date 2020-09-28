@@ -11,6 +11,7 @@ import org.simplon.epec.archivage.domain.classificationNature.entity.Classificat
 import org.simplon.epec.archivage.domain.client.entity.Client;
 import org.simplon.epec.archivage.domain.document.entity.Context;
 import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
+import org.simplon.epec.archivage.domain.event.entity.Event;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -66,17 +67,18 @@ public class ClientResource {
        ClassificationNature classificationNature = classificationNatureService.findByClassificationNatureCode(10);
             Client c = clientService.createClient(client1);
             DigitalDocument document = null;
-
+       Event event = eventService.createEvent("CREATION_CLIENT");
             if (files.length > 0) {
                 for (MultipartFile file: files) {
                     Context ctx = new Context(RandomUtils.nextLong()+"", null, classificationNature, null, null, c);
                     ctx.setMine_type(file.getContentType());
+                    ctx.setEvent(event);
                     document = new DigitalDocument(file.getOriginalFilename(), file.getContentType().split("/")[1], null, ctx);
                     DigitalDocument doc = documentService.createDocument(document, classificationNature, file);
                     documentList.add(doc);
                 }
             }
-            eventService.createEventClient(client1);
+
             return documentList;
          }
 

@@ -42,6 +42,6 @@ public interface DigitalDocumentJpaRepository extends JpaRepository<DigitalDocum
     @Query(value = "SELECT * FROM digital_document WHERE digital_document.context in(SELECT c.context_id FROM context c WHERE c.client=:client_id)", nativeQuery = true)
     List<DigitalDocument> getDocsClientById(@Param("client_id") String client_id);
 
-    @Query(value = "select * from digital_document doc INNER JOIN context c ON doc.context=c.context_id INNER JOIN event e ON e.id_event=c.event AND e.event_type=:eventType AND e.id_event in (select c.event from context c where c.client=:client_id)", nativeQuery = true)
+    @Query(value = "select doc.* from digital_document doc WHERE doc.context in (select c.context_id from context c INNER JOIN event e On e.id_event=c.event WHERE c.client=:client_id AND e.event_type=:eventType AND c.account IS NULL AND c.contract IS NULL)", nativeQuery = true)
     List<DigitalDocument> findByEventTypeAndClientId(@Param("eventType") String eventType, @Param("client_id") String client_id);
 }

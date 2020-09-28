@@ -11,6 +11,7 @@ import org.simplon.epec.archivage.application.user.UserService;
 import org.simplon.epec.archivage.domain.account.entity.Account;
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
 import org.simplon.epec.archivage.domain.contract.entity.Contract;
+import org.simplon.epec.archivage.domain.document.dto.DocumentDTO;
 import org.simplon.epec.archivage.domain.document.entity.Context;
 import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.domain.document.repository.DigitalDocumentRepository;
@@ -26,6 +27,8 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -170,5 +173,10 @@ public class DigitalDocumentServiceImpl implements DigitalDocumentService{
             }
         }
         return documentList.get(0).getContext().getAccount();
+    }
+
+    @Override
+    public List<DocumentDTO> getDocumentDfbmIsNullArchivingDateBefore(LocalDateTime dateBefore) throws ParseException {
+        return digitalDocumentRepository.getDocumentDfbmIsNullArchivingDateBefore(dateBefore);
     }
 }

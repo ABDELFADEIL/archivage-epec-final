@@ -6,6 +6,7 @@ import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.domain.document.repository.DigitalDocumentRepository;
 import org.simplon.epec.archivage.infrastructure.context.repository.ContextJpaRepository;
 import org.simplon.epec.archivage.infrastructure.document.CrypterDocument;
+import org.simplon.epec.archivage.domain.document.dto.DocumentDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
@@ -17,6 +18,8 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -24,10 +27,12 @@ public class DigitalDocumentRepositoryImpl implements DigitalDocumentRepository 
 
     private final transient DigitalDocumentJpaRepository digitalDocumentJpaRepository;
     private final transient ContextJpaRepository contextJpaRepository;
+    private final transient DocumentSearchCriteria documentSearchCriteria;
 
-    public DigitalDocumentRepositoryImpl(DigitalDocumentJpaRepository digitalDocumentJpaRepository, ContextJpaRepository contextJpaRepository) {
+    public DigitalDocumentRepositoryImpl(DigitalDocumentJpaRepository digitalDocumentJpaRepository, ContextJpaRepository contextJpaRepository, DocumentSearchCriteria documentSearchCriteria) {
         this.digitalDocumentJpaRepository = digitalDocumentJpaRepository;
         this.contextJpaRepository = contextJpaRepository;
+        this.documentSearchCriteria = documentSearchCriteria;
     }
 
     @Override
@@ -78,5 +83,9 @@ public class DigitalDocumentRepositoryImpl implements DigitalDocumentRepository 
         return digitalDocumentJpaRepository.getDocsAccountById(account_id);
     }
 
+    @Override
+    public List<DocumentDTO> getDocumentDfbmIsNullArchivingDateBefore(LocalDateTime dateBefore) throws ParseException {
+        return documentSearchCriteria.getDocumentDfbmIsNullArchivingDateBefore(dateBefore);
+    }
 
 }

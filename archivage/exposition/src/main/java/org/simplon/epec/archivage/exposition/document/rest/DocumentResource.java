@@ -4,11 +4,12 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.simplon.epec.archivage.application.document.DigitalDocumentService;
 import org.simplon.epec.archivage.domain.classificationNature.entity.ClassificationNature;
+import org.simplon.epec.archivage.domain.document.dto.DocumentDTO;
 import org.simplon.epec.archivage.domain.document.entity.Context;
 import org.simplon.epec.archivage.domain.document.entity.DigitalDocument;
 import org.simplon.epec.archivage.infrastructure.context.repository.ContextJpaRepository;
-import org.simplon.epec.archivage.infrastructure.document.dto.DocumentSearchCriteria;
 import org.simplon.epec.archivage.infrastructure.document.repository.DigitalDocumentJpaRepository;
+import org.simplon.epec.archivage.infrastructure.document.repository.DocumentSearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -100,19 +101,18 @@ public class DocumentResource {
         return digitalDocumentService.saveDocFileWhithId(docID, multipartFile);
     }
 
-    @GetMapping(value = "/all-docs-infos", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Object> getDocumentDfbmIsNullArchivingDateBefore(
-            @RequestParam(name = "eventRelation", required = false) String eventRelation,
-            @RequestParam(name = "eventClos", required = false) String eventClos,
+    @GetMapping(value = "/search-docs-fbpd-null-since", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<DocumentDTO> getDocumentDfbmIsNullArchivingDateBefore(
             @RequestParam(name = "since", required = true) String eventDate
            // @RequestParam(name = "page", required = false) int page,
             //@RequestParam(name = "size", required = false) int size
+           // final_business_processing_date
                                                                            ) throws ParseException {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime formatDateTime = LocalDateTime.parse(eventDate, formatter);
 
-        List<Object> list = documentSearchCriteria.documentSearchCriteria(eventRelation, eventClos, formatDateTime);
+        List<DocumentDTO> list = documentSearchCriteria.getDocumentDfbmIsNullArchivingDateBefore(formatDateTime);
       //  Page<Object> pages = new PageImpl<>(list, PageRequest.of(page, size), list.size());
           return list;
     }

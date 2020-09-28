@@ -88,9 +88,9 @@ public class EventRepositoryImpl implements EventRepository {
 
     @Override
     public Client createEventClient(Client client) {
-        List<DigitalDocument> documents = digitalDocumentJpaRepository.findByEventTypeAndClientId(client.getStatus(), client.getClient_id());
+        List<DigitalDocument> documents = digitalDocumentJpaRepository.findByEventTypeAndClientId("CREATION_CLIENT", client.getClient_id());
         clientJpaRepository.save(client);
-        if (documents.size() > 0) {
+        if (documents.size() > 0 && client.getStatus() == "FIN_RELATION_CLIENT") {
             Event event = new Event(client.getStatus());
             final Event event1 = eventJapRepository.save(event);
             documents.forEach(document -> {
@@ -107,6 +107,11 @@ public class EventRepositoryImpl implements EventRepository {
             });
         }
         return clientJpaRepository.findById(client.getClient_id()).get();
+    }
+
+    @Override
+    public Event createEvent(String event_type) {
+        return eventJapRepository.save(new Event(event_type));
     }
 
 

@@ -3,6 +3,7 @@ package org.simplon.epec.archivage.application.event;
 import org.simplon.epec.archivage.domain.account.entity.Account;
 import org.simplon.epec.archivage.domain.client.entity.Client;
 import org.simplon.epec.archivage.domain.contract.entity.Contract;
+import org.simplon.epec.archivage.domain.event.entity.Event;
 import org.simplon.epec.archivage.domain.event.repository.EventRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +34,10 @@ public class EventServiceImpl implements EventService {
         return eventRepository.createEventClient(client);
     }
 
-
+    @Override
+    public Event createEvent(String event_type) {
+        return eventRepository.createEvent(event_type);
+    }
 
 
 }
